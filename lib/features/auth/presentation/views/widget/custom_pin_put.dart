@@ -1,0 +1,61 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pinput/pinput.dart';
+
+import '../../../../../core/utils/styles.dart';
+
+class PinPutView extends StatelessWidget {
+  const PinPutView({
+    super.key,
+    required this.otpController,
+  });
+
+  final TextEditingController otpController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Pinput(
+            defaultPinTheme: PinTheme(
+                decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(10.r),
+                    color: Colors.white,
+                    border: Border.all(
+                        color: Colors.grey.withOpacity(.5))),
+                margin:  EdgeInsets.symmetric(horizontal: 8.w),
+                height: 50.h,
+                width: 50.w,
+                textStyle: Styles.size24_700Black
+            ),
+            focusedPinTheme:PinTheme(
+                decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(10.r),
+                    color: Colors.white,
+                    border: Border.all(
+                        color: Colors.grey.withOpacity(.5))),
+                margin:  EdgeInsets.symmetric(horizontal: 8.w),
+                height: 55.h,
+                width: 55.w,
+                textStyle: Styles.size24_700Black
+            ) ,
+            length: 4,
+            controller: otpController,
+            toolbarEnabled: false,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            onCompleted: (pin) async {
+              // no need to setState as there is no need to update the ui
+              otpController.text = pin;
+              // why did you call api here?
+              // it must be called in the on pressed in the button below
+              ///Stop copy paste without understanding the code functionality
+            }),
+      ],
+    );
+  }
+}
