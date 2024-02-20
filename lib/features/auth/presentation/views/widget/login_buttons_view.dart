@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/sign_up_button.dart';
 
 import '../../../../../core/utils/app_router.dart';
@@ -20,7 +21,11 @@ class LoginButtonView extends StatelessWidget {
             text: 'Login',
             ontap: () {
               if(formKey.currentState!.validate()) {
-                GoRouter.of(context).pushReplacement(AppRouter.kBackHome);
+                if(role=='Mentor'){
+                  GoRouter.of(context).pushReplacement(AppRouter.kBackHome);
+                }else{
+                  GoRouter.of(context).pushReplacement(AppRouter.kPatientHome);
+                }
               }
             }
         ),

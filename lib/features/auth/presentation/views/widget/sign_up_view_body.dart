@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/check_privacy.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/sign_up_input_section.dart';
+import '../../../../../constants.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
 import '../../../../../core/widgets/custom_blueButton.dart';
@@ -38,8 +39,11 @@ class SignUpViewBody extends StatelessWidget {
                   text: 'Sign UP',
                   ontap: (){
                     if(formKey.currentState!.validate()) {
-                      GoRouter.of(context).pushReplacement(AppRouter.kBackHome);
-                    }
+                      if(role=='Mentor'){
+                        GoRouter.of(context).pushReplacement(AppRouter.kBackHome);
+                      }else{
+                        GoRouter.of(context).pushReplacement(AppRouter.kPatientHome);
+                      }                    }
                   },
                   containerHeight: 60,
                 )
