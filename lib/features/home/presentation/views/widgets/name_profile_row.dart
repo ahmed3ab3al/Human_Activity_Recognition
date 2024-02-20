@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/utils/styles.dart';
-import '../../../../../constants.dart';
+import '../../../../../core/utils/colors.dart';
 
 class NameProfileRow extends StatelessWidget {
   const NameProfileRow({super.key, required this.tab});

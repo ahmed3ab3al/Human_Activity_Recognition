@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
@@ -68,7 +69,7 @@ class _VerificationScreenState extends State<VerificationViewBody> {
                   // style: Styles.hintTextSize,),
                   TextButton(
                     onPressed: () {},
-                    child: Text('Resend', style: Styles.size14_400Blue0E4CA1),
+                    child: Text('Resend', style: Styles.testStyle14.copyWith(color: ColorManager.blueColor0E4CA1)),
                   ),
                 ],
               )

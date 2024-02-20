@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/features/treatment/presentation/views/widgets/medicine_list.dart';
 import 'package:graduation_project/features/treatment/presentation/views/widgets/toggle_button.dart';
-import '../../../../../constants.dart';
+import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
@@ -32,7 +32,7 @@ class _AddMedicineState extends State<MedicineViewBody> {
             children: [
                CustomAppBar(
                 tab: (){
-                  GoRouter.of(context).push( AppRouter.kBackTreatment);
+                  GoRouter.of(context).pop();
                 },
                 text: 'Add Medication',
                 space: 50,
@@ -87,7 +87,7 @@ class _AddMedicineState extends State<MedicineViewBody> {
                   GestureDetector(
                       child: Text(
                         'EveryDay',
-                        style: Styles.size15_400Grey757474,
+                        style: Styles.testStyle15.copyWith(color: ColorManager.greyColor757474),
                       ))
                 ],
               ),

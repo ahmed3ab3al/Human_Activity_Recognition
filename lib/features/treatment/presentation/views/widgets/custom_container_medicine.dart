@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../constants.dart';
+import 'package:graduation_project/core/utils/assets.dart';
+import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/styles.dart';
 
 // ignore: must_be_immutable
@@ -64,7 +65,7 @@ class CustomContainerMedicine extends StatelessWidget {
                     ],
                   ),
                   child:  Image(
-                    image: const AssetImage('images/vitamin_a.png'),
+                    image: const AssetImage(AppAssets.vitamin),
                     width: 30.w,
                     height: 30.h,
                   ),

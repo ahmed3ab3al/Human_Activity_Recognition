@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/features/auth/presentation/views/widget/custom_password_text_field.dart';
+import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
 import '../../../../../core/widgets/custom_blueButton.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/app_router.dart';
+import '../../../../../core/widgets/custom_textFormField.dart';
 class ResetPasswordViewBody extends StatefulWidget {
   const ResetPasswordViewBody({super.key});
   @override
@@ -44,14 +45,42 @@ class _PasswordScreenState extends State<ResetPasswordViewBody> {
                     ],
                   ),
                   30.verticalSpace,
-                  CustomPasswordTextFormFiled(
+                  CustomTextFormFiled(
                     hint: 'Password',
+                    secure: secure,
                     customController: passwordController,
+                    type: TextInputType.visiblePassword,
+                    prefix: Icons.lock_outline_rounded,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        secure = !secure;
+                        setState(() {});
+                      },
+                      icon: Icon(
+                        secure ? Icons.visibility_off : Icons.visibility,
+                        color: ColorManager.greyColor757474,
+                        size: 25.sp,
+                      ),
+                    ),
                   ),
                   30.verticalSpace,
-                  CustomPasswordTextFormFiled(
+                  CustomTextFormFiled(
                     hint: 'Confirmation Password',
+                    secure: secure,
                     customController: confirmPasswordController,
+                    type: TextInputType.visiblePassword,
+                    prefix: Icons.lock_outline_rounded,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        secure = !secure;
+                        setState(() {});
+                      },
+                      icon: Icon(
+                        secure ? Icons.visibility_off : Icons.visibility,
+                        color: ColorManager.greyColor757474,
+                        size: 25.sp,
+                      ),
+                    ),
                   ),
                   60.verticalSpace,
                   CustomBlueButton(text: 'Confirm',ontap: (){

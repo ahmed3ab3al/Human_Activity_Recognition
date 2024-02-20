@@ -1,7 +1,7 @@
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/constants.dart';
+import '../../../../../core/utils/colors.dart';
 import '../../../dangerous/presentation/views/widgets/dangerous_view_body.dart';
 import '../../../treatment/presentation/views/widgets/treatment_view_body.dart';
 

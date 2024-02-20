@@ -3,102 +3,69 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
 import 'package:graduation_project/core/widgets/custom_appBar.dart';
-import 'package:graduation_project/features/auth/presentation/views/widget/custom_password_text_field.dart';
-import 'package:graduation_project/features/auth/presentation/views/widget/or_text_view.dart';
-import 'package:graduation_project/features/auth/presentation/views/widget/sign_up_button.dart';
+import 'package:graduation_project/features/auth/presentation/views/widget/login_another_way.dart';
+import 'package:graduation_project/features/auth/presentation/views/widget/login_buttons_view.dart';
+import 'package:graduation_project/features/auth/presentation/views/widget/login_input_section.dart';
+import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/styles.dart';
-import '../../../../../core/widgets/custom_blueButton.dart';
-import '../../../../../core/widgets/custom_textFormField.dart';
-import 'custom_button.dart';
 
-class LoginViewBody extends StatefulWidget {
+class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
-  @override
-  State<LoginViewBody> createState() => _LoginScreenState();
-}
 
-class _LoginScreenState extends State<LoginViewBody> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  var formKey = GlobalKey<FormState>();
-  bool secure = true;
   @override
   Widget build(BuildContext context) {
+    var formKey = GlobalKey<FormState>();
     return SafeArea(
       child: Padding(
-          padding:  EdgeInsets.symmetric(
+        padding:  EdgeInsets.symmetric(
             horizontal: 16.w,
             vertical: 30.h
-          ),
-          child: SingleChildScrollView(
-            child: Form(
-              key: formKey,
-              child: Column(
-                children: [
-                  CustomAppBar(text: 'Login', space: 85, tab: () {
-                    GoRouter.of(context).push(AppRouter.kSelection);
-                  },),
-                  20.verticalSpace,
-                  CustomTextFormFiled(
-                      hint: 'Email',
-                      customController: emailController,
-                      type: TextInputType.emailAddress,
-                      prefix: Icons.email_outlined),
-                  24.verticalSpace,
-                  CustomPasswordTextFormFiled(
-                    hint: 'Password',
-                    customController: passwordController,
+        ),
+        child: SingleChildScrollView(
+          child: Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                CustomAppBar(
+                  text: 'Login',
+                  space: 85,
+                  tab: () {
+                    GoRouter.of(context).pop();
+                  },
+                ),
+                20.verticalSpace,
+                const LoginInputSection(),
+                3.verticalSpace,
+                TextButton(
+                  onPressed: () {
+                    GoRouter.of(context).push(AppRouter.kVerify);
+                  },
+                  child: Text(
+                      'Forgot password ?',
+                      style: Styles.testStyle14.copyWith(color: ColorManager.blueColor0E4CA1)),
+                ),
+                20.verticalSpace,
+                LoginButtonView(
+                  formKey: formKey,
+                ),
+                20.verticalSpace,
+                const Center(
+                  child:  Text(
+                    '-OR-',
+                    style: TextStyle(
+                        color:  ColorManager.greyColor757474,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700
+                    ),
                   ),
-                  3.verticalSpace,
-                  Row(
-                    children: [
-                      const Spacer(),
-                      TextButton(
-                        onPressed: () {
-                          GoRouter.of(context).push(AppRouter.kVerify);
-                        },
-                        child: Text('Forgot password ?',
-                            style: Styles.size14_400Blue0E4CA1),
-                      ),
-                    ],
-                  ),
-                  20.verticalSpace,
-                  CustomBlueButton(containerHeight: 60,text: 'Login', ontap: () {
-                    if(formKey.currentState!.validate())
-                    {
-                      GoRouter.of(context).push(AppRouter.kBackHome);
-
-                    }else
-                    {
-                      return;
-                    }
-                  }
-                  ),
-                  25.verticalSpace,
-                  SignUpButton(text: 'Sign up', onTap: () {
-
-                    GoRouter.of(context).push(AppRouter.kSignUp);
-
-                  }),
-                  20.verticalSpace,
-                  const ORTextView(),
-                  20.verticalSpace,
-                  CustomButton(
-                    image: const AssetImage('images/google_image.png'),
-                    text: 'Sign in with Google',
-                    onTap: () {},
-                  ),
-                  25.verticalSpace,
-                  CustomButton(
-                    image: const AssetImage('images/facebook_Image.png'),
-                    text: 'Sign in with Facebook',
-                    onTap: () {},
-                  )
-                ],
-              ),
+                ),
+                const LoginAnotherWay(),
+              ],
             ),
           ),
         ),
+      ),
     );
   }
 }

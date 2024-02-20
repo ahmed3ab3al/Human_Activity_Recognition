@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:graduation_project/core/utils/assets.dart';
+import 'package:graduation_project/features/on_boarding/presentation/views/widgets/on_boarding_item.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/styles.dart';
@@ -16,26 +19,26 @@ class OnBoardingViewBody extends StatefulWidget {
 
 class _OnBoardingOneState extends State<OnBoardingViewBody> {
   final boardController = PageController();
- String text='Next';
+  String text='Next';
   List<BoardingModel> boarding = [
     BoardingModel(
         body: 'Recognize the activity',
-        image: 'images/on_boarding_four.png',
+        image: AppAssets.onBoardingOne,
         title1: 'We can detect human activity,',
         title2: 'especially falls'),
     BoardingModel(
         body: 'Treatment Reminder',
-        image: 'images/on_boarding_one.png',
+        image: AppAssets.onBoardingTwo,
         title1: 'Easy of entering and finding',
         title2: 'treatment appointments'),
     BoardingModel(
         body: 'Easy Communication',
-        image: 'images/on_boarding_two.png',
+        image: AppAssets.onBoardingThree,
         title1: 'Chat app fast and powerful than',
         title2: ' any other application'),
     BoardingModel(
         body: 'Easy To Find Location',
-        image: 'images/on_boarding_three.png',
+        image: AppAssets.onBoardingFour,
         title1: 'Finding location all over the world',
         title2: ''),
   ];
@@ -49,18 +52,17 @@ class _OnBoardingOneState extends State<OnBoardingViewBody> {
             padding:  EdgeInsets.symmetric(horizontal: 16.w,vertical: 30.h),
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      child:  Text('Skip',
-                      style:Styles.size16_400Grey757474),
-                      onPressed: () {
-                        GoRouter.of(context).push( AppRouter.kSelection);
-
-                      },
-                    )
-                  ],
+                Align(
+                  alignment: Alignment.topRight,
+                  child: TextButton(
+                    child:  Text(
+                      'Skip',
+                    style:Styles.size16_400Grey757474,
+                    ),
+                    onPressed: () {
+                      GoRouter.of(context).pushReplacement(AppRouter.kSelection);
+                    },
+                  ),
                 ),
                  10.verticalSpace,
                 Expanded(
@@ -81,7 +83,7 @@ class _OnBoardingOneState extends State<OnBoardingViewBody> {
                     },
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (context, index) =>
-                        buildBoardingItem(boarding[index]),
+                        OnBoardingItem(model: boarding[index],),
                     itemCount: boarding.length,
                   ),
                 ),
@@ -94,7 +96,8 @@ class _OnBoardingOneState extends State<OnBoardingViewBody> {
                       expansionFactor: 2,
                       activeDotColor: Color(0xff0E4CA1),
                       dotColor: Color(0xff67A3F4),
-                      spacing: 5),
+                      spacing: 5
+                  ),
                 ),
                 60.verticalSpace,
                 CustomBlueButton(
@@ -119,24 +122,4 @@ class _OnBoardingOneState extends State<OnBoardingViewBody> {
   }
 }
 
-Widget buildBoardingItem(BoardingModel model) =>
-    Column(
-  children: [
-    Image(image: AssetImage(model.image),height: 320.h,width: double.infinity,),
-    20.verticalSpace,
-    Text(
-      model.body,
-      style: Styles.size24_700Black,
-    ),
-    10.verticalSpace,
-    Text(
-      model.title1,
-      style: Styles.size16_400Grey757474,
-    ),
-    Text(
-      model.title2,
-      style: Styles.size16_400Grey757474,
-    ),
-  ],
-);
 

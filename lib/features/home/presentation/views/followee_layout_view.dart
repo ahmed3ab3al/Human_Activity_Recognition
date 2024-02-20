@@ -1,7 +1,7 @@
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/constants.dart';
+import '../../../../../core/utils/colors.dart';
 import '../../../../followee_chats_body.dart';
 import '../../../../followee_treatment_body.dart';
 import '../../../../mentors_body.dart';

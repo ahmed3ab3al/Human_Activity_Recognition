@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../constants.dart';
+import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/assets.dart';
 
 // ignore: must_be_immutable
 class UserprofileItemWidget extends StatelessWidget {
@@ -37,7 +38,7 @@ final GestureTapCallback tab;
           ),
           child:  Row(
             children: [
-              Image(image: const AssetImage('images/up_stair.png'),width: 50.w,height: 70.h,),
+              Image(image: const AssetImage(AppAssets.upStair),width: 50.w,height: 70.h,),
               Padding(
                 padding: EdgeInsets.only(
                   left: 15.w,
@@ -52,7 +53,7 @@ final GestureTapCallback tab;
                     ),
                     4.verticalSpace,
                     const Text(
-                      "تعبان والله",
+                      "Up Stairs",
                     ),
                   ],
                 ),

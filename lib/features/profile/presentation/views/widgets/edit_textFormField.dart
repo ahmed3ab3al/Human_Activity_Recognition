@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/constants.dart';
+import '../../../../../core/utils/colors.dart';
 import 'package:graduation_project/core/utils/styles.dart';
 import 'package:graduation_project/core/widgets/custom_icon.dart';
 
@@ -52,8 +52,8 @@ class EditTextFormFiled extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.r),
             borderSide: const BorderSide(color: ColorManager.redColorDC2222)),
         hintText: 'Change Your $hint',
-        hintStyle: Styles.size15_400Grey757474,
-        errorStyle: Styles.size14_400RedDC2222,
+        hintStyle: Styles.testStyle15.copyWith(color: ColorManager.greyColor757474),
+        errorStyle: Styles.testStyle14.copyWith(color: ColorManager.redColorDC2222),
         prefixIcon: CustomIcon(
           icon: prefix,
         ),
