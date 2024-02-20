@@ -1,9 +1,9 @@
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/features/medicine/presentation/views/patient_medicine_view.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../followee_chats_body.dart';
-import '../../../../followee_treatment_body.dart';
 import '../../../../mentors_body.dart';
 
 class PatientView extends StatefulWidget {
@@ -16,7 +16,7 @@ class PatientView extends StatefulWidget {
 class _HomeLayOutState extends State<PatientView> {
   int currentIndex = 0;
   List<Widget> screens = [
-    const FolloweeTreatmentBody(),
+    const PatientMedicineView(),
      ChatsScreen(),
     const MentorsBody(),
   ];

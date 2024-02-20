@@ -39,7 +39,7 @@ class LoginViewBody extends StatelessWidget {
                 3.verticalSpace,
                 TextButton(
                   onPressed: () {
-                    GoRouter.of(context).push(AppRouter.kVerify);
+                    GoRouter.of(context).push(AppRouter.kPatientHome);
                   },
                   child: Text(
                       'Forgot password ?',

@@ -5,6 +5,7 @@ import 'package:graduation_project/features/auth/presentation/views/sign_up_view
 import 'package:graduation_project/features/auth/presentation/views/verify_password_view.dart';
 import 'package:graduation_project/features/home/presentation/views/mentor_view.dart';
 import 'package:graduation_project/features/home/presentation/views/patient_details_view.dart';
+import 'package:graduation_project/features/home/presentation/views/patient_view.dart';
 import 'package:graduation_project/features/medicine/presentation/views/add_medicine_view.dart';
 import 'package:graduation_project/features/on_boarding/presentation/views/on_barding_view.dart';
 import 'package:graduation_project/features/profile/presentation/views/profile_view.dart';
@@ -25,6 +26,8 @@ abstract class AppRouter
   static const kBackHome= '/home';
   static const kEditProfile= '/profile';
   static const kPatientDetails= '/patientDetails';
+
+  static const kPatientHome= '/patientHome';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -75,7 +78,10 @@ abstract class AppRouter
         path: kPatientDetails ,
         builder: (context, state) => const PatientDetailsView(),
       ),
-
+      GoRoute(
+        path: kPatientHome,
+        builder: (context, state) => const PatientView(),
+      ),
     ],
   );
 }
