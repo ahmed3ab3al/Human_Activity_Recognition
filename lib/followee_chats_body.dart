@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/features/treatment/presentation/views/widgets/line_container.dart';
+import 'package:graduation_project/features/medicine/presentation/views/widgets/line_container.dart';
 import 'package:graduation_project/search_form_field.dart';
 
 import 'core/utils/styles.dart';

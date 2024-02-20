@@ -3,13 +3,13 @@ import 'package:graduation_project/features/auth/presentation/views/login_view.d
 import 'package:graduation_project/features/auth/presentation/views/reset_password_view.dart';
 import 'package:graduation_project/features/auth/presentation/views/sign_up_view.dart';
 import 'package:graduation_project/features/auth/presentation/views/verify_password_view.dart';
-import 'package:graduation_project/features/home/presentation/views/home_view.dart';
-import 'package:graduation_project/features/home/presentation/views/mentor_layout_view.dart';
+import 'package:graduation_project/features/home/presentation/views/mentor_view.dart';
+import 'package:graduation_project/features/home/presentation/views/patient_details_view.dart';
+import 'package:graduation_project/features/medicine/presentation/views/add_medicine_view.dart';
 import 'package:graduation_project/features/on_boarding/presentation/views/on_barding_view.dart';
 import 'package:graduation_project/features/profile/presentation/views/profile_view.dart';
 import 'package:graduation_project/features/selection/presentation/views/selection_view.dart';
-import 'package:graduation_project/features/treatment/presentation/views/medicine_view.dart';
-import 'package:graduation_project/features/treatment/presentation/views/treatment_view.dart';
+import 'package:graduation_project/features/medicine/presentation/views/mentor_medicine_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 
 abstract class AppRouter
@@ -24,7 +24,7 @@ abstract class AppRouter
   static const kBackTreatment= '/treatment';
   static const kBackHome= '/home';
   static const kEditProfile= '/profile';
-  static const kMentorLayout= '/mentorLayout';
+  static const kPatientDetails= '/patientDetails';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -57,11 +57,11 @@ abstract class AppRouter
       ),
       GoRoute(
         path: kAddMedicine ,
-        builder: (context, state) => const MedicineView(),
+        builder: (context, state) => const AddMedicineView(),
       ),
       GoRoute(
         path: kBackTreatment ,
-        builder: (context, state) => const TreatmentRegistrationView(),
+        builder: (context, state) => const MentorMedicineView(),
       ),
       GoRoute(
         path: kBackHome ,
@@ -72,8 +72,8 @@ abstract class AppRouter
         builder: (context, state) => const EditProfileView(),
       ),
       GoRoute(
-        path: kMentorLayout ,
-        builder: (context, state) => const MentorLayOutView(),
+        path: kPatientDetails ,
+        builder: (context, state) => const PatientDetailsView(),
       ),
 
     ],

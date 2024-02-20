@@ -1,23 +1,26 @@
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/colors.dart';
+import '../../../../core/utils/app_router.dart';
 import '../../../dangerous/presentation/views/widgets/dangerous_view_body.dart';
-import '../../../treatment/presentation/views/widgets/treatment_view_body.dart';
+import '../../../medicine/presentation/views/widgets/custom_floating_button.dart';
+import '../../../medicine/presentation/views/widgets/mentor_medicine_view_body.dart';
 
-class MentorLayOutView extends StatefulWidget {
-  const MentorLayOutView({super.key});
+class PatientDetailsView extends StatefulWidget {
+  const PatientDetailsView({super.key});
 
   @override
-  State<MentorLayOutView> createState() => _HomeLayOutState();
+  State<PatientDetailsView> createState() => _HomeLayOutState();
 }
 
-class _HomeLayOutState extends State<MentorLayOutView> {
+class _HomeLayOutState extends State<PatientDetailsView> {
   int currentIndex = 0;
   List<Widget> screens = [
-     const TreatmentRegistrationViewBody(),
+    const MentorMedicineViewBody(),
     const DangerousActivityViewBody(),
-    const TreatmentRegistrationViewBody(),
+    const MentorMedicineViewBody(),
     const DangerousActivityViewBody(),
   ];
   @override
@@ -55,6 +58,15 @@ class _HomeLayOutState extends State<MentorLayOutView> {
           ],
         ),
       ),
+      floatingActionButton:
+      currentIndex == 0 ?
+      CustomFloatingActionButton(
+        tab: (){
+          GoRouter.of(context).push(AppRouter.kAddMedicine);
+        },
+        icon: Icons.add,
+      ) :
+      Container(),
     );
   }
 }

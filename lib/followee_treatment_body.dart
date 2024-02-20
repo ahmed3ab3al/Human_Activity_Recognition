@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_icon.dart';
-import 'core/utils/app_router.dart';
 import 'features/home/presentation/views/widgets/image_text_welcome.dart';
 import 'features/home/presentation/views/widgets/name_profile_row.dart';
-import 'features/treatment/presentation/views/widgets/custom_container_medicine.dart';
+import 'features/medicine/presentation/views/widgets/custom_container_medicine.dart';
 
 
 class FolloweeTreatmentBody extends StatelessWidget {
@@ -22,9 +20,7 @@ class FolloweeTreatmentBody extends StatelessWidget {
             children: [
               const ImageText(),
               5.verticalSpace,
-               NameProfileRow(tab: () {
-                 GoRouter.of(context).push(AppRouter.kEditProfile);
-               },),
+               const NameProfileRow(),
               10.verticalSpace,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

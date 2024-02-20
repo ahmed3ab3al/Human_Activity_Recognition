@@ -6,14 +6,14 @@ import '../../../../followee_chats_body.dart';
 import '../../../../followee_treatment_body.dart';
 import '../../../../mentors_body.dart';
 
-class FolloweeLayOutView extends StatefulWidget {
-    const FolloweeLayOutView({super.key});
+class PatientView extends StatefulWidget {
+    const PatientView({super.key});
 
   @override
-  State<FolloweeLayOutView> createState() => _HomeLayOutState();
+  State<PatientView> createState() => _HomeLayOutState();
 }
 
-class _HomeLayOutState extends State<FolloweeLayOutView> {
+class _HomeLayOutState extends State<PatientView> {
   int currentIndex = 0;
   List<Widget> screens = [
     const FolloweeTreatmentBody(),

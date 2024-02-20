@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/features/home/presentation/views/widgets/custom_user_profile.dart';
+import 'package:go_router/go_router.dart';
+import 'package:graduation_project/features/home/presentation/views/widgets/patient_list_item.dart';
 
-class BuildProfile extends StatelessWidget {
-  const BuildProfile({super.key, required this.Tab});
-  final GestureTapCallback Tab;
+import '../../../../../core/utils/app_router.dart';
+
+class PatientListView extends StatelessWidget {
+  const PatientListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,14 @@ class BuildProfile extends StatelessWidget {
         },
         itemCount: 10,
         itemBuilder: (context, index) {
-          return  UserprofileItemWidget(tab: Tab,);
+          return  InkWell(
+            onTap: (){
+              GoRouter.of(context).push(
+                  AppRouter.kPatientDetails
+              );
+            }, 
+              child: const PatientListItem()
+          );
         },
       );
     }

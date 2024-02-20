@@ -28,8 +28,6 @@ class _GestureDetectorToggleState extends State<GestureDetectorToggleCounter> {
         GestureDetector(
           onTap:isFirstContainerSelected ? toggleContainer : null,
           child: Container(
-            // width: 20.w,
-            // height: 20.h,
             decoration: BoxDecoration(
                 gradient: isFirstContainerSelected
                     ? const LinearGradient(
@@ -68,8 +66,6 @@ class _GestureDetectorToggleState extends State<GestureDetectorToggleCounter> {
         GestureDetector(
           onTap: isFirstContainerSelected ? null : toggleContainer,
           child: Container(
-              // width: 20.w,
-              // height: 20.h,
               decoration: BoxDecoration(
                   gradient: isFirstContainerSelected
                       ? const LinearGradient(
@@ -88,16 +84,10 @@ class _GestureDetectorToggleState extends State<GestureDetectorToggleCounter> {
                   ),
                   borderRadius: BorderRadius.circular(5.r)
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.exposure_minus_1_outlined,
-                    size: 20.sp,
-                    color: ColorManager.whiteColor,
-                  ),
-                ],
+              child: Icon(
+                Icons.exposure_minus_1_outlined,
+                size: 20.sp,
+                color: ColorManager.whiteColor,
               )
           ),
         ),

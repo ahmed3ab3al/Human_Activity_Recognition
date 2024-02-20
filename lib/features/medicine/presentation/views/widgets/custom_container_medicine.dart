@@ -16,10 +16,6 @@ class CustomContainerMedicine extends StatelessWidget {
       child: Padding(
         padding:  EdgeInsets.symmetric(horizontal: 14.w),
         child: Container(
-          // padding:  EdgeInsets.symmetric(
-          //   horizontal: 15.w,
-          //   vertical: 10.h
-          // ),
           decoration: BoxDecoration(
             color: ColorManager.whiteColor,
             borderRadius: BorderRadius.circular(20.r),
@@ -71,7 +67,7 @@ class CustomContainerMedicine extends StatelessWidget {
                   ),
                 ),
               ),
-               Expanded(
+              Expanded(
                  child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 18.h),
                   child: Column(

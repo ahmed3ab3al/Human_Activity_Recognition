@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:graduation_project/features/treatment/presentation/views/widgets/line_container.dart';
+import 'package:graduation_project/features/medicine/presentation/views/widgets/line_container.dart';
 
 import 'core/utils/colors.dart';
 import 'core/utils/styles.dart';
@@ -30,7 +30,8 @@ class MentorsBody extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   separatorBuilder: (context, index) => 10.verticalSpace,
-                  itemCount: 8)
+                  itemCount: 8
+              )
             ],
           ),
         ),
