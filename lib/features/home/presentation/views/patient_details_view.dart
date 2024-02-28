@@ -1,51 +1,33 @@
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../../core/utils/colors.dart';
 import '../../../../core/utils/app_router.dart';
-import '../../../dangerous/presentation/views/widgets/dangerous_view_body.dart';
 import '../../../medicine/presentation/views/widgets/custom_floating_button.dart';
-import '../../../medicine/presentation/views/widgets/mentor_medicine_view_body.dart';
+import '../manager/mentor_nav_bar/mentor_nav_cubit.dart';
+import '../manager/mentor_nav_bar/mentor_nav_states.dart';
 
-class PatientDetailsView extends StatefulWidget {
+class PatientDetailsView extends StatelessWidget {
   const PatientDetailsView({super.key});
 
   @override
-  State<PatientDetailsView> createState() => _HomeLayOutState();
-}
-
-class _HomeLayOutState extends State<PatientDetailsView> {
-  int currentIndex = 0;
-  List<Widget> screens = [
-    const MentorMedicineViewBody(),
-    const DangerousActivityViewBody(),
-    const MentorMedicineViewBody(),
-    const DangerousActivityViewBody(),
-  ];
-  @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => MentorBottomCubit(),
+      child: BlocConsumer<MentorBottomCubit, MentorBottomNavBarStates>(
+        listener: (context, state) {},
+        builder: (context, state) {
     return Scaffold(
-      body: screens[currentIndex],
+      body: MentorBottomCubit.get(context)
+          .screens[MentorBottomCubit.get(context).currentIndex],
       bottomNavigationBar: CircleNavBar(
-        activeIndex: currentIndex,
+        activeIndex: MentorBottomCubit.get(context).currentIndex,
         onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
+          MentorBottomCubit.get(context).changeBottomNavBar(index);
         },
-        activeIcons:  [
-          Icon(Icons.medication_rounded, color:ColorManager.whiteColor,size: 24.sp,),
-          Icon(Icons.location_on_outlined, color: ColorManager.whiteColor,size: 24.sp,),
-          Icon(Icons.warning_amber_rounded, color:ColorManager.whiteColor,size: 24.sp,),
-          Icon(Icons.chat_bubble, color: ColorManager.whiteColor,size: 24.sp,),
-        ],
-        inactiveIcons:  [
-          Icon(Icons.medication_rounded, color: ColorManager.greyColor757474,size: 24.sp,),
-          Icon(Icons.location_on_outlined, color: ColorManager.greyColor757474,size: 24.sp,),
-          Icon(Icons.warning_amber_rounded, color: ColorManager.greyColor757474,size: 24.sp,),
-          Icon(Icons.chat_bubble, color: ColorManager.greyColor757474,size: 24.sp,),
-        ],
+        activeIcons: MentorBottomCubit.get(context).activeBottomItems,
+        inactiveIcons:
+        MentorBottomCubit.get(context).inActiveBottomItems,
         color: const Color(0xffF9F9F9),
         height: 60,
         circleWidth: 45,
@@ -59,7 +41,7 @@ class _HomeLayOutState extends State<PatientDetailsView> {
         ),
       ),
       floatingActionButton:
-      currentIndex == 0 ?
+      MentorBottomCubit.get(context).currentIndex == 0 ?
       CustomFloatingActionButton(
         tab: (){
           GoRouter.of(context).push(AppRouter.kAddMedicine);
@@ -68,5 +50,8 @@ class _HomeLayOutState extends State<PatientDetailsView> {
       ) :
       Container(),
     );
+  },
+  ),
+  );
   }
 }
