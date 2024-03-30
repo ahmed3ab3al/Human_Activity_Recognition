@@ -1,11 +1,25 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
+import 'package:graduation_project/core/api/dio_helper.dart';
+
+import 'core/bloc/bloc_observer.dart';
+import 'features/auth/manager/cubit.dart';
 
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  CacheHelper().init();
+  Bloc.observer = MyBlocObserver();
+   runApp(
+     BlocProvider(
+         create: (context) => AppAuthCubit( DioHelper(dio: Dio()),),
+         child: const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,21 +29,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark
-    ));
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.dark
+        ));
     return ScreenUtilInit(
         designSize: const Size(390, 844),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return  MaterialApp.router(
+          return MaterialApp.router(
             routerConfig: AppRouter.router,
             theme: ThemeData().copyWith(
               scaffoldBackgroundColor: Colors.white,
             ),
-              debugShowCheckedModeBanner: false,
-            );
+            debugShowCheckedModeBanner: false,
+          );
         });
   }
 }
