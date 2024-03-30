@@ -7,7 +7,7 @@ import 'package:graduation_project/features/on_boarding/presentation/views/widge
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/styles.dart';
-import '../../../../../core/widgets/custom_blueButton.dart';
+import '../../../../../core/widgets/custom_blue_button.dart';
 import '../../../data/models/on_boarding_model.dart';
 
 class OnBoardingViewBody extends StatefulWidget {

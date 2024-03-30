@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
 import 'package:graduation_project/core/utils/assets.dart';
 import 'package:graduation_project/core/utils/styles.dart';
-import 'package:graduation_project/core/widgets/custom_blueButton.dart';
+import 'package:graduation_project/core/widgets/custom_blue_button.dart';
+import 'package:graduation_project/features/auth/manager/cubit.dart';
 
 class SelectionViewBody extends StatefulWidget {
   const SelectionViewBody({super.key});
@@ -43,9 +43,7 @@ class _SelectionViewBodyState extends State<SelectionViewBody> {
             CustomBlueButton(
                 text:'Mentor' ,
                 ontap: (){
-                  setState(() {
-                    role = 'Mentor';
-                  });
+                  AppAuthCubit.get(context).roleName = 'mentor';
                   GoRouter.of(context).push(AppRouter.kLogin);
                   },
                 containerHeight: 60
@@ -54,10 +52,7 @@ class _SelectionViewBodyState extends State<SelectionViewBody> {
             CustomBlueButton(
                 text:'Patient',
                 ontap: () {
-                  setState(() {
-                    role = 'Patient';
-                  });
-                  print(role);
+                  AppAuthCubit.get(context).roleName = 'patient';
                   GoRouter.of(context).push(AppRouter.kLogin);
                   },
                 containerHeight: 60
