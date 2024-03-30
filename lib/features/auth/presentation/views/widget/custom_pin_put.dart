@@ -12,7 +12,6 @@ class PinPutView extends StatelessWidget {
   });
 
   final TextEditingController otpController;
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -25,35 +24,27 @@ class PinPutView extends StatelessWidget {
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(10.r),
                     color: Colors.white,
-                    border: Border.all(
-                        color: Colors.grey.withOpacity(.5))),
-                margin:  EdgeInsets.symmetric(horizontal: 8.w),
+                    border: Border.all(color: Colors.grey.withOpacity(.5))),
+                margin: EdgeInsets.symmetric(horizontal: 8.w),
                 height: 50.h,
                 width: 50.w,
-                textStyle: Styles.size24_700Black
-            ),
-            focusedPinTheme:PinTheme(
+                textStyle: Styles.size24_700Black),
+            focusedPinTheme: PinTheme(
                 decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(10.r),
                     color: Colors.white,
-                    border: Border.all(
-                        color: Colors.grey.withOpacity(.5))),
-                margin:  EdgeInsets.symmetric(horizontal: 8.w),
+                    border: Border.all(color: Colors.grey.withOpacity(.5))),
+                margin: EdgeInsets.symmetric(horizontal: 8.w),
                 height: 55.h,
                 width: 55.w,
-                textStyle: Styles.size24_700Black
-            ) ,
+                textStyle: Styles.size24_700Black),
             length: 4,
             controller: otpController,
             toolbarEnabled: false,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             onCompleted: (pin) async {
-              // no need to setState as there is no need to update the ui
               otpController.text = pin;
-              // why did you call api here?
-              // it must be called in the on pressed in the button below
-              ///Stop copy paste without understanding the code functionality
             }),
       ],
     );

@@ -7,12 +7,13 @@ class CustomBlueButton extends StatelessWidget {
   final String text;
   final double containerHeight;
   final GestureTapCallback ontap;
+  final double? width;
 
   const CustomBlueButton({
     super.key,
     required this.text,
     required this.ontap,
-    required this.containerHeight,
+    required this.containerHeight, this.width,
   });
 
   @override

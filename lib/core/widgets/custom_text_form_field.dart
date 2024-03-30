@@ -5,19 +5,19 @@ import 'package:graduation_project/core/utils/styles.dart';
 import 'package:graduation_project/core/widgets/custom_icon.dart';
 
 class CustomTextFormFiled extends StatelessWidget {
-  final TextInputType type;
-  final IconData prefix;
-  final String hint;
+  final TextInputType ?type;
+  final IconData? prefix;
+  final String? hint;
   final TextEditingController? customController;
-  final bool secure ;
+  final bool? secure ;
   final Widget? suffixIcon;
 
   const CustomTextFormFiled({
     super.key,
-    required this.hint,
-    required this.customController,
-    required this.type,
-    required this.prefix,
+     this.hint,
+     this.customController,
+     this.type,
+     this.prefix,
     this.secure = false,
     this.suffixIcon,
   });
@@ -34,7 +34,7 @@ class CustomTextFormFiled extends StatelessWidget {
       },
       controller: customController,
       keyboardType: type,
-      obscureText: secure,
+      obscureText: secure??false,
       decoration: InputDecoration(
         filled: true,
         fillColor: ColorManager.greyColorEEEEEE,
@@ -60,8 +60,8 @@ class CustomTextFormFiled extends StatelessWidget {
         hintStyle: Styles.testStyle15.copyWith(color: ColorManager.greyColor757474),
         errorStyle: Styles.testStyle14.copyWith(color: ColorManager.redColorDC2222),
         suffixIcon: suffixIcon,
-        prefixIcon: CustomIcon(
-          icon: prefix,
+        prefixIcon:prefix == null ? null :  CustomIcon(
+          icon: prefix!,
         ),
         prefixIconColor: MaterialStateColor.resolveWith((states) =>
             states.contains(MaterialState.focused)
