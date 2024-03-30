@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:graduation_project/features/auth/presentation/views/check_email.dart';
 import 'package:graduation_project/features/auth/presentation/views/login_view.dart';
 import 'package:graduation_project/features/auth/presentation/views/reset_password_view.dart';
 import 'package:graduation_project/features/auth/presentation/views/sign_up_view.dart';
@@ -26,8 +27,9 @@ abstract class AppRouter
   static const kBackHome= '/home';
   static const kEditProfile= '/profile';
   static const kPatientDetails= '/patientDetails';
-
+  static const kCheckEmail= '/checkEmail';
   static const kPatientHome= '/patientHome';
+ static const kProfileDataViewBody= '/profileDataViewBody';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -82,6 +84,11 @@ abstract class AppRouter
         path: kPatientHome,
         builder: (context, state) => const PatientView(),
       ),
+      GoRoute(
+        path: kCheckEmail,
+        builder: (context, state) =>  CheckEmail(),
+      ),
+
     ],
   );
 }
