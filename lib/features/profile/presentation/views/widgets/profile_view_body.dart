@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/widgets/custom_appBar.dart';
-import 'package:graduation_project/core/widgets/custom_blueButton.dart';
+import 'package:graduation_project/core/widgets/custom_blue_button.dart';
 import 'package:graduation_project/features/profile/presentation/views/widgets/edit_password_text_field.dart';
 import 'package:graduation_project/features/profile/presentation/views/widgets/edit_textFormField.dart';
 

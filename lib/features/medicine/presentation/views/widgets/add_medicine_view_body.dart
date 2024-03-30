@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:graduation_project/core/widgets/custom_text_form_field.dart';
 import 'package:graduation_project/features/medicine/presentation/views/widgets/medicine_information.dart';
 import 'package:graduation_project/features/medicine/presentation/views/widgets/toggle_button.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
-import '../../../../../core/widgets/custom_blueButton.dart';
-import '../../../../../core/widgets/custom_textFormField.dart';
+import 'package:graduation_project/core/widgets/custom_blue_button.dart';
 import 'line_container.dart';
 import 'medicine_list.dart';
 

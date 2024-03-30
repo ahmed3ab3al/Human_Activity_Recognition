@@ -5,7 +5,7 @@ import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
-import '../../../../../core/widgets/custom_blueButton.dart';
+import 'package:graduation_project/core/widgets/custom_blue_button.dart';
 import 'custom_pin_put.dart';
 
 class VerificationViewBody extends StatefulWidget {

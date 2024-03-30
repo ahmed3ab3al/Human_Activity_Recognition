@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/core/widgets/custom_text_form_field.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
-import '../../../../../core/widgets/custom_blueButton.dart';
+import 'package:graduation_project/core/widgets/custom_blue_button.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/app_router.dart';
-import '../../../../../core/widgets/custom_textFormField.dart';
 class ResetPasswordViewBody extends StatefulWidget {
   const ResetPasswordViewBody({super.key});
   @override
