@@ -7,7 +7,7 @@ import 'package:graduation_project/core/utils/app_router.dart';
 import 'package:graduation_project/core/utils/assets.dart';
 import 'package:graduation_project/core/utils/styles.dart';
 import 'package:graduation_project/core/widgets/custom_blue_button.dart';
-import 'package:graduation_project/features/auth/manager/cubit.dart';
+import 'package:graduation_project/features/auth/presentation/view_models/cubit.dart';
 
 import '../../../../../core/api/end_points.dart';
 

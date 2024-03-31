@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
-import '../../../manager/cubit.dart';
+import '../../view_models/cubit.dart';
 
 class SignUpInputSection extends StatefulWidget {
   const SignUpInputSection({super.key});

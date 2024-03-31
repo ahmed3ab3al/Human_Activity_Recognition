@@ -7,10 +7,10 @@ import 'package:graduation_project/core/api/api_helper.dart';
 import 'package:graduation_project/core/api/end_points.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/errors/exception.dart';
-import 'package:graduation_project/features/auth/manager/states.dart';
-import 'package:graduation_project/features/auth/presentation/view_models/login_model.dart';
-import 'package:graduation_project/features/auth/presentation/view_models/sign_up_model.dart';
-import '../presentation/view_models/forget_password_model.dart';
+import 'package:graduation_project/features/auth/data/model/login_model.dart';
+import 'package:graduation_project/features/auth/data/model/sign_up_model.dart';
+import 'package:graduation_project/features/auth/presentation/view_models/states.dart';
+import '../../data/model/forget_password_model.dart';
 
 class AppAuthCubit extends Cubit<AuthStates> {
   AppAuthCubit(this.apiHelper) : super(AuthInitialState());

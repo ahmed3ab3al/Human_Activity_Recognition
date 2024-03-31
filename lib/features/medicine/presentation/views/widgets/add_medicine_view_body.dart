@@ -5,8 +5,8 @@ import 'package:graduation_project/features/medicine/presentation/views/widgets/
 import 'package:graduation_project/features/medicine/presentation/views/widgets/toggle_button.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
-import '../../../../../core/widgets/custom_blueButton.dart';
-import '../../../../../core/widgets/custom_textFormField.dart';
+import '../../../../../core/widgets/custom_blue_button.dart';
+import '../../../../../core/widgets/custom_text_form_field.dart';
 import 'line_container.dart';
 import 'medicine_list.dart';
 
@@ -65,7 +65,6 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
               CustomBlueButton(
                   text: 'Reminder', ontap: () {
                 GoRouter.of(context).pop();
-
               }, containerHeight: 56)
             ],
           ),

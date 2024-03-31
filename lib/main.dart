@@ -8,7 +8,7 @@ import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
 import 'package:graduation_project/core/api/dio_helper.dart';
 import 'core/bloc/bloc_observer.dart';
-import 'features/auth/manager/cubit.dart';
+import 'features/auth/presentation/view_models/cubit.dart';
 
 
 void main() async{

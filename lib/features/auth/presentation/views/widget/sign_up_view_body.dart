@@ -7,8 +7,8 @@ import 'package:graduation_project/features/auth/presentation/views/widget/sign_
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
 import '../../../../../core/widgets/custom_blue_button.dart';
-import '../../../manager/cubit.dart';
-import '../../../manager/states.dart';
+import '../../view_models/cubit.dart';
+import '../../view_models/states.dart';
 
 class SignUpViewBody extends StatelessWidget {
    SignUpViewBody({super.key});

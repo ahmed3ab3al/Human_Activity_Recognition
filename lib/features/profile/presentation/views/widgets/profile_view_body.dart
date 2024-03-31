@@ -4,11 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/widgets/custom_appBar.dart';
 import 'package:graduation_project/core/widgets/custom_blue_button.dart';
-import 'package:graduation_project/features/auth/manager/cubit.dart';
+import 'package:graduation_project/features/auth/presentation/view_models/cubit.dart';
 import 'package:graduation_project/features/profile/presentation/views/widgets/edit_password_text_field.dart';
 import 'package:graduation_project/features/profile/presentation/views/widgets/edit_textFormField.dart';
 import '../../../../../core/utils/app_router.dart';
-import '../../../../auth/manager/states.dart';
+import '../../../../auth/presentation/view_models/states.dart';
 
 // ignore: must_be_immutable
 class EditProfileBody extends StatelessWidget {

@@ -4,14 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
 import 'package:graduation_project/core/widgets/custom_appBar.dart';
-import 'package:graduation_project/features/auth/manager/cubit.dart';
-import 'package:graduation_project/features/auth/manager/states.dart';
+import 'package:graduation_project/features/auth/presentation/view_models/cubit.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/login_another_way.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/login_buttons_view.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/login_input_section.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/sign_up_button_view.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../view_models/states.dart';
 
 class LoginViewBody extends StatelessWidget {
    LoginViewBody({super.key});

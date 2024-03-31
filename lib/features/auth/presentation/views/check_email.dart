@@ -6,8 +6,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/custom_blue_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
-import '../../manager/cubit.dart';
-import '../../manager/states.dart';
+import '../view_models/cubit.dart';
+import '../view_models/states.dart';
 
 class CheckEmail extends StatelessWidget {
    CheckEmail({super.key});
