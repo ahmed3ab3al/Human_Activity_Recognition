@@ -1,14 +1,11 @@
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
-import 'package:graduation_project/core/api/dio_helper.dart';
 import 'core/bloc/bloc_observer.dart';
-import 'features/auth/presentation/view_models/cubit.dart';
+
 
 
 void main() async{
@@ -16,9 +13,7 @@ void main() async{
  await CacheHelper().init();
   Bloc.observer = MyBlocObserver();
    runApp(
-     BlocProvider(
-         create: (context) => AppAuthCubit( DioHelper(dio: Dio()),),
-         child:  const MyApp()),
+     const MyApp()
   );
 }
 
