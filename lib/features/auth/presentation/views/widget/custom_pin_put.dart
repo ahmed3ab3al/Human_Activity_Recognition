@@ -27,7 +27,7 @@ class PinPutView extends StatelessWidget {
                     border: Border.all(color: Colors.grey.withOpacity(.5))),
                 margin: EdgeInsets.symmetric(horizontal: 8.w),
                 height: 50.h,
-                width: 50.w,
+                width: 35.w,
                 textStyle: Styles.size24_700Black),
             focusedPinTheme: PinTheme(
                 decoration: BoxDecoration(
@@ -37,11 +37,11 @@ class PinPutView extends StatelessWidget {
                     border: Border.all(color: Colors.grey.withOpacity(.5))),
                 margin: EdgeInsets.symmetric(horizontal: 8.w),
                 height: 55.h,
-                width: 55.w,
+                width: 35.w,
                 textStyle: Styles.size24_700Black),
-            length: 4,
+            length: 6,
             controller: otpController,
-            toolbarEnabled: false,
+            toolbarEnabled: true,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             onCompleted: (pin) async {
               otpController.text = pin;

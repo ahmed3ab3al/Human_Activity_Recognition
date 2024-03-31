@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
 import 'package:graduation_project/core/utils/assets.dart';
 import 'package:graduation_project/features/splash/presentation/views/widgets/sliding_text.dart';
+import '../../../../../core/api/end_points.dart';
+import '../../../../../core/cache/cache_helper.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -17,16 +19,27 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
   late Animation<Offset> slidingAnimation;
   @override
   void initState() {
-
     super.initState();
     initSlidingAnimation();
     Future.delayed(const Duration(seconds: 3),(){
-      GoRouter.of(context).push( AppRouter.kOnBoarding);
+      if(CacheHelper().getData(key: 'onBoarding') != null){
+        if(CacheHelper().getData(key: ApiKeys.token) != null){
+          if(CacheHelper().getData(key: ApiKeys.roleName)=='mentor'){
+            GoRouter.of(context).push( AppRouter.kBackHome);
+          }else{
+            GoRouter.of(context).push( AppRouter.kPatientHome);
+          }
+        }
+        else{
+          GoRouter.of(context).push( AppRouter.kLogin);
+        }
+      }else{
+        GoRouter.of(context).push( AppRouter.kOnBoarding);
+      }
+
     });
   }
-
-
-  @override
+    @override
   void dispose() {
     super.dispose();
     animationController.dispose();

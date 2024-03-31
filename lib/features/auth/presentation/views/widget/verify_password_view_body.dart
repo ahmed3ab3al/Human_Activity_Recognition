@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:graduation_project/features/auth/manager/cubit.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
-import '../../../../../core/widgets/custom_blueButton.dart';
+import '../../../../../core/widgets/custom_blue_button.dart';
 import 'custom_pin_put.dart';
 
 class VerificationViewBody extends StatefulWidget {
@@ -53,7 +54,7 @@ class _VerificationScreenState extends State<VerificationViewBody> {
                 ],
               ),
               30.verticalSpace,
-              PinPutView(otpController: otpController),
+              PinPutView(otpController: AppAuthCubit.get(context).otpController),
               50.verticalSpace,
               CustomBlueButton(
                   text: 'Verify', ontap: () {

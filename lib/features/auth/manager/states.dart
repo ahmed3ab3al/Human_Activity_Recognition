@@ -1,4 +1,3 @@
-
 abstract class AuthStates {}
 
 
@@ -28,7 +27,6 @@ class AuthSignUpErrorState extends AuthStates {
 }
 
 
-
 class ChangeGenderState extends AuthStates {}
 class LoadingGenderState extends AuthStates {}
 
@@ -43,14 +41,3 @@ class AuthCheckEmailErrorState extends AuthStates {
   final String error;
   AuthCheckEmailErrorState({required this.error});
 }
-
-
-// class GetUserSuccessState extends AuthStates {
-//   final UserModel userModel;
-//   GetUserSuccessState({required this.userModel});
-// }
-// class GetUserErrorState extends AuthStates {
-//   final String error;
-//   GetUserErrorState({required this.error});
-// }
-// class GetUserLoadingState extends AuthStates {}

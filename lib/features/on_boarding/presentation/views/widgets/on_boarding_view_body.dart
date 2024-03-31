@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/utils/assets.dart';
 import 'package:graduation_project/features/on_boarding/presentation/views/widgets/on_boarding_item.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -20,6 +20,14 @@ class OnBoardingViewBody extends StatefulWidget {
 class _OnBoardingOneState extends State<OnBoardingViewBody> {
   final boardController = PageController();
   String text='Next';
+  void submit(){
+    CacheHelper().saveData(key: 'onBoarding', value: true).then((value) {
+if(value){
+  GoRouter.of(context).push( AppRouter.kSelection);
+}
+    });
+
+  }
   List<BoardingModel> boarding = [
     BoardingModel(
         body: 'Recognize the activity',
@@ -60,8 +68,8 @@ class _OnBoardingOneState extends State<OnBoardingViewBody> {
                     style:Styles.size16_400Grey757474,
                     ),
                     onPressed: () {
-                      GoRouter.of(context).pushReplacement(AppRouter.kSelection);
-                    },
+
+submit();                    },
                   ),
                 ),
                  10.verticalSpace,
@@ -105,8 +113,7 @@ class _OnBoardingOneState extends State<OnBoardingViewBody> {
                   text: text,
                   ontap: () {
                     if (isLast) {
-                      GoRouter.of(context).push( AppRouter.kSelection);
-
+                      submit();
                     } else {
                       boardController.nextPage(
                           duration: const Duration(milliseconds: 750),
