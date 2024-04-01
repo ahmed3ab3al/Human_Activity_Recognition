@@ -6,7 +6,10 @@ class AuthInitialState extends AuthStates {}
 
 
 class AuthLoginLoadingState extends AuthStates {}
-class AuthLoginSuccessState extends AuthStates {}
+class AuthLoginSuccessState extends AuthStates {
+  final String message;
+  AuthLoginSuccessState({required this.message});
+}
 class AuthLoginErrorState extends AuthStates {
 
   final String error;

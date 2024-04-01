@@ -23,7 +23,7 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
     initSlidingAnimation();
     Future.delayed(const Duration(seconds: 3),(){
       if(CacheHelper().getData(key: 'onBoarding') != null){
-        if(CacheHelper().getData(key: ApiKeys.token) != null){
+        if(CacheHelper().getData(key: ApiKeys.token) != ''){
           if(CacheHelper().getData(key: ApiKeys.roleName)=='mentor'){
             GoRouter.of(context).push( AppRouter.kBackHome);
           }else{

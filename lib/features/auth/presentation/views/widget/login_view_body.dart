@@ -26,10 +26,17 @@ class LoginViewBody extends StatelessWidget {
           listener: (context, state) {
             if (state is AuthLoginSuccessState) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Center(child: Text('Login Success')),
+                 SnackBar(
+                  content: Center(child: Text(state.message)),
                 ),
               );
+              if (state.message == 'success'){
+                if ( AppAuthCubit.get(context).roleName == 'mentor') {
+                  GoRouter.of(context).pushReplacement(AppRouter.kBackHome);
+                } else {
+                  GoRouter.of(context).pushReplacement(AppRouter.kPatientHome);
+                }
+              }
             } else if (state is AuthLoginErrorState) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(

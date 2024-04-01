@@ -51,7 +51,7 @@ class AppAuthCubit extends Cubit<AuthStates> {
       );
       CacheHelper().saveData(
           key: ApiKeys.token, value: LoginModel.fromJson(response.data).token);
-      emit(AuthLoginSuccessState());
+      emit(AuthLoginSuccessState(message: LoginModel.fromJson(response.data).message!));
     } on ServerException catch (e) {
       emit(AuthLoginErrorState(error: e.errorModel.message));
       print(e);
