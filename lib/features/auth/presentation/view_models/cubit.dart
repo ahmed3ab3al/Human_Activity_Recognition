@@ -39,7 +39,7 @@ class AppAuthCubit extends Cubit<AuthStates> {
     emit(ChangeGenderState());
   }
 
-  signInUser() async {
+  Future <void>signInUser() async {
     try {
       emit(AuthLoginLoadingState());
       final response = await apiHelper.post(
