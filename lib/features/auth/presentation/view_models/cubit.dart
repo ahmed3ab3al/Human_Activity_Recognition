@@ -31,7 +31,7 @@ class AppAuthCubit extends Cubit<AuthStates> {
   TextEditingController signUpPhoneController = TextEditingController();
   List genderItems = ['male', 'female'];
   var selectedValue = 'male';
-  String roleName = 'mentor';
+  String roleName = '';
 
   void changeGender(String value) {
     emit(LoadingGenderState());
@@ -39,7 +39,7 @@ class AppAuthCubit extends Cubit<AuthStates> {
     emit(ChangeGenderState());
   }
 
-  Future <void>signInUser() async {
+    signInUser() async {
     try {
       emit(AuthLoginLoadingState());
       final response = await apiHelper.post(
