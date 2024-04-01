@@ -19,15 +19,15 @@ class OnBoardingViewBody extends StatefulWidget {
 
 class _OnBoardingOneState extends State<OnBoardingViewBody> {
   final boardController = PageController();
-  String text='Next';
-  void submit(){
+  String text = 'Next';
+  void submit() {
     CacheHelper().saveData(key: 'onBoarding', value: true).then((value) {
-if(value){
-  GoRouter.of(context).push( AppRouter.kSelection);
-}
+      if (value) {
+        GoRouter.of(context).push(AppRouter.kSelection);
+      }
     });
-
   }
+
   List<BoardingModel> boarding = [
     BoardingModel(
         body: 'Recognize the activity',
@@ -57,76 +57,74 @@ if(value){
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 16.w,vertical: 30.h),
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.topRight,
-                  child: TextButton(
-                    child:  Text(
-                      'Skip',
-                    style:Styles.size16_400Grey757474,
-                    ),
-                    onPressed: () {
-
-submit();                    },
-                  ),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 30.h),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: TextButton(
+                child: Text(
+                  'Skip',
+                  style: Styles.size16_400Grey757474,
                 ),
-                 10.verticalSpace,
-                Expanded(
-                  child: PageView.builder(
-                    controller: boardController,
-                    onPageChanged: (int index) {
-                      if (index == boarding.length - 1) {
-                        setState(() {
-                          isLast = true;
-                          text='Get Started';
-                        });
-                      } else {
-                        setState(() {
-                          isLast = false;
-                          text='Next';
-                        });
-                      }
-                    },
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) =>
-                        OnBoardingItem(model: boarding[index],),
-                    itemCount: boarding.length,
-                  ),
-                ),
-                SmoothPageIndicator(
-                  controller: boardController,
-                  count: boarding.length,
-                  effect: const ExpandingDotsEffect(
-                      dotHeight: 8,
-                      dotWidth: 8,
-                      expansionFactor: 2,
-                      activeDotColor: Color(0xff0E4CA1),
-                      dotColor: Color(0xff67A3F4),
-                      spacing: 5
-                  ),
-                ),
-                60.verticalSpace,
-                CustomBlueButton(
-                  containerHeight: 60,
-                  text: text,
-                  ontap: () {
-                    if (isLast) {
-                      submit();
-                    } else {
-                      boardController.nextPage(
-                          duration: const Duration(milliseconds: 750),
-                          curve: Curves.fastLinearToSlowEaseIn);
-                    }
-                  },
-                ),
-                80.verticalSpace
-              ],
+                onPressed: () {
+                  submit();
+                },
+              ),
             ),
-          ),
+            10.verticalSpace,
+            Expanded(
+              child: PageView.builder(
+                controller: boardController,
+                onPageChanged: (int index) {
+                  if (index == boarding.length - 1) {
+                    setState(() {
+                      isLast = true;
+                      text = 'Get Started';
+                    });
+                  } else {
+                    setState(() {
+                      isLast = false;
+                      text = 'Next';
+                    });
+                  }
+                },
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) => OnBoardingItem(
+                  model: boarding[index],
+                ),
+                itemCount: boarding.length,
+              ),
+            ),
+            SmoothPageIndicator(
+              controller: boardController,
+              count: boarding.length,
+              effect: const ExpandingDotsEffect(
+                  dotHeight: 8,
+                  dotWidth: 8,
+                  expansionFactor: 2,
+                  activeDotColor: Color(0xff0E4CA1),
+                  dotColor: Color(0xff67A3F4),
+                  spacing: 5),
+            ),
+            60.verticalSpace,
+            CustomBlueButton(
+              containerHeight: 60,
+              text: text,
+              ontap: () {
+                if (isLast) {
+                  submit();
+                } else {
+                  boardController.nextPage(
+                      duration: const Duration(milliseconds: 750),
+                      curve: Curves.fastLinearToSlowEaseIn);
+                }
+              },
+            ),
+            80.verticalSpace
+          ],
+        ),
+      ),
     );
   }
 }
-
-

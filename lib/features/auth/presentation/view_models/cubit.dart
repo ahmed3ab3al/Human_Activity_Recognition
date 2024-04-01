@@ -11,6 +11,7 @@ import 'package:graduation_project/features/auth/data/model/login_model.dart';
 import 'package:graduation_project/features/auth/data/model/sign_up_model.dart';
 import 'package:graduation_project/features/auth/presentation/view_models/states.dart';
 import '../../data/model/forget_password_model.dart';
+import '../../data/model/verify_code_model.dart';
 
 class AppAuthCubit extends Cubit<AuthStates> {
   AppAuthCubit(this.apiHelper) : super(AuthInitialState());
@@ -95,5 +96,22 @@ class AppAuthCubit extends Cubit<AuthStates> {
     }
   }
 
+  verifyCode() async {
+    try {
+      emit(AuthVerifyCodeLoadingState());
+      final response = await apiHelper.post(
+        EndPoints.otp,
+        data: {
+          ApiKeys.otp: otpController.text,
+        },
+      );
+      final verifyCodeModel = VerifyCode.fromJson(response.data);
+      CacheHelper().saveData(key: ApiKeys.token, value: verifyCodeModel.result);
+      emit(AuthVerifyCodeSuccessState(message: verifyCodeModel.message));
+    }
+    on ServerException catch (e) {
+      emit(AuthVerifyCodeErrorState(error: e.errorModel.message));
+    }
+  }
 
 }
