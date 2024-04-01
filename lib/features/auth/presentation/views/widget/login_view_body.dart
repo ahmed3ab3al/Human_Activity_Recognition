@@ -64,7 +64,7 @@ class LoginViewBody extends StatelessWidget {
                               .copyWith(color: ColorManager.blueColor0E4CA1)),
                     ),
                     20.verticalSpace,
-                    state is AuthLoginLoadingState
+                    state is AuthLoginLoadingState && loginFormKey.currentState!.validate()
                         ? const Center(child: CircularProgressIndicator())
                         :  LoginButtonView(
                       formKey: loginFormKey,

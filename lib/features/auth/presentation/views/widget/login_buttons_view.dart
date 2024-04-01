@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/features/auth/presentation/view_models/cubit.dart';
 import '../../../../../core/utils/app_router.dart';
@@ -15,13 +14,14 @@ class LoginButtonView extends StatelessWidget {
         containerHeight: 60,
         text: 'Login',
         ontap: () {
-          context.read<AppAuthCubit>().signInUser();
           if (formKey.currentState!.validate()) {
-            if ( AppAuthCubit.get(context).roleName == 'mentor') {
-              GoRouter.of(context).pushReplacement(AppRouter.kBackHome);
-            } else {
-              GoRouter.of(context).pushReplacement(AppRouter.kPatientHome);
-            }
+            AppAuthCubit.get(context).signInUser().then((value) {
+              if ( AppAuthCubit.get(context).roleName == 'mentor') {
+                GoRouter.of(context).pushReplacement(AppRouter.kBackHome);
+              } else {
+                GoRouter.of(context).pushReplacement(AppRouter.kPatientHome);
+              }
+            });
           }
         });
   }
