@@ -30,7 +30,7 @@ class AppAuthCubit extends Cubit<AuthStates> {
   TextEditingController signUpPhoneController = TextEditingController();
   List genderItems = ['male', 'female'];
   var selectedValue = 'male';
-  String roleName = '';
+  String roleName = 'mentor';
 
   void changeGender(String value) {
     emit(LoadingGenderState());

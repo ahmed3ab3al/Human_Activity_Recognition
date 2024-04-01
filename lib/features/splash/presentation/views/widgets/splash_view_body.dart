@@ -31,7 +31,7 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
           }
         }
         else{
-          GoRouter.of(context).push( AppRouter.kLogin);
+          GoRouter.of(context).push( AppRouter.kSelection);
         }
       }else{
         GoRouter.of(context).push( AppRouter.kOnBoarding);

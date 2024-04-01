@@ -28,6 +28,10 @@ class SignUpViewBody extends StatelessWidget {
                   content: Center(child: Text(state.message)),
                 ),
               );
+              if (state.message == "success") {
+                GoRouter.of(context)
+                    .pushReplacement(AppRouter.kLogin);
+              }
             } else if (state is AuthSignUpErrorState) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
@@ -62,11 +66,7 @@ class SignUpViewBody extends StatelessWidget {
                                   .currentState!
                                   .validate()) {
                                 AppAuthCubit.get(context)
-                                    .signUpUser()
-                                    .then((value) {
-                                  GoRouter.of(context)
-                                      .pushReplacement(AppRouter.kLogin);
-                                });
+                                    .signUpUser();
                               }
                             },
                             containerHeight: 60,
