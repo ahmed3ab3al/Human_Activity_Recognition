@@ -41,3 +41,14 @@ class AuthCheckEmailErrorState extends AuthStates {
   final String error;
   AuthCheckEmailErrorState({required this.error});
 }
+
+
+class AuthVerifyCodeLoadingState extends AuthStates {}
+class AuthVerifyCodeSuccessState extends AuthStates {
+  final String message;
+  AuthVerifyCodeSuccessState({required this.message});
+}
+class AuthVerifyCodeErrorState extends AuthStates {
+  final String error;
+  AuthVerifyCodeErrorState({required this.error});
+}
