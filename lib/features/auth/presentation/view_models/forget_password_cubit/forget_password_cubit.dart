@@ -17,6 +17,11 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   static ForgetPasswordCubit get(context) => BlocProvider.of(context);
 
 
+  bool secure = true;
+  void changeSecure() {
+    secure = !secure;
+    emit(ChangeSecureState());
+  }
   forgetPassword({
     required email
   }) async {
@@ -36,13 +41,12 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     }
   }
 
-
   verifyCode({
     required String otp,
     required String email
 }) async {
     try {
-      emit(AuthVerifyCodeLoadingState());
+      emit(VerifyCodeLoadingState());
       final response = await apiHelper.post(
         EndPoints.otp,
         data: {
@@ -52,10 +56,35 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       );
       final verifyCodeModel = VerifyCode.fromJson(response.data);
       CacheHelper().saveData(key: token, value: verifyCodeModel.token);
-      emit(AuthVerifyCodeSuccessState(message: verifyCodeModel.message!));
+      emit(VerifyCodeSuccessState(message: verifyCodeModel.message!));
     }
     on ServerException catch (e) {
-      emit(AuthVerifyCodeErrorState(error: e.errorModel.message));
+      emit(ResetPasswordErrorState(error: e.errorModel.message));
     }
   }
+
+
+  resetPassword({
+    required String password,
+    required String repassword
+  }) async {
+    try {
+      emit(ResetPasswordLoadingState());
+      final response = await apiHelper.patch(
+        EndPoints.confirm_reset_password,
+        data: {
+          'password':password,
+          'repassword': repassword,
+        },
+      );
+      // final resetPass = VerifyCode.fromJson(response.data);
+      // CacheHelper().saveData(key: token, value: resetPass.token);
+      emit(ResetPasswordSuccessState(message: "Success"));
+    }
+    on ServerException catch (e) {
+      emit(ResetPasswordErrorState(error: e.errorModel.message));
+    }
+  }
+  
+  
 }

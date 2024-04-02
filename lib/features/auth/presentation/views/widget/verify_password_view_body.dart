@@ -31,14 +31,14 @@ class VerificationViewBody extends StatelessWidget {
         ),
         child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
           listener: (context, state) {
-            if (state is AuthVerifyCodeSuccessState) {
+            if (state is VerifyCodeSuccessState) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   content: Center(child: Text('Code Verified')),
                 ),
               );
               GoRouter.of(context).push(AppRouter.kReset);
-            } else if (state is AuthVerifyCodeErrorState) {
+            } else if (state is ResetPasswordErrorState) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(state.error),
@@ -95,7 +95,7 @@ class VerificationViewBody extends StatelessWidget {
                     PinPutView(
                         otpController: otpController),
                     50.verticalSpace,
-                    state is AuthVerifyCodeLoadingState
+                    state is VerifyCodeLoadingState
                         ? const Center(child: CircularProgressIndicator())
                         : CustomBlueButton(
                       text: 'Verify',

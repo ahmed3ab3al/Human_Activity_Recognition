@@ -4,12 +4,14 @@ import 'package:graduation_project/core/api/end_points.dart';
 import 'package:graduation_project/core/errors/exception.dart';
 import 'package:graduation_project/core/api/api_helper.dart';
 
+import 'api_interceptors.dart';
+
 class DioHelper extends ApiHelper {
   final Dio dio;
 
   DioHelper({required this.dio}) {
     dio.options.baseUrl = EndPoints.baseUrl;
-    // dio.interceptors.add(ApiInterceptors());
+    dio.interceptors.add(ApiInterceptors());
     // dio.interceptors.add(LogInterceptor(
     //   request: true,
     //   requestHeader: true,

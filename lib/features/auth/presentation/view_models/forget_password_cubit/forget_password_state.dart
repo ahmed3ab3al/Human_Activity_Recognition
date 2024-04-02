@@ -4,6 +4,7 @@ abstract class ForgetPasswordState {}
 
 class ForgetPasswordInitial extends ForgetPasswordState {}
 
+class ChangeSecureState extends ForgetPasswordState{}
 class CheckEmailLoadingState extends ForgetPasswordState {}
 class CheckEmailSuccessState extends ForgetPasswordState {
   final String message;
@@ -14,12 +15,23 @@ class CheckEmailErrorState extends ForgetPasswordState {
   CheckEmailErrorState({required this.error});
 }
 
-class AuthVerifyCodeLoadingState extends ForgetPasswordState {}
-class AuthVerifyCodeSuccessState extends ForgetPasswordState {
+class VerifyCodeLoadingState extends ForgetPasswordState {}
+class VerifyCodeSuccessState extends ForgetPasswordState {
   final String message;
-  AuthVerifyCodeSuccessState({required this.message});
+  VerifyCodeSuccessState({required this.message});
 }
-class AuthVerifyCodeErrorState extends ForgetPasswordState {
+class VerifyCodeErrorState extends ForgetPasswordState {
   final String error;
-  AuthVerifyCodeErrorState({required this.error});
+  VerifyCodeErrorState({required this.error});
+}
+
+
+class ResetPasswordLoadingState extends ForgetPasswordState {}
+class ResetPasswordSuccessState extends ForgetPasswordState {
+  final String message;
+  ResetPasswordSuccessState({required this.message});
+}
+class ResetPasswordErrorState extends ForgetPasswordState {
+  final String error;
+  ResetPasswordErrorState({required this.error});
 }
