@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_print
 import 'package:dio/dio.dart';
-import 'package:graduation_project/core/api/api_interceptors.dart';
 import 'package:graduation_project/core/api/end_points.dart';
 import 'package:graduation_project/core/errors/exception.dart';
 import 'package:graduation_project/core/api/api_helper.dart';
@@ -10,15 +9,15 @@ class DioHelper extends ApiHelper {
 
   DioHelper({required this.dio}) {
     dio.options.baseUrl = EndPoints.baseUrl;
-    dio.interceptors.add(ApiInterceptors());
-    dio.interceptors.add(LogInterceptor(
-      request: true,
-      requestHeader: true,
-      requestBody: true,
-      responseHeader: true,
-      responseBody: true,
-      error: true,
-    ));
+    // dio.interceptors.add(ApiInterceptors());
+    // dio.interceptors.add(LogInterceptor(
+    //   request: true,
+    //   requestHeader: true,
+    //   requestBody: true,
+    //   responseHeader: true,
+    //   responseBody: true,
+    //   error: true,
+    // ));
   }
   @override
   Future delete(String url,
