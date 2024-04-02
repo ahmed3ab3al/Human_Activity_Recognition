@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/features/auth/presentation/view_models/cubit.dart';
+import 'package:graduation_project/features/auth/presentation/view_models/login_cubit/login_cubit.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
-import '../../view_models/states.dart';
+
 
 class LoginInputSection extends StatelessWidget {
   const LoginInputSection({super.key, required this.loginEmailController, required this.loginPasswordController});
@@ -13,7 +13,7 @@ class LoginInputSection extends StatelessWidget {
   final TextEditingController loginPasswordController ;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppAuthCubit, AuthStates>(
+    return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) {
     return Column(
       children: [
@@ -26,16 +26,16 @@ class LoginInputSection extends StatelessWidget {
         24.verticalSpace,
         CustomTextFormFiled(
           hint: 'Password',
-          secure: AppAuthCubit.get(context).secure,
+          secure: LoginCubit.get(context).secure,
           customController: loginPasswordController,
           type: TextInputType.visiblePassword,
           prefix: Icons.lock_outline_rounded,
           suffixIcon: IconButton(
             onPressed: () {
-              AppAuthCubit.get(context).changeSecure();
+              LoginCubit.get(context).changeSecure();
             },
             icon: Icon(
-              AppAuthCubit.get(context).secure
+              LoginCubit.get(context).secure
                   ? Icons.visibility_off
                   : Icons.visibility,
               color: ColorManager.greyColor757474,

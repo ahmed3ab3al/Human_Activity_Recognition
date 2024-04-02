@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
+import '../../view_models/Sign_up_cubit/sign_up_cubit.dart';
 import '../../view_models/cubit.dart';
-import '../../view_models/states.dart';
 
 
 class SignUpInputSection extends StatelessWidget {
@@ -18,9 +18,9 @@ class SignUpInputSection extends StatelessWidget {
   final TextEditingController signUpEmailController ;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppAuthCubit, AuthStates>(
-  builder: (context, state) {
-    return Column(
+    return BlocBuilder<SignUpCubit, SignUpState>(
+      builder: (context, state) {
+        return Column(
       children: [
         CustomTextFormFiled(
           hint: 'Name ',
@@ -50,7 +50,7 @@ class SignUpInputSection extends StatelessWidget {
           prefix: Icons.lock_outline_rounded,
           suffixIcon: IconButton(
             onPressed: () {
-              AppAuthCubit.get(context).changeSecure();
+              SignUpCubit.get(context).changeSecure();
             },
             icon: Icon(
               AppAuthCubit.get(context).secure
@@ -71,7 +71,7 @@ class SignUpInputSection extends StatelessWidget {
           prefix: Icons.lock_outline_rounded,
           suffixIcon: IconButton(
             onPressed: () {
-              AppAuthCubit.get(context).changeSecure();
+              SignUpCubit.get(context).changeSecure();
             },
             icon: Icon(
               AppAuthCubit.get(context).secure
@@ -86,8 +86,8 @@ class SignUpInputSection extends StatelessWidget {
         DropdownButton(
             icon: const Icon(Icons.arrow_drop_down_circle_rounded,
                 size: 25, color: Color(0xcb094fde)),
-            value: AppAuthCubit.get(context).selectedValue,
-            items: AppAuthCubit.get(context).genderItems.map((element) {
+            value: SignUpCubit.get(context).selectedValue,
+            items: SignUpCubit.get(context).genderItems.map((element) {
               return DropdownMenuItem(
                 value: element,
                 child: Text(
@@ -96,7 +96,7 @@ class SignUpInputSection extends StatelessWidget {
               );
             }).toList(),
             onChanged: (dynamic value) {
-              AppAuthCubit.get(context).changeGender(value);
+              SignUpCubit.get(context).changeGender(value);
             }),
       ],
     );

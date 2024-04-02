@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/features/auth/presentation/view_models/cubit.dart';
+import 'package:graduation_project/features/auth/presentation/view_models/login_cubit/login_cubit.dart';
+
 import '../../../../../core/widgets/custom_blue_button.dart';
 
 class LoginButtonView extends StatelessWidget {
@@ -15,7 +16,7 @@ class LoginButtonView extends StatelessWidget {
         text: 'Login',
         ontap: () {
           if (formKey.currentState!.validate()) {
-            AppAuthCubit.get(context).signInUser(email: email,password: password);
+            LoginCubit.get(context).signInUser(email: email,password: password);
           }
         });
   }

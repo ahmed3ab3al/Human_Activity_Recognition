@@ -4,20 +4,6 @@ abstract class AuthStates {}
 class AuthInitialState extends AuthStates {}
 
 
-
-class AuthLoginLoadingState extends AuthStates {}
-class AuthLoginSuccessState extends AuthStates {
-  final String message;
-  AuthLoginSuccessState({required this.message});
-}
-class AuthLoginErrorState extends AuthStates {
-
-  final String error;
-  AuthLoginErrorState({required this.error});
-}
-
-
-
 class AuthSignUpLoadingState extends AuthStates {}
 class AuthSignUpSuccessState extends AuthStates {
   final String message;
