@@ -18,13 +18,13 @@ class AppAuthCubit extends Cubit<AuthStates> {
   AppAuthCubit(this.apiHelper) : super(AuthInitialState());
   final ApiHelper apiHelper;
   static AppAuthCubit get(context) => BlocProvider.of(context);
-  GlobalKey<FormState> loginFormKey = GlobalKey();
   bool secure = true;
-  TextEditingController loginEmailController = TextEditingController();
+
+
   TextEditingController checkEmailController = TextEditingController();
   TextEditingController otpController = TextEditingController();
-  TextEditingController loginPasswordController = TextEditingController();
-  GlobalKey<FormState> signUpFormKey = GlobalKey();
+
+
   TextEditingController signUpEmailController = TextEditingController();
   TextEditingController signUpPasswordController = TextEditingController();
   TextEditingController signUpConfirmPasswordController = TextEditingController();
@@ -33,20 +33,24 @@ class AppAuthCubit extends Cubit<AuthStates> {
   List genderItems = ['male', 'female'];
   var selectedValue = 'male';
 
+  void changeSecure() {
+    secure = !secure;
+    emit(ChangeSecureState());
+  }
   void changeGender(String value) {
     emit(LoadingGenderState());
     selectedValue = value;
     emit(ChangeGenderState());
   }
 
-    signInUser() async {
+  signInUser({required String email, required String password}) async {
     try {
       emit(AuthLoginLoadingState());
       final response = await apiHelper.post(
         EndPoints.login,
         data: {
-          ApiKeys.email: loginEmailController.text,
-          ApiKeys.password: loginPasswordController.text,
+          ApiKeys.email: email,
+          ApiKeys.password: password,
         },
       );
       CacheHelper().saveData(

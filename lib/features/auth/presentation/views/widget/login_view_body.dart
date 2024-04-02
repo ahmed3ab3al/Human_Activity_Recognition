@@ -18,9 +18,12 @@ import '../../view_models/states.dart';
 class LoginViewBody extends StatelessWidget {
    LoginViewBody({super.key});
   final GlobalKey<FormState> loginFormKey = GlobalKey();
+  final TextEditingController loginEmailController = TextEditingController();
+  final TextEditingController loginPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 30.h),
@@ -62,7 +65,7 @@ class LoginViewBody extends StatelessWidget {
                       },
                     ),
                     20.verticalSpace,
-                    const LoginInputSection(),
+                    LoginInputSection(loginEmailController: loginEmailController,loginPasswordController:loginPasswordController ,),
                     3.verticalSpace,
                     TextButton(
                       onPressed: () {
@@ -77,6 +80,8 @@ class LoginViewBody extends StatelessWidget {
                         ? const Center(child: CircularProgressIndicator())
                         :  LoginButtonView(
                       formKey: loginFormKey,
+                      email: loginEmailController.text,
+                      password: loginPasswordController.text,
                     ),
                     25.verticalSpace,
                     const SignUpButtonView(),

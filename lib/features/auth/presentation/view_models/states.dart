@@ -33,6 +33,9 @@ class AuthSignUpErrorState extends AuthStates {
 class ChangeGenderState extends AuthStates {}
 class LoadingGenderState extends AuthStates {}
 
+class ChangeSecureState extends AuthStates {}
+
+
 
 
 class AuthCheckEmailLoadingState extends AuthStates {}
