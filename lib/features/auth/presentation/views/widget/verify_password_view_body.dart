@@ -45,6 +45,20 @@ class VerificationViewBody extends StatelessWidget {
                 ),
               );
             }
+            else if (state is CheckEmailSuccessState){
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Center(child: Text('Code is Send')),
+                ),
+              );
+            }
+            else if (state is CheckEmailErrorState){
+              ScaffoldMessenger.of(context).showSnackBar(
+                 SnackBar(
+                  content: Center(child: Text(state.error)),
+                ),
+              );
+            }
           },
           builder: (context, state) {
             return SingleChildScrollView(
@@ -103,7 +117,9 @@ class VerificationViewBody extends StatelessWidget {
                         const Text('Don’t receive the code ?'),
                         // style: Styles.hintTextSize,),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            ForgetPasswordCubit.get(context).forgetPassword(email: email);
+                          },
                           child: Text('Resend',
                               style: Styles.testStyle14.copyWith(
                                   color: ColorManager.blueColor0E4CA1)),
