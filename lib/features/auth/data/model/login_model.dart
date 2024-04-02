@@ -10,7 +10,7 @@ class LoginModel{
   factory LoginModel.fromJson(Map<String, dynamic> json) {
     return LoginModel(
       message: json[ApiKeys.message],
-      token: json[ApiKeys.token],
+      token: json['token'],
     );
   }
 }

@@ -14,7 +14,7 @@ class ApiKeys {
   static const String email = 'email';
   static const String password = 'password';
   static const String confirmPassword = 'repassword';
-  static const String token = 'token';
+  // static const String token = 'token';
   static const String name = 'name';
   static const String gender = 'gender';
   static const String role = 'role';

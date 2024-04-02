@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/api/api_helper.dart';
 import 'package:graduation_project/core/api/end_points.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
@@ -31,7 +32,6 @@ class AppAuthCubit extends Cubit<AuthStates> {
   TextEditingController signUpPhoneController = TextEditingController();
   List genderItems = ['male', 'female'];
   var selectedValue = 'male';
-  String roleName = '';
 
   void changeGender(String value) {
     emit(LoadingGenderState());
@@ -50,7 +50,7 @@ class AppAuthCubit extends Cubit<AuthStates> {
         },
       );
       CacheHelper().saveData(
-          key: ApiKeys.token, value: LoginModel.fromJson(response.data).token);
+          key: token, value: LoginModel.fromJson(response.data).token);
       emit(AuthLoginSuccessState(message: LoginModel.fromJson(response.data).message!));
     } on ServerException catch (e) {
       emit(AuthLoginErrorState(error: e.errorModel.message));
@@ -69,7 +69,7 @@ class AppAuthCubit extends Cubit<AuthStates> {
           ApiKeys.gender: selectedValue,
           ApiKeys.password: signUpPasswordController.text,
           ApiKeys.confirmPassword: signUpConfirmPasswordController.text,
-          ApiKeys.role: roleName,
+          ApiKeys.role: CacheHelper().getData(key: ApiKeys.roleName),
         },
       );
       final signUpModel = SignUpModel.fromJson(response.data);
@@ -106,7 +106,7 @@ class AppAuthCubit extends Cubit<AuthStates> {
         },
       );
       final verifyCodeModel = VerifyCode.fromJson(response.data);
-      CacheHelper().saveData(key: ApiKeys.token, value: verifyCodeModel.result);
+      CacheHelper().saveData(key: token, value: verifyCodeModel.result);
       emit(AuthVerifyCodeSuccessState(message: verifyCodeModel.message));
     }
     on ServerException catch (e) {

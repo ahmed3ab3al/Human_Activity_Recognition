@@ -7,8 +7,6 @@ import 'package:graduation_project/core/utils/app_router.dart';
 import 'package:graduation_project/core/utils/assets.dart';
 import 'package:graduation_project/core/utils/styles.dart';
 import 'package:graduation_project/core/widgets/custom_blue_button.dart';
-import 'package:graduation_project/features/auth/presentation/view_models/cubit.dart';
-
 import '../../../../../core/api/end_points.dart';
 
 class SelectionViewBody extends StatefulWidget {
@@ -46,9 +44,8 @@ class _SelectionViewBodyState extends State<SelectionViewBody> {
             CustomBlueButton(
                 text:'Mentor' ,
                 ontap: (){
-                  AppAuthCubit.get(context).roleName = 'mentor';
                   CacheHelper().saveData(
-                      key: ApiKeys.roleName, value: AppAuthCubit.get(context).roleName);
+                      key: ApiKeys.roleName, value: 'mentor');
                   GoRouter.of(context).push(AppRouter.kLogin);
                   },
                 containerHeight: 60
@@ -57,9 +54,8 @@ class _SelectionViewBodyState extends State<SelectionViewBody> {
             CustomBlueButton(
                 text:'Patient',
                 ontap: () {
-                  AppAuthCubit.get(context).roleName = 'patient';
                   CacheHelper().saveData(
-                      key: ApiKeys.roleName, value: AppAuthCubit.get(context).roleName);
+                      key: ApiKeys.roleName, value: 'patient');
                   GoRouter.of(context).push(AppRouter.kLogin);
                   },
                 containerHeight: 60
