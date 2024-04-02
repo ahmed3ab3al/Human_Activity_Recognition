@@ -14,13 +14,12 @@ class ApiKeys {
   static const String email = 'email';
   static const String password = 'password';
   static const String confirmPassword = 'repassword';
-  // static const String token = 'token';
   static const String name = 'name';
   static const String gender = 'gender';
   static const String role = 'role';
   static const String phone = 'phone';
   static const String code = 'code';
   static const String otp = 'otp';
-  static const String roleName = 'rolename';
+  // static const String roleName = 'rolename';
   static const String result = 'result';
 }

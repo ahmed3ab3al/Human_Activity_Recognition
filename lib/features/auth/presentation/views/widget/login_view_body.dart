@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:graduation_project/core/api/end_points.dart';
+import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
 import 'package:graduation_project/core/widgets/custom_appBar.dart';
@@ -33,7 +33,7 @@ class LoginViewBody extends StatelessWidget {
                 ),
               );
               if (state.message == 'success'){
-                if ( CacheHelper().getData(key: ApiKeys.roleName) == 'mentor') {
+                if ( CacheHelper().getData(key: role) == 'mentor') {
                   GoRouter.of(context).pushReplacement(AppRouter.kBackHome);
                 } else {
                   GoRouter.of(context).pushReplacement(AppRouter.kPatientHome);

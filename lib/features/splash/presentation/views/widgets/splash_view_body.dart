@@ -5,7 +5,6 @@ import 'package:graduation_project/core/utils/app_router.dart';
 import 'package:graduation_project/core/utils/assets.dart';
 import 'package:graduation_project/features/splash/presentation/views/widgets/sliding_text.dart';
 import '../../../../../constants.dart';
-import '../../../../../core/api/end_points.dart';
 import '../../../../../core/cache/cache_helper.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -25,7 +24,7 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
     Future.delayed(const Duration(seconds: 3),(){
       if(CacheHelper().getData(key: 'onBoarding') != null){
         if(CacheHelper().getData(key: token) != ''){
-          if(CacheHelper().getData(key: ApiKeys.roleName)=='mentor'){
+          if(CacheHelper().getData(key: role)=='mentor'){
             GoRouter.of(context).push( AppRouter.kBackHome);
           }else{
             GoRouter.of(context).push( AppRouter.kPatientHome);

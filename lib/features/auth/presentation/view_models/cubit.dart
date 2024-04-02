@@ -69,7 +69,7 @@ class AppAuthCubit extends Cubit<AuthStates> {
           ApiKeys.gender: selectedValue,
           ApiKeys.password: signUpPasswordController.text,
           ApiKeys.confirmPassword: signUpConfirmPasswordController.text,
-          ApiKeys.role: CacheHelper().getData(key: ApiKeys.roleName),
+          ApiKeys.role: CacheHelper().getData(key: role),
         },
       );
       final signUpModel = SignUpModel.fromJson(response.data);
