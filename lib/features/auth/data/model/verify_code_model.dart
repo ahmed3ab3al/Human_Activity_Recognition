@@ -1,16 +1,15 @@
 import '../../../../core/api/end_points.dart';
 
 class  VerifyCode{
+   final String? message;
+   final String? token;
 
-   final String message;
-   final String result;
-
-  VerifyCode({required this.message, required this.result});
+  VerifyCode({required this.message, required this.token});
 
   factory VerifyCode.fromJson(Map<String, dynamic> json) {
     return VerifyCode(
       message: json[ApiKeys.message],
-      result: json[ApiKeys.result],
+      token: json['token'],
     );
   }
 }

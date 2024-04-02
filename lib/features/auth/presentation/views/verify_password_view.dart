@@ -8,7 +8,6 @@ class VerificationView extends StatefulWidget {
 }
 
 class _VerificationScreenState extends State<VerificationView> {
-  final otpController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

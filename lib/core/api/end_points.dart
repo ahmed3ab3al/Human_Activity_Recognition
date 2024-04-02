@@ -3,7 +3,7 @@ class EndPoints {
   static const String signUp = '/users/signup';
   static const String login = '/users/signin';
   static const String forgetPassword = '/users/forgotpassword';
-  static const String otp = '/users/verifycode';
+  static const String otp = '/users/verify-reset-password-code';
   static String getUserId(String id) => '/users/$id';
 }
 
@@ -20,6 +20,5 @@ class ApiKeys {
   static const String phone = 'phone';
   static const String code = 'code';
   static const String otp = 'otp';
-  // static const String roleName = 'rolename';
   static const String result = 'result';
 }

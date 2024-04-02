@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../view_models/Sign_up_cubit/sign_up_cubit.dart';
-import '../../view_models/cubit.dart';
+
 
 
 class SignUpInputSection extends StatelessWidget {
@@ -44,7 +43,7 @@ class SignUpInputSection extends StatelessWidget {
         25.verticalSpace,
         CustomTextFormFiled(
           hint: 'Password',
-          secure: AppAuthCubit.get(context).secure,
+          secure: SignUpCubit.get(context).secure,
           customController:signUpPasswordController,
           type: TextInputType.visiblePassword,
           prefix: Icons.lock_outline_rounded,
@@ -53,7 +52,7 @@ class SignUpInputSection extends StatelessWidget {
               SignUpCubit.get(context).changeSecure();
             },
             icon: Icon(
-              AppAuthCubit.get(context).secure
+              SignUpCubit.get(context).secure
                   ? Icons.visibility_off
                   : Icons.visibility,
               color: ColorManager.greyColor757474,
@@ -64,7 +63,7 @@ class SignUpInputSection extends StatelessWidget {
         25.verticalSpace,
         CustomTextFormFiled(
           hint: 'Confirmation Password',
-          secure: AppAuthCubit.get(context).secure,
+          secure: SignUpCubit.get(context).secure,
           customController:
           signUpConfirmPasswordController,
           type: TextInputType.visiblePassword,
@@ -74,7 +73,7 @@ class SignUpInputSection extends StatelessWidget {
               SignUpCubit.get(context).changeSecure();
             },
             icon: Icon(
-              AppAuthCubit.get(context).secure
+              SignUpCubit.get(context).secure
                   ? Icons.visibility_off
                   : Icons.visibility,
               color: ColorManager.greyColor757474,
