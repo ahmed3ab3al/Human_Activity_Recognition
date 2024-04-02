@@ -13,8 +13,11 @@ import '../../view_models/states.dart';
 class SignUpViewBody extends StatelessWidget {
    SignUpViewBody({super.key});
  final GlobalKey<FormState> signUpFormKey = GlobalKey();
-
-
+ final TextEditingController signUpPasswordController = TextEditingController();
+ final TextEditingController signUpConfirmPasswordController = TextEditingController();
+ final TextEditingController signUpNameController = TextEditingController();
+ final TextEditingController signUpPhoneController = TextEditingController();
+ final TextEditingController signUpEmailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -53,7 +56,13 @@ class SignUpViewBody extends StatelessWidget {
                           GoRouter.of(context).push(AppRouter.kLogin);
                         }),
                     25.verticalSpace,
-                    const SignUpInputSection(),
+                     SignUpInputSection(
+                      signUpConfirmPasswordController: signUpConfirmPasswordController,
+                      signUpEmailController: signUpEmailController,
+                       signUpNameController: signUpNameController,
+                       signUpPasswordController: signUpPasswordController,
+                       signUpPhoneController: signUpPhoneController,
+                    ),
                     25.verticalSpace,
                     const CheckPrivacy(),
                     35.verticalSpace,
@@ -66,7 +75,13 @@ class SignUpViewBody extends StatelessWidget {
                                   .currentState!
                                   .validate()) {
                                 AppAuthCubit.get(context)
-                                    .signUpUser();
+                                    .signUpUser(
+                                  email: signUpEmailController.text,
+                                  password: signUpPasswordController.text,
+                                  name: signUpNameController.text,
+                                  confirmPassword: signUpConfirmPasswordController.text,
+                                  phone: signUpPhoneController.text,
+                                );
                               }
                             },
                             containerHeight: 60,

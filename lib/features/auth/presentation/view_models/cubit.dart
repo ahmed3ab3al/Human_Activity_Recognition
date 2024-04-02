@@ -25,11 +25,6 @@ class AppAuthCubit extends Cubit<AuthStates> {
   TextEditingController otpController = TextEditingController();
 
 
-  TextEditingController signUpEmailController = TextEditingController();
-  TextEditingController signUpPasswordController = TextEditingController();
-  TextEditingController signUpConfirmPasswordController = TextEditingController();
-  TextEditingController signUpNameController = TextEditingController();
-  TextEditingController signUpPhoneController = TextEditingController();
   List genderItems = ['male', 'female'];
   var selectedValue = 'male';
 
@@ -62,17 +57,23 @@ class AppAuthCubit extends Cubit<AuthStates> {
     }
   }
 
-  signUpUser() async {
+  signUpUser({
+    required String email,
+    required String password,
+    required String confirmPassword,
+    required String phone,
+    required String name,
+  }) async {
     try {
       emit(AuthSignUpLoadingState());
       final response = await apiHelper.post(
         EndPoints.signUp,
         data: {
-          ApiKeys.name: signUpNameController.text,
-          ApiKeys.email: signUpEmailController.text,
+          ApiKeys.name: name,
+          ApiKeys.email: email,
           ApiKeys.gender: selectedValue,
-          ApiKeys.password: signUpPasswordController.text,
-          ApiKeys.confirmPassword: signUpConfirmPasswordController.text,
+          ApiKeys.password: password,
+          ApiKeys.confirmPassword: confirmPassword,
           ApiKeys.role: CacheHelper().getData(key: role),
         },
       );
