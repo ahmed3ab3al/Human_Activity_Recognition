@@ -4,13 +4,17 @@ class LoginModel{
 
   final String? message;
   final String? token;
+  final String? role;
+  final String? id;
 
-  LoginModel({required this.message, required this.token});
+  LoginModel({required this.id,required this.role,required this.message, required this.token});
 
   factory LoginModel.fromJson(Map<String, dynamic> json) {
     return LoginModel(
-      message: json[ApiKeys.message],
+      message: json['message'],
       token: json['token'],
+      role: json['user']['role'],
+      id : json['user']['_id'],
     );
   }
 }

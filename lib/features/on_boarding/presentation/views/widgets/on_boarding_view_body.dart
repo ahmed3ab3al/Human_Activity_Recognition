@@ -23,7 +23,7 @@ class _OnBoardingOneState extends State<OnBoardingViewBody> {
   void submit() {
     CacheHelper().saveData(key: 'onBoarding', value: true).then((value) {
       if (value) {
-        GoRouter.of(context).push(AppRouter.kSelection);
+        GoRouter.of(context).push(AppRouter.kLogin);
       }
     });
   }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
 import 'package:graduation_project/core/widgets/custom_appBar.dart';
@@ -12,6 +11,7 @@ import 'package:graduation_project/features/auth/presentation/views/widget/login
 import 'package:graduation_project/features/auth/presentation/views/widget/login_buttons_view.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/login_input_section.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/sign_up_button_view.dart';
+import '../../../../../constants.dart';
 import '../../../../../core/api/dio_helper.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/styles.dart';
@@ -42,7 +42,7 @@ class LoginViewBody extends StatelessWidget {
               if (state.message == 'success'){
                 if ( CacheHelper().getData(key: role) == 'mentor') {
                   GoRouter.of(context).pushReplacement(AppRouter.kBackHome);
-                } else {
+                } else if( CacheHelper().getData(key: role) == 'patient') {
                   GoRouter.of(context).pushReplacement(AppRouter.kPatientHome);
                 }
               }

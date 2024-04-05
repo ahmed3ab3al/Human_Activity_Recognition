@@ -86,7 +86,7 @@ class SignUpInputSection extends StatelessWidget {
             icon: const Icon(Icons.arrow_drop_down_circle_rounded,
                 size: 25, color: Color(0xcb094fde)),
             value: SignUpCubit.get(context).selectedValue,
-            items: SignUpCubit.get(context).genderItems.map((element) {
+            items: SignUpCubit.get(context).roleItems.map((element) {
               return DropdownMenuItem(
                 value: element,
                 child: Text(
@@ -95,7 +95,7 @@ class SignUpInputSection extends StatelessWidget {
               );
             }).toList(),
             onChanged: (dynamic value) {
-              SignUpCubit.get(context).changeGender(value);
+              SignUpCubit.get(context).changeRole(value);
             }),
       ],
     );

@@ -87,6 +87,7 @@ class SignUpViewBody extends StatelessWidget {
                               confirmPassword: signUpConfirmPasswordController
                                   .text,
                               phone: signUpPhoneController.text,
+                              role: SignUpCubit.get(context).selectedValue,
                             );
                           }
                         },

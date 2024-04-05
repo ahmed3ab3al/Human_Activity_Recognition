@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:graduation_project/core/api/end_points.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
 import 'package:graduation_project/core/utils/assets.dart';
 import 'package:graduation_project/features/splash/presentation/views/widgets/sliding_text.dart';
@@ -25,14 +26,15 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
     Future.delayed(const Duration(seconds: 3),(){
       if(CacheHelper().getData(key: 'onBoarding') != null){
         if(CacheHelper().getData(key: token) != ''){
-          if(CacheHelper().getData(key: role)=='mentor'){
+          if(CacheHelper().getData(key:role)=='mentor'){
             GoRouter.of(context).push( AppRouter.kBackHome);
-          }else{
+          }else if(CacheHelper().getData(key:role)=='patient')
+          {
             GoRouter.of(context).push( AppRouter.kPatientHome);
           }
         }
         else{
-          GoRouter.of(context).push( AppRouter.kSelection);
+          GoRouter.of(context).push( AppRouter.kLogin);
         }
       }else{
         GoRouter.of(context).push( AppRouter.kOnBoarding);

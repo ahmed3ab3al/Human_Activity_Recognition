@@ -10,7 +10,6 @@ import 'package:graduation_project/features/home/presentation/views/patient_view
 import 'package:graduation_project/features/medicine/presentation/views/add_medicine_view.dart';
 import 'package:graduation_project/features/on_boarding/presentation/views/on_barding_view.dart';
 import 'package:graduation_project/features/profile/presentation/views/profile_view.dart';
-import 'package:graduation_project/features/selection/presentation/views/selection_view.dart';
 import 'package:graduation_project/features/medicine/presentation/views/mentor_medicine_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 
@@ -39,10 +38,6 @@ abstract class AppRouter
       GoRoute(
         path: kOnBoarding ,
         builder: (context, state) => const OnBoardingView(),
-      ),
-      GoRoute(
-        path: kSelection ,
-        builder: (context, state) => const SelectionView(),
       ),
       GoRoute(
         path: kLogin ,

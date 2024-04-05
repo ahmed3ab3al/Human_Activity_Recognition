@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/api/end_points.dart';
@@ -31,10 +30,10 @@ class LoginCubit extends Cubit<LoginState> {
       );
       CacheHelper().saveData(
           key: token, value: LoginModel.fromJson(response.data).token);
+      CacheHelper().saveData(key: role, value: LoginModel.fromJson(response.data).role);
       emit(LoginSuccessState(message: LoginModel.fromJson(response.data).message!));
     } on ServerException catch (e) {
       emit(LoginErrorState(error: e.errorModel.message));
-      print(e);
     }
   }
 }

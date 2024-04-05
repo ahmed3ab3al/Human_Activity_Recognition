@@ -1,12 +1,9 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/api/api_helper.dart';
 import 'package:graduation_project/core/errors/exception.dart';
 import 'package:graduation_project/features/auth/data/model/sign_up_model.dart';
 
 import '../../../../../core/api/end_points.dart';
-import '../../../../../core/cache/cache_helper.dart';
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
@@ -16,8 +13,8 @@ class SignUpCubit extends Cubit<SignUpState> {
   static SignUpCubit get(context) => BlocProvider.of(context);
 
   bool secure = true;
-  List genderItems = ['male', 'female'];
-  var selectedValue = 'male';
+  List roleItems = ['patient', 'mentor'];
+  var selectedValue = 'patient';
 
 
   void changeSecure() {
@@ -25,7 +22,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     emit(ChangeSecureState());
   }
 
-  void changeGender(String value) {
+  void changeRole(String value) {
     selectedValue = value;
     emit(ChangeGenderState());
   }
@@ -36,6 +33,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     required String confirmPassword,
     required String phone,
     required String name,
+    required String role
   }) async {
     try {
       emit(AuthSignUpLoadingState());
@@ -44,10 +42,9 @@ class SignUpCubit extends Cubit<SignUpState> {
         data: {
           ApiKeys.name: name,
           ApiKeys.email: email,
-          ApiKeys.gender: selectedValue,
           ApiKeys.password: password,
           ApiKeys.confirmPassword: confirmPassword,
-          ApiKeys.role: CacheHelper().getData(key: role),
+          ApiKeys.role: selectedValue
         },
       );
       final signUpModel = SignUpModel.fromJson(response.data);
