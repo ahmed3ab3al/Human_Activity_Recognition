@@ -2,9 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/api/dio_helper.dart';
-import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/features/auth/presentation/view_models/forget_password_cubit/forget_password_cubit.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/styles.dart';
@@ -34,11 +32,7 @@ class ResetPasswordViewBody extends StatelessWidget {
                   content: Center(child: Text(state.message)),
                 )
             );
-            if ( CacheHelper().getData(key: role) == 'mentor') {
-              GoRouter.of(context).pushReplacement(AppRouter.kBackHome);
-            } else {
-              GoRouter.of(context).pushReplacement(AppRouter.kPatientHome);
-            }
+            GoRouter.of(context).pushReplacement(AppRouter.kLogin);
           }
           else if (state is ResetPasswordErrorState){
             ScaffoldMessenger.of(context).showSnackBar(
@@ -114,6 +108,8 @@ class ResetPasswordViewBody extends StatelessWidget {
                         ),
                       ),
                       60.verticalSpace,
+                      state is ResetPasswordLoadingState?
+                          const CircularProgressIndicator():
                       CustomBlueButton(text: 'Confirm', ontap: () {
                         if (formKey.currentState!.validate()) {
                           ForgetPasswordCubit.get(context).resetPassword(
