@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:graduation_project/core/api/end_points.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
 import 'package:graduation_project/core/utils/assets.dart';
 import 'package:graduation_project/features/splash/presentation/views/widgets/sliding_text.dart';
@@ -20,7 +19,7 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
   late Animation<Offset> slidingAnimation;
   @override
   void initState() {
-    CacheHelper().saveData(key: token, value: '');
+    // CacheHelper().saveData(key: token, value: '');
     super.initState();
     initSlidingAnimation();
     Future.delayed(const Duration(seconds: 3),(){

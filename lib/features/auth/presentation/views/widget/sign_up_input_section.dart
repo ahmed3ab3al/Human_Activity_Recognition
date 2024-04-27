@@ -82,21 +82,40 @@ class SignUpInputSection extends StatelessWidget {
           ),
         ),
         25.verticalSpace,
-        DropdownButton(
-            icon: const Icon(Icons.arrow_drop_down_circle_rounded,
-                size: 25, color: Color(0xcb094fde)),
-            value: SignUpCubit.get(context).selectedValue,
-            items: SignUpCubit.get(context).roleItems.map((element) {
-              return DropdownMenuItem(
-                value: element,
-                child: Text(
-                  element.toString(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                  "Role :  ",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20
                 ),
-              );
-            }).toList(),
-            onChanged: (dynamic value) {
-              SignUpCubit.get(context).changeRole(value);
-            }),
+              ),
+              DropdownButton(
+                  icon: const Icon(Icons.arrow_drop_down_circle_rounded,
+                      size: 25, color: Color(0xcb094fde)),
+                  value: SignUpCubit.get(context).selectedValue,
+                  items: SignUpCubit.get(context).roleItems.map((element) {
+                    return DropdownMenuItem(
+                      value: element,
+                      child: Text(
+                        element.toString(),
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w300
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (dynamic value) {
+                    SignUpCubit.get(context).changeRole(value);
+                  }),
+            ],
+          ),
+        ),
       ],
     );
   },

@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
@@ -70,15 +69,13 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   }) async {
     try {
       emit(ResetPasswordLoadingState());
-      final response = await apiHelper.patch(
+      await apiHelper.patch(
         EndPoints.confirm_reset_password,
         data: {
           'password':password,
           'repassword': repassword,
         },
       );
-      // final resetPass = VerifyCode.fromJson(response.data);
-      // CacheHelper().saveData(key: token, value: resetPass.token);
       emit(ResetPasswordSuccessState(message: "Success"));
     }
     on ServerException catch (e) {

@@ -105,7 +105,6 @@ class VerificationViewBody extends StatelessWidget {
                               email: email,
                               otp: otpController.text
                             );
-                            print(otpController.text);
                         }
                       },
                       containerHeight: 60,
