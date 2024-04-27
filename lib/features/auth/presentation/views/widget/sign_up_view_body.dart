@@ -21,6 +21,7 @@ class SignUpViewBody extends StatelessWidget {
   final TextEditingController signUpPhoneController = TextEditingController();
   final TextEditingController signUpEmailController = TextEditingController();
 
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
