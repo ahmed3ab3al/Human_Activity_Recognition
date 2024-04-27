@@ -17,7 +17,7 @@ class NameProfileRow extends StatelessWidget {
         const Spacer(),
         GestureDetector(
           onTap: (){
-            GoRouter.of(context).push(AppRouter.kEditProfile);
+            GoRouter.of(context).push(AppRouter.kShowProfile);
           },
           child: CircleAvatar(
             radius: 18.r,

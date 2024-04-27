@@ -11,6 +11,7 @@ import 'package:graduation_project/features/medicine/presentation/views/add_medi
 import 'package:graduation_project/features/on_boarding/presentation/views/on_barding_view.dart';
 import 'package:graduation_project/features/profile/presentation/views/profile_view.dart';
 import 'package:graduation_project/features/medicine/presentation/views/mentor_medicine_view.dart';
+import '../../features/profile/presentation/views/profile_data_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 
 abstract class AppRouter
@@ -29,6 +30,7 @@ abstract class AppRouter
   static const kCheckEmail= '/checkEmail';
   static const kPatientHome= '/patientHome';
  static const kProfileDataViewBody= '/profileDataViewBody';
+ static const kShowProfile= '/ShowProfile';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -82,6 +84,10 @@ abstract class AppRouter
       GoRoute(
         path: kCheckEmail,
         builder: (context, state) =>  CheckEmail(),
+      ),
+      GoRoute(
+        path: kShowProfile,
+        builder: (context, state) =>  const ProfileDataView(),
       ),
 
     ],
