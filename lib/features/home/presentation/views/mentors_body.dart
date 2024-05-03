@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:graduation_project/features/medicine/presentation/views/widgets/line_container.dart';
 
-import 'core/utils/colors.dart';
-import 'core/utils/styles.dart';
+import '../../../../core/utils/colors.dart';
+import '../../../../core/utils/styles.dart';
 
 class MentorsBody extends StatelessWidget {
   const MentorsBody({super.key});

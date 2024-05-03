@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/features/home/presentation/manager/patient_nav_bar/patient_nav_states.dart';
+import 'package:graduation_project/features/home/presentation/view_models/patient_cubit/patient_nav_states.dart';
 
 import '../../../../../core/utils/colors.dart';
-import '../../../../../followee_chats_body.dart';
-import '../../../../../mentors_body.dart';
+import '../../views/followee_chats_body.dart';
+import '../../views/mentors_body.dart';
 import '../../../../medicine/presentation/views/patient_medicine_view.dart';
 
 
-class PatientBottomCubit extends Cubit<PatientBottomNavBarStates> {
-  PatientBottomCubit() : super(BottomInitialStates());
+class PatientCubit extends Cubit<PatientStates> {
+  PatientCubit() : super(BottomInitialStates());
 
-  static PatientBottomCubit get(context) => BlocProvider.of(context);
+  static PatientCubit get(context) => BlocProvider.of(context);
 
   int currentIndex = 0;
 

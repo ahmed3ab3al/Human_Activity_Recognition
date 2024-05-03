@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/utils/styles.dart';
 
-import 'core/utils/colors.dart';
+import '../../../../../core/utils/colors.dart';
 
 class SearchTextFormFiled extends StatelessWidget {
   final TextInputType type;

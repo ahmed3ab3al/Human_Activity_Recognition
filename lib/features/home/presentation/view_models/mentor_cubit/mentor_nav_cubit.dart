@@ -7,10 +7,10 @@ import '../../../../medicine/presentation/views/widgets/mentor_medicine_view_bod
 import 'mentor_nav_states.dart';
 
 
-class MentorBottomCubit extends Cubit<MentorBottomNavBarStates> {
-  MentorBottomCubit() : super(BottomInitialStates());
+class MentorCubit extends Cubit<MentorStates> {
+  MentorCubit() : super(BottomInitialStates());
 
-  static MentorBottomCubit get(context) => BlocProvider.of(context);
+  static MentorCubit get(context) => BlocProvider.of(context);
 
   int currentIndex = 0;
 
