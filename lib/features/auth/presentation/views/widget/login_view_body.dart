@@ -18,10 +18,8 @@ import '../../../../../core/utils/styles.dart';
 
 
 class LoginViewBody extends StatelessWidget {
-   LoginViewBody({super.key});
-  final GlobalKey<FormState> loginFormKey = GlobalKey();
-  final TextEditingController loginEmailController = TextEditingController();
-  final TextEditingController loginPasswordController = TextEditingController();
+   const LoginViewBody({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +55,7 @@ class LoginViewBody extends StatelessWidget {
           builder: (context, state) {
             return SingleChildScrollView(
               child: Form(
-                key: loginFormKey,
+                key: LoginCubit.get(context).loginFormKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -69,7 +67,7 @@ class LoginViewBody extends StatelessWidget {
                       },
                     ),
                     20.verticalSpace,
-                    LoginInputSection(loginEmailController: loginEmailController,loginPasswordController:loginPasswordController ,),
+                    const LoginInputSection(),
                     3.verticalSpace,
                     TextButton(
                       onPressed: () {
@@ -80,12 +78,10 @@ class LoginViewBody extends StatelessWidget {
                               .copyWith(color: ColorManager.blueColor0E4CA1)),
                     ),
                     20.verticalSpace,
-                    state is LoginLoadingState && loginFormKey.currentState!.validate()
+                    state is LoginLoadingState && LoginCubit.get(context).loginFormKey.currentState!.validate()
                         ? const Center(child: CircularProgressIndicator())
                         :  LoginButtonView(
-                      formKey: loginFormKey,
-                      email: loginEmailController.text,
-                      password: loginPasswordController.text,
+                      formKey: LoginCubit.get(context).loginFormKey,
                     ),
                     25.verticalSpace,
                     const SignUpButtonView(),

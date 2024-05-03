@@ -5,9 +5,7 @@ import '../../../../../core/widgets/custom_blue_button.dart';
 
 class LoginButtonView extends StatelessWidget {
  final GlobalKey<FormState> formKey ;
- final String email;
- final String password;
- const LoginButtonView({super.key, required this.formKey, required this.email, required this.password});
+ const LoginButtonView({super.key, required this.formKey});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +14,7 @@ class LoginButtonView extends StatelessWidget {
         text: 'Login',
         ontap: () {
           if (formKey.currentState!.validate()) {
-            LoginCubit.get(context).signInUser(email: email,password: password);
+            LoginCubit.get(context).signInUser();
           }
         });
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/api/end_points.dart';
@@ -13,19 +14,22 @@ class LoginCubit extends Cubit<LoginState> {
   static LoginCubit get(context) => BlocProvider.of(context);
 
   bool secure = true;
+  GlobalKey<FormState> loginFormKey = GlobalKey();
+  TextEditingController loginEmailController = TextEditingController();
+  TextEditingController loginPasswordController = TextEditingController();
 
   void changeSecure() {
     secure = !secure;
     emit(ChangeSecureState());
   }
-  signInUser({required String email, required String password}) async {
+  signInUser() async {
     try {
       emit(LoginLoadingState());
       final response = await apiHelper.post(
         EndPoints.login,
         data: {
-          ApiKeys.email: email,
-          ApiKeys.password: password,
+          ApiKeys.email: loginEmailController.text,
+          ApiKeys.password: loginPasswordController.text,
         },
       );
       CacheHelper().saveData(

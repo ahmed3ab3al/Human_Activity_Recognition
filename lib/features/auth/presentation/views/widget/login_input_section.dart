@@ -7,10 +7,7 @@ import '../../../../../core/widgets/custom_text_form_field.dart';
 
 
 class LoginInputSection extends StatelessWidget {
-  const LoginInputSection({super.key, required this.loginEmailController, required this.loginPasswordController});
-
-  final TextEditingController loginEmailController ;
-  final TextEditingController loginPasswordController ;
+  const LoginInputSection({super.key});
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginCubit, LoginState>(
@@ -19,7 +16,7 @@ class LoginInputSection extends StatelessWidget {
       children: [
         CustomTextFormFiled(
           hint: 'Email',
-          customController: loginEmailController,
+          customController: LoginCubit.get(context).loginEmailController,
           type: TextInputType.emailAddress,
           prefix: Icons.email_outlined,
         ),
@@ -27,7 +24,7 @@ class LoginInputSection extends StatelessWidget {
         CustomTextFormFiled(
           hint: 'Password',
           secure: LoginCubit.get(context).secure,
-          customController: loginPasswordController,
+          customController: LoginCubit.get(context).loginPasswordController,
           type: TextInputType.visiblePassword,
           prefix: Icons.lock_outline_rounded,
           suffixIcon: IconButton(
