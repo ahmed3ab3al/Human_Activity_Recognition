@@ -43,6 +43,12 @@ abstract class Styles {
     color: ColorManager.greyColor757474,
   );
 
+  static TextStyle testStyle20 = TextStyle(
+    fontSize: 20.sp,
+    fontWeight: FontWeight.bold,
+    color: ColorManager.whiteColor,
+  );
+
 
   static TextStyle size24_700Black = TextStyle(
     fontSize: 24.sp,

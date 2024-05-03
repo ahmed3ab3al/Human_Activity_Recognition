@@ -32,7 +32,7 @@ class EditProfileBody extends StatelessWidget {
             child: Column(
               children: [
                 CustomAppBar(text: 'Edit Profile', space: 60, tab: () {
-                  GoRouter.of(context).push(AppRouter.kBackHome);
+                  GoRouter.of(context).pop();
                 },),
                 30.verticalSpace,
                 EditTextFormFiled(
