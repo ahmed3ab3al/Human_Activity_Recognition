@@ -2,8 +2,8 @@ import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../view_models/patient_cubit/patient_nav_cubit.dart';
-import '../view_models/patient_cubit/patient_nav_states.dart';
+import '../view_models/patient_cubit/patient_cubit.dart';
+import '../view_models/patient_cubit/patient_states.dart';
 
 
 

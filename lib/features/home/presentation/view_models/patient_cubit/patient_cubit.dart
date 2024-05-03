@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/features/home/presentation/view_models/patient_cubit/patient_nav_states.dart';
+import 'package:graduation_project/features/home/presentation/view_models/patient_cubit/patient_states.dart';
 
 import '../../../../../core/utils/colors.dart';
 import '../../views/followee_chats_body.dart';

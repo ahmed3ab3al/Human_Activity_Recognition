@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../medicine/presentation/views/widgets/custom_floating_button.dart';
-import '../view_models/mentor_cubit/mentor_nav_cubit.dart';
-import '../view_models/mentor_cubit/mentor_nav_states.dart';
+import '../view_models/mentor_cubit/mentor_cubit.dart';
+import '../view_models/mentor_cubit/mentor_states.dart';
 
 
 class PatientDetailsView extends StatelessWidget {

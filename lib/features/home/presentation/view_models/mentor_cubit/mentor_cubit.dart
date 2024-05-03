@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../dangerous/presentation/views/widgets/dangerous_view_body.dart';
 import '../../../../medicine/presentation/views/widgets/mentor_medicine_view_body.dart';
-import 'mentor_nav_states.dart';
+import 'mentor_states.dart';
 
 
 class MentorCubit extends Cubit<MentorStates> {
