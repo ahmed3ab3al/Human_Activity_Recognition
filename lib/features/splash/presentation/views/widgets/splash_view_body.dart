@@ -19,7 +19,6 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
   late Animation<Offset> slidingAnimation;
   @override
   void initState() {
-    // CacheHelper().saveData(key: token, value: '');
     super.initState();
     initSlidingAnimation();
     Future.delayed(const Duration(seconds: 3),(){
