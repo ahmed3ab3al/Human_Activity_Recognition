@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:graduation_project/constants.dart';
+import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/utils/styles.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/colors.dart';
@@ -13,7 +15,7 @@ class NameProfileRow extends StatelessWidget {
     return Row(
       children: [
         12.horizontalSpace,
-         Text('Ahmed Alaa',style: Styles.size16_700Black,),
+         Text(CacheHelper().getData(key: userName),style: Styles.size16_700Black,),
         const Spacer(),
         GestureDetector(
           onTap: (){
