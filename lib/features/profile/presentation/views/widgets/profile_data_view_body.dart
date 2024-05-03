@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:graduation_project/features/profile/presentation/view_models/profile_cubit.dart';
-
+import 'package:graduation_project/constants.dart';
+import 'package:graduation_project/core/cache/cache_helper.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/widgets/custom_blue_button.dart';
 import '../../../../../core/widgets/custom_icon.dart';
-import '../../view_models/profile_states.dart';
 
 class ProfileDataViewBody extends StatelessWidget {
   const ProfileDataViewBody({super.key});
@@ -14,18 +12,8 @@ class ProfileDataViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: BlocConsumer<ProfileCubit, ProfileStates>(
-        listener: (context, state) {
-          if(state is GetUserProfileErrorState){
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.error),
-              ),
-            );
-          }
-        },
-        builder: (context, state) {
-          return state is GetUserProfileLoadingState ? const Center(child: CircularProgressIndicator()) : state is GetUserProfileSuccessState ? Column(
+      child:
+          Column(
             children: [
               Stack(
                 alignment: Alignment.center,
@@ -98,7 +86,7 @@ class ProfileDataViewBody extends StatelessWidget {
                                 const CustomIcon(icon: Icons.person),
                                 const Text('ID'),
                                 const Spacer(),
-                                Text(state.userModel.id.toString()),
+                                Text(CacheHelper().getData(key: userId)),
                               ],
                             ),
                             const Divider(
@@ -109,7 +97,7 @@ class ProfileDataViewBody extends StatelessWidget {
                                 const CustomIcon(icon: Icons.person),
                                 const Text('Name'),
                                 const Spacer(),
-                                Text(state.userModel.name),
+                                Text(CacheHelper().getData(key: userName)),
                               ],
                             ),
                             const Divider(
@@ -133,9 +121,8 @@ class ProfileDataViewBody extends StatelessWidget {
                 ],
               ),
             ],
-          ): Container();
-        },
-      ),
+          ),
     );
+
   }
 }
