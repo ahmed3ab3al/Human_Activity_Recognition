@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
-import 'package:graduation_project/core/widgets/custom_appBar.dart';
 import 'package:graduation_project/features/auth/presentation/view_models/login_cubit/login_cubit.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/login_another_way.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/login_buttons_view.dart';
@@ -59,13 +58,14 @@ class LoginViewBody extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    CustomAppBar(
-                      text: 'Login',
-                      space: 85,
-                      tab: () {
-                        GoRouter.of(context).pop();
-                      },
-                    ),
+                    // CustomAppBar(
+                    //   text: 'Login',
+                    //   space: 85,
+                    //   tab: () {
+                    //   //  GoRouter.of(context).pop();
+                    //   },
+                    // ),
+                    const Text('Login',),
                     20.verticalSpace,
                     const LoginInputSection(),
                     3.verticalSpace,
