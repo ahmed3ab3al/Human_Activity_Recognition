@@ -106,10 +106,10 @@ class ProfileDataViewBody extends StatelessWidget {
                             ),
                              Row(
                               children: [
-                                const CustomIcon(icon: Icons.phone),
-                                const Text('Number'),
+                                const CustomIcon(icon: Icons.person),
+                                const Text('Name'),
                                 const Spacer(),
-                                Text(state.userModel.phone.toString()),
+                                Text(state.userModel.name),
                               ],
                             ),
                             const Divider(
