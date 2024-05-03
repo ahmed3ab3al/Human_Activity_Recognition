@@ -13,6 +13,7 @@ class ProfileDataViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child:
+
           Column(
             children: [
               Stack(
@@ -121,8 +122,7 @@ class ProfileDataViewBody extends StatelessWidget {
                 ],
               ),
             ],
-          ),
-    );
+    ),);
 
   }
 }
