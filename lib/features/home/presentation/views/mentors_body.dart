@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:graduation_project/features/home/presentation/view_models/patient_cubit/patient_cubit.dart';
+import 'package:graduation_project/features/home/presentation/view_models/patient_cubit/patient_states.dart';
 import 'package:graduation_project/features/medicine/presentation/views/widgets/line_container.dart';
 
 import '../../../../core/utils/colors.dart';
@@ -12,8 +14,14 @@ class MentorsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<PatientCubit, PatientStates>(
+  builder: (context, state) {
     return SafeArea(
-      child: SingleChildScrollView(
+      child: PatientCubit.get(context).getMentorRequestDone?
+        const Center(child: CircularProgressIndicator(
+          color: ColorManager.blueColor0E4CA1,
+        )) :
+      SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 30.h),
           child: Column(
@@ -38,12 +46,20 @@ class MentorsBody extends StatelessWidget {
                   separatorBuilder: (context, index) => 10.verticalSpace,
                   itemCount: PatientCubit.get(context).getMentorRequest!.result!.length,
               ) :
-              const Text("Not Requests Yet"),
+               Padding(
+                padding: EdgeInsets.only(top: MediaQuery.sizeOf(context).height / 2.5),
+                child: Text(
+                    "Not Requests Yet",
+                  style: Styles.size16_700Black,
+                ),
+              ),
             ],
           ),
         ),
-      ),
+      )
     );
+  },
+);
   }
 }
 

@@ -46,6 +46,7 @@ class PatientCubit extends Cubit<PatientStates> {
   }
 
   GetMentorRequests? getMentorRequest;
+  bool getMentorRequestDone = true;
   void getMentorRequests()async {
     emit(GetMentorRequestsLoading());
     try {
@@ -54,6 +55,7 @@ class PatientCubit extends Cubit<PatientStates> {
       );
       getMentorRequest = GetMentorRequests.fromJson(response);
       emit(GetMentorRequestsSuccess());
+      getMentorRequestDone = false;
     } on ServerException catch (e) {
       emit(GetMentorRequestsError(error: e.errorModel.message));
     }
