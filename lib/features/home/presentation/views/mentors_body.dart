@@ -26,16 +26,19 @@ class MentorsBody extends StatelessWidget {
                     style: Styles.size16_700Black,)
                 ],),
               30.verticalSpace,
+              PatientCubit.get(context).getMentorRequest!.result!.isNotEmpty?
               ListView.separated(
                   itemBuilder: (context, index) => buildMentorItem(
                       name: PatientCubit.get(context).getMentorRequest!.result![index].mentor!.name!,
-                    context: context
+                      id: PatientCubit.get(context).getMentorRequest!.result![index].mentor!.id!,
+                      context: context
                   ),
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   separatorBuilder: (context, index) => 10.verticalSpace,
                   itemCount: PatientCubit.get(context).getMentorRequest!.result!.length,
-              )
+              ) :
+              const Text("Not Requests Yet"),
             ],
           ),
         ),
@@ -45,6 +48,7 @@ class MentorsBody extends StatelessWidget {
 }
 
 Widget buildMentorItem({
+  required String id,
   required String name,
   context,
 }) => Column(
