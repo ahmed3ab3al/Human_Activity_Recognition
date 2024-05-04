@@ -14,52 +14,68 @@ class MentorsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PatientCubit, PatientStates>(
-  builder: (context, state) {
-    return SafeArea(
-      child: PatientCubit.get(context).getMentorRequestDone?
-        const Center(child: CircularProgressIndicator(
-          color: ColorManager.blueColor0E4CA1,
-        )) :
-      SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 30.h),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text('Mentors',
-                    style: Styles.size16_700Black,)
-                ],),
-              30.verticalSpace,
-              PatientCubit.get(context).getMentorRequest!.result!.isNotEmpty?
-              ListView.separated(
-                  itemBuilder: (context, index) => buildMentorItem(
-                      name: PatientCubit.get(context).getMentorRequest!.result![index].mentor!.name!,
-                      id: PatientCubit.get(context).getMentorRequest!.result![index].mentor!.id!,
-                      context: context
-                  ),
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  separatorBuilder: (context, index) => 10.verticalSpace,
-                  itemCount: PatientCubit.get(context).getMentorRequest!.result!.length,
-              ) :
-               Padding(
-                padding: EdgeInsets.only(top: MediaQuery.sizeOf(context).height / 2.5),
-                child: Text(
-                    "Not Requests Yet",
-                  style: Styles.size16_700Black,
-                ),
+    return BlocConsumer<PatientCubit,PatientStates>(
+        listener: (context,state){
+          if (state is ConfirmRequestSuccess){
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Center(child: Text("Confirm Success")),
               ),
-            ],
-          ),
-        ),
-      )
+            );
+          }
+          else if (state is ConfirmRequestError){
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Center(child: Text(state.error)),
+              ),
+            );
+          }
+        },
+      builder: (context,state){
+          return SafeArea(
+              child: PatientCubit.get(context).getMentorRequestDone?
+              const Center(child: CircularProgressIndicator(
+                color: ColorManager.blueColor0E4CA1,
+              )) :
+              SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 30.h),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('Mentors',
+                            style: Styles.size16_700Black,)
+                        ],),
+                      30.verticalSpace,
+                      PatientCubit.get(context).getMentorRequest!.result!.isNotEmpty?
+                      ListView.separated(
+                        itemBuilder: (context, index) => buildMentorItem(
+                            name: PatientCubit.get(context).getMentorRequest!.result![index].mentor!.name!,
+                            id: PatientCubit.get(context).getMentorRequest!.result![index].mentor!.id!,
+                            context: context
+                        ),
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        separatorBuilder: (context, index) => 10.verticalSpace,
+                        itemCount: PatientCubit.get(context).getMentorRequest!.result!.length,
+                      ) :
+                      Padding(
+                        padding: EdgeInsets.only(top: MediaQuery.sizeOf(context).height / 2.5),
+                        child: Text(
+                          "Not Requests Yet",
+                          style: Styles.size16_700Black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+          );
+        },
     );
-  },
-);
   }
 }
 
@@ -90,7 +106,9 @@ Widget buildMentorItem({
             ),
         const Spacer(),
         GestureDetector(
-              onTap: (){},
+              onTap: (){
+                PatientCubit.get(context).confirmRequest(id);
+              },
               child: Container(
                 padding: const EdgeInsets.all(4),
                 decoration: const BoxDecoration(

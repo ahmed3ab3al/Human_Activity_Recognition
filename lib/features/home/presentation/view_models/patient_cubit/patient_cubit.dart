@@ -60,4 +60,18 @@ class PatientCubit extends Cubit<PatientStates> {
       emit(GetMentorRequestsError(error: e.errorModel.message));
     }
   }
+
+  void confirmRequest(String id)async {
+    print('${EndPoints.confirmRequest}$id');
+    emit(ConfirmRequestLoading());
+    try {
+      await apiHelper.post(
+        '${EndPoints.confirmRequest}$id'
+      );
+      emit(ConfirmRequestSuccess());
+      getMentorRequests();
+    } on ServerException catch (e) {
+      emit(ConfirmRequestError(error: e.errorModel.message));
+    }
+  }
 }

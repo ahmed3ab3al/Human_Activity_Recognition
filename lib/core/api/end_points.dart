@@ -8,6 +8,7 @@ class EndPoints {
   static String getUserId(String id) => '/users/$id';
   static const String sendRequest = '/mentors';
   static const String getMentorRequest = '/patients/all-requests';
+  static const String confirmRequest = '/patients/confirm/';
 }
 
 class ApiKeys {
