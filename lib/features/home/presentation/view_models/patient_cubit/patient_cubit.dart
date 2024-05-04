@@ -3,15 +3,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/features/home/presentation/view_models/patient_cubit/patient_states.dart';
 
+import '../../../../../core/api/api_helper.dart';
+import '../../../../../core/api/end_points.dart';
+import '../../../../../core/errors/exception.dart';
 import '../../../../../core/utils/colors.dart';
+import '../../../data/models/GetMentorRequests.dart';
 import '../../views/followee_chats_body.dart';
 import '../../views/mentors_body.dart';
 import '../../../../medicine/presentation/views/patient_medicine_view.dart';
 
 
 class PatientCubit extends Cubit<PatientStates> {
-  PatientCubit() : super(BottomInitialStates());
+  PatientCubit(this.apiHelper) : super(BottomInitialStates());
 
+  final ApiHelper apiHelper;
   static PatientCubit get(context) => BlocProvider.of(context);
 
   int currentIndex = 0;
@@ -38,5 +43,19 @@ class PatientCubit extends Cubit<PatientStates> {
   void changeBottomNavBar(int index) {
     currentIndex = index;
     emit(ChangeBottomNavBarStates());
+  }
+
+  GetMentorRequests? getMentorRequest;
+  void getMentorRequests()async {
+    emit(GetMentorRequestsLoading());
+    try {
+      final response = await apiHelper.get(
+        EndPoints.getMentorRequest,
+      );
+      getMentorRequest = GetMentorRequests.fromJson(response);
+      emit(GetMentorRequestsSuccess());
+    } on ServerException catch (e) {
+      emit(GetMentorRequestsError(error: e.errorModel.message));
+    }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:graduation_project/features/home/presentation/view_models/patient_cubit/patient_cubit.dart';
 import 'package:graduation_project/features/medicine/presentation/views/widgets/line_container.dart';
 
 import '../../../../core/utils/colors.dart';
@@ -26,11 +27,14 @@ class MentorsBody extends StatelessWidget {
                 ],),
               30.verticalSpace,
               ListView.separated(
-                  itemBuilder: (context, index) => buildMentorItem(),
+                  itemBuilder: (context, index) => buildMentorItem(
+                      name: PatientCubit.get(context).getMentorRequest!.result![index].mentor!.name!,
+                    context: context
+                  ),
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   separatorBuilder: (context, index) => 10.verticalSpace,
-                  itemCount: 8
+                  itemCount: PatientCubit.get(context).getMentorRequest!.result!.length,
               )
             ],
           ),
@@ -40,29 +44,35 @@ class MentorsBody extends StatelessWidget {
   }
 }
 
-Widget buildMentorItem() => Column(
+Widget buildMentorItem({
+  required String name,
+  context,
+}) => Column(
   children: [
     Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 25.r,
-              backgroundImage: const AssetImage('images/vitamin_a.png'),
+      children: [
+        SizedBox(
+          width: MediaQuery.sizeOf(context).width / 25,
+        ),
+        CircleAvatar(
+              radius: 30.r,
+              backgroundImage: const NetworkImage('https://i.pravatar.cc/300'),
               backgroundColor: Colors.black,
             ),
-            20.horizontalSpace,
-            const Text(
-              'Eng/Ahmed Alaa',
-              style: TextStyle(
+        SizedBox(width: MediaQuery.sizeOf(context).width / 15,
+        ),
+        Text(
+              name,
+              style: const TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            100.horizontalSpace,
-            GestureDetector(
+        const Spacer(),
+        GestureDetector(
               onTap: (){},
               child: Container(
-                padding: const EdgeInsets.all(2),
+                padding: const EdgeInsets.all(4),
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: LinearGradient(
@@ -75,15 +85,19 @@ Widget buildMentorItem() => Column(
                   ),
                 ),
                 child: Icon(
-                  Icons.check,
-                  size: 18.sp,
+                  FontAwesomeIcons.check,
+                  size: 20.sp,
                   color: ColorManager.whiteColor,
                 ),
               ),
             ),
-            20.horizontalSpace,
-            GestureDetector(
-              onTap: (){},
+        SizedBox(
+          width: MediaQuery.sizeOf(context).width / 15,
+        ),
+        GestureDetector(
+              onTap: (){
+
+              },
               child: Container(
                 padding: const EdgeInsets.all(4),
                 decoration: const BoxDecoration(
@@ -95,16 +109,18 @@ Widget buildMentorItem() => Column(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
-                    shape: BoxShape.circle),
+                    shape: BoxShape.circle
+                ),
                 child: Icon(
                   FontAwesomeIcons.xmark,
                   color: ColorManager.whiteColor,
-                  size: 14.sp,
+                  size: 20.sp,
                 ),
               ),
             ),
-
-
+        SizedBox(
+          width: MediaQuery.sizeOf(context).width / 20,
+        ),
           ],
         ),
     15.verticalSpace,

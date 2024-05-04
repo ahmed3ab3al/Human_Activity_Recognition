@@ -8,6 +8,7 @@ import 'package:graduation_project/core/utils/app_router.dart';
 import 'core/api/dio_helper.dart';
 import 'core/bloc/bloc_observer.dart';
 import 'features/home/presentation/view_models/mentor_cubit/mentor_cubit.dart';
+import 'features/home/presentation/view_models/patient_cubit/patient_cubit.dart';
 
 
 
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (BuildContext context) =>MentorCubit(DioHelper(dio: Dio())),
         ),
+        BlocProvider(
+          create: (context) => PatientCubit(DioHelper(dio: Dio()))..getMentorRequests(),
+        )
       ],
       child: ScreenUtilInit(
           designSize: const Size(390, 844),

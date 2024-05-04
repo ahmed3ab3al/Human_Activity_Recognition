@@ -7,6 +7,7 @@ class EndPoints {
   static const String confirm_reset_password = '/users/confirm-reset-password';
   static String getUserId(String id) => '/users/$id';
   static const String sendRequest = '/mentors';
+  static const String getMentorRequest = '/patients/all-requests';
 }
 
 class ApiKeys {

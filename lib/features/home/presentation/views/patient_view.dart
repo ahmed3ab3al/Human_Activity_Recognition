@@ -12,37 +12,34 @@ class PatientView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => PatientCubit(),
-      child: BlocConsumer<PatientCubit, PatientStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return Scaffold(
-            body: PatientCubit.get(context)
-                .screens[PatientCubit.get(context).currentIndex],
-            bottomNavigationBar: CircleNavBar(
-              activeIndex: PatientCubit.get(context).currentIndex,
-              onTap: (index) {
-                PatientCubit.get(context).changeBottomNavBar(index);
-              },
-              activeIcons: PatientCubit.get(context).activeBottomItems,
-              inactiveIcons:
-              PatientCubit.get(context).inActiveBottomItems,
-              color: const Color(0xffF9F9F9),
-              height: 60,
-              circleWidth: 45,
-              circleGradient: const LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color(0xff0E4CA1),
-                  Color(0xff67A3F4),
-                ],
-              ),
+    return BlocConsumer<PatientCubit, PatientStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+          body: PatientCubit.get(context)
+              .screens[PatientCubit.get(context).currentIndex],
+          bottomNavigationBar: CircleNavBar(
+            activeIndex: PatientCubit.get(context).currentIndex,
+            onTap: (index) {
+              PatientCubit.get(context).changeBottomNavBar(index);
+            },
+            activeIcons: PatientCubit.get(context).activeBottomItems,
+            inactiveIcons:
+            PatientCubit.get(context).inActiveBottomItems,
+            color: const Color(0xffF9F9F9),
+            height: 60,
+            circleWidth: 45,
+            circleGradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xff0E4CA1),
+                Color(0xff67A3F4),
+              ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
