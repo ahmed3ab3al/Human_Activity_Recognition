@@ -40,6 +40,7 @@ class LoginCubit extends Cubit<LoginState> {
       CacheHelper().saveData(key: userRole, value: LoginModel.fromJson(response.data).user!.role);
       CacheHelper().saveData(key: userVerified, value: LoginModel.fromJson(response.data).user!.verified);
       CacheHelper().saveData(key: userName, value: LoginModel.fromJson(response.data).user!.name);
+      CacheHelper().saveData(key: userPhone, value: LoginModel.fromJson(response.data).user!.phone);
       emit(LoginSuccessState(message: LoginModel.fromJson(response.data).message!));
     } on ServerException catch (e) {
       emit(LoginErrorState(error: e.errorModel.message));

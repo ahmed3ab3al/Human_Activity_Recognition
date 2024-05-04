@@ -133,7 +133,7 @@ class ProfileDataViewBody extends StatelessWidget {
                         ),
                         const Spacer(),
                         Text(
-                          '01128024680',
+                          CacheHelper().getData(key: userPhone),
                           style: Styles.size16_700Black,
                         ),
                       ],

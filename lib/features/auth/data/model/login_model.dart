@@ -42,6 +42,7 @@ class User {
     this.name,
     this.email,
     this.role,
+    this.phone,
     this.verified,});
 
   User.fromJson(dynamic json) {
@@ -50,10 +51,12 @@ class User {
     email = json['email'];
     role = json['role'];
     verified = json['verified'];
+    phone = json['phone'];
   }
   String? id;
   String? name;
   String? email;
   String? role;
   bool? verified;
+  String? phone;
 }

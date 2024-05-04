@@ -42,9 +42,10 @@ class SignUpCubit extends Cubit<SignUpState> {
         data: {
           ApiKeys.name: name,
           ApiKeys.email: email,
+          'phone':phone,
           ApiKeys.password: password,
           ApiKeys.confirmPassword: confirmPassword,
-          ApiKeys.role: selectedValue
+          ApiKeys.role: selectedValue,
         },
       );
       final signUpModel = SignUpModel.fromJson(response.data);
