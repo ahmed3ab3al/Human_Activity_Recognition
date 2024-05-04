@@ -13,46 +13,43 @@ class PatientDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MentorCubit(),
-      child: BlocConsumer<MentorCubit, MentorStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-    return Scaffold(
-      body: MentorCubit.get(context)
-          .screens[MentorCubit.get(context).currentIndex],
-      bottomNavigationBar: CircleNavBar(
-        activeIndex: MentorCubit.get(context).currentIndex,
-        onTap: (index) {
-          MentorCubit.get(context).changeBottomNavBar(index);
-        },
-        activeIcons: MentorCubit.get(context).activeBottomItems,
-        inactiveIcons:
-        MentorCubit.get(context).inActiveBottomItems,
-        color: const Color(0xffF9F9F9),
-        height: 60,
-        circleWidth: 45,
-        circleGradient: const LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xff0E4CA1),
-            Color(0xff67A3F4),
-          ],
-        ),
+    return BlocConsumer<MentorCubit, MentorStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+    body: MentorCubit.get(context)
+        .screens[MentorCubit.get(context).currentIndex],
+    bottomNavigationBar: CircleNavBar(
+      activeIndex: MentorCubit.get(context).currentIndex,
+      onTap: (index) {
+        MentorCubit.get(context).changeBottomNavBar(index);
+      },
+      activeIcons: MentorCubit.get(context).activeBottomItems,
+      inactiveIcons:
+      MentorCubit.get(context).inActiveBottomItems,
+      color: const Color(0xffF9F9F9),
+      height: 60,
+      circleWidth: 45,
+      circleGradient: const LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Color(0xff0E4CA1),
+          Color(0xff67A3F4),
+        ],
       ),
-      floatingActionButton:
-      MentorCubit.get(context).currentIndex == 0 ?
-      CustomFloatingActionButton(
-        tab: (){
-          GoRouter.of(context).push(AppRouter.kAddMedicine);
-        },
-        icon: Icons.add,
-      ) :
-      Container(),
-    );
-  },
-  ),
-  );
+    ),
+    floatingActionButton:
+    MentorCubit.get(context).currentIndex == 0 ?
+    CustomFloatingActionButton(
+      tab: (){
+        GoRouter.of(context).push(AppRouter.kAddMedicine);
+      },
+      icon: Icons.add,
+    ) :
+    Container(),
+        );
+      },
+      );
   }
 }

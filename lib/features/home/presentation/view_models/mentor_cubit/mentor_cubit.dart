@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/features/home/data/models/SendCareRequest.dart';
+import '../../../../../core/api/api_helper.dart';
+import '../../../../../core/api/end_points.dart';
+import '../../../../../core/errors/exception.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../dangerous/presentation/views/widgets/dangerous_view_body.dart';
 import '../../../../medicine/presentation/views/widgets/mentor_medicine_view_body.dart';
@@ -8,8 +12,9 @@ import 'mentor_states.dart';
 
 
 class MentorCubit extends Cubit<MentorStates> {
-  MentorCubit() : super(BottomInitialStates());
+  MentorCubit(this.apiHelper) : super(BottomInitialStates());
 
+  final ApiHelper apiHelper;
   static MentorCubit get(context) => BlocProvider.of(context);
 
   int currentIndex = 0;
@@ -39,5 +44,39 @@ class MentorCubit extends Cubit<MentorStates> {
   void changeBottomNavBar(int index) {
     currentIndex = index;
     emit(ChangeBottomNavBarStates());
+  }
+
+
+  IconData fabIcon = Icons.add;
+  bool isBottomSheetShown = false;
+  void changeSendIcon({required bool add}){
+    if (add) {
+      fabIcon = Icons.add;
+      isBottomSheetShown = false;
+    } else {
+      fabIcon = Icons.check;
+      isBottomSheetShown = true;
+    }
+    emit(ChangeSendIcon());
+  }
+
+
+
+
+  void sendRequest(String id)async {
+    emit(SendRequestLoading());
+    try {
+      final response = await apiHelper.post(
+        EndPoints.sendRequest,
+        data: {
+          'id':id
+        },
+      );
+      emit(SendRequestSuccess(
+        sendCareRequest: SendCareRequest.fromJson(response.data)
+      ));
+    } on ServerException catch (e) {
+      emit(SendRequestError(error: e.errorModel.message));
+    }
   }
 }
