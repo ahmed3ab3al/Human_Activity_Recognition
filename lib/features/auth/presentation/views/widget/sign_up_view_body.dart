@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +7,7 @@ import 'package:graduation_project/features/auth/presentation/views/widget/check
 import 'package:graduation_project/features/auth/presentation/views/widget/sign_up_input_section.dart';
 import '../../../../../core/api/dio_helper.dart';
 import '../../../../../core/utils/app_router.dart';
+import '../../../../../core/utils/service_locator.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
 import '../../../../../core/widgets/custom_blue_button.dart';
 
@@ -25,7 +25,7 @@ class SignUpViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignUpCubit( DioHelper(dio: Dio()),),
+      create: (context) => SignUpCubit( getIt.get<DioHelper>()),
       child: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 30.h),

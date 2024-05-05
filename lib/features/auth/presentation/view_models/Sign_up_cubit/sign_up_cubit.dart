@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/api/api_helper.dart';
 import 'package:graduation_project/core/errors/exception.dart';
 import 'package:graduation_project/features/auth/data/model/sign_up_model.dart';
-
 import '../../../../../core/api/end_points.dart';
 part 'sign_up_state.dart';
 

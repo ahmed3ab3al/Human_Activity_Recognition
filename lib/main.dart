@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +6,7 @@ import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
 import 'core/api/dio_helper.dart';
 import 'core/bloc/bloc_observer.dart';
+import 'core/utils/service_locator.dart';
 import 'features/home/presentation/view_models/mentor_cubit/mentor_cubit.dart';
 import 'features/home/presentation/view_models/patient_cubit/patient_cubit.dart';
 
@@ -15,6 +15,7 @@ import 'features/home/presentation/view_models/patient_cubit/patient_cubit.dart'
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
  await CacheHelper().init();
+  setupServiceLocator();
   Bloc.observer = MyBlocObserver();
    runApp(
        const MyApp()
@@ -34,10 +35,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (BuildContext context) =>MentorCubit(DioHelper(dio: Dio())),
+            create: (BuildContext context) =>MentorCubit(getIt.get<DioHelper>()),
         ),
         BlocProvider(
-          create: (context) => PatientCubit(DioHelper(dio: Dio()))..getMentorRequests(),
+          create: (context) => PatientCubit(getIt.get<DioHelper>())..getMentorRequests(),
         )
       ],
       child: ScreenUtilInit(

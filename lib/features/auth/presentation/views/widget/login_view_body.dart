@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,6 +12,7 @@ import 'package:graduation_project/features/auth/presentation/views/widget/sign_
 import '../../../../../constants.dart';
 import '../../../../../core/api/dio_helper.dart';
 import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/service_locator.dart';
 import '../../../../../core/utils/styles.dart';
 
 
@@ -24,7 +24,7 @@ class LoginViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return BlocProvider(
-      create: (context) => LoginCubit( DioHelper(dio: Dio()),),
+      create: (context) => LoginCubit( getIt.get<DioHelper>()),
       child: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 30.h),
