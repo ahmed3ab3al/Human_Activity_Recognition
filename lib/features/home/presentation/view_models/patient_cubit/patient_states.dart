@@ -11,9 +11,17 @@ class GetMentorRequestsError extends PatientStates{
   GetMentorRequestsError({this.error});
 }
 
-class ConfirmRequestSuccess extends PatientStates{}
+
 class ConfirmRequestLoading extends PatientStates{}
+class ConfirmRequestSuccess extends PatientStates{}
 class ConfirmRequestError extends PatientStates{
   final error;
   ConfirmRequestError({this.error});
+}
+
+class DeclineRequestLoading extends PatientStates{}
+class DeclineRequestSuccess extends PatientStates{}
+class DeclineRequestError extends PatientStates{
+  final error;
+  DeclineRequestError({this.error});
 }

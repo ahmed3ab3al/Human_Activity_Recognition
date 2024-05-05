@@ -30,10 +30,24 @@ class MentorsBody extends StatelessWidget {
               ),
             );
           }
+          else if (state is DeclineRequestSuccess){
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Center(child: Text("Decline Success")),
+              ),
+            );
+          }
+          else if (state is DeclineRequestError){
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Center(child: Text(state.error)),
+              ),
+            );
+          }
         },
       builder: (context,state){
           return SafeArea(
-              child: PatientCubit.get(context).getMentorRequestDone?
+              child: PatientCubit.get(context).getMentorRequestDone || state is GetMentorRequestsLoading?
               const Center(child: CircularProgressIndicator(
                 color: ColorManager.blueColor0E4CA1,
               )) :
@@ -54,7 +68,7 @@ class MentorsBody extends StatelessWidget {
                       ListView.separated(
                         itemBuilder: (context, index) => buildMentorItem(
                             name: PatientCubit.get(context).getMentorRequest!.result![index].mentor!.name!,
-                            id: PatientCubit.get(context).getMentorRequest!.result![index].mentor!.id!,
+                            id: PatientCubit.get(context).getMentorRequest!.result![index].id!,
                             context: context
                         ),
                         physics: const NeverScrollableScrollPhysics(),
@@ -134,7 +148,7 @@ Widget buildMentorItem({
         ),
         GestureDetector(
               onTap: (){
-
+                PatientCubit.get(context).declineRequest(id);
               },
               child: Container(
                 padding: const EdgeInsets.all(4),

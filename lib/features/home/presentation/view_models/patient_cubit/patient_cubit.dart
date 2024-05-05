@@ -62,7 +62,6 @@ class PatientCubit extends Cubit<PatientStates> {
   }
 
   void confirmRequest(String id)async {
-    print('${EndPoints.confirmRequest}$id');
     emit(ConfirmRequestLoading());
     try {
       await apiHelper.post(
@@ -74,4 +73,19 @@ class PatientCubit extends Cubit<PatientStates> {
       emit(ConfirmRequestError(error: e.errorModel.message));
     }
   }
+
+  void declineRequest(String id)async {
+
+    emit(DeclineRequestLoading());
+    try {
+      await apiHelper.patch(
+          '${EndPoints.declineRequest}$id'
+      );
+      emit(DeclineRequestSuccess());
+      getMentorRequests();
+    } on ServerException catch (e) {
+      emit(DeclineRequestError(error: e.errorModel.message));
+    }
+  }
+
 }
