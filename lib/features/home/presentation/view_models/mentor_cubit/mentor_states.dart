@@ -17,3 +17,13 @@ class SendRequestError extends MentorStates{
   final error;
   SendRequestError({this.error});
 }
+
+
+class GetPatientsLoading extends MentorStates{
+}
+class GetPatientsSuccess extends MentorStates{
+}
+class GetPatientsError extends MentorStates{
+  final error;
+  GetPatientsError({this.error});
+}

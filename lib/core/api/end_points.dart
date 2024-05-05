@@ -10,6 +10,7 @@ class EndPoints {
   static const String getMentorRequest = '/patients/all-requests';
   static const String confirmRequest = '/patients/confirm/';
   static const String declineRequest = '/patients/decline/';
+  static const String getPatients = '/mentors/allPatients';
 }
 
 class ApiKeys {

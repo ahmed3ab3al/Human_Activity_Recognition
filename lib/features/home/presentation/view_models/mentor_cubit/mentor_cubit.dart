@@ -79,4 +79,17 @@ class MentorCubit extends Cubit<MentorStates> {
       emit(SendRequestError(error: e.errorModel.message));
     }
   }
+
+  void getPatients()async {
+    emit(GetPatientsLoading());
+    try {
+      final response = await apiHelper.post(
+        EndPoints.getPatients,
+      );
+      emit(GetPatientsSuccess());
+    } on ServerException catch (e) {
+      emit(GetPatientsError(error: e.errorModel.message));
+    }
+  }
+
 }
