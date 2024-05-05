@@ -12,8 +12,6 @@ import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
 
-
-
 class ResetPasswordViewBody extends StatelessWidget {
   const ResetPasswordViewBody({super.key});
 
@@ -26,20 +24,15 @@ class ResetPasswordViewBody extends StatelessWidget {
       create: (context) => ForgetPasswordCubit(DioHelper(dio: Dio())),
       child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
         listener: (context, state) {
-          if (state is ResetPasswordSuccessState){
-            ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Center(child: Text(state.message)),
-                )
-            );
+          if (state is ResetPasswordSuccessState) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Center(child: Text(state.message)),
+            ));
             GoRouter.of(context).pushReplacement(AppRouter.kLogin);
-          }
-          else if (state is ResetPasswordErrorState){
-            ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Center(child: Text(state.error)),
-                )
-            );
+          } else if (state is ResetPasswordErrorState) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Center(child: Text(state.error)),
+            ));
           }
         },
         builder: (context, state) {
@@ -51,9 +44,13 @@ class ResetPasswordViewBody extends StatelessWidget {
                   key: formKey,
                   child: Column(
                     children: [
-                      CustomAppBar(text: "Reset Password", space: 50, tab: () {
-                        GoRouter.of(context).push(AppRouter.kLogin);
-                      },),
+                      CustomAppBar(
+                        text: "Reset Password",
+                        space: 50,
+                        tab: () {
+                          GoRouter.of(context).push(AppRouter.kLogin);
+                        },
+                      ),
                       20.verticalSpace,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -62,11 +59,12 @@ class ResetPasswordViewBody extends StatelessWidget {
                             children: [
                               Text(
                                 'Your new password must be different',
-                                style: Styles
-                                    .size16_400Grey757474,),
+                                style: Styles.size16_400Grey757474,
+                              ),
                               Text(
-                                'from previously used password', style: Styles
-                                  .size16_400Grey757474,),
+                                'from previously used password',
+                                style: Styles.size16_400Grey757474,
+                              ),
                             ],
                           ),
                         ],
@@ -83,7 +81,9 @@ class ResetPasswordViewBody extends StatelessWidget {
                             ForgetPasswordCubit.get(context).changeSecure();
                           },
                           icon: Icon(
-                            ForgetPasswordCubit.get(context).secure ? Icons.visibility_off : Icons.visibility,
+                            ForgetPasswordCubit.get(context).secure
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                             color: ColorManager.greyColor757474,
                             size: 25.sp,
                           ),
@@ -101,26 +101,32 @@ class ResetPasswordViewBody extends StatelessWidget {
                             ForgetPasswordCubit.get(context).changeSecure();
                           },
                           icon: Icon(
-                            ForgetPasswordCubit.get(context).secure ? Icons.visibility_off : Icons.visibility,
+                            ForgetPasswordCubit.get(context).secure
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                             color: ColorManager.greyColor757474,
                             size: 25.sp,
                           ),
                         ),
                       ),
                       60.verticalSpace,
-                      state is ResetPasswordLoadingState?
-                          const CircularProgressIndicator():
-                      CustomBlueButton(text: 'Confirm', ontap: () {
-                        if (formKey.currentState!.validate()) {
-                          ForgetPasswordCubit.get(context).resetPassword(
-                              password: passwordController.text,
-                              repassword: confirmPasswordController.text
-                          );
-                        } else {
-                          return;
-                        }
-                      },
-                        containerHeight: 60,)
+                      state is ResetPasswordLoadingState
+                          ? const CircularProgressIndicator()
+                          : CustomBlueButton(
+                              text: 'Confirm',
+                              ontap: () {
+                                if (formKey.currentState!.validate()) {
+                                  ForgetPasswordCubit.get(context)
+                                      .resetPassword(
+                                          password: passwordController.text,
+                                          repassword:
+                                              confirmPasswordController.text);
+                                } else {
+                                  return;
+                                }
+                              },
+                              containerHeight: 60,
+                            )
                     ],
                   ),
                 ),
@@ -132,4 +138,3 @@ class ResetPasswordViewBody extends StatelessWidget {
     );
   }
 }
-

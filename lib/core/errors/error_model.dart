@@ -11,5 +11,4 @@ class ErrorModel {
       message: json[ApiKeys.errMessage],
     );
   }
-
 }

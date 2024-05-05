@@ -20,10 +20,9 @@ class EditProfileBody extends StatelessWidget {
 
   // final GlobalKey<FormState> loginFormKey = GlobalKey();
 
-
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
+    return SingleChildScrollView(
       child: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 35.h),
@@ -31,9 +30,13 @@ class EditProfileBody extends StatelessWidget {
             key: formKey,
             child: Column(
               children: [
-                CustomAppBar(text: 'Edit Profile', space: 60, tab: () {
-                  GoRouter.of(context).pop();
-                },),
+                CustomAppBar(
+                  text: 'Edit Profile',
+                  space: 60,
+                  tab: () {
+                    GoRouter.of(context).pop();
+                  },
+                ),
                 30.verticalSpace,
                 EditTextFormFiled(
                   hint: 'Name',
@@ -61,13 +64,16 @@ class EditProfileBody extends StatelessWidget {
                   customController: passwordController,
                 ),
                 100.verticalSpace,
-                CustomBlueButton(text: 'Update', ontap: () {
-                  if (formKey.currentState!.validate()) {
-                    GoRouter.of(context).push(AppRouter.kBackHome);
-                  } else {
-                    return;
-                  }
-                }, containerHeight: 60)
+                CustomBlueButton(
+                    text: 'Update',
+                    ontap: () {
+                      if (formKey.currentState!.validate()) {
+                        GoRouter.of(context).push(AppRouter.kBackHome);
+                      } else {
+                        return;
+                      }
+                    },
+                    containerHeight: 60)
               ],
             ),
           ),

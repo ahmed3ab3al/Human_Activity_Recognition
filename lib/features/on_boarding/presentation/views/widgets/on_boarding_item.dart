@@ -12,10 +12,10 @@ class OnBoardingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image(image: AssetImage(
-            model.image
-        ),
-          height: 320.h,width: double.infinity,
+        Image(
+          image: AssetImage(model.image),
+          height: 320.h,
+          width: double.infinity,
         ),
         20.verticalSpace,
         Text(

@@ -4,17 +4,15 @@ import 'package:graduation_project/core/utils/assets.dart';
 
 import '../../../../../core/utils/colors.dart';
 
-
 class MedicineList extends StatelessWidget {
-   MedicineList({super.key});
+  MedicineList({super.key});
 
- final List<String> images=[
-   AppAssets.vitamin,
-   AppAssets.trioClar,
-   AppAssets.vitaminC,
-   AppAssets.injection,
- ];
-
+  final List<String> images = [
+    AppAssets.vitamin,
+    AppAssets.trioClar,
+    AppAssets.vitaminC,
+    AppAssets.injection,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +22,14 @@ class MedicineList extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          itemBuilder: (context, index) =>
-              Container(
+          itemBuilder: (context, index) => Container(
                 padding: const EdgeInsets.all(5),
                 width: 50.w,
                 decoration: BoxDecoration(
-                  color:ColorManager.whiteColor,
+                  color: ColorManager.whiteColor,
                   borderRadius: BorderRadius.circular(15.r),
                   border: Border.all(
-                    color:  ColorManager.greyColorEEEEEE,
+                    color: ColorManager.greyColorEEEEEE,
                     width: 1.w,
                   ),
                   boxShadow: [
@@ -47,12 +44,12 @@ class MedicineList extends StatelessWidget {
                     ),
                   ],
                 ),
-                child:Image(
-                  image:  AssetImage(images[index]),
+                child: Image(
+                  image: AssetImage(images[index]),
                   width: 30.w,
                   height: 30.h,
                 ),
-                    ),
+              ),
           separatorBuilder: (context, index) => 42.horizontalSpace,
           itemCount: images.length),
     );

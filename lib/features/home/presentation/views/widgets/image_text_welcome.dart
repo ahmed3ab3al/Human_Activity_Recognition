@@ -7,7 +7,7 @@ class ImageText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       children: [
         12.horizontalSpace,
         const Text('Hello'),

@@ -15,7 +15,6 @@ class SignUpCubit extends Cubit<SignUpState> {
   List roleItems = ['patient', 'mentor'];
   var selectedValue = 'patient';
 
-
   void changeSecure() {
     secure = !secure;
     emit(ChangeSecureState());
@@ -26,14 +25,13 @@ class SignUpCubit extends Cubit<SignUpState> {
     emit(ChangeGenderState());
   }
 
-  signUpUser({
-    required String email,
-    required String password,
-    required String confirmPassword,
-    required String phone,
-    required String name,
-    required String role
-  }) async {
+  signUpUser(
+      {required String email,
+      required String password,
+      required String confirmPassword,
+      required String phone,
+      required String name,
+      required String role}) async {
     try {
       emit(AuthSignUpLoadingState());
       final response = await apiHelper.post(
@@ -41,7 +39,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         data: {
           ApiKeys.name: name,
           ApiKeys.email: email,
-          'phone':phone,
+          'phone': phone,
           ApiKeys.password: password,
           ApiKeys.confirmPassword: confirmPassword,
           ApiKeys.role: selectedValue,

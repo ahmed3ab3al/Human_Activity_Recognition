@@ -10,7 +10,6 @@ import '../../../../dangerous/presentation/views/widgets/dangerous_view_body.dar
 import '../../../../medicine/presentation/views/widgets/mentor_medicine_view_body.dart';
 import 'mentor_states.dart';
 
-
 class MentorCubit extends Cubit<MentorStates> {
   MentorCubit(this.apiHelper) : super(BottomInitialStates());
 
@@ -19,19 +18,49 @@ class MentorCubit extends Cubit<MentorStates> {
 
   int currentIndex = 0;
 
-  List<Widget> activeBottomItems =
-  [
-    Icon(Icons.medication_rounded, color:ColorManager.whiteColor,size: 24.sp,),
-    Icon(Icons.location_on_outlined, color: ColorManager.whiteColor,size: 24.sp,),
-    Icon(Icons.warning_amber_rounded, color:ColorManager.whiteColor,size: 24.sp,),
-    Icon(Icons.chat_bubble, color: ColorManager.whiteColor,size: 24.sp,),
+  List<Widget> activeBottomItems = [
+    Icon(
+      Icons.medication_rounded,
+      color: ColorManager.whiteColor,
+      size: 24.sp,
+    ),
+    Icon(
+      Icons.location_on_outlined,
+      color: ColorManager.whiteColor,
+      size: 24.sp,
+    ),
+    Icon(
+      Icons.warning_amber_rounded,
+      color: ColorManager.whiteColor,
+      size: 24.sp,
+    ),
+    Icon(
+      Icons.chat_bubble,
+      color: ColorManager.whiteColor,
+      size: 24.sp,
+    ),
   ];
-  List<Widget> inActiveBottomItems=
-  [
-    Icon(Icons.medication_rounded, color: ColorManager.greyColor757474,size: 24.sp,),
-    Icon(Icons.location_on_outlined, color: ColorManager.greyColor757474,size: 24.sp,),
-    Icon(Icons.warning_amber_rounded, color: ColorManager.greyColor757474,size: 24.sp,),
-    Icon(Icons.chat_bubble, color: ColorManager.greyColor757474,size: 24.sp,),
+  List<Widget> inActiveBottomItems = [
+    Icon(
+      Icons.medication_rounded,
+      color: ColorManager.greyColor757474,
+      size: 24.sp,
+    ),
+    Icon(
+      Icons.location_on_outlined,
+      color: ColorManager.greyColor757474,
+      size: 24.sp,
+    ),
+    Icon(
+      Icons.warning_amber_rounded,
+      color: ColorManager.greyColor757474,
+      size: 24.sp,
+    ),
+    Icon(
+      Icons.chat_bubble,
+      color: ColorManager.greyColor757474,
+      size: 24.sp,
+    ),
   ];
 
   List<Widget> screens = [
@@ -46,10 +75,9 @@ class MentorCubit extends Cubit<MentorStates> {
     emit(ChangeBottomNavBarStates());
   }
 
-
   IconData fabIcon = Icons.add;
   bool isBottomSheetShown = false;
-  void changeSendIcon({required bool add}){
+  void changeSendIcon({required bool add}) {
     if (add) {
       fabIcon = Icons.add;
       isBottomSheetShown = false;
@@ -60,27 +88,21 @@ class MentorCubit extends Cubit<MentorStates> {
     emit(ChangeSendIcon());
   }
 
-
-
-
-  void sendRequest(String id)async {
+  void sendRequest(String id) async {
     emit(SendRequestLoading());
     try {
       final response = await apiHelper.post(
         EndPoints.sendRequest,
-        data: {
-          'id':id
-        },
+        data: {'id': id},
       );
       emit(SendRequestSuccess(
-        sendCareRequest: SendCareRequest.fromJson(response.data)
-      ));
+          sendCareRequest: SendCareRequest.fromJson(response.data)));
     } on ServerException catch (e) {
       emit(SendRequestError(error: e.errorModel.message));
     }
   }
 
-  void getPatients()async {
+  void getPatients() async {
     emit(GetPatientsLoading());
     try {
       final response = await apiHelper.post(
@@ -91,5 +113,4 @@ class MentorCubit extends Cubit<MentorStates> {
       emit(GetPatientsError(error: e.errorModel.message));
     }
   }
-
 }

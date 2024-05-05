@@ -10,35 +10,32 @@ import 'core/utils/service_locator.dart';
 import 'features/home/presentation/view_models/mentor_cubit/mentor_cubit.dart';
 import 'features/home/presentation/view_models/patient_cubit/patient_cubit.dart';
 
-
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
- await CacheHelper().init();
+  await CacheHelper().init();
   setupServiceLocator();
   Bloc.observer = MyBlocObserver();
-   runApp(
-       const MyApp()
-   );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key,});
+  const MyApp({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
-            statusBarIconBrightness: Brightness.dark
-        ));
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark));
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (BuildContext context) =>MentorCubit(getIt.get<DioHelper>()),
+          create: (BuildContext context) => MentorCubit(getIt.get<DioHelper>()),
         ),
         BlocProvider(
-          create: (context) => PatientCubit(getIt.get<DioHelper>())..getMentorRequests(),
+          create: (context) =>
+              PatientCubit(getIt.get<DioHelper>())..getMentorRequests(),
         )
       ],
       child: ScreenUtilInit(

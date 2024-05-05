@@ -8,7 +8,6 @@ class ForgetPasswordModel {
     return ForgetPasswordModel(
       email: json['user'][ApiKeys.email],
       message: json[ApiKeys.message],
-
     );
   }
 }

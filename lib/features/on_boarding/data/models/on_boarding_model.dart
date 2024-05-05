@@ -5,7 +5,7 @@ class BoardingModel {
   final String body;
   BoardingModel(
       {required this.body,
-        required this.image,
-        required this.title1,
-        required this.title2});
+      required this.image,
+      required this.title1,
+      required this.title2});
 }

@@ -8,11 +8,8 @@ class VerificationView extends StatefulWidget {
 }
 
 class _VerificationScreenState extends State<VerificationView> {
-
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: VerificationViewBody()
-    );
+    return const Scaffold(body: VerificationViewBody());
   }
 }

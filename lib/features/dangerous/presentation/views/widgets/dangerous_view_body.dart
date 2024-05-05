@@ -6,7 +6,6 @@ import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_check_box.dart';
 
-
 class DangerousActivityViewBody extends StatefulWidget {
   const DangerousActivityViewBody({super.key});
 
@@ -19,21 +18,28 @@ class _HomeViewBodyState extends State<DangerousActivityViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
+    return SafeArea(
       child: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: 16.w,vertical: 30.h,),
-        child: Column(
-            children: [
-              CustomAppBar(text: 'Dangerous Activities', space: 35, tab: (){
-                GoRouter.of(context).push( AppRouter.kBackHome);
-
+        padding: EdgeInsets.symmetric(
+          horizontal: 16.w,
+          vertical: 30.h,
+        ),
+        child: Column(children: [
+          CustomAppBar(
+              text: 'Dangerous Activities',
+              space: 35,
+              tab: () {
+                GoRouter.of(context).push(AppRouter.kBackHome);
               }),
           40.verticalSpace,
           Row(
             children: [
               const CustomCheckBox(),
               6.horizontalSpace,
-              Text("Fall",style: Styles.size16_700Black,),
+              Text(
+                "Fall",
+                style: Styles.size16_700Black,
+              ),
             ],
           ),
           20.verticalSpace,
@@ -41,7 +47,10 @@ class _HomeViewBodyState extends State<DangerousActivityViewBody> {
             children: [
               const CustomCheckBox(),
               6.horizontalSpace,
-              Text("Sleep",style: Styles.size16_700Black,),
+              Text(
+                "Sleep",
+                style: Styles.size16_700Black,
+              ),
             ],
           ),
           20.verticalSpace,
@@ -49,7 +58,10 @@ class _HomeViewBodyState extends State<DangerousActivityViewBody> {
             children: [
               const CustomCheckBox(),
               6.horizontalSpace,
-              Text("UpStairs",style: Styles.size16_700Black,),
+              Text(
+                "UpStairs",
+                style: Styles.size16_700Black,
+              ),
             ],
           ),
           20.verticalSpace,
@@ -57,21 +69,30 @@ class _HomeViewBodyState extends State<DangerousActivityViewBody> {
             children: [
               const CustomCheckBox(),
               6.horizontalSpace,
-              Text("DownStairs",style: Styles.size16_700Black,),
+              Text(
+                "DownStairs",
+                style: Styles.size16_700Black,
+              ),
             ],
           ),
           20.verticalSpace,
           Row(children: [
             const CustomCheckBox(),
             6.horizontalSpace,
-            Text("Sit",style: Styles.size16_700Black,),
+            Text(
+              "Sit",
+              style: Styles.size16_700Black,
+            ),
           ]),
           20.verticalSpace,
           Row(
             children: [
               const CustomCheckBox(),
               6.horizontalSpace,
-              Text("StandUp",style: Styles.size16_700Black,),
+              Text(
+                "StandUp",
+                style: Styles.size16_700Black,
+              ),
             ],
           ),
           40.verticalSpace,

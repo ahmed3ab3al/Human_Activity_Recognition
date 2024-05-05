@@ -1,4 +1,5 @@
 const path = 'assets/images';
+
 class AppAssets {
   static const splash = '$path/splash.png';
   static const onBoardingOne = '$path/on_boarding_one.png';
@@ -14,5 +15,4 @@ class AppAssets {
   static const upStair = '$path/up_stair.png';
   static const vitamin = '$path/vitamin_a.png';
   static const waveHand = '$path/wave_hand.png';
-
 }

@@ -52,8 +52,10 @@ class EditTextFormFiled extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.r),
             borderSide: const BorderSide(color: ColorManager.redColorDC2222)),
         hintText: 'Change Your $hint',
-        hintStyle: Styles.testStyle15.copyWith(color: ColorManager.greyColor757474),
-        errorStyle: Styles.testStyle14.copyWith(color: ColorManager.redColorDC2222),
+        hintStyle:
+            Styles.testStyle15.copyWith(color: ColorManager.greyColor757474),
+        errorStyle:
+            Styles.testStyle14.copyWith(color: ColorManager.redColorDC2222),
         prefixIcon: CustomIcon(
           icon: prefix,
         ),

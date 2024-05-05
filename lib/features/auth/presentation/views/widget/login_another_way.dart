@@ -9,7 +9,7 @@ class LoginAnotherWay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       children: [
         20.verticalSpace,
         CustomButton(

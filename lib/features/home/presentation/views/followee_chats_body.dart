@@ -5,55 +5,57 @@ import 'package:graduation_project/features/home/presentation/views/widgets/sear
 
 import '../../../../core/utils/styles.dart';
 
-class ChatsScreen extends StatelessWidget
-{
-   ChatsScreen({super.key});
-final searchController=TextEditingController();
+class ChatsScreen extends StatelessWidget {
+  ChatsScreen({super.key});
+  final searchController = TextEditingController();
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: SafeArea(
         child: Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 18.w,vertical: 30.h),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                    Text('Messages',
-                    style: Styles.size16_700Black,)
-                  ],),
-                  20.verticalSpace,
-                 SearchTextFormFiled(hint: 'Search Chat', customController: searchController, type: TextInputType.text,),
-                  const SizedBox(
+          padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 30.h),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Messages',
+                      style: Styles.size16_700Black,
+                    )
+                  ],
+                ),
+                20.verticalSpace,
+                SearchTextFormFiled(
+                  hint: 'Search Chat',
+                  customController: searchController,
+                  type: TextInputType.text,
+                ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) => buildChatItem(),
+                  separatorBuilder: (context, index) => const SizedBox(
                     height: 20.0,
                   ),
-                  ListView.separated(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) => buildChatItem(),
-                    separatorBuilder: (context, index) => const SizedBox(
-                      height: 20.0,
-                    ),
-                    itemCount: 15,
-                  ),
-
-                ],
-              ),
+                  itemCount: 15,
+                ),
+              ],
             ),
           ),
+        ),
       ),
     );
   }
 
-
   // arrow function
-  Widget buildChatItem() =>
-      Column(
+  Widget buildChatItem() => Column(
         children: [
           Row(
             children: [
@@ -62,8 +64,7 @@ final searchController=TextEditingController();
                 children: [
                   CircleAvatar(
                     radius: 30.0,
-                    backgroundImage:
-                      AssetImage('images/vitamin_a.png'),
+                    backgroundImage: AssetImage('images/vitamin_a.png'),
                     backgroundColor: Colors.black,
                   ),
                   Padding(
@@ -107,8 +108,7 @@ final searchController=TextEditingController();
                       height: 5.0,
                     ),
                     Row(
-                      children:
-                      [
+                      children: [
                         const Expanded(
                           child: Text(
                             'I suffered to do this والله',
@@ -117,8 +117,7 @@ final searchController=TextEditingController();
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(
-                          ),
+                          padding: const EdgeInsets.symmetric(),
                           child: Container(
                             width: 20,
                             height: 20,
@@ -131,7 +130,6 @@ final searchController=TextEditingController();
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
                               ),
-
                               borderRadius: BorderRadius.circular(10.r),
                             ),
                             child: Row(
@@ -144,7 +142,8 @@ final searchController=TextEditingController();
                               ],
                             ),
                           ),
-                        ),],
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -153,10 +152,9 @@ final searchController=TextEditingController();
           ),
           15.verticalSpace,
           Padding(
-            padding:  EdgeInsets.only(left: 80.w),
+            padding: EdgeInsets.only(left: 80.w),
             child: const LineContainer(),
           ),
         ],
       );
-
 }

@@ -14,13 +14,13 @@ class CustomContainerMedicine extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: 14.w),
+        padding: EdgeInsets.symmetric(horizontal: 14.w),
         child: Container(
           decoration: BoxDecoration(
             color: ColorManager.whiteColor,
             borderRadius: BorderRadius.circular(20.r),
             border: Border.all(
-              color:  ColorManager.greyColorEEEEEE,
+              color: ColorManager.greyColorEEEEEE,
               width: 1.w,
             ),
             boxShadow: [
@@ -38,14 +38,15 @@ class CustomContainerMedicine extends StatelessWidget {
           child: Row(
             children: [
               Padding(
-                padding:  EdgeInsets.symmetric(vertical: 18.h,horizontal: 15.w),
+                padding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 15.w),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 8),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                   decoration: BoxDecoration(
-                    color:ColorManager.whiteColor,
+                    color: ColorManager.whiteColor,
                     borderRadius: BorderRadius.circular(15.r),
                     border: Border.all(
-                      color:  ColorManager.greyColorEEEEEE,
+                      color: ColorManager.greyColorEEEEEE,
                       width: 1.w,
                     ),
                     boxShadow: [
@@ -60,7 +61,7 @@ class CustomContainerMedicine extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child:  Image(
+                  child: Image(
                     image: const AssetImage(AppAssets.vitamin),
                     width: 30.w,
                     height: 30.h,
@@ -68,7 +69,7 @@ class CustomContainerMedicine extends StatelessWidget {
                 ),
               ),
               Expanded(
-                 child: Padding(
+                child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 18.h),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,8 +95,8 @@ class CustomContainerMedicine extends StatelessWidget {
                       ),
                     ],
                   ),
-                               ),
-               ),
+                ),
+              ),
             ],
           ),
         ),

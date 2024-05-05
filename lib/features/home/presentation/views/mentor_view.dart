@@ -20,15 +20,16 @@ class HomeView extends StatelessWidget {
       body: const MentorViewBody(),
       floatingActionButton: BlocConsumer<MentorCubit, MentorStates>(
         listener: (context, state) {
-          if (state is SendRequestSuccess){
+          if (state is SendRequestSuccess) {
             idController.text = "";
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Center(child: Text("Send Request Success${state.sendCareRequest.result!.status!}")),
+                content: Center(
+                    child: Text(
+                        "Send Request Success${state.sendCareRequest.result!.status!}")),
               ),
             );
-          }
-          else if (state is SendRequestError){
+          } else if (state is SendRequestError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Center(child: Text(state.error)),
@@ -53,24 +54,22 @@ class HomeView extends StatelessWidget {
               child: CircleAvatar(
                 maxRadius: 30.r,
                 backgroundColor: Colors.transparent,
-                child: Icon(MentorCubit
-                    .get(context)
-                    .fabIcon, color: Colors.white,),
+                child: Icon(
+                  MentorCubit.get(context).fabIcon,
+                  color: Colors.white,
+                ),
               ),
             ),
             onTap: () {
-              if (MentorCubit
-                  .get(context)
-                  .isBottomSheetShown) {
+              if (MentorCubit.get(context).isBottomSheetShown) {
                 if (formKey.currentState!.validate()) {
                   Navigator.pop(context);
                   MentorCubit.get(context).changeSendIcon(add: true);
                   MentorCubit.get(context).sendRequest(idController.text);
                 }
-              }
-              else {
-                scaffoldKey.currentState?.showBottomSheet((context) =>
-                    Form(
+              } else {
+                scaffoldKey.currentState?.showBottomSheet(
+                    (context) => Form(
                         key: formKey,
                         child: Container(
                           color: const Color(0xffDEDEDE),
@@ -86,10 +85,8 @@ class HomeView extends StatelessWidget {
                               )
                             ],
                           ),
-                        )
-                    ),
-                    elevation: 20
-                );
+                        )),
+                    elevation: 20);
                 MentorCubit.get(context).changeSendIcon(add: false);
               }
             },
@@ -99,4 +96,3 @@ class HomeView extends StatelessWidget {
     );
   }
 }
-

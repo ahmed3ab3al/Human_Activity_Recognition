@@ -16,9 +16,9 @@ class MentorMedicineViewBody extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 30.h),
           child: Column(
             children: [
-               CustomAppBar(
-                tab: (){
-                  GoRouter.of(context).push( AppRouter.kBackHome);
+              CustomAppBar(
+                tab: () {
+                  GoRouter.of(context).push(AppRouter.kBackHome);
                 },
                 text: 'Treatment registration',
                 space: 20,

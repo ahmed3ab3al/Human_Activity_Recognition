@@ -5,8 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../view_models/patient_cubit/patient_cubit.dart';
 import '../view_models/patient_cubit/patient_states.dart';
 
-
-
 class PatientView extends StatelessWidget {
   const PatientView({super.key});
 
@@ -24,8 +22,7 @@ class PatientView extends StatelessWidget {
               PatientCubit.get(context).changeBottomNavBar(index);
             },
             activeIcons: PatientCubit.get(context).activeBottomItems,
-            inactiveIcons:
-            PatientCubit.get(context).inActiveBottomItems,
+            inactiveIcons: PatientCubit.get(context).inActiveBottomItems,
             color: const Color(0xffF9F9F9),
             height: 60,
             circleWidth: 45,

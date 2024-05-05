@@ -13,7 +13,8 @@ class CustomBlueButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.ontap,
-    required this.containerHeight, this.width,
+    required this.containerHeight,
+    this.width,
   });
 
   @override

@@ -23,7 +23,8 @@ class LoginModel {
   LoginModel({
     this.message,
     this.user,
-    this.token,});
+    this.token,
+  });
 
   LoginModel.fromJson(dynamic json) {
     message = json['message'];
@@ -33,7 +34,6 @@ class LoginModel {
   String? message;
   User? user;
   String? token;
-
 }
 
 class User {
@@ -43,7 +43,8 @@ class User {
     this.email,
     this.role,
     this.phone,
-    this.verified,});
+    this.verified,
+  });
 
   User.fromJson(dynamic json) {
     id = json['_id'];

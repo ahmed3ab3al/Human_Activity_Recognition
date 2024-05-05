@@ -10,7 +10,9 @@ class CustomAppBar extends StatelessWidget {
   final VoidCallback tab;
   const CustomAppBar({
     super.key,
-    required this.text, required this.space, required this.tab,
+    required this.text,
+    required this.space,
+    required this.tab,
   });
   @override
   Widget build(BuildContext context) {
@@ -18,11 +20,11 @@ class CustomAppBar extends StatelessWidget {
       children: [
         25.horizontalSpace,
         IconButton(
-          onPressed:tab,
-          icon:  Icon(
+          onPressed: tab,
+          icon: Icon(
             Icons.arrow_back_ios_outlined,
             size: 17.sp,
-            color:  ColorManager.blackColor,
+            color: ColorManager.blackColor,
           ),
         ),
         space.horizontalSpace,

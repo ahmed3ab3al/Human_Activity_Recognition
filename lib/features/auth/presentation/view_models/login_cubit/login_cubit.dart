@@ -22,6 +22,7 @@ class LoginCubit extends Cubit<LoginState> {
     secure = !secure;
     emit(ChangeSecureState());
   }
+
   signInUser() async {
     try {
       emit(LoginLoadingState());
@@ -34,14 +35,25 @@ class LoginCubit extends Cubit<LoginState> {
       );
       CacheHelper().saveData(
           key: token, value: LoginModel.fromJson(response.data).token);
-      CacheHelper().saveData(key: role, value: LoginModel.fromJson(response.data).user!.role);
-      CacheHelper().saveData(key: userId, value: LoginModel.fromJson(response.data).user!.id);
-      CacheHelper().saveData(key: userEmail, value: LoginModel.fromJson(response.data).user!.email);
-      CacheHelper().saveData(key: userRole, value: LoginModel.fromJson(response.data).user!.role);
-      CacheHelper().saveData(key: userVerified, value: LoginModel.fromJson(response.data).user!.verified);
-      CacheHelper().saveData(key: userName, value: LoginModel.fromJson(response.data).user!.name);
-      CacheHelper().saveData(key: userPhone, value: LoginModel.fromJson(response.data).user!.phone);
-      emit(LoginSuccessState(message: LoginModel.fromJson(response.data).message!));
+      CacheHelper().saveData(
+          key: role, value: LoginModel.fromJson(response.data).user!.role);
+      CacheHelper().saveData(
+          key: userId, value: LoginModel.fromJson(response.data).user!.id);
+      CacheHelper().saveData(
+          key: userEmail,
+          value: LoginModel.fromJson(response.data).user!.email);
+      CacheHelper().saveData(
+          key: userRole, value: LoginModel.fromJson(response.data).user!.role);
+      CacheHelper().saveData(
+          key: userVerified,
+          value: LoginModel.fromJson(response.data).user!.verified);
+      CacheHelper().saveData(
+          key: userName, value: LoginModel.fromJson(response.data).user!.name);
+      CacheHelper().saveData(
+          key: userPhone,
+          value: LoginModel.fromJson(response.data).user!.phone);
+      emit(LoginSuccessState(
+          message: LoginModel.fromJson(response.data).message!));
     } on ServerException catch (e) {
       emit(LoginErrorState(error: e.errorModel.message));
     }

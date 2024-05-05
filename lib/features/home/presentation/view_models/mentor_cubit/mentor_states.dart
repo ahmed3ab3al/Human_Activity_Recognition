@@ -1,29 +1,30 @@
 import 'package:graduation_project/features/home/data/models/SendCareRequest.dart';
 
-abstract class MentorStates{}
+abstract class MentorStates {}
 
-class BottomInitialStates extends MentorStates{}
+class BottomInitialStates extends MentorStates {}
 
-class ChangeBottomNavBarStates extends MentorStates{}
+class ChangeBottomNavBarStates extends MentorStates {}
 
-class SendRequestLoading extends MentorStates{}
+class SendRequestLoading extends MentorStates {}
 
-class ChangeSendIcon extends MentorStates{}
-class SendRequestSuccess extends MentorStates{
+class ChangeSendIcon extends MentorStates {}
+
+class SendRequestSuccess extends MentorStates {
   SendCareRequest sendCareRequest;
   SendRequestSuccess({required this.sendCareRequest});
 }
-class SendRequestError extends MentorStates{
+
+class SendRequestError extends MentorStates {
   final error;
   SendRequestError({this.error});
 }
 
+class GetPatientsLoading extends MentorStates {}
 
-class GetPatientsLoading extends MentorStates{
-}
-class GetPatientsSuccess extends MentorStates{
-}
-class GetPatientsError extends MentorStates{
+class GetPatientsSuccess extends MentorStates {}
+
+class GetPatientsError extends MentorStates {
   final error;
   GetPatientsError({this.error});
 }

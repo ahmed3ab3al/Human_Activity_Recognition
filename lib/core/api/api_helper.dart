@@ -1,35 +1,19 @@
-
 abstract class ApiHelper {
- Future<dynamic> get(
-      String url,{
-        Object? data,
-        Map<String,dynamic>? queryParameters
-  }
-      );
+  Future<dynamic> get(String url,
+      {Object? data, Map<String, dynamic>? queryParameters});
 
- Future<dynamic> post(
-     String url,{
-       Object? data,
-       Map<String,dynamic>? queryParameters,
-       bool isFormData = false
-     }
-     );
+  Future<dynamic> post(String url,
+      {Object? data,
+      Map<String, dynamic>? queryParameters,
+      bool isFormData = false});
 
- Future<dynamic> delete(
-     String url,{
-       Object? data,
-       Map<String,dynamic>? queryParameters,
-       bool isFormData = false
+  Future<dynamic> delete(String url,
+      {Object? data,
+      Map<String, dynamic>? queryParameters,
+      bool isFormData = false});
 
-     }
-     );
-
- Future<dynamic> patch(
-     String url,{
-       Object? data,
-       Map<String,dynamic>? queryParameters,
-       bool isFormData = false
-
-     }
-     );
+  Future<dynamic> patch(String url,
+      {Object? data,
+      Map<String, dynamic>? queryParameters,
+      bool isFormData = false});
 }

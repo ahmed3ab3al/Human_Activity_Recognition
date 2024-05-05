@@ -16,9 +16,11 @@ class _CheckboxExampleState extends State<CustomCheckBox> {
   @override
   Widget build(BuildContext context) {
     return Checkbox(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r),),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5.r),
+      ),
       activeColor: ColorManager.whiteColor,
-      side:  const BorderSide(color: ColorManager.greyColorD9D9D9),
+      side: const BorderSide(color: ColorManager.greyColorD9D9D9),
       checkColor: Colors.blueAccent,
       fillColor: MaterialStateProperty.resolveWith(
           (states) => const Color(0xffFFFFFF)),

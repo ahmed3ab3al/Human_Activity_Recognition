@@ -12,7 +12,7 @@ class PatientMedicineView extends StatelessWidget {
     return SingleChildScrollView(
       child: SafeArea(
         child: Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 10.w,vertical: 30.h),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 30.h),
           child: Column(
             children: [
               const ImageText(),

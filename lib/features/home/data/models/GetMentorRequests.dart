@@ -1,11 +1,11 @@
 class GetMentorRequests {
-
   String? message;
   List<Result>? result;
 
   GetMentorRequests({
-      this.message, 
-      this.result,});
+    this.message,
+    this.result,
+  });
 
   GetMentorRequests.fromJson(dynamic json) {
     message = json['message'];
@@ -16,8 +16,8 @@ class GetMentorRequests {
       });
     }
   }
-
 }
+
 class Mentor {
   String? id;
   String? name;
@@ -26,15 +26,16 @@ class Mentor {
   Mentor({
     this.id,
     this.name,
-    this.email,});
+    this.email,
+  });
 
   Mentor.fromJson(dynamic json) {
     id = json['_id'];
     name = json['name'];
     email = json['email'];
   }
-
 }
+
 class Result {
   String? id;
   String? patient;
@@ -51,7 +52,8 @@ class Result {
     this.status,
     this.createdAt,
     this.updatedAt,
-    this.v,});
+    this.v,
+  });
 
   Result.fromJson(dynamic json) {
     id = json['_id'];
@@ -62,5 +64,4 @@ class Result {
     updatedAt = json['updatedAt'];
     v = json['__v'];
   }
-
 }

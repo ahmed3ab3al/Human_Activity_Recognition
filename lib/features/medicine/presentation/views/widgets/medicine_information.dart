@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,9 +35,9 @@ class MedicineInformation extends StatelessWidget {
             ),
             180.horizontalSpace,
             Text(
-              '${24/BlocProvider.of<MedicineCubit>(context).counter} hours',
-              style: Styles.testStyle15.copyWith(
-                  color: ColorManager.greyColor757474),
+              '${24 / BlocProvider.of<MedicineCubit>(context).counter} hours',
+              style: Styles.testStyle15
+                  .copyWith(color: ColorManager.greyColor757474),
             ),
           ],
         ),
@@ -51,30 +50,29 @@ class MedicineInformation extends StatelessWidget {
               style: Styles.size16_700Black,
             ),
             190.horizontalSpace,
-          SizedBox(
-            width: 110.w,
-            child: TextFormField(
-              controller: BlocProvider.of<MedicineCubit>(context).timeController,
-              keyboardType: TextInputType.datetime,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                  borderSide: BorderSide(color: ColorManager.greyColorD9D9D9),
+            SizedBox(
+              width: 110.w,
+              child: TextFormField(
+                controller:
+                    BlocProvider.of<MedicineCubit>(context).timeController,
+                keyboardType: TextInputType.datetime,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(color: ColorManager.greyColorD9D9D9),
+                  ),
+                  hintText: ' New Time',
                 ),
-                hintText: ' New Time',
+                onTap: () {
+                  showTimePicker(context: context, initialTime: TimeOfDay.now())
+                      .then((value) {
+                    BlocProvider.of<MedicineCubit>(context)
+                        .timeController
+                        .text = value!.format(context);
+                  });
+                },
               ),
-              onTap: () {
-                showTimePicker(
-                    context: context,
-                    initialTime:
-                    TimeOfDay.now())
-                    .then((value) {
-                  BlocProvider.of<MedicineCubit>(context).timeController.text =
-                  value!.format(context);
-                });
-
-              },),
-          )
+            )
           ],
         ),
       ],

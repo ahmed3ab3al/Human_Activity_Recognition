@@ -10,8 +10,6 @@ import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/custom_blue_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 
-
-
 class CheckEmail extends StatelessWidget {
   CheckEmail({super.key});
 
@@ -57,20 +55,19 @@ class CheckEmail extends StatelessWidget {
                       prefix: Icons.email_outlined,
                     ),
                     50.verticalSpace,
-                    state is CheckEmailLoadingState ?
-                    const Center(child: CircularProgressIndicator()) :
-                    CustomBlueButton(
-                        containerHeight: 60,
-                        text: 'Send Code',
-                        ontap: () {
-                          if (checkEmailKey.currentState!.validate()) {
-                            ForgetPasswordCubit.get(context).forgetPassword(
-                              email: checkEmailController.text,
-                            );
-                          }
-                        }),
+                    state is CheckEmailLoadingState
+                        ? const Center(child: CircularProgressIndicator())
+                        : CustomBlueButton(
+                            containerHeight: 60,
+                            text: 'Send Code',
+                            ontap: () {
+                              if (checkEmailKey.currentState!.validate()) {
+                                ForgetPasswordCubit.get(context).forgetPassword(
+                                  email: checkEmailController.text,
+                                );
+                              }
+                            }),
                   ],
-
                 ),
               ),
             ),

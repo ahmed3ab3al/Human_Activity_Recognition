@@ -16,18 +16,18 @@ class ProfileDataViewBody extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff0E4CA1),
-        leading:  IconButton(
-          onPressed:(){
+        leading: IconButton(
+          onPressed: () {
             GoRouter.of(context).pop();
           },
-          icon:  const Icon(
+          icon: const Icon(
             Icons.arrow_back_ios_outlined,
             size: 17,
-            color:  ColorManager.whiteColor,
+            color: ColorManager.whiteColor,
           ),
         ),
       ),
-      body:  Stack(
+      body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
           Container(
@@ -35,13 +35,13 @@ class ProfileDataViewBody extends StatelessWidget {
             // height: 774,
             decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [
-                    Color(0xff0E4CA1),
-                    Color(0xff67A3F4),
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                )),
+              colors: [
+                Color(0xff0E4CA1),
+                Color(0xff67A3F4),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            )),
           ),
           Positioned(
             top: MediaQuery.sizeOf(context).height / 4.1,
@@ -57,7 +57,8 @@ class ProfileDataViewBody extends StatelessWidget {
               height: 130,
               child: CircleAvatar(
                 backgroundColor: Colors.grey.shade200,
-                backgroundImage: const NetworkImage('https://i.pravatar.cc/300'),
+                backgroundImage:
+                    const NetworkImage('https://i.pravatar.cc/300'),
                 child: Stack(
                   children: [
                     Positioned(
@@ -77,7 +78,6 @@ class ProfileDataViewBody extends StatelessWidget {
                             Icons.camera_alt_outlined,
                             color: Colors.blue,
                             size: 25,
-
                           ),
                         ),
                       ),
@@ -90,87 +90,84 @@ class ProfileDataViewBody extends StatelessWidget {
           Container(
             width: double.infinity,
             height: MediaQuery.sizeOf(context).height / 2,
-            decoration:  BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20)
-            ),
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(20)),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Column(
+              child: Column(children: [
+                const Divider(
+                  color: Colors.white,
+                  height: 10,
+                ),
+                Row(
                   children: [
-                    const Divider(
-                      color: Colors.white,
-                      height: 10,
+                    const CustomIcon(icon: Icons.person),
+                    Text(
+                      'ID',
+                      style: Styles.size16_700Black,
                     ),
-                    Row(
-                      children: [
-                        const CustomIcon(
-                            icon: Icons.person
-                        ),
-                        Text(
-                          'ID',
-                          style: Styles.size16_700Black,
-                        ),
-                        const Spacer(),
-                        Text(
-                          CacheHelper().getData(key: userId),
-                          style: Styles.size16_700Black,
-                        ),
-                      ],
+                    const Spacer(),
+                    Text(
+                      CacheHelper().getData(key: userId),
+                      style: Styles.size16_700Black,
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Divider(
-                        height: 15,
+                  ],
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Divider(
+                    height: 15,
+                  ),
+                ),
+                Row(
+                  children: [
+                    const CustomIcon(icon: Icons.person),
+                    Text(
+                      'Number',
+                      style: Styles.size16_700Black,
+                    ),
+                    const Spacer(),
+                    Text(
+                      CacheHelper().getData(key: userPhone),
+                      style: Styles.size16_700Black,
+                    ),
+                  ],
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Divider(
+                    height: 15,
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    CacheHelper().saveData(key: token, value: '');
+                    GoRouter.of(context).pushReplacement(AppRouter.kLogin);
+                  },
+                  child: Row(
+                    children: [
+                      const CustomIcon(icon: Icons.logout_outlined),
+                      Text(
+                        'Logout',
+                        style: Styles.size16_700Black,
                       ),
-                    ),
-                    Row(
-                      children: [
-                        const CustomIcon(icon: Icons.person),
-                        Text(
-                          'Number',
-                          style: Styles.size16_700Black,
-                        ),
-                        const Spacer(),
-                        Text(
-                          CacheHelper().getData(key: userPhone),
-                          style: Styles.size16_700Black,
-                        ),
-                      ],
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Divider(
-                        height: 15,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: (){
-                        CacheHelper().saveData(key: token, value: '');
-                        GoRouter.of(context).pushReplacement(AppRouter.kLogin);
-                      },
-                      child: Row(
-                        children: [
-                          const CustomIcon(icon: Icons.logout_outlined),
-                          Text(
-                            'Logout',
-                            style: Styles.size16_700Black,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    CustomBlueButton(text: 'Edit Profile', ontap: () {
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                CustomBlueButton(
+                    text: 'Edit Profile',
+                    ontap: () {
                       GoRouter.of(context).push(AppRouter.kEditProfile);
-                    }, containerHeight: 50)
-                  ]),
+                    },
+                    containerHeight: 50)
+              ]),
             ),
           )
         ],
       ),
     );
-
   }
 }

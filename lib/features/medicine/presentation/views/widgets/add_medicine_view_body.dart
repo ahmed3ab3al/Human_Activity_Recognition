@@ -55,9 +55,7 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                   style: Styles.size16_700Black,
                 ),
                 15.verticalSpace,
-                Center(
-                    child: MedicineList()
-                ),
+                Center(child: MedicineList()),
                 20.verticalSpace,
                 const LineContainer(),
                 30.verticalSpace,
@@ -68,9 +66,11 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                 const MedicineInformation(),
                 60.verticalSpace,
                 CustomBlueButton(
-                    text: 'Reminder', ontap: () {
-                  GoRouter.of(context).pop();
-                }, containerHeight: 56)
+                    text: 'Reminder',
+                    ontap: () {
+                      GoRouter.of(context).pop();
+                    },
+                    containerHeight: 56)
               ],
             ),
           ),

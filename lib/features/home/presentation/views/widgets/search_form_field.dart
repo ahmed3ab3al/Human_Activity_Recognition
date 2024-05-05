@@ -29,32 +29,36 @@ class SearchTextFormFiled extends StatelessWidget {
       controller: customController,
       keyboardType: type,
       decoration: InputDecoration(
-        filled: true,
-        fillColor: ColorManager.greyColorEEEEEE,
-        contentPadding: EdgeInsets.symmetric(
-          vertical: 20.h,
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.r),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.r),
-          borderSide: const BorderSide(
-            color: ColorManager.greyColorD9D9D9,
+          filled: true,
+          fillColor: ColorManager.greyColorEEEEEE,
+          contentPadding: EdgeInsets.symmetric(
+            vertical: 20.h,
           ),
-        ),
-        enabledBorder: OutlineInputBorder(
+          border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.r),
-            borderSide: const BorderSide(color: ColorManager.greyColorD9D9D9)),
-        errorBorder: OutlineInputBorder(
+          ),
+          focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.r),
-            borderSide: const BorderSide(color: ColorManager.redColorDC2222)),
-        hintText: hint,
-        hintStyle: Styles.testStyle15.copyWith(color: ColorManager.greyColor757474),
-        errorStyle: Styles.testStyle14.copyWith(color: ColorManager.redColorDC2222),
-        prefixIcon:const Icon(Icons.search_rounded,) ,
-        prefixIconColor: ColorManager.greyColor757474
-      ),
+            borderSide: const BorderSide(
+              color: ColorManager.greyColorD9D9D9,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20.r),
+              borderSide:
+                  const BorderSide(color: ColorManager.greyColorD9D9D9)),
+          errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20.r),
+              borderSide: const BorderSide(color: ColorManager.redColorDC2222)),
+          hintText: hint,
+          hintStyle:
+              Styles.testStyle15.copyWith(color: ColorManager.greyColor757474),
+          errorStyle:
+              Styles.testStyle14.copyWith(color: ColorManager.redColorDC2222),
+          prefixIcon: const Icon(
+            Icons.search_rounded,
+          ),
+          prefixIconColor: ColorManager.greyColor757474),
     );
   }
 }

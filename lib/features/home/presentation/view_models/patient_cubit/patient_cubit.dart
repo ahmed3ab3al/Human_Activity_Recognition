@@ -12,7 +12,6 @@ import '../../views/followee_chats_body.dart';
 import '../../views/mentors_body.dart';
 import '../../../../medicine/presentation/views/patient_medicine_view.dart';
 
-
 class PatientCubit extends Cubit<PatientStates> {
   PatientCubit(this.apiHelper) : super(BottomInitialStates());
 
@@ -21,17 +20,39 @@ class PatientCubit extends Cubit<PatientStates> {
 
   int currentIndex = 0;
 
-  List<Widget> activeBottomItems =
-  [
-    Icon(Icons.medication_rounded, color:ColorManager.whiteColor,size: 24.sp,),
-    Icon(Icons.chat_bubble, color: ColorManager.whiteColor,size: 24.sp,),
-    Icon(Icons.people_alt_outlined, color: ColorManager.whiteColor,size: 24.sp,),
+  List<Widget> activeBottomItems = [
+    Icon(
+      Icons.medication_rounded,
+      color: ColorManager.whiteColor,
+      size: 24.sp,
+    ),
+    Icon(
+      Icons.chat_bubble,
+      color: ColorManager.whiteColor,
+      size: 24.sp,
+    ),
+    Icon(
+      Icons.people_alt_outlined,
+      color: ColorManager.whiteColor,
+      size: 24.sp,
+    ),
   ];
-  List<Widget> inActiveBottomItems=
-  [
-    Icon(Icons.medication_rounded, color: ColorManager.greyColor757474,size: 24.sp,),
-    Icon(Icons.chat_bubble, color: ColorManager.blackColor,size: 24.sp,),
-    Icon(Icons.people_alt_outlined, color: ColorManager.greyColor757474,size: 24.sp,),
+  List<Widget> inActiveBottomItems = [
+    Icon(
+      Icons.medication_rounded,
+      color: ColorManager.greyColor757474,
+      size: 24.sp,
+    ),
+    Icon(
+      Icons.chat_bubble,
+      color: ColorManager.blackColor,
+      size: 24.sp,
+    ),
+    Icon(
+      Icons.people_alt_outlined,
+      color: ColorManager.greyColor757474,
+      size: 24.sp,
+    ),
   ];
 
   List<Widget> screens = [
@@ -47,7 +68,7 @@ class PatientCubit extends Cubit<PatientStates> {
 
   GetMentorRequests? getMentorRequest;
   bool getMentorRequestDone = true;
-  void getMentorRequests()async {
+  void getMentorRequests() async {
     emit(GetMentorRequestsLoading());
     try {
       final response = await apiHelper.get(
@@ -61,12 +82,10 @@ class PatientCubit extends Cubit<PatientStates> {
     }
   }
 
-  void confirmRequest(String id)async {
+  void confirmRequest(String id) async {
     emit(ConfirmRequestLoading());
     try {
-      await apiHelper.post(
-        '${EndPoints.confirmRequest}$id'
-      );
+      await apiHelper.post('${EndPoints.confirmRequest}$id');
       emit(ConfirmRequestSuccess());
       getMentorRequests();
     } on ServerException catch (e) {
@@ -74,18 +93,14 @@ class PatientCubit extends Cubit<PatientStates> {
     }
   }
 
-  void declineRequest(String id)async {
-
+  void declineRequest(String id) async {
     emit(DeclineRequestLoading());
     try {
-      await apiHelper.patch(
-          '${EndPoints.declineRequest}$id'
-      );
+      await apiHelper.patch('${EndPoints.declineRequest}$id');
       emit(DeclineRequestSuccess());
       getMentorRequests();
     } on ServerException catch (e) {
       emit(DeclineRequestError(error: e.errorModel.message));
     }
   }
-
 }

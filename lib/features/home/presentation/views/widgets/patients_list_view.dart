@@ -11,28 +11,24 @@ class PatientListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        separatorBuilder: (
-            context, index,
-            ) {
-          return  SizedBox(
-            height: 20.h,
-          );
-        },
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return  InkWell(
-            onTap: (){
-              GoRouter.of(context).push(
-                  AppRouter.kPatientDetails
-              );
-            }, 
-              child: const PatientListItem()
-          );
-        },
-      );
-    }
-
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      separatorBuilder: (
+        context,
+        index,
+      ) {
+        return SizedBox(
+          height: 20.h,
+        );
+      },
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return InkWell(
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.kPatientDetails);
+            },
+            child: const PatientListItem());
+      },
+    );
   }
-
+}

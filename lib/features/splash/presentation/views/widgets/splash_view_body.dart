@@ -14,60 +14,59 @@ class SplashViewBody extends StatefulWidget {
   State<SplashViewBody> createState() => _SplashViewBodyState();
 }
 
-class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProviderStateMixin {
+class _SplashViewBodyState extends State<SplashViewBody>
+    with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<Offset> slidingAnimation;
   @override
   void initState() {
     super.initState();
     initSlidingAnimation();
-    Future.delayed(const Duration(seconds: 3),(){
-      if(CacheHelper().getData(key: 'onBoarding') != null){
-        if(CacheHelper().getData(key: token) != ''){
-          if(CacheHelper().getData(key:role)=='mentor'){
-            GoRouter.of(context).push( AppRouter.kBackHome);
-          }else if(CacheHelper().getData(key:role)=='patient')
-          {
-            GoRouter.of(context).push( AppRouter.kPatientHome);
+    Future.delayed(const Duration(seconds: 3), () {
+      if (CacheHelper().getData(key: 'onBoarding') != null) {
+        if (CacheHelper().getData(key: token) != '') {
+          if (CacheHelper().getData(key: role) == 'mentor') {
+            GoRouter.of(context).push(AppRouter.kBackHome);
+          } else if (CacheHelper().getData(key: role) == 'patient') {
+            GoRouter.of(context).push(AppRouter.kPatientHome);
           }
+        } else {
+          GoRouter.of(context).push(AppRouter.kLogin);
         }
-        else{
-          GoRouter.of(context).push( AppRouter.kLogin);
-        }
-      }else{
-        GoRouter.of(context).push( AppRouter.kOnBoarding);
+      } else {
+        GoRouter.of(context).push(AppRouter.kOnBoarding);
       }
-
     });
   }
-    @override
+
+  @override
   void dispose() {
     super.dispose();
     animationController.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
-mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-         Image(
-           image: const AssetImage(
-             AppAssets.splash
-         ),
-        height: 300.h,
-         width: double.infinity,
-         ),
-       SlidingText(slidingAnimation: slidingAnimation)
+        Image(
+          image: const AssetImage(AppAssets.splash),
+          height: 300.h,
+          width: double.infinity,
+        ),
+        SlidingText(slidingAnimation: slidingAnimation)
       ],
     );
   }
+
   void initSlidingAnimation() {
-    animationController =AnimationController(vsync: this,duration: const Duration(milliseconds: 1500));
-    slidingAnimation = Tween<Offset>(
-        begin:const Offset(0,3),
-        end:Offset.zero )
-        .animate(animationController);
+    animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1500));
+    slidingAnimation =
+        Tween<Offset>(begin: const Offset(0, 3), end: Offset.zero)
+            .animate(animationController);
     animationController.forward();
   }
 }

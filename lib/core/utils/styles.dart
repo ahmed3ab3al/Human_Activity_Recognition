@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/utils/colors.dart';
-abstract class Styles {
 
+abstract class Styles {
   static TextStyle size12_400Grey = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeight.w400,
     color: ColorManager.greyColor757474,
   );
 
-  static TextStyle testStyle14= TextStyle(
+  static TextStyle testStyle14 = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     color: ColorManager.redColorDC2222,
@@ -48,7 +48,6 @@ abstract class Styles {
     fontWeight: FontWeight.bold,
     color: ColorManager.whiteColor,
   );
-
 
   static TextStyle size24_700Black = TextStyle(
     fontSize: 24.sp,

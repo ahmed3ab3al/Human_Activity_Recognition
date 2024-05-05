@@ -15,15 +15,13 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   final ApiHelper apiHelper;
   static ForgetPasswordCubit get(context) => BlocProvider.of(context);
 
-
   bool secure = true;
   void changeSecure() {
     secure = !secure;
     emit(ChangeSecureState());
   }
-  forgetPassword({
-    required email
-  }) async {
+
+  forgetPassword({required email}) async {
     try {
       emit(CheckEmailLoadingState());
       final response = await apiHelper.post(
@@ -34,54 +32,42 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       );
       final forgetPasswordModel = ForgetPasswordModel.fromJson(response.data);
       emit(CheckEmailSuccessState(message: forgetPasswordModel.message));
-    }
-    on ServerException catch (e) {
+    } on ServerException catch (e) {
       emit(CheckEmailErrorState(error: e.errorModel.message));
     }
   }
 
-  verifyCode({
-    required String otp,
-    required String email
-}) async {
+  verifyCode({required String otp, required String email}) async {
     try {
       emit(VerifyCodeLoadingState());
       final response = await apiHelper.post(
         EndPoints.otp,
         data: {
-          'email':email,
+          'email': email,
           ApiKeys.code: otp,
         },
       );
       final verifyCodeModel = VerifyCode.fromJson(response.data);
       CacheHelper().saveData(key: token, value: verifyCodeModel.token);
       emit(VerifyCodeSuccessState(message: verifyCodeModel.message!));
-    }
-    on ServerException catch (e) {
+    } on ServerException catch (e) {
       emit(ResetPasswordErrorState(error: e.errorModel.message));
     }
   }
 
-
-  resetPassword({
-    required String password,
-    required String repassword
-  }) async {
+  resetPassword({required String password, required String repassword}) async {
     try {
       emit(ResetPasswordLoadingState());
       await apiHelper.patch(
         EndPoints.confirm_reset_password,
         data: {
-          'password':password,
+          'password': password,
           'repassword': repassword,
         },
       );
       emit(ResetPasswordSuccessState(message: "Success"));
-    }
-    on ServerException catch (e) {
+    } on ServerException catch (e) {
       emit(ResetPasswordErrorState(error: e.errorModel.message));
     }
   }
-  
-  
 }

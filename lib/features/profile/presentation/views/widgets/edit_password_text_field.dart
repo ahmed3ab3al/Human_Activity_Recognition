@@ -48,8 +48,10 @@ class _CustomPasswordTextFiledState extends State<EditPasswordTextFormFiled> {
             borderRadius: BorderRadius.circular(20.r),
             borderSide: const BorderSide(color: ColorManager.greyColorD9D9D9)),
         hintText: 'Change Your ${widget.hint}',
-        hintStyle: Styles.testStyle15.copyWith(color: ColorManager.greyColor757474),
-        errorStyle: Styles.testStyle14.copyWith(color: ColorManager.redColorDC2222),
+        hintStyle:
+            Styles.testStyle15.copyWith(color: ColorManager.greyColor757474),
+        errorStyle:
+            Styles.testStyle14.copyWith(color: ColorManager.redColorDC2222),
         prefixIcon: const CustomIcon(icon: Icons.lock_outline_rounded),
         prefixIconColor: MaterialStateColor.resolveWith((states) =>
             states.contains(MaterialState.focused)

@@ -11,7 +11,7 @@ class MedicineViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       children: [
         SizedBox(
           height: 100,
@@ -23,10 +23,9 @@ class MedicineViewBody extends StatelessWidget {
             selectedTextColor: Colors.white,
             selectionColor: Colors.blue,
             dateTextStyle: Styles.size16_700Black,
-            onDateChange: (date){
+            onDateChange: (date) {
               //  selected=date;
             },
-
           ),
         ),
         20.verticalSpace,
@@ -46,10 +45,7 @@ class MedicineViewBody extends StatelessWidget {
         ),
 
         30.verticalSpace,
-        Text(
-            'After Meals',
-            style: Styles.size16_700Black
-        ),
+        Text('After Meals', style: Styles.size16_700Black),
         20.verticalSpace,
         const Row(
           children: [

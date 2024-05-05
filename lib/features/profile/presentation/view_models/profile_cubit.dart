@@ -14,18 +14,16 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
   static ProfileCubit get(context) => BlocProvider.of(context);
 
-  getUser()  async{
+  getUser() async {
     try {
       emit(GetUserProfileLoadingState());
       final response = apiHelper.get(
         EndPoints.getUserId(CacheHelper().getData(key: token)),
       );
-      emit(GetUserProfileSuccessState(userModel: UserModel.fromJson(response as Map<String, dynamic>)));
-    }
-    on ServerException catch (e) {
+      emit(GetUserProfileSuccessState(
+          userModel: UserModel.fromJson(response as Map<String, dynamic>)));
+    } on ServerException catch (e) {
       emit(GetUserProfileErrorState(error: e.errorModel.message));
     }
-
   }
-
 }

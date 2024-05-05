@@ -15,17 +15,18 @@ class SignUpViewBody extends StatelessWidget {
   SignUpViewBody({super.key});
 
   final GlobalKey<FormState> signUpFormKey = GlobalKey();
-  final TextEditingController signUpPasswordController = TextEditingController();
-  final TextEditingController signUpConfirmPasswordController = TextEditingController();
+  final TextEditingController signUpPasswordController =
+      TextEditingController();
+  final TextEditingController signUpConfirmPasswordController =
+      TextEditingController();
   final TextEditingController signUpNameController = TextEditingController();
   final TextEditingController signUpPhoneController = TextEditingController();
   final TextEditingController signUpEmailController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignUpCubit( getIt.get<DioHelper>()),
+      create: (context) => SignUpCubit(getIt.get<DioHelper>()),
       child: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 30.h),
@@ -38,8 +39,7 @@ class SignUpViewBody extends StatelessWidget {
                   ),
                 );
                 if (state.message == "success") {
-                  GoRouter.of(context)
-                      .pushReplacement(AppRouter.kLogin);
+                  GoRouter.of(context).pushReplacement(AppRouter.kLogin);
                 }
               } else if (state is AuthSignUpErrorState) {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -63,7 +63,8 @@ class SignUpViewBody extends StatelessWidget {
                           }),
                       25.verticalSpace,
                       SignUpInputSection(
-                        signUpConfirmPasswordController: signUpConfirmPasswordController,
+                        signUpConfirmPasswordController:
+                            signUpConfirmPasswordController,
                         signUpEmailController: signUpEmailController,
                         signUpNameController: signUpNameController,
                         signUpPasswordController: signUpPasswordController,
@@ -75,25 +76,23 @@ class SignUpViewBody extends StatelessWidget {
                       state is AuthSignUpLoadingState
                           ? const Center(child: CircularProgressIndicator())
                           : CustomBlueButton(
-                        text: 'Sign UP',
-                        ontap: () {
-                          if (signUpFormKey
-                              .currentState!
-                              .validate()) {
-                            SignUpCubit.get(context)
-                                .signUpUser(
-                              email: signUpEmailController.text,
-                              password: signUpPasswordController.text,
-                              name: signUpNameController.text,
-                              confirmPassword: signUpConfirmPasswordController
-                                  .text,
-                              phone: signUpPhoneController.text,
-                              role: SignUpCubit.get(context).selectedValue,
-                            );
-                          }
-                        },
-                        containerHeight: 60,
-                      )
+                              text: 'Sign UP',
+                              ontap: () {
+                                if (signUpFormKey.currentState!.validate()) {
+                                  SignUpCubit.get(context).signUpUser(
+                                    email: signUpEmailController.text,
+                                    password: signUpPasswordController.text,
+                                    name: signUpNameController.text,
+                                    confirmPassword:
+                                        signUpConfirmPasswordController.text,
+                                    phone: signUpPhoneController.text,
+                                    role:
+                                        SignUpCubit.get(context).selectedValue,
+                                  );
+                                }
+                              },
+                              containerHeight: 60,
+                            )
                     ],
                   ),
                 ),

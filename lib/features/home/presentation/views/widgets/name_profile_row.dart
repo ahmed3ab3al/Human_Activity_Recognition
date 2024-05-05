@@ -9,22 +9,27 @@ import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/colors.dart';
 
 class NameProfileRow extends StatelessWidget {
-  const NameProfileRow({super.key,});
+  const NameProfileRow({
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         12.horizontalSpace,
-         Text(CacheHelper().getData(key: userName),style: Styles.size16_700Black,),
+        Text(
+          CacheHelper().getData(key: userName),
+          style: Styles.size16_700Black,
+        ),
         const Spacer(),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             GoRouter.of(context).push(AppRouter.kShowProfile);
           },
           child: CircleAvatar(
             radius: 18.r,
             backgroundColor: ColorManager.greyColorD9D9D9,
-            child:  Icon(
+            child: Icon(
               Icons.perm_identity_rounded,
               size: 24.sp,
               color: Colors.black.withOpacity(0.5),

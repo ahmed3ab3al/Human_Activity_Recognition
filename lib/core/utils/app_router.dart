@@ -14,23 +14,22 @@ import 'package:graduation_project/features/medicine/presentation/views/mentor_m
 import '../../features/profile/presentation/views/profile_data_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 
-abstract class AppRouter
-{
-  static const kOnBoarding= '/onBoarding';
-  static const kSelection= '/selection';
-  static const kLogin= '/login';
-  static const kVerify= '/verify';
-  static const kSignUp= '/signUp';
-  static const kReset= '/reset';
-  static const kAddMedicine= '/medicine';
-  static const kBackTreatment= '/treatment';
-  static const kBackHome= '/home';
-  static const kEditProfile= '/profile';
-  static const kPatientDetails= '/patientDetails';
-  static const kCheckEmail= '/checkEmail';
-  static const kPatientHome= '/patientHome';
- static const kProfileDataViewBody= '/profileDataViewBody';
- static const kShowProfile= '/ShowProfile';
+abstract class AppRouter {
+  static const kOnBoarding = '/onBoarding';
+  static const kSelection = '/selection';
+  static const kLogin = '/login';
+  static const kVerify = '/verify';
+  static const kSignUp = '/signUp';
+  static const kReset = '/reset';
+  static const kAddMedicine = '/medicine';
+  static const kBackTreatment = '/treatment';
+  static const kBackHome = '/home';
+  static const kEditProfile = '/profile';
+  static const kPatientDetails = '/patientDetails';
+  static const kCheckEmail = '/checkEmail';
+  static const kPatientHome = '/patientHome';
+  static const kProfileDataViewBody = '/profileDataViewBody';
+  static const kShowProfile = '/ShowProfile';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -38,43 +37,43 @@ abstract class AppRouter
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
-        path: kOnBoarding ,
+        path: kOnBoarding,
         builder: (context, state) => const OnBoardingView(),
       ),
       GoRoute(
-        path: kLogin ,
+        path: kLogin,
         builder: (context, state) => const LoginView(),
       ),
       GoRoute(
-        path: kSignUp ,
+        path: kSignUp,
         builder: (context, state) => const SignUpView(),
       ),
       GoRoute(
-        path: kVerify ,
+        path: kVerify,
         builder: (context, state) => const VerificationView(),
       ),
       GoRoute(
-        path: kReset ,
+        path: kReset,
         builder: (context, state) => const ResetPasswordView(),
       ),
       GoRoute(
-        path: kAddMedicine ,
+        path: kAddMedicine,
         builder: (context, state) => const AddMedicineView(),
       ),
       GoRoute(
-        path: kBackTreatment ,
+        path: kBackTreatment,
         builder: (context, state) => const MentorMedicineView(),
       ),
       GoRoute(
-        path: kBackHome ,
+        path: kBackHome,
         builder: (context, state) => const HomeView(),
       ),
       GoRoute(
-        path: kEditProfile ,
+        path: kEditProfile,
         builder: (context, state) => const EditProfileView(),
       ),
       GoRoute(
-        path: kPatientDetails ,
+        path: kPatientDetails,
         builder: (context, state) => const PatientDetailsView(),
       ),
       GoRoute(
@@ -83,13 +82,12 @@ abstract class AppRouter
       ),
       GoRoute(
         path: kCheckEmail,
-        builder: (context, state) =>  CheckEmail(),
+        builder: (context, state) => CheckEmail(),
       ),
       GoRoute(
         path: kShowProfile,
-        builder: (context, state) =>  const ProfileDataView(),
+        builder: (context, state) => const ProfileDataView(),
       ),
-
     ],
   );
 }

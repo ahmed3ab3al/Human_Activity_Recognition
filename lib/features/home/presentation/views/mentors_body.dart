@@ -14,81 +14,99 @@ class MentorsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<PatientCubit,PatientStates>(
-        listener: (context,state){
-          if (state is ConfirmRequestSuccess){
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Center(child: Text("Confirm Success")),
-              ),
-            );
-          }
-          else if (state is ConfirmRequestError){
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Center(child: Text(state.error)),
-              ),
-            );
-          }
-          else if (state is DeclineRequestSuccess){
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Center(child: Text("Decline Success")),
-              ),
-            );
-          }
-          else if (state is DeclineRequestError){
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Center(child: Text(state.error)),
-              ),
-            );
-          }
-        },
-      builder: (context,state){
-          return SafeArea(
-              child: PatientCubit.get(context).getMentorRequestDone || state is GetMentorRequestsLoading?
-              const Center(child: CircularProgressIndicator(
-                color: ColorManager.blueColor0E4CA1,
-              )) :
-              SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 30.h),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text('Mentors',
-                            style: Styles.size16_700Black,)
-                        ],),
-                      30.verticalSpace,
-                      PatientCubit.get(context).getMentorRequest!.result!.isNotEmpty?
-                      ListView.separated(
-                        itemBuilder: (context, index) => buildMentorItem(
-                            name: PatientCubit.get(context).getMentorRequest!.result![index].mentor!.name!,
-                            id: PatientCubit.get(context).getMentorRequest!.result![index].id!,
-                            context: context
-                        ),
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        separatorBuilder: (context, index) => 10.verticalSpace,
-                        itemCount: PatientCubit.get(context).getMentorRequest!.result!.length,
-                      ) :
-                      Padding(
-                        padding: EdgeInsets.only(top: MediaQuery.sizeOf(context).height / 2.5),
-                        child: Text(
-                          "Not Requests Yet",
-                          style: Styles.size16_700Black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
+    return BlocConsumer<PatientCubit, PatientStates>(
+      listener: (context, state) {
+        if (state is ConfirmRequestSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Center(child: Text("Confirm Success")),
+            ),
           );
-        },
+        } else if (state is ConfirmRequestError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Center(child: Text(state.error)),
+            ),
+          );
+        } else if (state is DeclineRequestSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Center(child: Text("Decline Success")),
+            ),
+          );
+        } else if (state is DeclineRequestError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Center(child: Text(state.error)),
+            ),
+          );
+        }
+      },
+      builder: (context, state) {
+        return SafeArea(
+            child: PatientCubit.get(context).getMentorRequestDone ||
+                    state is GetMentorRequestsLoading
+                ? const Center(
+                    child: CircularProgressIndicator(
+                    color: ColorManager.blueColor0E4CA1,
+                  ))
+                : SingleChildScrollView(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10.w, vertical: 30.h),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Mentors',
+                                style: Styles.size16_700Black,
+                              )
+                            ],
+                          ),
+                          30.verticalSpace,
+                          PatientCubit.get(context)
+                                  .getMentorRequest!
+                                  .result!
+                                  .isNotEmpty
+                              ? ListView.separated(
+                                  itemBuilder: (context, index) =>
+                                      buildMentorItem(
+                                          name: PatientCubit.get(context)
+                                              .getMentorRequest!
+                                              .result![index]
+                                              .mentor!
+                                              .name!,
+                                          id: PatientCubit.get(context)
+                                              .getMentorRequest!
+                                              .result![index]
+                                              .id!,
+                                          context: context),
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  separatorBuilder: (context, index) =>
+                                      10.verticalSpace,
+                                  itemCount: PatientCubit.get(context)
+                                      .getMentorRequest!
+                                      .result!
+                                      .length,
+                                )
+                              : Padding(
+                                  padding: EdgeInsets.only(
+                                      top: MediaQuery.sizeOf(context).height /
+                                          2.5),
+                                  child: Text(
+                                    "Not Requests Yet",
+                                    style: Styles.size16_700Black,
+                                  ),
+                                ),
+                        ],
+                      ),
+                    ),
+                  ));
+      },
     );
   }
 }
@@ -97,30 +115,32 @@ Widget buildMentorItem({
   required String id,
   required String name,
   context,
-}) => Column(
-  children: [
-    Row(
+}) =>
+    Column(
       children: [
-        SizedBox(
-          width: MediaQuery.sizeOf(context).width / 25,
-        ),
-        CircleAvatar(
+        Row(
+          children: [
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width / 25,
+            ),
+            CircleAvatar(
               radius: 30.r,
               backgroundImage: const NetworkImage('https://i.pravatar.cc/300'),
               backgroundColor: Colors.black,
             ),
-        SizedBox(width: MediaQuery.sizeOf(context).width / 15,
-        ),
-        Text(
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width / 15,
+            ),
+            Text(
               name,
               style: const TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-        const Spacer(),
-        GestureDetector(
-              onTap: (){
+            const Spacer(),
+            GestureDetector(
+              onTap: () {
                 PatientCubit.get(context).confirmRequest(id);
               },
               child: Container(
@@ -143,11 +163,11 @@ Widget buildMentorItem({
                 ),
               ),
             ),
-        SizedBox(
-          width: MediaQuery.sizeOf(context).width / 15,
-        ),
-        GestureDetector(
-              onTap: (){
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width / 15,
+            ),
+            GestureDetector(
+              onTap: () {
                 PatientCubit.get(context).declineRequest(id);
               },
               child: Container(
@@ -161,8 +181,7 @@ Widget buildMentorItem({
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
-                    shape: BoxShape.circle
-                ),
+                    shape: BoxShape.circle),
                 child: Icon(
                   FontAwesomeIcons.xmark,
                   color: ColorManager.whiteColor,
@@ -170,15 +189,15 @@ Widget buildMentorItem({
                 ),
               ),
             ),
-        SizedBox(
-          width: MediaQuery.sizeOf(context).width / 20,
-        ),
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width / 20,
+            ),
           ],
         ),
-    15.verticalSpace,
-    Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 6.w),
-      child: const LineContainer(),
-    ),
-  ],
-);
+        15.verticalSpace,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 6.w),
+          child: const LineContainer(),
+        ),
+      ],
+    );
