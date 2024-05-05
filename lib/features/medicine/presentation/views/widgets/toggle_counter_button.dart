@@ -17,9 +17,7 @@ class GestureDetectorToggleCounter extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             GestureDetector(
-              onTap: MedicineCubit.get(context).isFirstContainerSelected
-                  ? MedicineCubit.get(context).toggleContainer
-                  : null,
+              onTap: ()=> MedicineCubit.get(context).toggleContainer(true),
               child: Container(
                 width: 25.w,
                 height: 25.h,
@@ -55,10 +53,7 @@ class GestureDetectorToggleCounter extends StatelessWidget {
             Text(BlocProvider.of<MedicineCubit>(context).counter.toString()),
             10.horizontalSpace,
             GestureDetector(
-              onTap: BlocProvider.of<MedicineCubit>(context)
-                      .isFirstContainerSelected
-                  ? null
-                  : BlocProvider.of<MedicineCubit>(context).toggleContainer,
+              onTap: ()=> MedicineCubit.get(context).toggleContainer(false),
               child: Container(
                 width: 25.w,
                 height: 25.h,

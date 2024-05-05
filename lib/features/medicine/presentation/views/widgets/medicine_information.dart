@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/utils/styles.dart';
 import 'package:graduation_project/features/medicine/presentation/view_models/medicine_cubit/medicine_cubit.dart';
+import 'package:graduation_project/features/medicine/presentation/view_models/medicine_cubit/medicine_state.dart';
 import 'package:graduation_project/features/medicine/presentation/views/widgets/toggle_counter_button.dart';
 
 import '../../../../../core/utils/colors.dart';
@@ -12,6 +13,8 @@ class MedicineInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<MedicineCubit, MedicineStates>(
+  builder: (context, state) {
     return Column(
       children: [
         Row(
@@ -35,7 +38,7 @@ class MedicineInformation extends StatelessWidget {
             ),
             180.horizontalSpace,
             Text(
-              '${24 / BlocProvider.of<MedicineCubit>(context).counter} hours',
+              '${24 ~/ MedicineCubit.get(context).counter} hours',
               style: Styles.testStyle15
                   .copyWith(color: ColorManager.greyColor757474),
             ),
@@ -77,5 +80,7 @@ class MedicineInformation extends StatelessWidget {
         ),
       ],
     );
+  },
+);
   }
 }

@@ -22,8 +22,8 @@ class MedicineCubit extends Cubit<MedicineStates> {
     emit(CounterPlusState(counter));
   }
 
-  void toggleContainer() {
-    isFirstContainerSelected = !isFirstContainerSelected;
+  void toggleContainer(bool value) {
+    isFirstContainerSelected = value;
     emit(CounterChangeColorState());
   }
 }
