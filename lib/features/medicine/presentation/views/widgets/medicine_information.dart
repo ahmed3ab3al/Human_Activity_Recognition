@@ -1,6 +1,9 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/utils/styles.dart';
+import 'package:graduation_project/features/medicine/presentation/view_models/medicine_cubit/medicine_cubit.dart';
 import 'package:graduation_project/features/medicine/presentation/views/widgets/toggle_counter_button.dart';
 
 import '../../../../../core/utils/colors.dart';
@@ -10,7 +13,7 @@ class MedicineInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -31,14 +34,15 @@ class MedicineInformation extends StatelessWidget {
               'Repeat for',
               style: Styles.size16_700Black,
             ),
-            208.horizontalSpace,
+            180.horizontalSpace,
             Text(
-              'EveryDay',
-              style: Styles.testStyle15.copyWith(color: ColorManager.greyColor757474),
-            )
+              '${24/BlocProvider.of<MedicineCubit>(context).counter} hours',
+              style: Styles.testStyle15.copyWith(
+                  color: ColorManager.greyColor757474),
+            ),
           ],
         ),
-        40.verticalSpace,
+        30.verticalSpace,
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -46,21 +50,31 @@ class MedicineInformation extends StatelessWidget {
               'Time',
               style: Styles.size16_700Black,
             ),
-            210.horizontalSpace,
-            Container(
-              width: 100.w,
-              height: 40.h,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                border: Border.all(
-                    width: 1.w, color: ColorManager.greyColorD9D9D9),
+            190.horizontalSpace,
+          SizedBox(
+            width: 110.w,
+            child: TextFormField(
+              controller: BlocProvider.of<MedicineCubit>(context).timeController,
+              keyboardType: TextInputType.datetime,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  borderSide: BorderSide(color: ColorManager.greyColorD9D9D9),
+                ),
+                hintText: ' New Time',
               ),
-              child: const Center(
-                  child: Text(
-                      '+ New Time'
-                  )
-              ),
-            ),
+              onTap: () {
+                showTimePicker(
+                    context: context,
+                    initialTime:
+                    TimeOfDay.now())
+                    .then((value) {
+                  BlocProvider.of<MedicineCubit>(context).timeController.text =
+                  value!.format(context);
+                });
+
+              },),
+          )
           ],
         ),
       ],
