@@ -6,7 +6,10 @@ import '../../../../../core/utils/assets.dart';
 
 // ignore: must_be_immutable
 class PatientListItem extends StatelessWidget {
-  const PatientListItem({super.key});
+  const PatientListItem({required this.name,super.key,required this.activitiy,required this.id});
+  final name;
+  final activitiy;
+  final id;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -49,12 +52,12 @@ class PatientListItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Aya",
+                 Text(
+                  name,
                 ),
                 4.verticalSpace,
-                const Text(
-                  "Up Stairs",
+                 Text(
+                  activitiy,
                 ),
               ],
             ),

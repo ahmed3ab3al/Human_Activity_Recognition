@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/features/home/data/models/GetPatients.dart';
 import 'package:graduation_project/features/home/data/models/SendCareRequest.dart';
 import '../../../../../core/api/api_helper.dart';
 import '../../../../../core/api/end_points.dart';
@@ -102,12 +103,14 @@ class MentorCubit extends Cubit<MentorStates> {
     }
   }
 
+  GetPatients? getAllPatients;
   void getPatients() async {
     emit(GetPatientsLoading());
     try {
-      final response = await apiHelper.post(
+      final response = await apiHelper.get(
         EndPoints.getPatients,
       );
+      getAllPatients = GetPatients.fromJson(response);
       emit(GetPatientsSuccess());
     } on ServerException catch (e) {
       emit(GetPatientsError(error: e.errorModel.message));

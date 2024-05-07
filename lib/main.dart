@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (BuildContext context) => MentorCubit(getIt.get<DioHelper>()),
+          create: (BuildContext context) => MentorCubit(getIt.get<DioHelper>())..getPatients(),
         ),
         BlocProvider(
           create: (context) =>
