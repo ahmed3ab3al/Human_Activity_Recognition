@@ -55,7 +55,7 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                   style: Styles.size16_700Black,
                 ),
                 15.verticalSpace,
-                Center(child: MedicineList()),
+                const Center(child: MedicineList()),
                 20.verticalSpace,
                 const LineContainer(),
                 30.verticalSpace,

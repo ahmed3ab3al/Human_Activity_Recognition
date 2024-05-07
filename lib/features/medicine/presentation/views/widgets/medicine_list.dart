@@ -19,7 +19,7 @@ class _MedicineListState extends State<MedicineList> {
     AppAssets.injection,
   ];
 
-  final List<int> selectedItems = [0, 1, 2, 3];
+  final List<int> selectedItems = [];
 
   @override
   Widget build(BuildContext context) {
@@ -91,9 +91,3 @@ class _MedicineListState extends State<MedicineList> {
     );
   }
 }
-
-// if (selectedItems.contains(index)) {
-//   selectedItems.remove(index);
-// } else {
-//   selectedItems.add(index);
-// }
