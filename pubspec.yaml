@@ -33,6 +33,7 @@ dependencies:
   fluttertoast: ^8.2.4
   get_it: ^7.7.0
   shimmer: ^3.0.0
+  pull_to_refresh: ^2.0.0
 
 dev_dependencies:
   flutter_test:

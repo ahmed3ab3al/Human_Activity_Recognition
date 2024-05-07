@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/features/home/data/models/GetPatients.dart';
 import 'package:graduation_project/features/home/data/models/SendCareRequest.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../../core/api/api_helper.dart';
 import '../../../../../core/api/end_points.dart';
 import '../../../../../core/errors/exception.dart';
@@ -115,5 +116,12 @@ class MentorCubit extends Cubit<MentorStates> {
     } on ServerException catch (e) {
       emit(GetPatientsError(error: e.errorModel.message));
     }
+  }
+  RefreshController refreshController =
+  RefreshController(initialRefresh: false);
+  void refreshPatientsData() async{
+    getPatients();
+    await Future.delayed(const Duration(milliseconds: 1000));
+    refreshController.refreshCompleted();
   }
 }
