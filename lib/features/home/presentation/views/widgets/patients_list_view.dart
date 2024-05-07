@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +9,7 @@ import 'package:graduation_project/features/home/presentation/view_models/mentor
 import 'package:graduation_project/features/home/presentation/views/widgets/patient_list_item.dart';
 
 import '../../../../../core/utils/app_router.dart';
+import '../../../../../core/widgets/custom_loading_item.dart';
 
 class PatientListView extends StatelessWidget {
   const PatientListView({super.key});
@@ -18,13 +20,44 @@ class PatientListView extends StatelessWidget {
     return BlocBuilder<MentorCubit, MentorStates>(
       builder: (context, state) {
         if (state is GetPatientsLoading) {
-          return Column(
-            children: [
-              SizedBox(
-                height: MediaQuery.sizeOf(context).height / 3,
-              ),
-              const CircularProgressIndicator(),
-            ],
+          return ListView.separated(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            separatorBuilder: (context,
+                index,) {
+              return SizedBox(
+                height: 20.h,
+              );
+            },
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return Row(
+                children: [
+                  const CustomLoadingItem(
+                    width: 80,
+                    height: 80,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width / 18,
+                  ),
+                  Column(
+                    children: [
+                      CustomLoadingItem(
+                        width: MediaQuery.sizeOf(context).width/2.5,
+                        height: 20,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      CustomLoadingItem(
+                        width: MediaQuery.sizeOf(context).width/2.5,
+                        height: 20,
+                      )
+                    ],
+                  ),
+                ],
+              );
+            },
           );
         } else if (state is GetPatientsError)
           {
