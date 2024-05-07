@@ -18,7 +18,9 @@ class MedicineCubit extends Cubit<MedicineStates> {
   }
 
   void plus() {
-    counter++;
+    if(counter < 3 ) {
+      counter++;
+    }
     emit(CounterPlusState(counter));
   }
 
@@ -26,4 +28,8 @@ class MedicineCubit extends Cubit<MedicineStates> {
     isFirstContainerSelected = value;
     emit(CounterChangeColorState());
   }
+
+
+
+
 }
