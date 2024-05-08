@@ -12,6 +12,7 @@ class EndPoints {
   static const String declineRequest = '/patients/decline/';
   static const String getPatients = '/mentors/patients-activities';
   static const String addMedicine = '/medication/';
+  static const String getPatientMedicine = '/medication/all/';
 }
 
 class ApiKeys {

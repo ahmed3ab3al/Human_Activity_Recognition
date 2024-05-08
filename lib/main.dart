@@ -5,12 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
-import 'package:graduation_project/features/medicine/presentation/view_models/medicine_cubit/medicine_cubit.dart';
 import 'core/api/dio_helper.dart';
 import 'core/bloc/bloc_observer.dart';
 import 'core/utils/service_locator.dart';
 import 'features/home/presentation/view_models/mentor_cubit/mentor_cubit.dart';
 import 'features/home/presentation/view_models/patient_cubit/patient_cubit.dart';
+import 'features/medicine/presentation/view_models/mentor_medicine_cubit/mentor_medicine_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => MentorCubit(getIt.get<DioHelper>())..getPatients(),
         ),
         BlocProvider(
-          create: (BuildContext context) => MedicineCubit(getIt.get<DioHelper>())
+          create: (BuildContext context) => MentorMedicineCubit(getIt.get<DioHelper>())
         ),
       ],
       child: ScreenUtilInit(

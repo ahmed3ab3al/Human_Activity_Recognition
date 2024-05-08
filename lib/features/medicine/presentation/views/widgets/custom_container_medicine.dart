@@ -8,10 +8,32 @@ import '../../../../../core/utils/styles.dart';
 
 // ignore: must_be_immutable
 class CustomContainerMedicine extends StatelessWidget {
-  const CustomContainerMedicine({super.key});
+  const CustomContainerMedicine({super.key, required this.name, required this.dosage, required this.shape});
 
+  static const List<String> images = [
+    AppAssets.vitamin,
+    AppAssets.trioClar,
+    AppAssets.vitaminC,
+    AppAssets.injection,
+  ];
+  final name;
+  final dosage;
+  final shape;
   @override
   Widget build(BuildContext context) {
+    int num = 0;
+    if (shape == 'drink'){
+      num = 0;
+    }
+    else if (shape == 'pill'){
+      num = 1;
+    }
+    else if (shape == 'rivet'){
+      num = 2;
+    }
+    else{
+      num = 3;
+    }
     return Expanded(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 14.w),
@@ -62,7 +84,7 @@ class CustomContainerMedicine extends StatelessWidget {
                     ],
                   ),
                   child: Image(
-                    image: const AssetImage(AppAssets.vitamin),
+                    image:  AssetImage(images[num]),
                     width: 30.w,
                     height: 30.h,
                   ),
@@ -75,7 +97,7 @@ class CustomContainerMedicine extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Ahmed Alaa",
+                        name,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Styles.size16_700Black,
@@ -86,7 +108,7 @@ class CustomContainerMedicine extends StatelessWidget {
                           Expanded(
                             child: Text(
                               maxLines: 2,
-                              "1 dosing once per week ",
+                              "${dosage} dosing once per day ",
                               style: Styles.size12_400Grey,
                               overflow: TextOverflow.ellipsis,
                             ),
