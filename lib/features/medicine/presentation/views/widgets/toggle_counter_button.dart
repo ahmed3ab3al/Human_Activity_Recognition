@@ -50,7 +50,7 @@ class GestureDetectorToggleCounter extends StatelessWidget {
               ),
             ),
             10.horizontalSpace,
-            Text(BlocProvider.of<MedicineCubit>(context).counter.toString()),
+            Text(BlocProvider.of<MedicineCubit>(context).dosage.toString()),
             10.horizontalSpace,
             GestureDetector(
               onTap: ()=> MedicineCubit.get(context).toggleContainer(false),

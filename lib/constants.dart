@@ -7,3 +7,5 @@ String userPhone = 'phone';
 String userEmail = 'email';
 String userRole = 'role';
 String userVerified = 'verified';
+
+String patientID= "";

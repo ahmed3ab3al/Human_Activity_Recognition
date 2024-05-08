@@ -38,7 +38,7 @@ class MedicineInformation extends StatelessWidget {
             ),
             180.horizontalSpace,
             Text(
-              '${24 ~/ MedicineCubit.get(context).counter} hours',
+              '${24 ~/ MedicineCubit.get(context).dosage} hours',
               style: Styles.testStyle15
                   .copyWith(color: ColorManager.greyColor757474),
             ),
@@ -69,9 +69,10 @@ class MedicineInformation extends StatelessWidget {
                 onTap: () {
                   showTimePicker(context: context, initialTime: TimeOfDay.now())
                       .then((value) {
-                    BlocProvider.of<MedicineCubit>(context)
-                        .timeController
-                        .text = value!.format(context);
+                        MedicineCubit.get(context).hours = value!.hour;
+                        MedicineCubit.get(context).minute = value.minute;
+                        MedicineCubit.get(context).timeController
+                        .text = value.format(context);
                   });
                 },
               ),

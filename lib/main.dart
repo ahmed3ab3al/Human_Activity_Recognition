@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
+import 'package:graduation_project/features/medicine/presentation/view_models/medicine_cubit/medicine_cubit.dart';
 import 'core/api/dio_helper.dart';
 import 'core/bloc/bloc_observer.dart';
 import 'core/utils/service_locator.dart';
@@ -36,7 +37,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               PatientCubit(getIt.get<DioHelper>())..getMentorRequests(),
-        )
+        ),
+        BlocProvider(
+          create: (BuildContext context) => MedicineCubit(getIt.get<DioHelper>())
+        ),
       ],
       child: ScreenUtilInit(
           designSize: const Size(390, 844),

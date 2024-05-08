@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/constants.dart';
 
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/assets.dart';
@@ -12,6 +13,7 @@ class PatientListItem extends StatelessWidget {
   final id;
   @override
   Widget build(BuildContext context) {
+    patientID = id;
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 15.w,
