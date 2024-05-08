@@ -14,7 +14,7 @@ class MentorMedicineCubit extends Cubit<MentorMedicineStates> {
   int dosage = 1;
   int hours = 0;
   int minute = 0;
-  bool isFirstContainerSelected = false;
+  bool isAfterMeal = false;
   final TextEditingController timeController = TextEditingController();
 
   void minus() {
@@ -32,8 +32,8 @@ class MentorMedicineCubit extends Cubit<MentorMedicineStates> {
   }
 
   void toggleContainer(bool value) {
-    isFirstContainerSelected = value;
-    emit(CounterChangeColorState());
+    isAfterMeal = value;
+    emit(ToggleIsAfterMeal());
   }
   var  selectedItem = 0;
   var  shapeOfMedicine = 'drink';
@@ -67,6 +67,8 @@ class MentorMedicineCubit extends Cubit<MentorMedicineStates> {
         data: {
           "patient" : patientID,
           "name" : nameOfMedicine,
+          "afterMeal":isAfterMeal,
+          "beforeMeal":!isAfterMeal,
           "shape" : shapeOfMedicine,
           "dosage" : dosage,
           "repeatFor" : 24 ~/ dosage,
@@ -78,7 +80,7 @@ class MentorMedicineCubit extends Cubit<MentorMedicineStates> {
       );
       timeController.clear();
       dosage = 1; hours = 0;
-      minute = 0; isFirstContainerSelected = false;
+      minute = 0; isAfterMeal = false;
       emit(AddMedicineSuccess(message: "Add Medicine Success"));
     } on ServerException catch (e) {
       emit(AddMedicineError(error: e.errorModel.message));

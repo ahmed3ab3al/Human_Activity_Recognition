@@ -12,7 +12,7 @@ class CounterMinusState extends MentorMedicineStates {
   CounterMinusState(this.counter);
 }
 
-class CounterChangeColorState extends MentorMedicineStates {}
+class ToggleIsAfterMeal extends MentorMedicineStates {}
 
 class CounterChangeTimeState extends MentorMedicineStates {}
 
