@@ -28,8 +28,14 @@ class MedicineCubit extends Cubit<MedicineStates> {
     isFirstContainerSelected = value;
     emit(CounterChangeColorState());
   }
-
-
-
+  var  selectedItem = -1;
+  void changeDragItem(int index){
+    if (selectedItem == (index)) {
+      selectedItem = -1;
+    } else {
+      selectedItem = index;
+    }
+    emit(ChangeDragItem());
+  }
 
 }

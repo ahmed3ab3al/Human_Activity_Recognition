@@ -15,3 +15,5 @@ class CounterMinusState extends MedicineStates {
 class CounterChangeColorState extends MedicineStates {}
 
 class CounterChangeTimeState extends MedicineStates {}
+
+class ChangeDragItem extends MedicineStates {}
