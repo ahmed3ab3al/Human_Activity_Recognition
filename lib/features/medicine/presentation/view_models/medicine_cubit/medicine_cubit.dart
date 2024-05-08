@@ -78,7 +78,7 @@ class MedicineCubit extends Cubit<MedicineStates> {
       timeController.clear();
       dosage = 1; hours = 0;
       minute = 0; isFirstContainerSelected = false;
-      emit(AddMedicineSuccess(message: "Success"));
+      emit(AddMedicineSuccess(message: "Add Medicine Success"));
     } on ServerException catch (e) {
       emit(AddMedicineError(error: e.errorModel.message));
     }

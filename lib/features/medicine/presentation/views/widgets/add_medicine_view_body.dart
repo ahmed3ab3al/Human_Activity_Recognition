@@ -10,6 +10,7 @@ import '../../../../../constants.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
 import '../../../../../core/widgets/custom_blue_button.dart';
+import '../../../../../core/widgets/custom_loading_item.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
 import 'line_container.dart';
 import 'medicine_list.dart';
@@ -84,6 +85,11 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                   40.verticalSpace,
                   const MedicineInformation(),
                   60.verticalSpace,
+                  state is AddMedicineLoading ?
+                  CustomLoadingItem(
+                    width: MediaQuery.sizeOf(context).width / 1.1,
+                    height: MediaQuery.sizeOf(context).height/ 15,
+                  ):
                   CustomBlueButton(
                       text: 'Reminder',
                       ontap: () {
