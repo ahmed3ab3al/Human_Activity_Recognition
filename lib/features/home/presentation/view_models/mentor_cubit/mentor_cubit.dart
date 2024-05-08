@@ -117,9 +117,8 @@ class MentorCubit extends Cubit<MentorStates> {
       emit(GetPatientsError(error: e.errorModel.message));
     }
   }
-  RefreshController refreshController =
-  RefreshController(initialRefresh: false);
-  void refreshPatientsData() async{
+
+  void refreshPatientsData(RefreshController refreshController) async{
     getPatients();
     await Future.delayed(const Duration(milliseconds: 1000));
     refreshController.refreshCompleted();

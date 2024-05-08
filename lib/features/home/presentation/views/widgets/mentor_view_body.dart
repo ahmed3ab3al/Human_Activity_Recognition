@@ -13,13 +13,15 @@ class MentorViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RefreshController refreshController =
+    RefreshController(initialRefresh: false);
     return BlocBuilder<MentorCubit, MentorStates>(
       builder: (context, state) {
         return SmartRefresher(
-          controller: MentorCubit.get(context).refreshController,
+          controller: refreshController,
           enablePullDown: true,
           onRefresh: () {
-            MentorCubit.get(context).refreshPatientsData();
+            MentorCubit.get(context).refreshPatientsData(refreshController);
           },
           child: SafeArea(
             child: SingleChildScrollView(
