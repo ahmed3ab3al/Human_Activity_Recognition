@@ -18,7 +18,7 @@ class PatientMedicineView extends StatelessWidget {
               const ImageText(),
               5.verticalSpace,
               const NameProfileRow(),
-              const MedicineViewBody(),
+               const MedicineViewBody(),
             ],
           ),
         ),
