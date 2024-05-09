@@ -4,11 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
+import 'package:graduation_project/core/utils/assets.dart';
 import 'package:graduation_project/features/auth/presentation/view_models/login_cubit/login_cubit.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/login_another_way.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/login_buttons_view.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/login_input_section.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/sign_up_button_view.dart';
+import 'package:lottie/lottie.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/api/dio_helper.dart';
 import '../../../../../core/utils/colors.dart';
@@ -24,7 +26,7 @@ class LoginViewBody extends StatelessWidget {
       create: (context) => LoginCubit(getIt.get<DioHelper>()),
       child: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 30.h),
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: BlocConsumer<LoginCubit, LoginState>(
             listener: (context, state) {
               if (state is LoginSuccessState) {
@@ -63,13 +65,13 @@ class LoginViewBody extends StatelessWidget {
                       //   //  GoRouter.of(context).pop();
                       //   },
                       // ),
-                      const Text(
-                        'Login',
-                      ),
-                      20.verticalSpace,
+                      // const Text(
+                      //   'Login',
+                      // ),
+                      Lottie.asset(AppAssets.animation),
+                   //  40.verticalSpace,
                       const LoginInputSection(),
-                      3.verticalSpace,
-                      TextButton(
+                      3.verticalSpace, TextButton(
                         onPressed: () {
                           GoRouter.of(context).push(AppRouter.kCheckEmail);
                         },
@@ -90,16 +92,16 @@ class LoginViewBody extends StatelessWidget {
                       25.verticalSpace,
                       const SignUpButtonView(),
                       20.verticalSpace,
-                      const Center(
-                        child: Text(
-                          '-OR-',
-                          style: TextStyle(
-                              color: ColorManager.greyColor757474,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ),
-                      const LoginAnotherWay(),
+                      // const Center(
+                      //   child: Text(
+                      //     '-OR-',
+                      //     style: TextStyle(
+                      //         color: ColorManager.greyColor757474,
+                      //         fontSize: 18,
+                      //         fontWeight: FontWeight.w700),
+                      //   ),
+                      // ),
+                      // const LoginAnotherWay(),
                     ],
                   ),
                 ),

@@ -1,4 +1,5 @@
 const path = 'assets/images';
+const lottie = 'assets/lottie';
 
 class AppAssets {
   static const splash = '$path/splash.png';
@@ -15,4 +16,6 @@ class AppAssets {
   static const upStair = '$path/up_stair.png';
   static const vitamin = '$path/vitamin_a.png';
   static const waveHand = '$path/wave_hand.png';
+
+  static const animation = '$lottie/Animation - 1715290891194.json';
 }
