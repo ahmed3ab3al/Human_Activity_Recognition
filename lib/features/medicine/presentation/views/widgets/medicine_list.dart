@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/utils/assets.dart';
 import '../../../../../core/utils/colors.dart';
-import '../../view_models/mentor_medicine_cubit/mentor_medicine_cubit.dart';
-import '../../view_models/mentor_medicine_cubit/mentor_medicine_state.dart';
+import '../../view_models/medicine_cubit/medicine_cubit.dart';
+import '../../view_models/medicine_cubit/medicine_state.dart';
 
 class MedicineList extends StatelessWidget {
   const MedicineList({super.key});
@@ -19,7 +19,7 @@ class MedicineList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MentorMedicineCubit, MentorMedicineStates>(
+    return BlocBuilder<MedicineCubit, MedicineStates>(
       builder: (context, state) {
         return SizedBox(
           height: 55.h,
@@ -30,7 +30,7 @@ class MedicineList extends StatelessWidget {
               itemBuilder: (context, index) =>
                   GestureDetector(
                     onTap: () {
-                      MentorMedicineCubit.get(context).changeDragItem(index);
+                      MedicineCubit.get(context).changeDragItem(index);
                     },
                     child: Stack(children: [
                       Container(
@@ -62,7 +62,7 @@ class MedicineList extends StatelessWidget {
                           height: 30.h,
                         ),
                       ),
-                      MentorMedicineCubit.get(context).selectedItem == index
+                      MedicineCubit.get(context).selectedItem == index
                           ? Positioned(
                         bottom: 40.h,
                         left: 35.w,

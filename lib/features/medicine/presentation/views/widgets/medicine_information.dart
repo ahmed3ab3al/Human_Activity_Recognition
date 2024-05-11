@@ -4,15 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/utils/styles.dart';
 import 'package:graduation_project/features/medicine/presentation/views/widgets/toggle_counter_button.dart';
 import '../../../../../core/utils/colors.dart';
-import '../../view_models/mentor_medicine_cubit/mentor_medicine_cubit.dart';
-import '../../view_models/mentor_medicine_cubit/mentor_medicine_state.dart';
+import '../../view_models/medicine_cubit/medicine_cubit.dart';
+import '../../view_models/medicine_cubit/medicine_state.dart';
 
 class MedicineInformation extends StatelessWidget {
   const MedicineInformation({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MentorMedicineCubit, MentorMedicineStates>(
+    return BlocBuilder<MedicineCubit, MedicineStates>(
   builder: (context, state) {
     return Column(
       children: [
@@ -37,7 +37,7 @@ class MedicineInformation extends StatelessWidget {
             ),
             180.horizontalSpace,
             Text(
-              '${24 ~/ MentorMedicineCubit.get(context).dosage} hours',
+              '${24 ~/ MedicineCubit.get(context).dosage} hours',
               style: Styles.testStyle15
                   .copyWith(color: ColorManager.greyColor757474),
             ),
@@ -56,7 +56,7 @@ class MedicineInformation extends StatelessWidget {
               width: 110.w,
               child: TextFormField(
                 controller:
-                    BlocProvider.of<MentorMedicineCubit>(context).timeController,
+                    BlocProvider.of<MedicineCubit>(context).timeController,
                 keyboardType: TextInputType.datetime,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
@@ -68,9 +68,9 @@ class MedicineInformation extends StatelessWidget {
                 onTap: () {
                   showTimePicker(context: context, initialTime: TimeOfDay.now())
                       .then((value) {
-                        MentorMedicineCubit.get(context).hours = value!.hour;
-                        MentorMedicineCubit.get(context).minute = value.minute;
-                        MentorMedicineCubit.get(context).timeController
+                        MedicineCubit.get(context).hours = value!.hour;
+                        MedicineCubit.get(context).minute = value.minute;
+                        MedicineCubit.get(context).timeController
                         .text = value.format(context);
                   });
                 },

@@ -8,8 +8,8 @@ import '../../../../../core/api/dio_helper.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/service_locator.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
-import '../../view_models/mentor_medicine_cubit/mentor_medicine_cubit.dart';
-import '../../view_models/mentor_medicine_cubit/mentor_medicine_state.dart';
+import '../../view_models/medicine_cubit/medicine_cubit.dart';
+import '../../view_models/medicine_cubit/medicine_state.dart';
 import 'medicine_view_loading.dart';
 
 class MentorMedicineViewBody extends StatelessWidget {
@@ -19,9 +19,9 @@ class MentorMedicineViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-      MentorMedicineCubit(getIt.get<DioHelper>())
+      MedicineCubit(getIt.get<DioHelper>())
         ..getPatientsMedicine(patientID: patientID),
-      child: BlocBuilder<MentorMedicineCubit, MentorMedicineStates>(
+      child: BlocBuilder<MedicineCubit, MedicineStates>(
         builder: (context, state) {
           return SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -47,7 +47,7 @@ class MentorMedicineViewBody extends StatelessWidget {
                       ),
                     if (state is! GetPatientMedicineLoading && state is! GetPatientMedicineError)
                        MedicineViewBody(
-                        getPatientMedicine: MentorMedicineCubit.get(context).getPatientMedicine!,
+                        getPatientMedicine: MedicineCubit.get(context).getPatientMedicine!,
                     ),
                   ],
                 ),

@@ -10,7 +10,7 @@ import 'core/bloc/bloc_observer.dart';
 import 'core/utils/service_locator.dart';
 import 'features/home/presentation/view_models/mentor_cubit/mentor_cubit.dart';
 import 'features/home/presentation/view_models/patient_cubit/patient_cubit.dart';
-import 'features/medicine/presentation/view_models/mentor_medicine_cubit/mentor_medicine_cubit.dart';
+import 'features/medicine/presentation/view_models/medicine_cubit/medicine_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,12 +36,15 @@ class MyApp extends StatelessWidget {
           create: (context) =>
           PatientCubit(getIt.get<DioHelper>())..getMentorRequests(),
         ),
+        BlocProvider(
+            create: (BuildContext context) => MedicineCubit(getIt.get<DioHelper>())..getPatientsMedicine(patientID: CacheHelper().getData(key: userId))
+        ),
       ] :[
         BlocProvider(
           create: (BuildContext context) => MentorCubit(getIt.get<DioHelper>())..getPatients(),
         ),
         BlocProvider(
-          create: (BuildContext context) => MentorMedicineCubit(getIt.get<DioHelper>())
+          create: (BuildContext context) => MedicineCubit(getIt.get<DioHelper>())
         ),
       ],
       child: ScreenUtilInit(

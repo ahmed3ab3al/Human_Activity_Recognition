@@ -10,8 +10,8 @@ import '../../../../../core/widgets/custom_appBar.dart';
 import '../../../../../core/widgets/custom_blue_button.dart';
 import '../../../../../core/widgets/custom_loading_item.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
-import '../../view_models/mentor_medicine_cubit/mentor_medicine_cubit.dart';
-import '../../view_models/mentor_medicine_cubit/mentor_medicine_state.dart';
+import '../../view_models/medicine_cubit/medicine_cubit.dart';
+import '../../view_models/medicine_cubit/medicine_state.dart';
 import 'line_container.dart';
 import 'medicine_list.dart';
 
@@ -27,7 +27,7 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MentorMedicineCubit, MentorMedicineStates>(
+    return BlocConsumer<MedicineCubit, MedicineStates>(
         listener: (context, state) {
           if (state is AddMedicineSuccess){
             ScaffoldMessenger.of(context).showSnackBar(
@@ -93,7 +93,7 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                     CustomBlueButton(
                         text: 'Reminder',
                         ontap: () {
-                          MentorMedicineCubit.get(context).addMedicine(
+                          MedicineCubit.get(context).addMedicine(
                               patientID: patientID,
                               nameOfMedicine: medicineController.text,
                           );

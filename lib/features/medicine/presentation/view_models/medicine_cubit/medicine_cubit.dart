@@ -4,13 +4,13 @@ import 'package:graduation_project/core/api/api_helper.dart';
 import 'package:graduation_project/core/api/end_points.dart';
 import 'package:graduation_project/features/medicine/data/GetPatientMedicine.dart';
 import '../../../../../core/errors/exception.dart';
-import 'mentor_medicine_state.dart';
+import 'medicine_state.dart';
 
-class MentorMedicineCubit extends Cubit<MentorMedicineStates> {
-  MentorMedicineCubit(this.apiHelper) : super(CounterInitialState());
+class MedicineCubit extends Cubit<MedicineStates> {
+  MedicineCubit(this.apiHelper) : super(CounterInitialState());
 
   final ApiHelper apiHelper;
-  static MentorMedicineCubit get(context) => BlocProvider.of(context);
+  static MedicineCubit get(context) => BlocProvider.of(context);
   int dosage = 1;
   int hours = 0;
   int minute = 0;

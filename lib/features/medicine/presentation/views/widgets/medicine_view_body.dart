@@ -1,10 +1,10 @@
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/features/medicine/presentation/view_models/mentor_medicine_cubit/mentor_medicine_cubit.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_icon.dart';
 import '../../../data/GetPatientMedicine.dart';
+import '../../view_models/medicine_cubit/medicine_cubit.dart';
 import 'custom_container_medicine.dart';
 
 class MedicineViewBody extends StatelessWidget {
@@ -69,7 +69,7 @@ class MedicineViewBody extends StatelessWidget {
             separatorBuilder: (context, index) {
               return 30.verticalSpace;
             },
-            itemCount: MentorMedicineCubit.get(context).getPatientMedicine!.result!.length,
+            itemCount: MedicineCubit.get(context).getPatientMedicine!.result!.length,
           ),
           30.verticalSpace,
         ],

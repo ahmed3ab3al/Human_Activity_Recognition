@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/colors.dart';
-import '../../view_models/mentor_medicine_cubit/mentor_medicine_cubit.dart';
-import '../../view_models/mentor_medicine_cubit/mentor_medicine_state.dart';
+import '../../view_models/medicine_cubit/medicine_cubit.dart';
+import '../../view_models/medicine_cubit/medicine_state.dart';
+
 
 class GestureDetectorToggleCounter extends StatelessWidget {
   const GestureDetectorToggleCounter({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MentorMedicineCubit, MentorMedicineStates>(
+    return BlocBuilder<MedicineCubit, MedicineStates>(
       builder: (context, state) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -31,7 +32,7 @@ class GestureDetectorToggleCounter extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5.r)),
               child: InkWell(
                 onTap: () {
-                  BlocProvider.of<MentorMedicineCubit>(context).plus();
+                  BlocProvider.of<MedicineCubit>(context).plus();
                 },
                 child: Icon(
                   Icons.plus_one_outlined,
@@ -41,7 +42,7 @@ class GestureDetectorToggleCounter extends StatelessWidget {
               ),
             ),
             10.horizontalSpace,
-            Text(BlocProvider.of<MentorMedicineCubit>(context).dosage.toString()),
+            Text(BlocProvider.of<MedicineCubit>(context).dosage.toString()),
             10.horizontalSpace,
             Container(
               width: 25.w,
@@ -54,7 +55,7 @@ class GestureDetectorToggleCounter extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5.r)),
               child: InkWell(
                 onTap: () {
-                  BlocProvider.of<MentorMedicineCubit>(context).minus();
+                  BlocProvider.of<MedicineCubit>(context).minus();
                 },
                 child: Icon(
                   Icons.exposure_minus_1_outlined,
