@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/features/home/presentation/view_models/patient_cubit/patient_states.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../core/api/api_helper.dart';
 import '../../../../../core/api/end_points.dart';
@@ -102,5 +103,11 @@ class PatientCubit extends Cubit<PatientStates> {
     } on ServerException catch (e) {
       emit(DeclineRequestError(error: e.errorModel.message));
     }
+  }
+
+  void refreshPatientsMedicine(RefreshController refreshController) async{
+    getMentorRequests();
+    await Future.delayed(const Duration(milliseconds: 1000));
+    refreshController.refreshCompleted();
   }
 }
