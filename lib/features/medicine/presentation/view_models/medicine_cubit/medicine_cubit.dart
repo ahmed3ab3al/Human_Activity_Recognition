@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/api/api_helper.dart';
 import 'package:graduation_project/core/api/end_points.dart';
 import 'package:graduation_project/features/medicine/data/GetPatientMedicine.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import '../../../../../constants.dart';
+import '../../../../../core/cache/cache_helper.dart';
 import '../../../../../core/errors/exception.dart';
 import 'medicine_state.dart';
 
@@ -103,5 +106,11 @@ class MedicineCubit extends Cubit<MedicineStates> {
     } on ServerException catch (e) {
       emit(GetPatientMedicineError(error: e.errorModel.message));
     }
+  }
+
+  void refreshPatientsMedicine(RefreshController refreshController) async{
+    getPatientsMedicine(patientID: CacheHelper().getData(key: userId));
+    await Future.delayed(const Duration(milliseconds: 1000));
+    refreshController.refreshCompleted();
   }
 }

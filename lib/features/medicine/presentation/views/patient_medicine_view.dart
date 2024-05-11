@@ -5,6 +5,7 @@ import 'package:graduation_project/features/medicine/presentation/view_models/me
 import 'package:graduation_project/features/medicine/presentation/view_models/medicine_cubit/medicine_state.dart';
 import 'package:graduation_project/features/medicine/presentation/views/widgets/medicine_view_body.dart';
 import 'package:graduation_project/features/medicine/presentation/views/widgets/medicine_view_loading.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../home/presentation/views/widgets/image_text_welcome.dart';
 import '../../../home/presentation/views/widgets/name_profile_row.dart';
 
@@ -13,24 +14,33 @@ class PatientMedicineView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RefreshController refreshController =
+    RefreshController(initialRefresh: false);
     return BlocBuilder<MedicineCubit, MedicineStates>(
       builder: (context, state) {
-        return SingleChildScrollView(
-          child: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 30.h),
-              child: Column(
-                children: [
-                  const ImageText(),
-                  5.verticalSpace,
-                  const NameProfileRow(),
-                   if (state is GetPatientMedicineLoading)
-                     const MedicineViewLoading(),
-                   if (state is! GetPatientMedicineLoading)
-                     MedicineViewBody(
-                    getPatientMedicine: MedicineCubit.get(context).getPatientMedicine,
-                  ),
-                ],
+        return SmartRefresher(
+          controller: refreshController,
+          enablePullDown: true,
+          onRefresh: () {
+            MedicineCubit.get(context).refreshPatientsMedicine(refreshController);
+          },
+          child: SingleChildScrollView(
+            child: SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 30.h),
+                child: Column(
+                  children: [
+                    const ImageText(),
+                    5.verticalSpace,
+                    const NameProfileRow(),
+                     if (state is GetPatientMedicineLoading)
+                       const MedicineViewLoading(),
+                     if (state is! GetPatientMedicineLoading)
+                       MedicineViewBody(
+                      getPatientMedicine: MedicineCubit.get(context).getPatientMedicine,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
