@@ -32,20 +32,32 @@ class MedicineViewBody extends StatelessWidget {
             ),
           ),
           20.verticalSpace,
-          // Should Be In List
-          // Text(
-          //   'Before Meals',
-          //   style: Styles.size16_700Black,
-          // ),
-          // 30.verticalSpace,
           ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return  Row(
                 children: [
-                  const CustomIcon(icon: Icons.alarm),
-                  const Text('11:00 AM'),
+                   Column(
+
+                    children: [
+                      const Row(
+                        children: [
+                          CustomIcon(icon: Icons.alarm),
+                          Text('11:00 AM'),
+                        ],
+                      ),
+                      getPatientMedicine!.result![index].afterMeal! ?
+                      Text(
+                        'After Meal',
+                        style: Styles.testStyle14Bold,
+                      ):
+                      Text(
+                        'Before Meal',
+                        style: Styles.testStyle14Bold,
+                      ),
+                    ],
+                  ),
                   CustomContainerMedicine(
                     name: getPatientMedicine!.result![index].name,
                     dosage: getPatientMedicine!.result![index].dosage,
@@ -60,28 +72,6 @@ class MedicineViewBody extends StatelessWidget {
             itemCount: MentorMedicineCubit.get(context).getPatientMedicine!.result!.length,
           ),
           30.verticalSpace,
-          // Text(
-          //   'After Meals',
-          //   style: Styles.size16_700Black,
-          // ),
-          // 30.verticalSpace,
-          // ListView.separated(
-          //   physics: const NeverScrollableScrollPhysics(),
-          //   shrinkWrap: true,
-          //   itemBuilder: (context, index){
-          //     return const Row(
-          //       children: [
-          //         CustomIcon(icon: Icons.alarm),
-          //         Text('11:00 AM'),
-          //         CustomContainerMedicine(),
-          //       ],
-          //     );
-          //   },
-          //   separatorBuilder: (condex, index){
-          //     return 30.verticalSpace;
-          //   },
-          //   itemCount: 10,
-          // ),
         ],
       ),
     );
