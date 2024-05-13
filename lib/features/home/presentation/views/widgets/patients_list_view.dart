@@ -69,7 +69,8 @@ class PatientListView extends StatelessWidget {
           }
         else
           {
-            return ListView.separated(
+            if (MentorCubit.get(context).getAllPatients!.result!.isNotEmpty) {
+              return ListView.separated(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               separatorBuilder: (context,
@@ -92,6 +93,14 @@ class PatientListView extends StatelessWidget {
                 );
               },
             );
+            } else {
+              return  Center(
+                child: Text(
+                  'No Patients Yet',
+                  style: Styles.size24_700Black,
+                ),
+              );
+            }
           }
       },
     );

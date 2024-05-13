@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/features/home/presentation/view_models/mentor_cubit/mentor_cubit.dart';
 import 'package:graduation_project/features/home/presentation/view_models/mentor_cubit/mentor_states.dart';
 import 'package:graduation_project/features/home/presentation/views/widgets/mentor_view_body.dart';
+import '../../../../core/api/dio_helper.dart';
+import '../../../../core/utils/service_locator.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 
 class HomeView extends StatelessWidget {
@@ -14,8 +16,9 @@ class HomeView extends StatelessWidget {
     var scaffoldKey = GlobalKey<ScaffoldState>();
     var idController = TextEditingController();
     var formKey = GlobalKey<FormState>();
-
-    return Scaffold(
+    return BlocProvider(
+  create: (context) =>  MentorCubit(getIt.get<DioHelper>())..getPatients(),
+  child: Scaffold(
       key: scaffoldKey,
       body: const MentorViewBody(),
       floatingActionButton: BlocConsumer<MentorCubit, MentorStates>(
@@ -93,6 +96,7 @@ class HomeView extends StatelessWidget {
           );
         },
       ),
-    );
+    ),
+);
   }
 }
