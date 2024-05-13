@@ -33,9 +33,9 @@ class PatientMedicineView extends StatelessWidget {
                     const ImageText(),
                     5.verticalSpace,
                     const NameProfileRow(),
-                     if (state is GetPatientMedicineLoading)
+                     if (state is GetPatientMedicineLoading || state is GetPatientMedicineError)
                        const MedicineViewLoading(),
-                     if (state is! GetPatientMedicineLoading)
+                     if (MedicineCubit.get(context).getPatientMedicineTrue && state is! GetPatientMedicineLoading)
                        MedicineViewBody(
                       getPatientMedicine: MedicineCubit.get(context).getPatientMedicine,
                     ),

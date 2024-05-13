@@ -9,15 +9,12 @@ import 'package:graduation_project/features/auth/presentation/view_models/login_
 import 'package:graduation_project/features/auth/presentation/views/widget/login_buttons_view.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/login_input_section.dart';
 import 'package:graduation_project/features/auth/presentation/views/widget/sign_up_button_view.dart';
-import 'package:graduation_project/features/home/presentation/view_models/mentor_cubit/mentor_cubit.dart';
-import 'package:graduation_project/features/medicine/presentation/view_models/medicine_cubit/medicine_cubit.dart';
 import 'package:lottie/lottie.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/api/dio_helper.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/service_locator.dart';
 import '../../../../../core/utils/styles.dart';
-import '../../../../home/presentation/view_models/patient_cubit/patient_cubit.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -39,11 +36,12 @@ class LoginViewBody extends StatelessWidget {
                 );
                 if (state.message == 'success') {
                   if (CacheHelper().getData(key: role) == 'mentor') {
-                    MentorCubit.get(context).getPatients();
+                    // MentorCubit.get(context).getPatients();
                     GoRouter.of(context).pushReplacement(AppRouter.kBackHome);
                   } else if (CacheHelper().getData(key: role) == 'patient') {
-                    PatientCubit.get(context).getMentorRequests();
-                    MedicineCubit.get(context).getPatientsMedicine(patientID: CacheHelper().getData(key: userId));
+                    // PatientCubit.get(context).getMentorRequests();
+                    // MedicineCubit.get(context).getPatientsMedicine(patientID: CacheHelper().getData(key: userId));
+                    Future.delayed(const Duration(seconds: 2));
                     GoRouter.of(context)
                         .pushReplacement(AppRouter.kPatientHome);
                   }

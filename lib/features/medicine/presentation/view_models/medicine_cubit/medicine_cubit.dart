@@ -92,6 +92,7 @@ class MedicineCubit extends Cubit<MedicineStates> {
 
 
 
+  bool getPatientMedicineTrue = false;
   GetPatientMedicine? getPatientMedicine;
   void getPatientsMedicine({
     required String patientID,
@@ -102,6 +103,7 @@ class MedicineCubit extends Cubit<MedicineStates> {
         '${EndPoints.getPatientMedicine}$patientID',
       );
       getPatientMedicine = GetPatientMedicine.fromJson(response);
+      getPatientMedicineTrue = true;
       emit(GetPatientMedicineSuccess());
     } on ServerException catch (e) {
       emit(GetPatientMedicineError(error: e.errorModel.message));

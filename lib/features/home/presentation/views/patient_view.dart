@@ -2,6 +2,8 @@ import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/api/dio_helper.dart';
+import '../../../../core/utils/service_locator.dart';
 import '../view_models/patient_cubit/patient_cubit.dart';
 import '../view_models/patient_cubit/patient_states.dart';
 
@@ -10,7 +12,9 @@ class PatientView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<PatientCubit, PatientStates>(
+    return BlocProvider(
+      create: (context) => PatientCubit(getIt.get<DioHelper>())..getMentorRequests(),
+      child: BlocConsumer<PatientCubit, PatientStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
@@ -37,6 +41,7 @@ class PatientView extends StatelessWidget {
           ),
         );
       },
-    );
+    ),
+);
   }
 }
