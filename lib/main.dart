@@ -16,6 +16,12 @@ void main() async {
   await CacheHelper().init();
   setupServiceLocator();
   Bloc.observer = MyBlocObserver();
+  SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ],
+  );
   runApp(const MyApp());
 }
 
