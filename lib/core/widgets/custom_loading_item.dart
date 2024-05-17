@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CustomLoadingItem extends StatelessWidget {
-  const CustomLoadingItem({super.key, required this.width, required this.height});
+  const CustomLoadingItem({super.key, required this.width, required this.height, this.circle = 15});
   final double width;
   final double height;
+  final double circle;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -17,7 +18,7 @@ class CustomLoadingItem extends StatelessWidget {
           height: height,
           decoration: BoxDecoration(
             color: Colors.black.withOpacity(0.04),
-            borderRadius: const BorderRadius.all(Radius.circular(15)),
+            borderRadius:  BorderRadius.all(Radius.circular(circle)),
           ),
         ),
       ),
