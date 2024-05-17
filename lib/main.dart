@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
+import 'constants.dart';
 import 'core/api/dio_helper.dart';
 import 'core/bloc/bloc_observer.dart';
 import 'core/utils/service_locator.dart';
@@ -14,6 +15,7 @@ import 'features/medicine/presentation/view_models/medicine_cubit/medicine_cubit
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper().init();
+  print(CacheHelper().getData(key: token));
   setupServiceLocator();
   Bloc.observer = MyBlocObserver();
   SystemChrome.setPreferredOrientations(

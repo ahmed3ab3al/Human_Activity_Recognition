@@ -49,7 +49,7 @@ class MentorsBody extends StatelessWidget {
         return SmartRefresher(
           controller: refreshController,
           enablePullDown: true,
-          onRefresh: () {
+          onRefresh: ()async {
             PatientCubit.get(context).refreshPatientsMedicine(refreshController);
           },
           child: SafeArea(
