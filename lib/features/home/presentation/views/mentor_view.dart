@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/features/home/presentation/view_models/mentor_cubit/mentor_cubit.dart';
@@ -19,7 +20,13 @@ class HomeView extends StatelessWidget {
     var formKey = GlobalKey<FormState>();
     return Scaffold(
         key: scaffoldKey,
-        body: const MentorViewBody(),
+        body: const AnnotatedRegion<SystemUiOverlayStyle>(
+            value: SystemUiOverlayStyle(
+                statusBarColor: Colors.transparent,
+                statusBarIconBrightness: Brightness.dark
+            ),
+            child: MentorViewBody()
+        ),
         floatingActionButton: BlocConsumer<MentorCubit, MentorStates>(
           listener: (context, state) {
             if (state is SendRequestSuccess) {

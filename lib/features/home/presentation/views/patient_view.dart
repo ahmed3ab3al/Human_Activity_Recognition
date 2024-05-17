@@ -1,5 +1,6 @@
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../constants.dart';
 import '../../../../core/cache/cache_helper.dart';
@@ -22,8 +23,14 @@ class PatientView extends StatelessWidget {
     listener: (context, state) {},
     builder: (context, state) {
       return Scaffold(
-        body: PatientCubit.get(context)
-            .screens[PatientCubit.get(context).currentIndex],
+        body:   AnnotatedRegion<SystemUiOverlayStyle>(
+          value: const SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+              statusBarIconBrightness: Brightness.dark
+          ),
+          child: PatientCubit.get(context)
+              .screens[PatientCubit.get(context).currentIndex],
+        ),
         bottomNavigationBar: CircleNavBar(
           activeIndex: PatientCubit.get(context).currentIndex,
           onTap: (index) {
