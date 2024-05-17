@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
 import 'core/api/dio_helper.dart';
@@ -31,22 +30,18 @@ class MyApp extends StatelessWidget {
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark));
     return MultiBlocProvider(
-      providers: CacheHelper().getData(key: userRole) == "patient" ?[
+      providers:  [
         BlocProvider(
           create: (context) =>
           PatientCubit(getIt.get<DioHelper>())..getMentorRequests(),
         ),
         BlocProvider(
-            create: (BuildContext context) => MedicineCubit(getIt.get<DioHelper>())..getPatientsMedicine(patientID: CacheHelper().getData(key: userId))
-        ),
-      ] :[
-        BlocProvider(
-          create: (BuildContext context) => MentorCubit(getIt.get<DioHelper>())..getPatients(),
+          create: (BuildContext context) => MentorCubit(getIt.get<DioHelper>()),
         ),
         BlocProvider(
-          create: (BuildContext context) => MedicineCubit(getIt.get<DioHelper>())
+            create: (BuildContext context) => MedicineCubit(getIt.get<DioHelper>())
         ),
-      ],
+      ] ,
       child: ScreenUtilInit(
           designSize: const Size(390, 844),
           minTextAdapt: true,

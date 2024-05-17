@@ -28,83 +28,84 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MedicineCubit, MedicineStates>(
-        listener: (context, state) {
-          if (state is AddMedicineSuccess){
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Center(child: Text(state.message)),
-              ),
-            );
-            GoRouter.of(context).pop();
-          }
-          else if (state is AddMedicineError){
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Center(child: Text(state.error)),
-              ),
-            );
-          }
-        },
-        builder: (context, state) {
-          return SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 30.h),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomAppBar(
-                      tab: () {
-                        GoRouter.of(context).pop();
-                      },
-                      text: 'Add Medication',
-                      space: 50,
-                    ),
-                    15.verticalSpace,
-                    CustomTextFormFiled(
-                      hint: 'Medicine',
-                      customController: medicineController,
-                      type: TextInputType.text,
-                      prefix: Icons.medication_rounded,
-                    ),
-                    20.verticalSpace,
-                    const LineContainer(),
-                    10.verticalSpace,
-                    Text(
-                      'Select Shape',
-                      style: Styles.size16_700Black,
-                    ),
-                    15.verticalSpace,
-                    const Center(child: MedicineList()),
-                    20.verticalSpace,
-                    const LineContainer(),
-                    30.verticalSpace,
-                    const GestureDetectorToggle(),
-                    30.verticalSpace,
-                    const LineContainer(),
-                    40.verticalSpace,
-                    const MedicineInformation(),
-                    60.verticalSpace,
-                    state is AddMedicineLoading ?
-                    CustomLoadingItem(
-                      width: MediaQuery.sizeOf(context).width / 1.1,
-                      height: MediaQuery.sizeOf(context).height/ 15,
-                    ):
-                    CustomBlueButton(
-                        text: 'Reminder',
-                        ontap: () {
-                          MedicineCubit.get(context).addMedicine(
-                              patientID: patientID,
-                              nameOfMedicine: medicineController.text,
-                          );
+          listener: (context, state) {
+            if (state is AddMedicineSuccess){
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Center(child: Text(state.message)),
+                ),
+              );
+              MedicineCubit.get(context).getPatientsMedicine(patientID: patientID);
+              GoRouter.of(context).pop();
+            }
+            else if (state is AddMedicineError){
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Center(child: Text(state.error)),
+                ),
+              );
+            }
+          },
+          builder: (context, state) {
+            return SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 30.h),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomAppBar(
+                        tab: () {
+                          GoRouter.of(context).pop();
                         },
-                        containerHeight: 56)
-                  ],
+                        text: 'Add Medication',
+                        space: 50,
+                      ),
+                      15.verticalSpace,
+                      CustomTextFormFiled(
+                        hint: 'Medicine',
+                        customController: medicineController,
+                        type: TextInputType.text,
+                        prefix: Icons.medication_rounded,
+                      ),
+                      20.verticalSpace,
+                      const LineContainer(),
+                      10.verticalSpace,
+                      Text(
+                        'Select Shape',
+                        style: Styles.size16_700Black,
+                      ),
+                      15.verticalSpace,
+                      const Center(child: MedicineList()),
+                      20.verticalSpace,
+                      const LineContainer(),
+                      30.verticalSpace,
+                      const GestureDetectorToggle(),
+                      30.verticalSpace,
+                      const LineContainer(),
+                      40.verticalSpace,
+                      const MedicineInformation(),
+                      60.verticalSpace,
+                      state is AddMedicineLoading ?
+                      CustomLoadingItem(
+                        width: MediaQuery.sizeOf(context).width / 1.1,
+                        height: MediaQuery.sizeOf(context).height/ 15,
+                      ):
+                      CustomBlueButton(
+                          text: 'Reminder',
+                          ontap: () {
+                            MedicineCubit.get(context).addMedicine(
+                                patientID: patientID,
+                                nameOfMedicine: medicineController.text,
+                            );
+                          },
+                          containerHeight: 56)
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        },
-      );
+            );
+          },
+        );
   }
 }

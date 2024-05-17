@@ -1,9 +1,9 @@
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../core/api/dio_helper.dart';
-import '../../../../core/utils/service_locator.dart';
+import '../../../../constants.dart';
+import '../../../../core/cache/cache_helper.dart';
+import '../../../medicine/presentation/view_models/medicine_cubit/medicine_cubit.dart';
 import '../view_models/patient_cubit/patient_cubit.dart';
 import '../view_models/patient_cubit/patient_states.dart';
 
@@ -12,36 +12,39 @@ class PatientView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => PatientCubit(getIt.get<DioHelper>())..getMentorRequests(),
-      child: BlocConsumer<PatientCubit, PatientStates>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        return Scaffold(
-          body: PatientCubit.get(context)
-              .screens[PatientCubit.get(context).currentIndex],
-          bottomNavigationBar: CircleNavBar(
-            activeIndex: PatientCubit.get(context).currentIndex,
-            onTap: (index) {
-              PatientCubit.get(context).changeBottomNavBar(index);
-            },
-            activeIcons: PatientCubit.get(context).activeBottomItems,
-            inactiveIcons: PatientCubit.get(context).inActiveBottomItems,
-            color: const Color(0xffF9F9F9),
-            height: 60,
-            circleWidth: 45,
-            circleGradient: const LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color(0xff0E4CA1),
-                Color(0xff67A3F4),
-              ],
-            ),
+    if (MedicineCubit.get(context).getPatientMedicine == null){
+      MedicineCubit.get(context).getPatientsMedicine(patientID: CacheHelper().getData(key: userId));
+    }
+    if (PatientCubit.get(context).getMentorRequest == null){
+      PatientCubit.get(context).getMentorRequests();
+    }
+    return BlocConsumer<PatientCubit, PatientStates>(
+    listener: (context, state) {},
+    builder: (context, state) {
+      return Scaffold(
+        body: PatientCubit.get(context)
+            .screens[PatientCubit.get(context).currentIndex],
+        bottomNavigationBar: CircleNavBar(
+          activeIndex: PatientCubit.get(context).currentIndex,
+          onTap: (index) {
+            PatientCubit.get(context).changeBottomNavBar(index);
+          },
+          activeIcons: PatientCubit.get(context).activeBottomItems,
+          inactiveIcons: PatientCubit.get(context).inActiveBottomItems,
+          color: const Color(0xffF9F9F9),
+          height: 60,
+          circleWidth: 45,
+          circleGradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xff0E4CA1),
+              Color(0xff67A3F4),
+            ],
           ),
+        ),
+      );
+    },
         );
-      },
-    ),
-);
   }
 }
