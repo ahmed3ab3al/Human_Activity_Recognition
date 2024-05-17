@@ -15,6 +15,7 @@ import '../../../../../core/api/dio_helper.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/service_locator.dart';
 import '../../../../../core/utils/styles.dart';
+import '../../../../../core/widgets/custom_loading_item.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -61,18 +62,7 @@ class LoginViewBody extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      // CustomAppBar(
-                      //   text: 'Login',
-                      //   space: 85,
-                      //   tab: () {
-                      //   //  GoRouter.of(context).pop();
-                      //   },
-                      // ),
-                      // const Text(
-                      //   'Login',
-                      // ),
                       Lottie.asset(AppAssets.animation),
-                   //  40.verticalSpace,
                       const LoginInputSection(),
                       3.verticalSpace, TextButton(
                         onPressed: () {
@@ -88,7 +78,10 @@ class LoginViewBody extends StatelessWidget {
                                   .loginFormKey
                                   .currentState!
                                   .validate()
-                          ? const Center(child: CircularProgressIndicator())
+                          ?  CustomLoadingItem(
+                        width: MediaQuery.sizeOf(context).width / 1.1,
+                        height: MediaQuery.sizeOf(context).height/ 15,
+                      )
                           : LoginButtonView(
                               formKey: LoginCubit.get(context).loginFormKey,
                             ),
