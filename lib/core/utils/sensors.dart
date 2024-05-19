@@ -1,9 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'dart:async';
-
 import 'package:http/http.dart' as http;
 
 List<double> acc_x = [];
@@ -58,15 +56,8 @@ void sensor({
 
 
 void startSendingData() {
-  _timer = Timer.periodic(Duration(seconds: 6), (Timer t) {
-    print("acc_x is ${acc_x.length}");
-    print("acc_y is ${acc_y.length}");
-    print("acc_z is ${acc_z.length}");
-    print("gyro_x is ${gyro_x.length}");
-    print("gyro_y is ${gyro_y.length}");
-    print("gyro_z is ${gyro_z.length}");
+  _timer = Timer.periodic(const Duration(seconds: 6), (Timer t) {
     sendDataToAPI();
-    // stopSendingData();
   });
 }
 void stopSendingData() {
@@ -101,11 +92,14 @@ Future<void> sendDataToAPI() async {
     gyro_z.clear();
     if (response.statusCode == 200) {
       print('Data sent successfully');
-    } else {
-      print('Failed to send data: ${response.statusCode}');
-      print(response.body);
     }
   } catch (e) {
     print('Error sending data: $e');
+    acc_x.clear();
+    acc_y.clear();
+    acc_z.clear();
+    gyro_x.clear();
+    gyro_y.clear();
+    gyro_z.clear();
   }
 }
