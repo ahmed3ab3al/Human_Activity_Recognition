@@ -21,6 +21,8 @@ dependencies:
   circle_nav_bar: ^2.0.1+1
   google_fonts: ^6.1.0
   date_picker_timeline: ^1.2.5
+  google_maps_flutter: ^2.6.1
+  location: ^6.0.2
   gradient_icon: ^2.0.8
   pinput: ^4.0.0
   smooth_page_indicator: ^1.1.0

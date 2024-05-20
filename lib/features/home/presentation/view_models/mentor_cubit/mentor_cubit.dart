@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/features/home/data/models/GetPatients.dart';
 import 'package:graduation_project/features/home/data/models/SendCareRequest.dart';
+import 'package:graduation_project/map.dart';
+import 'package:location/location.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../../core/api/api_helper.dart';
 import '../../../../../core/api/end_points.dart';
@@ -67,7 +69,7 @@ class MentorCubit extends Cubit<MentorStates> {
 
   List<Widget> screens = [
     const MentorMedicineViewBody(),
-    const DangerousActivityViewBody(),
+    const LocationPage(),
     const MentorMedicineViewBody(),
     const DangerousActivityViewBody(),
   ];
