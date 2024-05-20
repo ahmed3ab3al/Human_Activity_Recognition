@@ -2,6 +2,7 @@ import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/utils/location.dart';
 import 'package:graduation_project/core/utils/sensors.dart';
 import '../../../../constants.dart';
 import '../../../../core/cache/cache_helper.dart';
@@ -18,6 +19,7 @@ class PatientView extends StatelessWidget {
     //   context: context
     // );
     // startSendingData();
+    // startSendingLocation();
     if (MedicineCubit.get(context).getPatientMedicine == null){
       MedicineCubit.get(context).getPatientsMedicine(patientID: CacheHelper().getData(key: userId));
     }

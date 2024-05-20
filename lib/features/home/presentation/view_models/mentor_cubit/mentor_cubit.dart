@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/features/home/data/models/GetPatients.dart';
 import 'package:graduation_project/features/home/data/models/SendCareRequest.dart';
-import 'package:graduation_project/map.dart';
-import 'package:location/location.dart';
+import 'package:graduation_project/features/map/presentation/views/map.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../../core/api/api_helper.dart';
 import '../../../../../core/api/end_points.dart';
@@ -34,11 +33,6 @@ class MentorCubit extends Cubit<MentorStates> {
       size: 24.sp,
     ),
     Icon(
-      Icons.warning_amber_rounded,
-      color: ColorManager.whiteColor,
-      size: 24.sp,
-    ),
-    Icon(
       Icons.chat_bubble,
       color: ColorManager.whiteColor,
       size: 24.sp,
@@ -56,11 +50,6 @@ class MentorCubit extends Cubit<MentorStates> {
       size: 24.sp,
     ),
     Icon(
-      Icons.warning_amber_rounded,
-      color: ColorManager.greyColor757474,
-      size: 24.sp,
-    ),
-    Icon(
       Icons.chat_bubble,
       color: ColorManager.greyColor757474,
       size: 24.sp,
@@ -70,7 +59,6 @@ class MentorCubit extends Cubit<MentorStates> {
   List<Widget> screens = [
     const MentorMedicineViewBody(),
     const LocationPage(),
-    const MentorMedicineViewBody(),
     const DangerousActivityViewBody(),
   ];
 

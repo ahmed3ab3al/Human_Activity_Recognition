@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:graduation_project/constants.dart';
+import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
@@ -56,6 +58,8 @@ void sensor({
 
 
 void startSendingData() {
+  // Cancel any existing timer before starting a new one
+  _timer?.cancel();
   _timer = Timer.periodic(const Duration(seconds: 6), (Timer t) {
     sendDataToAPI();
   });
@@ -71,7 +75,7 @@ Future<void> sendDataToAPI() async {
   final Uri uri = Uri.parse(url);
   final headers = {
     'Content-Type': 'application/json',
-    'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNiNWE1YWQyMjhmNWM4ODcwYmZkOTEiLCJuYW1lIjoiQWhtZWQgM2xhYSIsImVtYWlsIjoiYWhtZWRAZ21haWwuY29tIiwicm9sZSI6InBhdGllbnQiLCJwaG9uZSI6IjAxMTQxMzc1MTg0IiwidmVyaWZpZWQiOmZhbHNlLCJpYXQiOjE3MTU5NjU1ODB9.c0N0xjMuKC2glgvfWk1E3UT6dGM7PiXFOSnTo50lfqE'
+    'token': '${CacheHelper().getData(key: token)}'
   };
   final body = jsonEncode({
     "acc_x": acc_x,
