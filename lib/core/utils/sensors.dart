@@ -16,7 +16,7 @@ Timer? _timer;
 void sensor({
   context
 }){
-  accelerometerEventStream(samplingPeriod: const Duration(milliseconds: 5)).listen(
+  accelerometerEventStream(samplingPeriod:  SensorInterval.fastestInterval).listen(
         (AccelerometerEvent event) {
       acc_x.add(event.x);
       acc_y.add(event.y);
@@ -35,11 +35,11 @@ void sensor({
     },
     cancelOnError: true,
   );
-  gyroscopeEventStream(samplingPeriod: const Duration(milliseconds: 5)).listen(
+  gyroscopeEventStream(samplingPeriod: SensorInterval.fastestInterval).listen(
         (GyroscopeEvent event) {
-      gyro_x.add(event.x.abs());
-      gyro_y.add(event.y.abs());
-      gyro_z.add(event.z.abs());
+      gyro_x.add(event.x);
+      gyro_y.add(event.y);
+      gyro_z.add(event.z);
     },
     onError: (e) {
       showDialog(
@@ -61,6 +61,7 @@ void startSendingData() {
   // Cancel any existing timer before starting a new one
   _timer?.cancel();
   _timer = Timer.periodic(const Duration(seconds: 6), (Timer t) {
+    print(acc_x.length);
     sendDataToAPI();
   });
 }
@@ -71,7 +72,7 @@ void stopSendingData() {
   }
 }
 Future<void> sendDataToAPI() async {
-  const url = 'http://192.168.1.9:3000/api/v1/activity';  // Replace with your API endpoint
+  const url = 'http://192.168.74.52:3000/api/v1/activity';  // Replace with your API endpoint
   final Uri uri = Uri.parse(url);
   final headers = {
     'Content-Type': 'application/json',

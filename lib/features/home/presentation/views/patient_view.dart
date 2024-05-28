@@ -15,9 +15,9 @@ class PatientView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // sensor(
-    //   context: context
-    // );
+    sensor(
+      context: context
+    );
     // startSendingData();
     // startSendingLocation();
     if (MedicineCubit.get(context).getPatientMedicine == null){
