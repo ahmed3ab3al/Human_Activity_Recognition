@@ -65,16 +65,15 @@ class MapCubit extends Cubit<MapState> {
         zoom: 13.0,
       );
       mapController?.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-        markers.add(
-             Marker(
+        markers.add(Marker(
               markerId: const MarkerId('1'),
               position: LatLng(locationData.latitude!, locationData.longitude!),
               infoWindow: const InfoWindow(title: 'My Location',),
 
             ));
+      emit(GetLocationSuccess());
     }
     );
-    emit(GetLocationSuccess());
   }
 
   void updateMyLocation() async {
