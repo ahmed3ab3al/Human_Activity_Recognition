@@ -9,7 +9,7 @@ import '../../../../../core/api/end_points.dart';
 import '../../../../../core/errors/exception.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../data/models/GetMentorRequests.dart';
-import '../../views/followee_chats_body.dart';
+import '../../../../chat/presentation/views/patients_chats_body.dart';
 import '../../views/mentors_body.dart';
 import '../../../../medicine/presentation/views/patient_medicine_view.dart';
 
