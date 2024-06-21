@@ -2,12 +2,18 @@ import 'dart:collection';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:graduation_project/core/api/dio_helper.dart';
+import 'package:graduation_project/core/api/end_points.dart';
 import 'package:location/location.dart';
+
+import '../../../../constants.dart';
+import '../../../../core/errors/exception.dart';
 part 'map_state.dart';
 
 class MapCubit extends Cubit<MapState> {
-  MapCubit() : super(MapInitial());
+  MapCubit(this.dioHelper) : super(MapInitial());
 
+  final DioHelper dioHelper;
   static MapCubit get(context) => BlocProvider.of(context);
 
   var markers = HashSet<Marker>();
@@ -53,35 +59,38 @@ class MapCubit extends Cubit<MapState> {
     }
     return true;
   }
-
-  void getLocation() async {
-    emit(GetLocationLoading());
-    location.onLocationChanged.listen((locationData) {
-      var cameraPosition = CameraPosition(
-        target: LatLng(
-          locationData.latitude!,
-          locationData.longitude!,
-        ),
-        zoom: 13.0,
-      );
-      mapController?.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-        markers.add(Marker(
-              markerId: const MarkerId('1'),
-              position: LatLng(locationData.latitude!, locationData.longitude!),
-              infoWindow: const InfoWindow(title: 'My Location',),
-
-            ));
-      emit(GetLocationSuccess());
-    }
-    );
-  }
-
   void updateMyLocation() async {
     await checkAndRequestLocationService();
     var hasPermission = await  checkAndRequestPermission();
     if(hasPermission){
-      getLocation();
+      getPatientLocation();
     }
   }
 
+  void getPatientLocation() async{
+    emit(GetLocationLoading());
+    try {
+      dynamic response = await dioHelper.get('${EndPoints.getLocation}$patientID');
+      // Parse the response to extract longitude and latitude
+      var data = response['location'];
+      double longitude = data['longitude'];
+      double latitude = data['latitude'];
+      var cameraPosition = CameraPosition(
+        target: LatLng(
+          latitude,
+          longitude,
+        ),
+        zoom: 13.0,
+      );
+      mapController?.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+      markers.add(Marker(
+        markerId: const MarkerId('1'),
+        position: LatLng( latitude, longitude),
+        infoWindow: const InfoWindow(title: 'My Location',),
+      ));
+      emit(GetLocationSuccess());
+    } on ServerException catch (e) {
+      emit(GetLocationError(error: e.errorModel.message));
+    }
+  }
 }

@@ -16,6 +16,7 @@ class EndPoints {
   static const String addMedicine = '/medication/';
   static const String getPatientMedicine = '/medication/all/';
   static const String sendReading = '/activity';
+  static const String getLocation = '/location/';
 }
 
 class ApiKeys {
