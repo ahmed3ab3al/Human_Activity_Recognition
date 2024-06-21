@@ -9,7 +9,6 @@ import '../../../../../core/api/api_helper.dart';
 import '../../../../../core/api/end_points.dart';
 import '../../../../../core/errors/exception.dart';
 import '../../../../../core/utils/colors.dart';
-import '../../../../dangerous/presentation/views/widgets/dangerous_view_body.dart';
 import '../../../../medicine/presentation/views/widgets/mentor_medicine_view_body.dart';
 import 'mentor_states.dart';
 
@@ -59,7 +58,7 @@ class MentorCubit extends Cubit<MentorStates> {
   List<Widget> screens = [
     const MentorMedicineViewBody(),
     const LocationPage(),
-    const DangerousActivityViewBody(),
+    // const DangerousActivityViewBody(),
   ];
 
   void changeBottomNavBar(int index) {

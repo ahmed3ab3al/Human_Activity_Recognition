@@ -17,7 +17,8 @@ class BuildChatsItem extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 30.0,
-                  backgroundImage: AssetImage('images/vitamin_a.png'),
+                  backgroundImage:
+                  NetworkImage('https://i.pravatar.cc/300'),
                   backgroundColor: Colors.black,
                 ),
                 Padding(
@@ -43,7 +44,7 @@ class BuildChatsItem extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          'Eng/Ahmed Alaa',
+                          'Eng/ Mohammed',
                           style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
@@ -64,7 +65,7 @@ class BuildChatsItem extends StatelessWidget {
                     children: [
                       const Expanded(
                         child: Text(
-                          'I suffered to do this والله',
+                          'Hallo From Other Side',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),

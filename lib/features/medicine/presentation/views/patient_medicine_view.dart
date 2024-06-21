@@ -31,7 +31,6 @@ class PatientMedicineView extends StatelessWidget {
                 child: Column(
                   children: [
                     const ImageText(),
-                    5.verticalSpace,
                     const NameProfileRow(),
                      if (state is GetPatientMedicineLoading || state is GetPatientMedicineError)
                        const MedicineViewLoading(),

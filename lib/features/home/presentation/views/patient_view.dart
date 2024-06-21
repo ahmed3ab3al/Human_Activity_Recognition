@@ -2,7 +2,7 @@ import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project/core/utils/location.dart';
+import 'package:graduation_project/core/utils/colors.dart';
 import 'package:graduation_project/core/utils/sensors.dart';
 import '../../../../constants.dart';
 import '../../../../core/cache/cache_helper.dart';
@@ -47,6 +47,8 @@ class PatientView extends StatelessWidget {
           inactiveIcons: PatientCubit.get(context).inActiveBottomItems,
           color: const Color(0xffF9F9F9),
           height: 60,
+          shadowColor: ColorManager.blackColor.withOpacity(0.3),
+          elevation: 5,
           circleWidth: 45,
           circleGradient: const LinearGradient(
             begin: Alignment.topCenter,

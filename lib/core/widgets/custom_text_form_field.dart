@@ -25,7 +25,7 @@ class CustomTextFormFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorColor: ColorManager.blackColor,
+      cursorColor: ColorManager.blueColor0E4CA1,
       validator: (value) {
         if (value!.isEmpty) {
           return "Incorrect $hint";
@@ -47,7 +47,7 @@ class CustomTextFormFiled extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20.r),
           borderSide: const BorderSide(
-            color: ColorManager.greyColorD9D9D9,
+            color: ColorManager.blueColor0E4CA1,
           ),
         ),
         enabledBorder: OutlineInputBorder(

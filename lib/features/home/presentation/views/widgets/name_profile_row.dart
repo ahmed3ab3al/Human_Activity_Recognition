@@ -19,23 +19,24 @@ class NameProfileRow extends StatelessWidget {
         12.horizontalSpace,
         Text(
           CacheHelper().getData(key: userName),
-          style: Styles.size16_700Black,
+          style: Styles.testStyle20.copyWith(
+            color: ColorManager.blackColor
+          ),
         ),
         const Spacer(),
         GestureDetector(
           onTap: () {
             GoRouter.of(context).push(AppRouter.kShowProfile);
           },
-          child: CircleAvatar(
-            radius: 18.r,
-            backgroundColor: ColorManager.greyColorD9D9D9,
-            child: Icon(
-              Icons.perm_identity_rounded,
-              size: 24.sp,
-              color: Colors.black.withOpacity(0.5),
-            ),
+          child: const CircleAvatar(
+            radius: 15.0,
+            backgroundImage:
+             NetworkImage('https://i.pravatar.cc/300'),
+
           ),
-        )
+
+        ),
+        5.horizontalSpace,
       ],
     );
   }
