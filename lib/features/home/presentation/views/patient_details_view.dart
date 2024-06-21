@@ -24,6 +24,9 @@ class PatientDetailsView extends StatelessWidget {
             bottomNavigationBar: CircleNavBar(
               activeIndex: MentorCubit.get(context).currentIndex,
               onTap: (index) {
+                if (index == 2){
+                  GoRouter.of(context).push(AppRouter.kChatDetails);
+                }
                 MentorCubit.get(context).changeBottomNavBar(index);
               },
               activeIcons: MentorCubit.get(context).activeBottomItems,

@@ -63,7 +63,9 @@ class MentorCubit extends Cubit<MentorStates> {
   ];
 
   void changeBottomNavBar(int index) {
-    currentIndex = index;
+    if (index != 2) {
+      currentIndex = index;
+    }
     emit(ChangeBottomNavBarStates());
   }
 
