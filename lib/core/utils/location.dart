@@ -74,10 +74,10 @@ Future<void> sendLocationToAPI({
   required double latitude,
   required double longitude,
 }) async {
-  const url = 'http://192.168.1.9:3000/api/v1/activity';  // Replace with your API endpoint
+  print("Start Send");
+  const url = 'http://192.168.1.14:3000/api/v1/location/update-location';  // Replace with your API endpoint
   final Uri uri = Uri.parse(url);
   final headers = {
-    'Content-Type': 'application/json',
     'token':'${CacheHelper().getData(key: token)}'
   };
   final body = jsonEncode({
@@ -86,7 +86,7 @@ Future<void> sendLocationToAPI({
   });
 
   try {
-    final response = await http.patch(uri, headers: headers, body: body);
+    final response = await http.put(uri, headers: headers, body: body);
     if (response.statusCode == 200) {
       print('Data sent successfully');
     }
