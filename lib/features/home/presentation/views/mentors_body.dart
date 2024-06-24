@@ -150,7 +150,9 @@ Widget buildMentorItem({
                 ),
               ),
             ),
-            const Spacer(),
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width / 6,
+            ),
             GestureDetector(
               onTap: () {
                 PatientCubit.get(context).confirmRequest(id);
