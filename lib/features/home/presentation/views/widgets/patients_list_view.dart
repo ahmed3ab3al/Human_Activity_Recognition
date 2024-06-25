@@ -94,11 +94,17 @@ class PatientListView extends StatelessWidget {
               },
             );
             } else {
-              return  Center(
-                child: Text(
-                  'No Patients Yet',
-                  style: Styles.size24_700Black,
-                ),
+              return  Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.sizeOf(context).height / 2.9,
+                  ),
+                  Text(
+                    'PLease Add Patient',
+                    textAlign: TextAlign.center,
+                    style: Styles.size24_700Black.copyWith(fontSize: 15),
+                  ),
+                ],
               );
             }
           }

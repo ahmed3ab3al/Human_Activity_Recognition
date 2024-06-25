@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -138,14 +139,20 @@ Widget buildMentorItem({
             SizedBox(
               width: MediaQuery.sizeOf(context).width / 15,
             ),
-            Text(
-              name,
-              style: const TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
+            Flexible(
+              flex: 100,
+              child: Text(
+                name,
+                overflow: TextOverflow.visible,
+                style: const TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-            const Spacer(),
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width / 6,
+            ),
             GestureDetector(
               onTap: () {
                 PatientCubit.get(context).confirmRequest(id);

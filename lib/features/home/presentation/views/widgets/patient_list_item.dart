@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/constants.dart';
-
-import '../../../../../core/utils/colors.dart';
+import 'package:graduation_project/core/utils/styles.dart';
 import '../../../../../core/utils/assets.dart';
+import '../../../../../core/utils/colors.dart';
 
-// ignore: must_be_immutable
 class PatientListItem extends StatelessWidget {
   const PatientListItem({required this.name,super.key,required this.activitiy,required this.id});
   final name;
@@ -41,9 +40,14 @@ class PatientListItem extends StatelessWidget {
       child: Row(
         children: [
           Image(
-            image: const AssetImage(AppAssets.upStair),
+            image:  AssetImage(
+                activityPhoto[activitiy] ?? AppAssets.sit,
+            ),
             width: 50.w,
             height: 70.h,
+          ),
+          SizedBox(
+            width: 10,
           ),
           Padding(
             padding: EdgeInsets.only(
@@ -56,10 +60,12 @@ class PatientListItem extends StatelessWidget {
               children: [
                  Text(
                   name,
+                   style: Styles.size16_400Black.copyWith(fontWeight: FontWeight.bold),
                 ),
                 4.verticalSpace,
                  Text(
-                  activitiy,
+                  activitiy ?? 'Sit',
+                   style: Styles.testStyle14.copyWith(color: activitiy == 'Fall' ? ColorManager.redColorDC2222 : ColorManager.greyColor757474),
                 ),
               ],
             ),

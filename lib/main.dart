@@ -56,6 +56,7 @@ class MyApp extends StatelessWidget {
           splitScreenMode: true,
           builder: (context, child) {
             return MaterialApp.router(
+              title: 'IcareU',
               routerConfig: AppRouter.router,
               theme: ThemeData().copyWith(
                 scaffoldBackgroundColor: Colors.white,

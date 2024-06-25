@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../constants.dart';
 import '../../../../core/utils/app_router.dart';
+import '../../../../core/utils/colors.dart';
 import '../../../medicine/presentation/view_models/medicine_cubit/medicine_cubit.dart';
 import '../../../medicine/presentation/views/widgets/custom_floating_button.dart';
 import '../view_models/mentor_cubit/mentor_cubit.dart';
@@ -24,12 +25,17 @@ class PatientDetailsView extends StatelessWidget {
             bottomNavigationBar: CircleNavBar(
               activeIndex: MentorCubit.get(context).currentIndex,
               onTap: (index) {
+                if (index == 2){
+                  GoRouter.of(context).push(AppRouter.kChatDetails);
+                }
                 MentorCubit.get(context).changeBottomNavBar(index);
               },
               activeIcons: MentorCubit.get(context).activeBottomItems,
               inactiveIcons: MentorCubit.get(context).inActiveBottomItems,
               color: const Color(0xffF9F9F9),
               height: 60,
+              shadowColor: ColorManager.blackColor.withOpacity(0.3),
+              elevation: 5,
               circleWidth: 45,
               circleGradient: const LinearGradient(
                 begin: Alignment.topCenter,

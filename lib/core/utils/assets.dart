@@ -2,7 +2,19 @@ const path = 'assets/images';
 const lottie = 'assets/lottie';
 
 class AppAssets {
+  static const logo = '$path/logo.svg';
   static const splash = '$path/splash.png';
+
+  static const down = '$path/down.png';
+  static const fall = '$path/fall.png';
+  static const jump = '$path/jump.png';
+  static const sit = '$path/sit.png';
+  static const standing = '$path/standing.png';
+  static const up = '$path/up.png';
+  static const walk = '$path/walk.png';
+  static const jogging = '$path/jogging.png';
+
+
   static const onBoardingOne = '$path/on_boarding_one.png';
   static const onBoardingTwo = '$path/on_boarding_two.png';
   static const onBoardingFour = '$path/on_boarding_four.png';

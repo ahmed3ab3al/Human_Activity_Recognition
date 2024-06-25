@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
 import 'package:graduation_project/core/utils/assets.dart';
@@ -51,12 +52,19 @@ class _SplashViewBodyState extends State<SplashViewBody>
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image(
-          image: const AssetImage(AppAssets.splash),
-          height: 300.h,
-          width: double.infinity,
+        Center(
+          child: SvgPicture.asset(
+              AppAssets.logo,
+            height: 300.h,
+            width: double.infinity,
+          ),
         ),
-        SlidingText(slidingAnimation: slidingAnimation)
+        // Image(
+        //   image: const AssetImage(AppAssets.splash),
+        //   height: 300.h,
+        //   width: double.infinity,
+        // ),
+        // SlidingText(slidingAnimation: slidingAnimation)
       ],
     );
   }

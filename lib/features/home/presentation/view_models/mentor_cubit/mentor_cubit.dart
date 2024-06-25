@@ -1,16 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/features/home/data/models/GetPatients.dart';
 import 'package:graduation_project/features/home/data/models/SendCareRequest.dart';
-import 'package:graduation_project/map.dart';
-import 'package:location/location.dart';
+import 'package:graduation_project/features/map/presentation/views/map.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../../core/api/api_helper.dart';
 import '../../../../../core/api/end_points.dart';
 import '../../../../../core/errors/exception.dart';
 import '../../../../../core/utils/colors.dart';
-import '../../../../dangerous/presentation/views/widgets/dangerous_view_body.dart';
 import '../../../../medicine/presentation/views/widgets/mentor_medicine_view_body.dart';
 import 'mentor_states.dart';
 
@@ -34,11 +34,6 @@ class MentorCubit extends Cubit<MentorStates> {
       size: 24.sp,
     ),
     Icon(
-      Icons.warning_amber_rounded,
-      color: ColorManager.whiteColor,
-      size: 24.sp,
-    ),
-    Icon(
       Icons.chat_bubble,
       color: ColorManager.whiteColor,
       size: 24.sp,
@@ -56,11 +51,6 @@ class MentorCubit extends Cubit<MentorStates> {
       size: 24.sp,
     ),
     Icon(
-      Icons.warning_amber_rounded,
-      color: ColorManager.greyColor757474,
-      size: 24.sp,
-    ),
-    Icon(
       Icons.chat_bubble,
       color: ColorManager.greyColor757474,
       size: 24.sp,
@@ -70,12 +60,13 @@ class MentorCubit extends Cubit<MentorStates> {
   List<Widget> screens = [
     const MentorMedicineViewBody(),
     const LocationPage(),
-    const MentorMedicineViewBody(),
-    const DangerousActivityViewBody(),
+    // const DangerousActivityViewBody(),
   ];
 
   void changeBottomNavBar(int index) {
-    currentIndex = index;
+    if (index != 2) {
+      currentIndex = index;
+    }
     emit(ChangeBottomNavBarStates());
   }
 
@@ -106,18 +97,33 @@ class MentorCubit extends Cubit<MentorStates> {
     }
   }
 
+  Timer? _timer;
   GetPatients? getAllPatients;
   void getPatients() async {
+    _timer?.cancel();
     emit(GetPatientsLoading());
-    try {
-      final response = await apiHelper.get(
-        EndPoints.getPatients,
-      );
-      getAllPatients = GetPatients.fromJson(response);
-      emit(GetPatientsSuccess());
-    } on ServerException catch (e) {
-      emit(GetPatientsError(error: e.errorModel.message));
-    }
+    _timer = Timer.periodic(const Duration(seconds: 4), (Timer t) async {
+      try {
+        final response = await apiHelper.get(
+          EndPoints.getPatients,
+        );
+        getAllPatients = GetPatients.fromJson(response);
+        print(response);
+        emit(GetPatientsSuccess());
+      } on ServerException catch (e) {
+        emit(GetPatientsError(error: e.errorModel.message));
+      }
+    });
+    // try {
+    //   final response = await apiHelper.get(
+    //     EndPoints.getPatients,
+    //   );
+    //   getAllPatients = GetPatients.fromJson(response);
+    //   print(response);
+    //   emit(GetPatientsSuccess());
+    // } on ServerException catch (e) {
+    //   emit(GetPatientsError(error: e.errorModel.message));
+    // }
   }
 
   void refreshPatientsData(RefreshController refreshController) async{

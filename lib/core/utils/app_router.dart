@@ -4,6 +4,7 @@ import 'package:graduation_project/features/auth/presentation/views/login_view.d
 import 'package:graduation_project/features/auth/presentation/views/reset_password_view.dart';
 import 'package:graduation_project/features/auth/presentation/views/sign_up_view.dart';
 import 'package:graduation_project/features/auth/presentation/views/verify_password_view.dart';
+import 'package:graduation_project/features/chat/presentation/views/chat_details_body.dart';
 import 'package:graduation_project/features/home/presentation/views/mentor_view.dart';
 import 'package:graduation_project/features/home/presentation/views/patient_details_view.dart';
 import 'package:graduation_project/features/home/presentation/views/patient_view.dart';
@@ -30,6 +31,7 @@ abstract class AppRouter {
   static const kPatientHome = '/patientHome';
   static const kProfileDataViewBody = '/profileDataViewBody';
   static const kShowProfile = '/ShowProfile';
+  static const kChatDetails = '/ChatDetails';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -87,6 +89,10 @@ abstract class AppRouter {
       GoRoute(
         path: kShowProfile,
         builder: (context, state) => const ProfileDataView(),
+      ),
+      GoRoute(
+        path: kChatDetails,
+        builder: (context, state) => const ChatDetails(),
       ),
     ],
   );

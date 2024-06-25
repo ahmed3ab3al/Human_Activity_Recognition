@@ -1,5 +1,5 @@
 // https://icareu.onrender.com/api/v1
-// http://192.168.1.9:3000/api/v1
+// http://192.168.1.14:3000/api/v1
 class EndPoints {
   static const String baseUrl = 'https://icareu.onrender.com/api/v1';
   static const String signUp = '/users/signup';
@@ -16,6 +16,7 @@ class EndPoints {
   static const String addMedicine = '/medication/';
   static const String getPatientMedicine = '/medication/all/';
   static const String sendReading = '/activity';
+  static const String getLocation = '/location/';
 }
 
 class ApiKeys {
