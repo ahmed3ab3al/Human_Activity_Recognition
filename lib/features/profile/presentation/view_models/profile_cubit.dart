@@ -26,4 +26,23 @@ class ProfileCubit extends Cubit<ProfileStates> {
       emit(GetUserProfileErrorState(error: e.errorModel.message));
     }
   }
+
+  editProfile({required String name, required String phone,
+    required String gender}) async {
+    try {
+      emit(EditProfileLoadingState());
+      final response = apiHelper.put(
+        EndPoints.getUserId(CacheHelper().getData(key: token)),
+        {
+          ApiKeys.name: name,
+          ApiKeys.phone: phone,
+          ApiKeys.gender: gender
+        },
+      );
+      emit(EditProfileSuccessState(
+          userModel: UserModel.fromJson(response as Map<String, dynamic>)));
+    } on ServerException catch (e) {
+      emit(EditProfileErrorState(error: e.errorModel.message));
+    }
+  }
 }

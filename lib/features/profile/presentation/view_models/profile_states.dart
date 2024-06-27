@@ -17,3 +17,17 @@ class GetUserProfileErrorState extends ProfileStates {
 
   GetUserProfileErrorState({required this.error});
 }
+
+class EditProfileLoadingState extends ProfileStates {}
+
+class EditProfileSuccessState extends ProfileStates {
+  final UserModel userModel;
+  EditProfileSuccessState({required this.userModel});
+
+}
+
+class EditProfileErrorState extends ProfileStates {
+  final String error;
+
+  EditProfileErrorState({required this.error});
+}

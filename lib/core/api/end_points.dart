@@ -17,6 +17,7 @@ class EndPoints {
   static const String getPatientMedicine = '/medication/all/';
   static const String sendReading = '/activity';
   static const String getLocation = '/location/';
+  static const String updateProfile = '/users/update-user';
 }
 
 class ApiKeys {
