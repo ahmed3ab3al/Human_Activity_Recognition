@@ -97,12 +97,13 @@ class MentorCubit extends Cubit<MentorStates> {
     }
   }
 
+  // 1 good
   Timer? _timer;
   GetPatients? getAllPatients;
   void getPatients() async {
     // _timer?.cancel();
     // emit(GetPatientsLoading());
-    // _timer = Timer.periodic(const Duration(seconds: 4), (Timer t) async {
+    // _timer = Timer.periodic(const Duration(seconds: 3), (Timer t) async {
     //   try {
     //     final response = await apiHelper.get(
     //       EndPoints.getPatients,

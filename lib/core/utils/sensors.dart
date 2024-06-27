@@ -59,6 +59,9 @@ void sensor({
 
 void startSendingData() {
   // Cancel any existing timer before starting a new one
+  // 6 fantastaic  low but not make mistake
+  // 3 middle
+  // 2 good    fast but make mistake
   _timer?.cancel();
   _timer = Timer.periodic(const Duration(seconds: 6), (Timer t) {
     sendDataToAPI();
@@ -94,6 +97,13 @@ Future<void> sendDataToAPI() async {
     gyro_x.clear();
     gyro_y.clear();
     gyro_z.clear();
+    // acc_x.removeRange(0, (acc_x.length / 2).ceil());
+    // acc_y.removeRange(0,(acc_y.length / 2).ceil());
+    // acc_z.removeRange(0, (acc_z.length / 2).ceil());
+    // gyro_x.removeRange(0, (gyro_x.length / 2).ceil());
+    // gyro_y.removeRange(0, (gyro_y.length / 2).ceil());
+    // gyro_z.removeRange(0, (gyro_z.length / 2).ceil());
+
     if (response.statusCode == 200) {
       print('Data sent successfully');
     }
