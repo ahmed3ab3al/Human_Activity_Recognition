@@ -100,30 +100,31 @@ class MentorCubit extends Cubit<MentorStates> {
   Timer? _timer;
   GetPatients? getAllPatients;
   void getPatients() async {
-    _timer?.cancel();
+    // _timer?.cancel();
+    // emit(GetPatientsLoading());
+    // _timer = Timer.periodic(const Duration(seconds: 4), (Timer t) async {
+    //   try {
+    //     final response = await apiHelper.get(
+    //       EndPoints.getPatients,
+    //     );
+    //     getAllPatients = GetPatients.fromJson(response);
+    //     print(response);
+    //     emit(GetPatientsSuccess());
+    //   } on ServerException catch (e) {
+    //     emit(GetPatientsError(error: e.errorModel.message));
+    //   }
+    // });
     emit(GetPatientsLoading());
-    _timer = Timer.periodic(const Duration(seconds: 4), (Timer t) async {
-      try {
-        final response = await apiHelper.get(
-          EndPoints.getPatients,
-        );
-        getAllPatients = GetPatients.fromJson(response);
-        print(response);
-        emit(GetPatientsSuccess());
-      } on ServerException catch (e) {
-        emit(GetPatientsError(error: e.errorModel.message));
-      }
-    });
-    // try {
-    //   final response = await apiHelper.get(
-    //     EndPoints.getPatients,
-    //   );
-    //   getAllPatients = GetPatients.fromJson(response);
-    //   print(response);
-    //   emit(GetPatientsSuccess());
-    // } on ServerException catch (e) {
-    //   emit(GetPatientsError(error: e.errorModel.message));
-    // }
+    try {
+      final response = await apiHelper.get(
+        EndPoints.getPatients,
+      );
+      getAllPatients = GetPatients.fromJson(response);
+      print(response);
+      emit(GetPatientsSuccess());
+    } on ServerException catch (e) {
+      emit(GetPatientsError(error: e.errorModel.message));
+    }
   }
 
   void refreshPatientsData(RefreshController refreshController) async{

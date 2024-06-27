@@ -7,7 +7,7 @@ class EndPoints {
   static const String forgetPassword = '/users/forgotpassword';
   static const String otp = '/users/verify-reset-password-code';
   static const String confirm_reset_password = '/users/confirm-reset-password';
-  static String getUserId(String id) => '/users/$id';
+  static const String editProfile = '/users/update-user';
   static const String sendRequest = '/mentors';
   static const String getMentorRequest = '/patients/all-requests';
   static const String confirmRequest = '/patients/confirm/';

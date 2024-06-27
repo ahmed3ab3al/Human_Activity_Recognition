@@ -86,4 +86,20 @@ class DioHelper extends ApiHelper {
       handleDioExceptions(e);
     }
   }
+
+  @override
+  Future put(
+      String url,
+      {dynamic data, Map<String, dynamic>? queryParameters, bool isFormData = false}) async {
+    try {
+      final response = await dio.put(
+        url,
+        data: isFormData ? FormData.fromMap(data) : data,
+        queryParameters: queryParameters,
+      );
+      return response;
+    } on DioException catch (e) {
+      handleDioExceptions(e);
+    }
+  }
 }
