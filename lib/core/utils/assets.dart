@@ -13,6 +13,7 @@ class AppAssets {
   static const up = '$path/up.png';
   static const walk = '$path/walk.png';
   static const jogging = '$path/jogging.png';
+  static const error = '$path/error.jpeg';
 
 
   static const onBoardingOne = '$path/on_boarding_one.png';

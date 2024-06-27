@@ -41,7 +41,7 @@ class PatientListItem extends StatelessWidget {
         children: [
           Image(
             image:  AssetImage(
-                activityPhoto[activitiy] ?? AppAssets.sit,
+                activityPhoto[activitiy] ?? AppAssets.error,
             ),
             width: 50.w,
             height: 70.h,
@@ -64,7 +64,7 @@ class PatientListItem extends StatelessWidget {
                 ),
                 4.verticalSpace,
                  Text(
-                  activitiy ?? 'Sit',
+                  activitiy ?? 'Un Known Activity',
                    style: Styles.testStyle14.copyWith(color: activitiy == 'Fall' ? ColorManager.redColorDC2222 : ColorManager.greyColor757474),
                 ),
               ],
