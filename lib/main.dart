@@ -16,7 +16,7 @@ import 'features/medicine/presentation/view_models/medicine_cubit/medicine_cubit
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper().init();
-  if (CacheHelper().getData(key: userId).isNotEmpty) {
+  if (CacheHelper().getData(key: userId) != null && CacheHelper().getData(key: userId).isNotEmpty) {
     NotificationSocket.fallSocket();
   }
   print(CacheHelper().getData(key: token));
