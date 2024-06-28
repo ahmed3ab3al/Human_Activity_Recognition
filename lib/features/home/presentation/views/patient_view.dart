@@ -19,7 +19,7 @@ class PatientView extends StatelessWidget {
     sensor(
       context: context
     );
-    // startSendingData();
+    startSendingData();
     // startSendingLocation();
     if (MedicineCubit.get(context).getPatientMedicine == null){
       MedicineCubit.get(context).getPatientsMedicine(patientID: CacheHelper().getData(key: userId));

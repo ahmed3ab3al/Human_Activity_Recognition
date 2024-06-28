@@ -3,6 +3,7 @@ class Assets {
   Assets._();
 
   static const String imagesDown = 'assets/images/down.png';
+  static const String imagesError = 'assets/images/error.jpeg';
   static const String imagesFacebookImage = 'assets/images/facebook_Image.png';
   static const String imagesFall = 'assets/images/fall.png';
   static const String imagesGoogleImage = 'assets/images/google_image.png';
@@ -24,6 +25,5 @@ class Assets {
   static const String imagesVitaminC = 'assets/images/vitamin_c.png';
   static const String imagesWalk = 'assets/images/walk.png';
   static const String imagesWaveHand = 'assets/images/wave_hand.png';
-  // static const String lottieAnimation  1715290891194 = 'assets/lottie/Animation - 1715290891194.json';
 
 }

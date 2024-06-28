@@ -105,7 +105,7 @@ Future<void> sendDataToAPI() async {
     // gyro_z.removeRange(0, (gyro_z.length / 2).ceil());
 
     if (response.statusCode == 200) {
-      print('Data sent successfully');
+      // print('Data sent successfully');
     }
   } catch (e) {
     print('Error sending data: $e');

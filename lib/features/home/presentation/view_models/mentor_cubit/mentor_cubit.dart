@@ -121,7 +121,6 @@ class MentorCubit extends Cubit<MentorStates> {
         EndPoints.getPatients,
       );
       getAllPatients = GetPatients.fromJson(response);
-      print(response);
       emit(GetPatientsSuccess());
     } on ServerException catch (e) {
       emit(GetPatientsError(error: e.errorModel.message));

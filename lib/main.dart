@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
+import 'package:graduation_project/core/socket/socket.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
 import 'constants.dart';
 import 'core/api/dio_helper.dart';
@@ -15,6 +16,9 @@ import 'features/medicine/presentation/view_models/medicine_cubit/medicine_cubit
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper().init();
+  if (CacheHelper().getData(key: userId).isNotEmpty) {
+    NotificationSocket.fallSocket();
+  }
   print(CacheHelper().getData(key: token));
   setupServiceLocator();
   Bloc.observer = MyBlocObserver();

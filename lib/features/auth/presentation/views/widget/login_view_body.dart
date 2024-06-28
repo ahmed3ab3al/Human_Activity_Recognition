@@ -12,6 +12,7 @@ import 'package:graduation_project/features/auth/presentation/views/widget/sign_
 import 'package:lottie/lottie.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/api/dio_helper.dart';
+import '../../../../../core/socket/socket.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/service_locator.dart';
 import '../../../../../core/utils/styles.dart';
@@ -46,6 +47,7 @@ class LoginViewBody extends StatelessWidget {
                     GoRouter.of(context)
                         .pushReplacement(AppRouter.kPatientHome);
                   }
+                  NotificationSocket.fallSocket();
                 }
               } else if (state is LoginErrorState) {
                 ScaffoldMessenger.of(context).showSnackBar(

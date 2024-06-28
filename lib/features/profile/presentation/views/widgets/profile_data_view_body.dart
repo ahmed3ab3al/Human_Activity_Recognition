@@ -144,6 +144,11 @@ class ProfileDataViewBody extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     CacheHelper().saveData(key: token, value: '');
+                    CacheHelper().saveData(key: userId, value: '');
+                    CacheHelper().saveData(key: userRole, value: '');
+                    CacheHelper().saveData(key: userName, value: '');
+                    CacheHelper().saveData(key: userPhone, value: '');
+                    CacheHelper().saveData(key: userEmail, value: '');
                     GoRouter.of(context).pushReplacement(AppRouter.kLogin);
                     stopSendingData();
                     stopSendingLocation();
