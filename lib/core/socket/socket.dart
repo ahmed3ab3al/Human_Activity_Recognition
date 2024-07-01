@@ -26,27 +26,39 @@ class NotificationSocket{
     });
     if (CacheHelper().getData(key: userRole) == 'patient') {
       socket.on('fallingNotification', (data){
-      FallNotification alarmNotification = FallNotification();
+      AppNotification alarmNotification = AppNotification();
       alarmNotification.requestNotificationPermissions();
       alarmNotification.init();
       alarmNotification.showNotification(
           title: 'Hallo ${CacheHelper().getData(key: userName)}',
           body: 'Are you Ok ?',
         patient: true,
+        isFall: true
       );
-
-    }
-    );
+    });
+      socket.on('reminder', (data){
+        AppNotification alarmNotification = AppNotification();
+        alarmNotification.requestNotificationPermissions();
+        alarmNotification.init();
+        alarmNotification.showNotification(
+            title: 'Hallo ${CacheHelper().getData(key: userName)}',
+            body: 'Take your ${data['name']} Medicine',
+            patient: false,
+            isFall: false
+        );
+        print(data);
+      });
     }
     if (CacheHelper().getData(key: userRole) == 'mentor') {
       socket.on('mentorWarning', (data){
-        FallNotification alarmNotification = FallNotification();
+        AppNotification alarmNotification = AppNotification();
         alarmNotification.requestNotificationPermissions();
         alarmNotification.init();
         alarmNotification.showNotification(
             title: 'Warning ${CacheHelper().getData(key: userName)}',
             body: 'Your Patient is Fall',
-          patient: false
+          patient: false,
+            isFall: true
         );
         print(data);
     });

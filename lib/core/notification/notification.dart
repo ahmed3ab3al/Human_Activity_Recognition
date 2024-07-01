@@ -6,10 +6,10 @@ import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/socket/socket.dart';
 
-class FallNotification {
-  FallNotification._();
-  static final FallNotification _instance = FallNotification._();
-  factory FallNotification() => _instance;
+class AppNotification {
+  AppNotification._();
+  static final AppNotification _instance = AppNotification._();
+  factory AppNotification() => _instance;
 
   static final AwesomeNotifications awesomeNotifications = AwesomeNotifications();
   Timer? _noResponseTimer;
@@ -44,7 +44,8 @@ class FallNotification {
   Future<void> showNotification({
     required String title,
     required String body,
-    required bool patient
+    required bool patient,
+    required bool isFall,
   }) async {
     await awesomeNotifications.createNotification(
       actionButtons: patient?[
@@ -67,7 +68,7 @@ class FallNotification {
       ],
       content: NotificationContent(
         notificationLayout: NotificationLayout.Default,
-        largeIcon: 'asset://assets/images/fall.png',
+        largeIcon: isFall ? 'asset://assets/images/fall.png' : 'asset://assets/images/injection.png',
         id: -1,
         channelKey: 'Fall Channel',
         actionType: ActionType.Default,

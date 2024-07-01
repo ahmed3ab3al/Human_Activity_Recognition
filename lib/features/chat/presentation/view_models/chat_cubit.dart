@@ -77,7 +77,7 @@ class ChatCubit extends Cubit<ChatState> {
   Timer? _timer;
   void getMessageInChat(){
     _timer?.cancel();
-    _timer = Timer.periodic(const Duration(seconds: 2), (Timer t) {
+    _timer = Timer.periodic(const Duration(seconds: 3), (Timer t) {
       getMessages();
     });
   }
