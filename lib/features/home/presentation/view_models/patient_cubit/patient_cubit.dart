@@ -83,10 +83,25 @@ class PatientCubit extends Cubit<PatientStates> {
     }
   }
 
+  void createChat({
+    required String id
+}) async{
+    try {
+      await apiHelper.post(
+          EndPoints.createChat,
+          data: {
+            'id':id,
+          }
+      );
+    } on ServerException catch (e) {
+      emit(ConfirmRequestError(error: e.errorModel.message));
+    }
+  }
   void confirmRequest(String id) async {
     emit(ConfirmRequestLoading());
     try {
-      await apiHelper.post('${EndPoints.confirmRequest}$id');
+      final response = await apiHelper.post('${EndPoints.confirmRequest}$id');
+      createChat(id: response['mentor']);
       emit(ConfirmRequestSuccess());
       getMentorRequests();
     } on ServerException catch (e) {

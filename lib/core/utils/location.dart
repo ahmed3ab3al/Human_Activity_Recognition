@@ -88,7 +88,7 @@ Future<void> sendLocationToAPI({
   try {
     final response = await http.put(uri, headers: headers, body: body);
     if (response.statusCode == 200) {
-      print(response.body);
+      // print(response.body);
     }
   } catch (e) {
     print('Error sending data: $e');

@@ -18,6 +18,7 @@ class EndPoints {
   static const String sendReading = '/activity';
   static const String getLocation = '/location/';
   static const String updateProfile = '/users/update-user';
+  static const String createChat = '/chats/create-chat';
 }
 
 class ApiKeys {

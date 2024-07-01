@@ -10,6 +10,7 @@ class NotificationSocket{
       'userId': CacheHelper().getData(key: userId),
     },
   };
+  String mentor = '';
   static late IO.Socket socket;
   static void fallSocket(){
     socket = IO.io(
