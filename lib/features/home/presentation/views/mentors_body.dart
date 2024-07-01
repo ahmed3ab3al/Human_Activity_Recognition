@@ -16,6 +16,9 @@ class MentorsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (PatientCubit.get(context).getMentorRequest == null){
+      PatientCubit.get(context).getMentorRequests();
+    }
     RefreshController refreshController =
     RefreshController(initialRefresh: false);
     return BlocConsumer<PatientCubit, PatientStates>(

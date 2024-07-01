@@ -24,9 +24,6 @@ class PatientView extends StatelessWidget {
     if (MedicineCubit.get(context).getPatientMedicine == null){
       MedicineCubit.get(context).getPatientsMedicine(patientID: CacheHelper().getData(key: userId));
     }
-    if (PatientCubit.get(context).getMentorRequest == null){
-      PatientCubit.get(context).getMentorRequests();
-    }
     return BlocConsumer<PatientCubit, PatientStates>(
     listener: (context, state) {},
     builder: (context, state) {

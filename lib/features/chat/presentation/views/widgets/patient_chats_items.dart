@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/utils/styles.dart';
+import 'package:intl/intl.dart';
 import '../../../../medicine/presentation/views/widgets/line_container.dart';
 
 class BuildChatsItem extends StatelessWidget {
-  const BuildChatsItem({super.key});
+  const BuildChatsItem({super.key, required this.name, required this.message, required this.time});
+
+  final String name;
+  final String message;
+  final String time;
+
 
   @override
   Widget build(BuildContext context) {
+    // Parse the ISO 8601 date string
+    DateTime dateTime = DateTime.parse(time);
+    // Format the date to the desired format
+    String formattedDate = DateFormat('h:mm a').format(dateTime);
     return  Column(
       children: [
         Row(
@@ -40,11 +49,11 @@ class BuildChatsItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Row(
+                   Row(
                     children: [
                       Expanded(
                         child: Text(
-                          'Eng/ Mohammed',
+                          name,
                           style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
@@ -53,8 +62,8 @@ class BuildChatsItem extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      Text(
-                        '02:00 pm',
+                       Text(
+                        formattedDate,
                       ),
                     ],
                   ),
@@ -63,40 +72,40 @@ class BuildChatsItem extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      const Expanded(
+                       Expanded(
                         child: Text(
-                          'Hallo From Other Side',
+                          message ?? '',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(),
-                        child: Container(
-                          width: 20,
-                          height: 20,
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              colors: [
-                                Color(0xff0E4CA1),
-                                Color(0xff67A3F4),
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                            ),
-                            borderRadius: BorderRadius.circular(10.r),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '1',
-                                style: Styles.size16_700White,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.symmetric(),
+                      //   child: Container(
+                      //     width: 20,
+                      //     height: 20,
+                      //     decoration: BoxDecoration(
+                      //       gradient: const LinearGradient(
+                      //         colors: [
+                      //           Color(0xff0E4CA1),
+                      //           Color(0xff67A3F4),
+                      //         ],
+                      //         begin: Alignment.topCenter,
+                      //         end: Alignment.bottomCenter,
+                      //       ),
+                      //       borderRadius: BorderRadius.circular(10.r),
+                      //     ),
+                      //     child: Row(
+                      //       mainAxisAlignment: MainAxisAlignment.center,
+                      //       children: [
+                      //         Text(
+                      //           '1',
+                      //           style: Styles.size16_700White,
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ],

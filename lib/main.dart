@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/socket/socket.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
+import 'package:graduation_project/features/chat/presentation/view_models/chat_cubit.dart';
 import 'constants.dart';
 import 'core/api/dio_helper.dart';
 import 'core/bloc/bloc_observer.dart';
@@ -52,6 +53,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
             create: (BuildContext context) => MedicineCubit(getIt.get<DioHelper>())
+        ),
+        BlocProvider(
+            create: (BuildContext context) => ChatCubit(getIt.get<DioHelper>())..getChat()
         ),
       ] ,
       child: ScreenUtilInit(
