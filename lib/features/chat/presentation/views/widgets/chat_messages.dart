@@ -13,16 +13,17 @@ class ChatMessages extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ChatCubit, ChatState>(
       builder: (context, state) {
-        return Expanded(
+        return
+          ChatCubit.get(context).messagesModel != null ?
+          Expanded(
           child: ListView.separated(
             physics: const ScrollPhysics(),
             reverse: true,
-            // addRepaintBoundaries:false ,
             itemBuilder: (context, index) {
               var message =
-              ChatCubit.get(context).messagesModel!.results?[index];
+              ChatCubit.get(context).messagesModel!.results!.reversed.toList()[index];
               if (CacheHelper().getData(key: userId) ==
-                  message!.sender) {
+                  message.sender) {
                 return BuildMyMessage(message: message.content!);
               }
               return BuildAnotherMessage(message: message.content!);
@@ -38,7 +39,8 @@ class ChatMessages extends StatelessWidget {
             ),
             itemCount: ChatCubit.get(context).messagesModel!.results!.length,
           ),
-        );
+        ):
+          Expanded(child: Container());
       },
     );
   }

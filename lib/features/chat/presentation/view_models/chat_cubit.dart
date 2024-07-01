@@ -1,4 +1,5 @@
-import 'package:bloc/bloc.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/api/api_helper.dart';
@@ -6,9 +7,7 @@ import 'package:graduation_project/core/api/end_points.dart';
 import 'package:graduation_project/features/chat/data/models/chat_model.dart';
 import 'package:graduation_project/features/chat/data/models/messages_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
 import '../../../../core/errors/exception.dart';
-
 part 'chat_state.dart';
 
 class ChatCubit extends Cubit<ChatState> {
@@ -18,22 +17,25 @@ class ChatCubit extends Cubit<ChatState> {
 
   var message = TextEditingController();
   ChatModel? chatModel;
-  void getChat()async{
+  void getChat({
+    required bool back
+})async{
+    if(!back) {
       emit(GetChatLoading());
+    }
       try{
         var response = await apiHelper.get(
             EndPoints.chat
         );
         chatModel = ChatModel.fromJson(response);
         getMessages();
-        emit(GetChatSuccess());
       } on ServerException catch (e) {
         emit(GetChatError(error: e.errorModel.message));
       }
   }
 
   void refreshPatientsMedicine(RefreshController refreshController) async{
-    getChat();
+    getChat(back: false);
     await Future.delayed(const Duration(milliseconds: 1000));
     refreshController.refreshCompleted();
   }
@@ -48,6 +50,7 @@ class ChatCubit extends Cubit<ChatState> {
         }
       );
       messagesModel = MessagesModel.fromJson(response);
+      emit(GetChatSuccess());
     }on ServerException catch (e) {
       emit(GetChatError(error: e.errorModel.message));
     }
@@ -63,12 +66,26 @@ class ChatCubit extends Cubit<ChatState> {
           'id' : '668237845a5656aa48ce4331'
         }
       );
-      print(message);
       message.text = '';
       getMessages();
       emit(SendMessageSuccess());
     }on ServerException catch (e) {
       emit(SendMessageError(error: e.errorModel.message));
     }
+  }
+
+  Timer? _timer;
+  void getMessageInChat(){
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 2), (Timer t) {
+      getMessages();
+    });
+  }
+  void stopGetMessageInChat(){
+    if (_timer != null) {
+      _timer!.cancel();
+      _timer = null;
+    }
+    emit(StopGetMessage());
   }
 }

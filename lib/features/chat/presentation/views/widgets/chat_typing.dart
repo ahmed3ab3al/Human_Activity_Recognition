@@ -42,20 +42,19 @@ class ChatTyping extends StatelessWidget {
                   ),
                 ),
               ),
-              CircleAvatar(
-                radius: 25,
-                backgroundColor: ColorManager.blueColor0E4CA1,
-                child: Center(
-                  child: MaterialButton(
-                      minWidth: 1,
-                      onPressed: () {
-                        ChatCubit.get(context).sendMessage();
-                      },
-                      child: const Icon(
-                        Icons.send,
-                        color: Colors.white,
-                        size: 20,
-                      )
+              InkWell(
+                onTap: (){
+                  ChatCubit.get(context).sendMessage();
+                },
+                child: const CircleAvatar(
+                  radius: 25,
+                  backgroundColor: ColorManager.blueColor0E4CA1,
+                  child: Center(
+                    child: Icon(
+                      Icons.send,
+                      color: Colors.white,
+                      size: 20,
+                    ),
                   ),
                 ),
               ),

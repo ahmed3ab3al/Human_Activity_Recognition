@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) => MedicineCubit(getIt.get<DioHelper>())
         ),
         BlocProvider(
-            create: (BuildContext context) => ChatCubit(getIt.get<DioHelper>())..getChat()
+            create: (BuildContext context) => ChatCubit(getIt.get<DioHelper>())..getChat(back: false)
         ),
       ] ,
       child: ScreenUtilInit(

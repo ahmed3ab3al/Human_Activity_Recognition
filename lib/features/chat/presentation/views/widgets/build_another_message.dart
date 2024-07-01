@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/utils/colors.dart';
 
 class BuildAnotherMessage extends StatelessWidget {
   const BuildAnotherMessage({super.key, required this.message});
@@ -9,9 +10,9 @@ class BuildAnotherMessage extends StatelessWidget {
       alignment: AlignmentDirectional.centerStart,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-        decoration: BoxDecoration(
-          color: Colors.grey[300],
-          borderRadius: const BorderRadiusDirectional.only(
+        decoration: const BoxDecoration(
+          color: ColorManager.greyColorEEEEEE,
+          borderRadius: BorderRadiusDirectional.only(
             bottomEnd: Radius.circular(10),
             topEnd: Radius.circular(10),
             topStart: Radius.circular(10),
@@ -19,6 +20,9 @@ class BuildAnotherMessage extends StatelessWidget {
         ),
         child:  Text(
           message,
+          style: const TextStyle(
+            color: ColorManager.greyColor757474
+          ),
         ),
       ),
     );
