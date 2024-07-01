@@ -54,7 +54,7 @@ class BuildChatsItem extends StatelessWidget {
                       Expanded(
                         child: Text(
                           name,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
                           ),

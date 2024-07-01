@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-class BuilsMyMessage extends StatelessWidget {
-  const BuilsMyMessage({super.key});
+class BuildMyMessage extends StatelessWidget {
+  const BuildMyMessage({super.key, required this.message});
 
+  final String message;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -17,8 +18,8 @@ class BuilsMyMessage extends StatelessWidget {
             topStart: Radius.circular(10),
           ),
         ),
-        child: const Text(
-          'messageModel.text!',
+        child:  Text(
+          message,
         ),
       ),
     );

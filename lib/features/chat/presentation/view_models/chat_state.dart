@@ -10,3 +10,18 @@ class GetChatError extends ChatState {
   GetChatError({required this.error});
 }
 
+class GetMessageLoading extends ChatState {}
+class GetMessageSuccess extends ChatState {}
+class GetMessageError extends ChatState {
+  final error;
+  GetMessageError({required this.error});
+}
+
+class SendMessageLoading extends ChatState {}
+class SendMessageSuccess extends ChatState {}
+class SendMessageError extends ChatState {
+  final error;
+  SendMessageError({required this.error});
+}
+
+

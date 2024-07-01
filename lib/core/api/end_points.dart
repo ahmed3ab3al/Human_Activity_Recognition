@@ -20,6 +20,8 @@ class EndPoints {
   static const String updateProfile = '/users/update-user';
   static const String createChat = '/chats/create-chat';
   static const String chat = '/chats/user-chats';
+  static const String messages = '/messages/all-chat-messages';
+  static const String sendMessage = '/messages/send-message';
 }
 
 class ApiKeys {

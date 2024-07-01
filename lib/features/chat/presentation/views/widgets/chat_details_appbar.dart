@@ -5,8 +5,9 @@ import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/styles.dart';
 
 class ChatDetailsAppBar extends StatelessWidget {
-  const ChatDetailsAppBar({super.key});
+  const ChatDetailsAppBar({super.key, required this.name});
 
+  final name;
   @override
   Widget build(BuildContext context) {
     return  Row(
@@ -25,7 +26,7 @@ class ChatDetailsAppBar extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 25,
-              backgroundImage: AssetImage('images/vitamin_a.png'),
+              backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
             ),
             Positioned(
               left: 40,
@@ -44,7 +45,7 @@ class ChatDetailsAppBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Mohammed Ashraf',
+              '$name',
               style: Styles.testStyle14Bold,
             ),
             Text(

@@ -5,28 +5,30 @@ import 'package:graduation_project/features/chat/presentation/views/widgets/chat
 
 
 class ChatDetails extends StatelessWidget {
-  const ChatDetails({super.key,
+  const ChatDetails({super.key,required this.name,
   });
 
+  final name;
   @override
   Widget build(BuildContext context) {
-    var textController = TextEditingController();
     return Builder(
       builder: (BuildContext context) {
-        return const Scaffold(
+        return  Scaffold(
           body: SafeArea(
             child: Padding(
-              padding: EdgeInsets.only(bottom: 15,left: 15,right: 15,top: 5),
+              padding: const EdgeInsets.only(bottom: 15,left: 15,right: 15,top: 5),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  ChatDetailsAppBar(),
-                  ChatMessages(),
-                  SizedBox(
+                  ChatDetailsAppBar(
+                    name: name,
+                  ),
+                  const ChatMessages(),
+                  const SizedBox(
                     height: 20,
                   ),
-                  ChatTyping(),
+                  const ChatTyping(),
                 ],
               ),
             ),

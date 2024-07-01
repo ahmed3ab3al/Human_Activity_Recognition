@@ -17,9 +17,6 @@ class ChatsScreen extends StatelessWidget {
   final searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    if (ChatCubit.get(context).chatModel == null){
-      ChatCubit.get(context).getChat();
-    }
     RefreshController refreshController =
     RefreshController(initialRefresh: false);
     return BlocBuilder<ChatCubit, ChatState>(
@@ -81,7 +78,10 @@ class ChatsScreen extends StatelessWidget {
                       shrinkWrap: true,
                       itemBuilder: (context, index) => InkWell(
                         onTap: (){
-                          GoRouter.of(context).push(AppRouter.kChatDetails);
+                          GoRouter.of(context).push(
+                              AppRouter.kChatDetails,
+                            extra: ChatCubit.get(context).chatModel!.results![0].members![index].name!
+                          );
                         },
                           child:  state is GetChatLoading ? const ChatLoading():
                           ChatCubit.get(context).chatModel!.results![0].members![index].id != CacheHelper().getData(key: userId) ?
