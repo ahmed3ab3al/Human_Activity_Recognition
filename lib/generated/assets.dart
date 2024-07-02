@@ -11,9 +11,11 @@ class Assets {
   static const String imagesJogging = 'assets/images/jogging.png';
   static const String imagesJump = 'assets/images/jump.png';
   static const String imagesLogo = 'assets/images/logo.svg';
-  static const String imagesOnBoardingFour = 'assets/images/on_boarding_four.png';
+  static const String imagesOnBoardingFour =
+      'assets/images/on_boarding_four.png';
   static const String imagesOnBoardingOne = 'assets/images/on_boarding_one.png';
-  static const String imagesOnBoardingThree = 'assets/images/on_boarding_three.png';
+  static const String imagesOnBoardingThree =
+      'assets/images/on_boarding_three.png';
   static const String imagesOnBoardingTwo = 'assets/images/on_boarding_two.png';
   static const String imagesSelection = 'assets/images/selection.png';
   static const String imagesSit = 'assets/images/sit.png';
@@ -25,5 +27,4 @@ class Assets {
   static const String imagesVitaminC = 'assets/images/vitamin_c.png';
   static const String imagesWalk = 'assets/images/walk.png';
   static const String imagesWaveHand = 'assets/images/wave_hand.png';
-
 }

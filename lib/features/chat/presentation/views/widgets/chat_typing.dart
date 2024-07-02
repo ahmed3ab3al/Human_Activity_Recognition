@@ -5,7 +5,10 @@ import 'package:graduation_project/features/chat/presentation/view_models/chat_c
 import '../../../../../core/utils/colors.dart';
 
 class ChatTyping extends StatelessWidget {
-  const ChatTyping({super.key, required this.id,});
+  const ChatTyping({
+    super.key,
+    required this.id,
+  });
 
   final id;
   @override
@@ -28,8 +31,7 @@ class ChatTyping extends StatelessWidget {
                       contentPadding: const EdgeInsets.symmetric(
                           vertical: 15, horizontal: 20),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30)
-                      ),
+                          borderRadius: BorderRadius.circular(30)),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(50),
                         borderSide: const BorderSide(
@@ -45,10 +47,9 @@ class ChatTyping extends StatelessWidget {
               ),
               InkWell(
                 radius: 25,
-                onTap: (){
+                onTap: () {
                   AppSocket.sendMessageSocket(
-                    id: id,
-                      message: ChatCubit.get(context).message.text);
+                      id: id, message: ChatCubit.get(context).message.text);
                   ChatCubit.get(context).sendMessage();
                 },
                 child: const CircleAvatar(

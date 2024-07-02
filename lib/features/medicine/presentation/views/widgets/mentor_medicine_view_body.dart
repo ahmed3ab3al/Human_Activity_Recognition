@@ -38,10 +38,12 @@ class MentorMedicineViewBody extends StatelessWidget {
                         state.error.toString(),
                       ),
                     ),
-                  if (state is! GetPatientMedicineLoading && state is! GetPatientMedicineError)
-                     MedicineViewBody(
-                      getPatientMedicine: MedicineCubit.get(context).getPatientMedicine!,
-                  ),
+                  if (state is! GetPatientMedicineLoading &&
+                      state is! GetPatientMedicineError)
+                    MedicineViewBody(
+                      getPatientMedicine:
+                          MedicineCubit.get(context).getPatientMedicine!,
+                    ),
                 ],
               ),
             ),

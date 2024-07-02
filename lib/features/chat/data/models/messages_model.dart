@@ -1,7 +1,8 @@
 class MessagesModel {
   MessagesModel({
-      this.message, 
-      this.results,});
+    this.message,
+    this.results,
+  });
 
   MessagesModel.fromJson(dynamic json) {
     message = json['message'];
@@ -14,15 +15,15 @@ class MessagesModel {
   }
   String? message;
   List<MessageDetails>? results;
-
 }
 
 class MessageDetails {
   MessageDetails({
-      this.content, 
-      this.sender, 
-      this.createdAt, 
-      this.updatedAt,});
+    this.content,
+    this.sender,
+    this.createdAt,
+    this.updatedAt,
+  });
 
   MessageDetails.fromJson(dynamic json) {
     content = json['content'];
@@ -34,6 +35,4 @@ class MessageDetails {
   String? sender;
   String? createdAt;
   String? updatedAt;
-
-
 }

@@ -1,8 +1,9 @@
 class ProfileModel {
   ProfileModel({
-      this.message, 
-      this.user, 
-      this.token,});
+    this.message,
+    this.user,
+    this.token,
+  });
 
   ProfileModel.fromJson(dynamic json) {
     message = json['message'];
@@ -12,9 +13,8 @@ class ProfileModel {
   String? message;
   User? user;
   String? token;
-
-
 }
+
 class User {
   User({
     this.id,
@@ -22,7 +22,8 @@ class User {
     this.email,
     this.role,
     this.phone,
-    this.verified,});
+    this.verified,
+  });
 
   User.fromJson(dynamic json) {
     id = json['_id'];
@@ -38,5 +39,4 @@ class User {
   String? role;
   String? phone;
   bool? verified;
-
 }

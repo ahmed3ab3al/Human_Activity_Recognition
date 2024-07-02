@@ -15,14 +15,15 @@ class PatientMedicineView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RefreshController refreshController =
-    RefreshController(initialRefresh: false);
+        RefreshController(initialRefresh: false);
     return BlocBuilder<MedicineCubit, MedicineStates>(
       builder: (context, state) {
         return SmartRefresher(
           controller: refreshController,
           enablePullDown: true,
           onRefresh: () {
-            MedicineCubit.get(context).refreshPatientsMedicine(refreshController);
+            MedicineCubit.get(context)
+                .refreshPatientsMedicine(refreshController);
           },
           child: SingleChildScrollView(
             child: SafeArea(
@@ -32,12 +33,15 @@ class PatientMedicineView extends StatelessWidget {
                   children: [
                     const ImageText(),
                     const NameProfileRow(),
-                     if (state is GetPatientMedicineLoading || state is GetPatientMedicineError)
-                       const MedicineViewLoading(),
-                     if (MedicineCubit.get(context).getPatientMedicineTrue && state is! GetPatientMedicineLoading)
-                       MedicineViewBody(
-                      getPatientMedicine: MedicineCubit.get(context).getPatientMedicine,
-                    ),
+                    if (state is GetPatientMedicineLoading ||
+                        state is GetPatientMedicineError)
+                      const MedicineViewLoading(),
+                    if (MedicineCubit.get(context).getPatientMedicineTrue &&
+                        state is! GetPatientMedicineLoading)
+                      MedicineViewBody(
+                        getPatientMedicine:
+                            MedicineCubit.get(context).getPatientMedicine,
+                      ),
                   ],
                 ),
               ),

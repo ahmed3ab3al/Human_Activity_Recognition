@@ -17,7 +17,8 @@ import 'features/medicine/presentation/view_models/medicine_cubit/medicine_cubit
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper().init();
-  if (CacheHelper().getData(key: userId) != null && CacheHelper().getData(key: userId).isNotEmpty) {
+  if (CacheHelper().getData(key: userId) != null &&
+      CacheHelper().getData(key: userId).isNotEmpty) {
     AppSocket.appSocket();
   }
   print(CacheHelper().getData(key: token));
@@ -43,21 +44,21 @@ class MyApp extends StatelessWidget {
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark));
     return MultiBlocProvider(
-      providers:  [
+      providers: [
         BlocProvider(
           create: (context) =>
-          PatientCubit(getIt.get<DioHelper>())..getMentorRequests(),
+              PatientCubit(getIt.get<DioHelper>())..getMentorRequests(),
         ),
         BlocProvider(
           create: (BuildContext context) => MentorCubit(getIt.get<DioHelper>()),
         ),
         BlocProvider(
-            create: (BuildContext context) => MedicineCubit(getIt.get<DioHelper>())
-        ),
+            create: (BuildContext context) =>
+                MedicineCubit(getIt.get<DioHelper>())),
         BlocProvider(
-            create: (BuildContext context) => ChatCubit(getIt.get<DioHelper>())..getChat(back: false)
-        ),
-      ] ,
+            create: (BuildContext context) =>
+                ChatCubit(getIt.get<DioHelper>())..getChat(back: false)),
+      ],
       child: ScreenUtilInit(
           designSize: const Size(390, 844),
           minTextAdapt: true,

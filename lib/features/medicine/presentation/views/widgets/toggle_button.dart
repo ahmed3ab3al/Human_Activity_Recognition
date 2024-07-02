@@ -5,91 +5,90 @@ import '../../../../../core/utils/styles.dart';
 import '../../view_models/medicine_cubit/medicine_cubit.dart';
 import '../../view_models/medicine_cubit/medicine_state.dart';
 
-
 class GestureDetectorToggle extends StatelessWidget {
   const GestureDetectorToggle({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  BlocBuilder<MedicineCubit, MedicineStates>(
-  builder: (context, state) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 22.w),
-      child: Row(
-        children: [
-          Expanded(
-            child: GestureDetector(
-              onTap: (){
-                MedicineCubit.get(context).toggleContainer(false);
-              },
-              child: Container(
-                width: double.infinity,
-                height: 50.h,
-                decoration: BoxDecoration(
-                    gradient: MedicineCubit.get(context).isAfterMeal
-                        ? null
-                        : const LinearGradient(
-                      colors: [
-                        Color(0xff0E4CA1),
-                        Color(0xff67A3F4),
+    return BlocBuilder<MedicineCubit, MedicineStates>(
+      builder: (context, state) {
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 22.w),
+          child: Row(
+            children: [
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    MedicineCubit.get(context).toggleContainer(false);
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 50.h,
+                    decoration: BoxDecoration(
+                        gradient: MedicineCubit.get(context).isAfterMeal
+                            ? null
+                            : const LinearGradient(
+                                colors: [
+                                  Color(0xff0E4CA1),
+                                  Color(0xff67A3F4),
+                                ],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                              ),
+                        borderRadius: BorderRadius.circular(20.r)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Before Meals',
+                          style: MedicineCubit.get(context).isAfterMeal
+                              ? Styles.size16_700Black
+                              : Styles.size16_700White,
+                        ),
                       ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
                     ),
-                    borderRadius: BorderRadius.circular(20.r)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Before Meals',
-                      style: MedicineCubit.get(context).isAfterMeal
-                          ? Styles.size16_700Black
-                          : Styles.size16_700White,
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ),
-          5.horizontalSpace,
-          Expanded(
-            child: GestureDetector(
-              onTap: (){
-                MedicineCubit.get(context).toggleContainer(true);
-              },
-              child: Container(
-                  width: double.infinity,
-                  height: 50.h,
-                  decoration: BoxDecoration(
-                      gradient: MedicineCubit.get(context).isAfterMeal
-                          ? const LinearGradient(
-                        colors: [
-                          Color(0xff0E4CA1),
-                          Color(0xff67A3F4),
+              5.horizontalSpace,
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    MedicineCubit.get(context).toggleContainer(true);
+                  },
+                  child: Container(
+                      width: double.infinity,
+                      height: 50.h,
+                      decoration: BoxDecoration(
+                          gradient: MedicineCubit.get(context).isAfterMeal
+                              ? const LinearGradient(
+                                  colors: [
+                                    Color(0xff0E4CA1),
+                                    Color(0xff67A3F4),
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                )
+                              : null,
+                          borderRadius: BorderRadius.circular(20.r)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('After Meals',
+                              style: MedicineCubit.get(context).isAfterMeal
+                                  ? Styles.size16_700White
+                                  : Styles.size16_700Black),
                         ],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                      )
-                          : null,
-                      borderRadius: BorderRadius.circular(20.r)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text('After Meals',
-                          style: MedicineCubit.get(context).isAfterMeal
-                              ? Styles.size16_700White
-                              : Styles.size16_700Black),
-                    ],
-                  )),
-            ),
+                      )),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
-  },
-);
   }
 }
 

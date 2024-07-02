@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CustomLoadingItem extends StatelessWidget {
-  const CustomLoadingItem({super.key, required this.width, required this.height, this.circle = 15});
+  const CustomLoadingItem(
+      {super.key, required this.width, required this.height, this.circle = 15});
   final double width;
   final double height;
   final double circle;
@@ -18,7 +19,7 @@ class CustomLoadingItem extends StatelessWidget {
           height: height,
           decoration: BoxDecoration(
             color: Colors.black.withOpacity(0.04),
-            borderRadius:  BorderRadius.all(Radius.circular(circle)),
+            borderRadius: BorderRadius.all(Radius.circular(circle)),
           ),
         ),
       ),

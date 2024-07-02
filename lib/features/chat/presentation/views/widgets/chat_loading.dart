@@ -7,7 +7,7 @@ class ChatLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       children: [
         const CustomLoadingItem(
           width: 60,
@@ -25,17 +25,14 @@ class ChatLoading extends StatelessWidget {
               children: [
                 CustomLoadingItem(
                     width: MediaQuery.of(context).size.width / 2.5,
-                    height: 15.w
-                ),
+                    height: 15.w),
               ],
             ),
             const SizedBox(
               height: 15.0,
             ),
             CustomLoadingItem(
-                width: MediaQuery.of(context).size.width / 2,
-                height: 15.w
-            ),
+                width: MediaQuery.of(context).size.width / 2, height: 15.w),
           ],
         ),
       ],

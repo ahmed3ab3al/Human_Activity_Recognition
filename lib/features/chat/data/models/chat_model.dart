@@ -1,6 +1,7 @@
 class ChatModel {
   ChatModel({
-      this.results,});
+    this.results,
+  });
 
   ChatModel.fromJson(dynamic json) {
     if (json['results'] != null) {
@@ -11,17 +12,17 @@ class ChatModel {
     }
   }
   List<Results>? results;
-
 }
 
 class Results {
   Results({
-      this.id, 
-      this.members, 
-      this.createdAt, 
-      this.updatedAt, 
-      this.v, 
-      this.lastMesssage,});
+    this.id,
+    this.members,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
+    this.lastMesssage,
+  });
 
   Results.fromJson(dynamic json) {
     id = json['_id'];
@@ -42,14 +43,14 @@ class Results {
   String? updatedAt;
   num? v;
   String? lastMesssage;
-
 }
 
 class Members {
   Members({
-      this.id, 
-      this.name, 
-      this.role,});
+    this.id,
+    this.name,
+    this.role,
+  });
 
   Members.fromJson(dynamic json) {
     id = json['_id'];
@@ -59,5 +60,4 @@ class Members {
   String? id;
   String? name;
   String? role;
-
 }

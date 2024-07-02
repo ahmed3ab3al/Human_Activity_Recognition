@@ -27,8 +27,10 @@ class ProfileCubit extends Cubit<ProfileStates> {
   //   }
   // }
 
-  editProfile({required String name, required String phone,
-    required String gender}) async {
+  editProfile(
+      {required String name,
+      required String phone,
+      required String gender}) async {
     try {
       emit(EditProfileLoadingState());
       final response = await apiHelper.put(

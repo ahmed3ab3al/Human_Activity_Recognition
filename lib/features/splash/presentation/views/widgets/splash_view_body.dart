@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
 import 'package:graduation_project/core/utils/assets.dart';
-import 'package:graduation_project/features/splash/presentation/views/widgets/sliding_text.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/cache/cache_helper.dart';
 
@@ -54,7 +53,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       children: [
         Center(
           child: SvgPicture.asset(
-              AppAssets.logo,
+            AppAssets.logo,
             height: 300.h,
             width: double.infinity,
           ),

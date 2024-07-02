@@ -4,12 +4,15 @@ import 'package:intl/intl.dart';
 import '../../../../medicine/presentation/views/widgets/line_container.dart';
 
 class BuildChatsItem extends StatelessWidget {
-  const BuildChatsItem({super.key, required this.name, required this.message, required this.time});
+  const BuildChatsItem(
+      {super.key,
+      required this.name,
+      required this.message,
+      required this.time});
 
   final String name;
   final String message;
   final String time;
-
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,7 @@ class BuildChatsItem extends StatelessWidget {
     DateTime dateTime = DateTime.parse(time);
     // Format the date to the desired format
     String formattedDate = DateFormat('h:mm a').format(dateTime);
-    return  Column(
+    return Column(
       children: [
         Row(
           children: [
@@ -26,8 +29,7 @@ class BuildChatsItem extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 30.0,
-                  backgroundImage:
-                  NetworkImage('https://i.pravatar.cc/300'),
+                  backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
                   backgroundColor: Colors.black,
                 ),
                 Padding(
@@ -49,7 +51,7 @@ class BuildChatsItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   Row(
+                  Row(
                     children: [
                       Expanded(
                         child: Text(
@@ -62,7 +64,7 @@ class BuildChatsItem extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                       Text(
+                      Text(
                         formattedDate,
                       ),
                     ],
@@ -72,7 +74,7 @@ class BuildChatsItem extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                       Expanded(
+                      Expanded(
                         child: Text(
                           message ?? '',
                           maxLines: 1,

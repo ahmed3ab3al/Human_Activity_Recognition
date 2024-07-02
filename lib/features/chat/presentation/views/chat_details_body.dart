@@ -6,9 +6,10 @@ import 'package:graduation_project/features/chat/presentation/views/widgets/chat
 import 'package:graduation_project/features/chat/presentation/views/widgets/chat_messages.dart';
 import 'package:graduation_project/features/chat/presentation/views/widgets/chat_typing.dart';
 
-
 class ChatDetails extends StatefulWidget {
-  const ChatDetails({super.key,required this.name,
+  const ChatDetails({
+    super.key,
+    required this.name,
   });
 
   final name;
@@ -24,14 +25,16 @@ class _ChatDetailsState extends State<ChatDetails> {
     ChatCubit.get(context).getMessageSocket();
     ChatCubit.get(context).getMessages();
   }
+
   @override
   Widget build(BuildContext context) {
     return Builder(
       builder: (BuildContext context) {
-        return  Scaffold(
+        return Scaffold(
           body: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 15,left: 15,right: 15,top: 5),
+              padding: const EdgeInsets.only(
+                  bottom: 15, left: 15, right: 15, top: 5),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -43,8 +46,10 @@ class _ChatDetailsState extends State<ChatDetails> {
                   const SizedBox(
                     height: 20,
                   ),
-                   ChatTyping(
-                    id: CacheHelper().getData(key: userRole) == 'mentor' ? patientID: mentorID,
+                  ChatTyping(
+                    id: CacheHelper().getData(key: userRole) == 'mentor'
+                        ? patientID
+                        : mentorID,
                   ),
                 ],
               ),
@@ -55,4 +60,3 @@ class _ChatDetailsState extends State<ChatDetails> {
     );
   }
 }
-

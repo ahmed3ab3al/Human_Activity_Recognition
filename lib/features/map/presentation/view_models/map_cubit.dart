@@ -23,13 +23,11 @@ class MapCubit extends Cubit<MapState> {
   GoogleMapController? mapController;
 
   void initPolygons() {
-    Polygon polygon = const Polygon(
-        points: [
-          LatLng(37.43296265331129, -122.08832357078792),
-          LatLng(37.430939, -122.084057),
-          LatLng(37.43296265331129, -122.08832357078792),
-        ],
-        polygonId: PolygonId('1'));
+    Polygon polygon = const Polygon(points: [
+      LatLng(37.43296265331129, -122.08832357078792),
+      LatLng(37.430939, -122.084057),
+      LatLng(37.43296265331129, -122.08832357078792),
+    ], polygonId: PolygonId('1'));
     myPolygons.add(polygon);
   }
 
@@ -38,9 +36,7 @@ class MapCubit extends Cubit<MapState> {
     serviceEnabled = await location.serviceEnabled();
     if (!serviceEnabled) {
       serviceEnabled = await location.requestService();
-      if (!serviceEnabled)
-      {
-      }
+      if (!serviceEnabled) {}
     }
   }
 
@@ -52,25 +48,26 @@ class MapCubit extends Cubit<MapState> {
     }
     if (permissionGranted == PermissionStatus.denied) {
       permissionGranted = await location.requestPermission();
-      if (permissionGranted != PermissionStatus.granted)
-      {
+      if (permissionGranted != PermissionStatus.granted) {
         return false;
       }
     }
     return true;
   }
+
   void updateMyLocation() async {
     await checkAndRequestLocationService();
-    var hasPermission = await  checkAndRequestPermission();
-    if(hasPermission){
+    var hasPermission = await checkAndRequestPermission();
+    if (hasPermission) {
       getPatientLocation();
     }
   }
 
-  void getPatientLocation() async{
+  void getPatientLocation() async {
     emit(GetLocationLoading());
     try {
-      dynamic response = await dioHelper.get('${EndPoints.getLocation}$patientID');
+      dynamic response =
+          await dioHelper.get('${EndPoints.getLocation}$patientID');
       // Parse the response to extract longitude and latitude
       var data = response['location'];
       double longitude = data['longitude'];
@@ -82,11 +79,14 @@ class MapCubit extends Cubit<MapState> {
         ),
         zoom: 13.0,
       );
-      mapController?.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+      mapController
+          ?.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
       markers.add(Marker(
         markerId: const MarkerId('1'),
-        position: LatLng( latitude, longitude),
-        infoWindow: const InfoWindow(title: 'My Location',),
+        position: LatLng(latitude, longitude),
+        infoWindow: const InfoWindow(
+          title: 'My Location',
+        ),
       ));
       emit(GetLocationSuccess());
     } on ServerException catch (e) {

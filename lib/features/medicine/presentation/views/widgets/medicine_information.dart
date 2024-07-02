@@ -13,74 +13,76 @@ class MedicineInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MedicineCubit, MedicineStates>(
-  builder: (context, state) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+      builder: (context, state) {
+        return Column(
           children: [
-            Text(
-              'Dosage',
-              style: Styles.size16_700Black,
-            ),
-            193.horizontalSpace,
-            const GestureDetectorToggleCounter()
-          ],
-        ),
-        40.verticalSpace,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              'Repeat for',
-              style: Styles.size16_700Black,
-            ),
-            180.horizontalSpace,
-            Text(
-              '${24 ~/ MedicineCubit.get(context).dosage} hours',
-              style: Styles.testStyle15
-                  .copyWith(color: ColorManager.greyColor757474),
-            ),
-          ],
-        ),
-        30.verticalSpace,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              'Time',
-              style: Styles.size16_700Black,
-            ),
-            190.horizontalSpace,
-            SizedBox(
-              width: 110.w,
-              child: TextFormField(
-                controller:
-                    BlocProvider.of<MedicineCubit>(context).timeController,
-                keyboardType: TextInputType.datetime,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    borderSide: BorderSide(color: ColorManager.greyColorD9D9D9),
-                  ),
-                  hintText: ' New Time',
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Dosage',
+                  style: Styles.size16_700Black,
                 ),
-                onTap: () {
-                  showTimePicker(context: context, initialTime: TimeOfDay.now())
-                      .then((value) {
+                193.horizontalSpace,
+                const GestureDetectorToggleCounter()
+              ],
+            ),
+            40.verticalSpace,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Repeat for',
+                  style: Styles.size16_700Black,
+                ),
+                180.horizontalSpace,
+                Text(
+                  '${24 ~/ MedicineCubit.get(context).dosage} hours',
+                  style: Styles.testStyle15
+                      .copyWith(color: ColorManager.greyColor757474),
+                ),
+              ],
+            ),
+            30.verticalSpace,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Time',
+                  style: Styles.size16_700Black,
+                ),
+                190.horizontalSpace,
+                SizedBox(
+                  width: 110.w,
+                  child: TextFormField(
+                    controller:
+                        BlocProvider.of<MedicineCubit>(context).timeController,
+                    keyboardType: TextInputType.datetime,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        borderSide:
+                            BorderSide(color: ColorManager.greyColorD9D9D9),
+                      ),
+                      hintText: ' New Time',
+                    ),
+                    onTap: () {
+                      showTimePicker(
+                              context: context, initialTime: TimeOfDay.now())
+                          .then((value) {
                         MedicineCubit.get(context).hours = value!.hour;
                         MedicineCubit.get(context).minute = value.minute;
-                        MedicineCubit.get(context).timeController
-                        .text = value.format(context);
-                  });
-                },
-              ),
-            )
+                        MedicineCubit.get(context).timeController.text =
+                            value.format(context);
+                      });
+                    },
+                  ),
+                )
+              ],
+            ),
           ],
-        ),
-      ],
+        );
+      },
     );
-  },
-);
   }
 }

@@ -66,7 +66,8 @@ class LoginViewBody extends StatelessWidget {
                     children: [
                       Lottie.asset(AppAssets.animation),
                       const LoginInputSection(),
-                      3.verticalSpace, TextButton(
+                      3.verticalSpace,
+                      TextButton(
                         onPressed: () {
                           GoRouter.of(context).push(AppRouter.kCheckEmail);
                         },
@@ -80,10 +81,10 @@ class LoginViewBody extends StatelessWidget {
                                   .loginFormKey
                                   .currentState!
                                   .validate()
-                          ?  CustomLoadingItem(
-                        width: MediaQuery.sizeOf(context).width / 1.1,
-                        height: MediaQuery.sizeOf(context).height/ 15,
-                      )
+                          ? CustomLoadingItem(
+                              width: MediaQuery.sizeOf(context).width / 1.1,
+                              height: MediaQuery.sizeOf(context).height / 15,
+                            )
                           : LoginButtonView(
                               formKey: LoginCubit.get(context).loginFormKey,
                             ),

@@ -8,12 +8,12 @@ import '../../view_models/medicine_cubit/medicine_cubit.dart';
 import 'custom_container_medicine.dart';
 
 class MedicineViewBody extends StatelessWidget {
-  const MedicineViewBody({super.key,  this.getPatientMedicine});
+  const MedicineViewBody({super.key, this.getPatientMedicine});
 
   final GetPatientMedicine? getPatientMedicine;
   @override
   Widget build(BuildContext context) {
-    return   SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
           SizedBox(
@@ -36,10 +36,9 @@ class MedicineViewBody extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return  Row(
+              return Row(
                 children: [
-                   Column(
-
+                  Column(
                     children: [
                       const Row(
                         children: [
@@ -47,15 +46,15 @@ class MedicineViewBody extends StatelessWidget {
                           Text('11:00 AM'),
                         ],
                       ),
-                      getPatientMedicine!.result![index].afterMeal! ?
-                      Text(
-                        'After Meal',
-                        style: Styles.testStyle14Bold,
-                      ):
-                      Text(
-                        'Before Meal',
-                        style: Styles.testStyle14Bold,
-                      ),
+                      getPatientMedicine!.result![index].afterMeal!
+                          ? Text(
+                              'After Meal',
+                              style: Styles.testStyle14Bold,
+                            )
+                          : Text(
+                              'Before Meal',
+                              style: Styles.testStyle14Bold,
+                            ),
                     ],
                   ),
                   CustomContainerMedicine(
@@ -69,7 +68,8 @@ class MedicineViewBody extends StatelessWidget {
             separatorBuilder: (context, index) {
               return 30.verticalSpace;
             },
-            itemCount: MedicineCubit.get(context).getPatientMedicine!.result!.length,
+            itemCount:
+                MedicineCubit.get(context).getPatientMedicine!.result!.length,
           ),
           30.verticalSpace,
         ],

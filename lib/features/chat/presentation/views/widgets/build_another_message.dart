@@ -18,11 +18,9 @@ class BuildAnotherMessage extends StatelessWidget {
             topStart: Radius.circular(10),
           ),
         ),
-        child:  Text(
+        child: Text(
           message,
-          style: const TextStyle(
-            color: ColorManager.greyColor757474
-          ),
+          style: const TextStyle(color: ColorManager.greyColor757474),
         ),
       ),
     );

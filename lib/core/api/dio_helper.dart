@@ -88,9 +88,10 @@ class DioHelper extends ApiHelper {
   }
 
   @override
-  Future put(
-      String url,
-      {dynamic data, Map<String, dynamic>? queryParameters, bool isFormData = false}) async {
+  Future put(String url,
+      {dynamic data,
+      Map<String, dynamic>? queryParameters,
+      bool isFormData = false}) async {
     try {
       final response = await dio.put(
         url,

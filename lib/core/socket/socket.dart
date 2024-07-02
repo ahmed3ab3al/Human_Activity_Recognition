@@ -2,21 +2,19 @@ import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/notification/notification.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
-class AppSocket{
-  static Map<String,dynamic> options ={
-    'transports':['websocket'],
-    'autoConnect':false,
+
+class AppSocket {
+  static Map<String, dynamic> options = {
+    'transports': ['websocket'],
+    'autoConnect': false,
     'query': {
       'userId': CacheHelper().getData(key: userId),
     },
   };
   String mentor = '';
   static late IO.Socket socket;
-  static void appSocket(){
-    socket = IO.io(
-      'http://192.168.1.14:3000',
-      options
-    );
+  static void appSocket() {
+    socket = IO.io('http://192.168.1.14:3000', options);
     socket.connect();
     socket.onConnect((data) {
       print('Connect To Server');
@@ -25,18 +23,17 @@ class AppSocket{
       print('Socket Disconnect');
     });
     if (CacheHelper().getData(key: userRole) == 'patient') {
-      socket.on('fallingNotification', (data){
-      AppNotification alarmNotification = AppNotification();
-      alarmNotification.requestNotificationPermissions();
-      alarmNotification.init();
-      alarmNotification.showNotification(
-          title: 'Hallo ${CacheHelper().getData(key: userName)}',
-          body: 'Are you Ok ?',
-        patient: true,
-        isFall: true
-      );
-    });
-      socket.on('reminder', (data){
+      socket.on('fallingNotification', (data) {
+        AppNotification alarmNotification = AppNotification();
+        alarmNotification.requestNotificationPermissions();
+        alarmNotification.init();
+        alarmNotification.showNotification(
+            title: 'Hallo ${CacheHelper().getData(key: userName)}',
+            body: 'Are you Ok ?',
+            patient: true,
+            isFall: true);
+      });
+      socket.on('reminder', (data) {
         AppNotification alarmNotification = AppNotification();
         alarmNotification.requestNotificationPermissions();
         alarmNotification.init();
@@ -44,36 +41,29 @@ class AppSocket{
             title: 'Hallo ${CacheHelper().getData(key: userName)}',
             body: 'Take your ${data['name']} Medicine',
             patient: false,
-            isFall: false
-        );
+            isFall: false);
         print(data);
       });
     }
     if (CacheHelper().getData(key: userRole) == 'mentor') {
-      socket.on('mentorWarning', (data){
+      socket.on('mentorWarning', (data) {
         AppNotification alarmNotification = AppNotification();
         alarmNotification.requestNotificationPermissions();
         alarmNotification.init();
         alarmNotification.showNotification(
             title: 'Warning ${CacheHelper().getData(key: userName)}',
             body: 'Your Patient is Fall',
-          patient: false,
-            isFall: true
-        );
+            patient: false,
+            isFall: true);
         print(data);
-    });
+      });
     }
   }
 
   static void sendMessageSocket({
     required String id,
     required String message,
-}){
-    socket.emit(
-        'sendMessage',{
-      'to': id,
-      'message': message
-    }
-    );
+  }) {
+    socket.emit('sendMessage', {'to': id, 'message': message});
   }
 }

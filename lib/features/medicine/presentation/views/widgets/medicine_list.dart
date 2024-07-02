@@ -16,7 +16,6 @@ class MedicineList extends StatelessWidget {
     AppAssets.injection,
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MedicineCubit, MedicineStates>(
@@ -27,8 +26,7 @@ class MedicineList extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemBuilder: (context, index) =>
-                  GestureDetector(
+              itemBuilder: (context, index) => GestureDetector(
                     onTap: () {
                       MedicineCubit.get(context).changeDragItem(index);
                     },
@@ -64,18 +62,18 @@ class MedicineList extends StatelessWidget {
                       ),
                       MedicineCubit.get(context).selectedItem == index
                           ? Positioned(
-                        bottom: 40.h,
-                        left: 35.w,
-                        child: CircleAvatar(
-                          radius: 7.r,
-                          backgroundColor: Colors.greenAccent,
-                          child: Icon(
-                            Icons.check,
-                            size: 14.w,
-                            color: Colors.white,
-                          ),
-                        ),
-                      )
+                              bottom: 40.h,
+                              left: 35.w,
+                              child: CircleAvatar(
+                                radius: 7.r,
+                                backgroundColor: Colors.greenAccent,
+                                child: Icon(
+                                  Icons.check,
+                                  size: 14.w,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )
                           : Container(),
                     ]),
                   ),
@@ -86,4 +84,3 @@ class MedicineList extends StatelessWidget {
     );
   }
 }
-

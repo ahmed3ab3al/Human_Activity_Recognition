@@ -11,12 +11,13 @@ class AppNotification {
   static final AppNotification _instance = AppNotification._();
   factory AppNotification() => _instance;
 
-  static final AwesomeNotifications awesomeNotifications = AwesomeNotifications();
+  static final AwesomeNotifications awesomeNotifications =
+      AwesomeNotifications();
   Timer? _noResponseTimer;
 
   Future<void> init() async {
     await awesomeNotifications.initialize(
-      null,  // Default icon for notifications
+      null, // Default icon for notifications
       [
         NotificationChannel(
           channelKey: 'Fall Channel',
@@ -48,27 +49,22 @@ class AppNotification {
     required bool isFall,
   }) async {
     await awesomeNotifications.createNotification(
-      actionButtons: patient?[
-        NotificationActionButton(
-            key: 'YES',
-            label: 'Yes',
-            color: Colors.green
-        ),
-        NotificationActionButton(
-            key: 'NO',
-            label: 'No',
-            isDangerousOption: true
-        )
-      ] : [
-        NotificationActionButton(
-            key: 'Confirm',
-            label: 'Confirm',
-            color: Colors.green
-        ),
-      ],
+      actionButtons: patient
+          ? [
+              NotificationActionButton(
+                  key: 'YES', label: 'Yes', color: Colors.green),
+              NotificationActionButton(
+                  key: 'NO', label: 'No', isDangerousOption: true)
+            ]
+          : [
+              NotificationActionButton(
+                  key: 'Confirm', label: 'Confirm', color: Colors.green),
+            ],
       content: NotificationContent(
         notificationLayout: NotificationLayout.Default,
-        largeIcon: isFall ? 'asset://assets/images/fall.png' : 'asset://assets/images/injection.png',
+        largeIcon: isFall
+            ? 'asset://assets/images/fall.png'
+            : 'asset://assets/images/injection.png',
         id: -1,
         channelKey: 'Fall Channel',
         actionType: ActionType.Default,
@@ -80,12 +76,10 @@ class AppNotification {
 
     // Schedule a "No Response" message after a delay
     _noResponseTimer = Timer(const Duration(seconds: 5), () {
-      AppSocket.socket.emit(
-          'fallTimeout',{
+      AppSocket.socket.emit('fallTimeout', {
         'patientName': CacheHelper().getData(key: userName),
-        'mentor':'667850ecfa9b107c1f7bf9f1'
-      }
-      );
+        'mentor': '667850ecfa9b107c1f7bf9f1'
+      });
     });
   }
 
@@ -93,12 +87,10 @@ class AppNotification {
     awesomeNotifications.setListeners(
       onActionReceivedMethod: (ReceivedAction receivedAction) async {
         if (receivedAction.buttonKeyPressed == 'NO') {
-          AppSocket.socket.emit(
-              'fallTimeout',{
+          AppSocket.socket.emit('fallTimeout', {
             'patientName': CacheHelper().getData(key: userName),
-            'mentor':'667850ecfa9b107c1f7bf9f1'
-          }
-          );
+            'mentor': '667850ecfa9b107c1f7bf9f1'
+          });
         }
         // Cancel the "No Response" message
         if (_noResponseTimer != null) {

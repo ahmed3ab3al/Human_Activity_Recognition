@@ -6,7 +6,11 @@ import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/colors.dart';
 
 class PatientListItem extends StatelessWidget {
-  const PatientListItem({required this.name,super.key,required this.activitiy,required this.id});
+  const PatientListItem(
+      {required this.name,
+      super.key,
+      required this.activitiy,
+      required this.id});
   final name;
   final activitiy;
   final id;
@@ -40,8 +44,8 @@ class PatientListItem extends StatelessWidget {
       child: Row(
         children: [
           Image(
-            image:  AssetImage(
-                activityPhoto[activitiy] ?? AppAssets.error,
+            image: AssetImage(
+              activityPhoto[activitiy] ?? AppAssets.error,
             ),
             width: 50.w,
             height: 70.h,
@@ -58,14 +62,18 @@ class PatientListItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 Text(
+                Text(
                   name,
-                   style: Styles.size16_400Black.copyWith(fontWeight: FontWeight.bold),
+                  style: Styles.size16_400Black
+                      .copyWith(fontWeight: FontWeight.bold),
                 ),
                 4.verticalSpace,
-                 Text(
+                Text(
                   activitiy ?? 'Un Known Activity',
-                   style: Styles.testStyle14.copyWith(color: activitiy == 'Fall' ? ColorManager.redColorDC2222 : ColorManager.greyColor757474),
+                  style: Styles.testStyle14.copyWith(
+                      color: activitiy == 'Fall'
+                          ? ColorManager.redColorDC2222
+                          : ColorManager.greyColor757474),
                 ),
               ],
             ),

@@ -18,96 +18,124 @@ class ChatsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RefreshController refreshController =
-    RefreshController(initialRefresh: false);
+        RefreshController(initialRefresh: false);
     return BlocBuilder<ChatCubit, ChatState>(
-    builder: (context, state) {
-      return SmartRefresher(
-        controller: refreshController,
-        enablePullDown: true,
-        onRefresh: () {
-          ChatCubit.get(context).refreshPatientsChat(refreshController);
-        },
-        child: SingleChildScrollView(
-          child: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 30.h),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Messages',
-                          style: Styles.size16_700Black,
-                        )
-                      ],
-                    ),
-                    20.verticalSpace,
-                    SearchTextFormFiled(
-                      hint: 'Search Chat',
-                      customController: searchController,
-                      type: TextInputType.text,
-                    ),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    if (state is GetChatError)
-                      Center(
-                        child: Text(
-                          state.error.toString(),
-                        ),
+      builder: (context, state) {
+        return SmartRefresher(
+          controller: refreshController,
+          enablePullDown: true,
+          onRefresh: () {
+            ChatCubit.get(context).refreshPatientsChat(refreshController);
+          },
+          child: SingleChildScrollView(
+            child: SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 30.h),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Messages',
+                            style: Styles.size16_700Black,
+                          )
+                        ],
                       ),
-                    state is GetChatSuccess && ChatCubit.get(context).chatModel!.results!.isEmpty?
-        Padding(
-        padding: EdgeInsets.only(
-        top: MediaQuery.sizeOf(context).height /
-        3.5),
-        child: Center(
-        child: Text(
-        "Not Chat Yet",
-        style: Styles.size16_700Black,
-        ),
-        ),
-        )
-                        :
-                    ListView.separated(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) => InkWell(
-                        onTap: (){
-                          mentorID = ChatCubit.get(context).chatModel!.results![0].members![index].id!;
-                          GoRouter.of(context).push(
-                              AppRouter.kChatDetails,
-                            extra:ChatCubit.get(context).chatModel!.results![0].members![index].name!,
-                          );
-                        },
-                          child:  state is GetChatLoading ? const ChatLoading():
-                          ChatCubit.get(context).chatModel!.results![0].members![index].id != CacheHelper().getData(key: userId) ?
-                          BuildChatsItem(
-                            name: ChatCubit.get(context).chatModel!.results![0].members![index].name!,
-                            message: ChatCubit.get(context).chatModel!.results![0].lastMesssage!,
-                            time: ChatCubit.get(context).chatModel!.results![0].updatedAt!,
-                          ) :
-                              Container(),
+                      20.verticalSpace,
+                      SearchTextFormFiled(
+                        hint: 'Search Chat',
+                        customController: searchController,
+                        type: TextInputType.text,
                       ),
-                      separatorBuilder: (context, index) => const SizedBox(
+                      const SizedBox(
                         height: 20.0,
                       ),
-                      itemCount: state is GetChatLoading ? 10 :ChatCubit.get(context).chatModel!.results![0].members!.length,
-                    ),
-                  ],
+                      if (state is GetChatError)
+                        Center(
+                          child: Text(
+                            state.error.toString(),
+                          ),
+                        ),
+                      state is GetChatSuccess &&
+                              ChatCubit.get(context).chatModel!.results!.isEmpty
+                          ? Padding(
+                              padding: EdgeInsets.only(
+                                  top: MediaQuery.sizeOf(context).height / 3.5),
+                              child: Center(
+                                child: Text(
+                                  "Not Chat Yet",
+                                  style: Styles.size16_700Black,
+                                ),
+                              ),
+                            )
+                          : ListView.separated(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) => InkWell(
+                                onTap: () {
+                                  mentorID = ChatCubit.get(context)
+                                      .chatModel!
+                                      .results![0]
+                                      .members![index]
+                                      .id!;
+                                  GoRouter.of(context).push(
+                                    AppRouter.kChatDetails,
+                                    extra: ChatCubit.get(context)
+                                        .chatModel!
+                                        .results![0]
+                                        .members![index]
+                                        .name!,
+                                  );
+                                },
+                                child: state is GetChatLoading
+                                    ? const ChatLoading()
+                                    : ChatCubit.get(context)
+                                                .chatModel!
+                                                .results![0]
+                                                .members![index]
+                                                .id !=
+                                            CacheHelper().getData(key: userId)
+                                        ? BuildChatsItem(
+                                            name: ChatCubit.get(context)
+                                                .chatModel!
+                                                .results![0]
+                                                .members![index]
+                                                .name!,
+                                            message: ChatCubit.get(context)
+                                                .chatModel!
+                                                .results![0]
+                                                .lastMesssage!,
+                                            time: ChatCubit.get(context)
+                                                .chatModel!
+                                                .results![0]
+                                                .updatedAt!,
+                                          )
+                                        : Container(),
+                              ),
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(
+                                height: 20.0,
+                              ),
+                              itemCount: state is GetChatLoading
+                                  ? 10
+                                  : ChatCubit.get(context)
+                                      .chatModel!
+                                      .results![0]
+                                      .members!
+                                      .length,
+                            ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      );
-    },
+        );
+      },
     );
   }
 }
-
-

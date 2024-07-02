@@ -61,24 +61,22 @@ void getLocation() async {
   try {
     LocationData? locationData = await location.getLocation();
     sendLocationToAPI(
-      latitude: locationData.latitude!,
-      longitude: locationData.longitude!
-    );
+        latitude: locationData.latitude!, longitude: locationData.longitude!);
   } catch (e) {
     print("Error getting location: $e");
   }
 }
 
-
 Future<void> sendLocationToAPI({
   required double latitude,
   required double longitude,
 }) async {
-  const url = 'http://192.168.1.14:3000/api/v1/location/update-location';  // Replace with your API endpoint
+  const url =
+      'http://192.168.1.14:3000/api/v1/location/update-location'; // Replace with your API endpoint
   final Uri uri = Uri.parse(url);
   final headers = {
     'Content-Type': 'application/json',
-    'token':'${CacheHelper().getData(key: token)}'
+    'token': '${CacheHelper().getData(key: token)}'
   };
   final body = jsonEncode({
     "longitude": longitude,

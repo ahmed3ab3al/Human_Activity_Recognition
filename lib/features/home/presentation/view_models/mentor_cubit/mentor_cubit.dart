@@ -127,7 +127,7 @@ class MentorCubit extends Cubit<MentorStates> {
     }
   }
 
-  void refreshPatientsData(RefreshController refreshController) async{
+  void refreshPatientsData(RefreshController refreshController) async {
     getPatients();
     await Future.delayed(const Duration(milliseconds: 1000));
     refreshController.refreshCompleted();

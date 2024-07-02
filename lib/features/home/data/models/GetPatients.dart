@@ -1,7 +1,8 @@
 class GetPatients {
   GetPatients({
-      this.message, 
-      this.result,});
+    this.message,
+    this.result,
+  });
 
   GetPatients.fromJson(dynamic json) {
     message = json['message'];
@@ -14,13 +15,13 @@ class GetPatients {
   }
   String? message;
   List<Result>? result;
-
-
 }
+
 class Patient {
   Patient({
     this.id,
-    this.name,});
+    this.name,
+  });
 
   Patient.fromJson(dynamic json) {
     id = json['_id'];
@@ -28,8 +29,6 @@ class Patient {
   }
   String? id;
   String? name;
-
-
 }
 
 class Result {
@@ -40,11 +39,13 @@ class Result {
     this.createdAt,
     this.updatedAt,
     this.v,
-    this.mentor,});
+    this.mentor,
+  });
 
   Result.fromJson(dynamic json) {
     id = json['_id'];
-    patient = json['patient'] != null ? Patient.fromJson(json['patient']) : null;
+    patient =
+        json['patient'] != null ? Patient.fromJson(json['patient']) : null;
     type = json['type'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
@@ -58,6 +59,4 @@ class Result {
   String? updatedAt;
   num? v;
   String? mentor;
-
-
 }

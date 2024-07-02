@@ -13,11 +13,10 @@ List<double> gyro_x = [];
 List<double> gyro_y = [];
 List<double> gyro_z = [];
 Timer? _timer;
-void sensor({
-  context
-}){
-  accelerometerEventStream(samplingPeriod:  SensorInterval.fastestInterval).listen(
-        (AccelerometerEvent event) {
+void sensor({context}) {
+  accelerometerEventStream(samplingPeriod: SensorInterval.fastestInterval)
+      .listen(
+    (AccelerometerEvent event) {
       acc_x.add(event.x);
       acc_y.add(event.y);
       acc_z.add(event.z);
@@ -36,7 +35,7 @@ void sensor({
     cancelOnError: true,
   );
   gyroscopeEventStream(samplingPeriod: SensorInterval.fastestInterval).listen(
-        (GyroscopeEvent event) {
+    (GyroscopeEvent event) {
       gyro_x.add(event.x);
       gyro_y.add(event.y);
       gyro_z.add(event.z);
@@ -56,7 +55,6 @@ void sensor({
   );
 }
 
-
 void startSendingData() {
   // Cancel any existing timer before starting a new one
   // 6 fantastaic  low but not make mistake
@@ -67,14 +65,17 @@ void startSendingData() {
     sendDataToAPI();
   });
 }
+
 void stopSendingData() {
   if (_timer != null) {
     _timer!.cancel();
     _timer = null;
   }
 }
+
 Future<void> sendDataToAPI() async {
-  const url = 'http://192.168.1.14:3000/api/v1/activity';  // Replace with your API endpoint
+  const url =
+      'http://192.168.1.14:3000/api/v1/activity'; // Replace with your API endpoint
   final Uri uri = Uri.parse(url);
   final headers = {
     'Content-Type': 'application/json',

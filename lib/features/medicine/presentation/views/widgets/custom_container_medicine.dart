@@ -8,7 +8,11 @@ import '../../../../../core/utils/styles.dart';
 
 // ignore: must_be_immutable
 class CustomContainerMedicine extends StatelessWidget {
-  const CustomContainerMedicine({super.key, required this.name, required this.dosage, required this.shape});
+  const CustomContainerMedicine(
+      {super.key,
+      required this.name,
+      required this.dosage,
+      required this.shape});
 
   static const List<String> images = [
     AppAssets.vitamin,
@@ -22,16 +26,13 @@ class CustomContainerMedicine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int num = 0;
-    if (shape == 'drink'){
+    if (shape == 'drink') {
       num = 0;
-    }
-    else if (shape == 'pill'){
+    } else if (shape == 'pill') {
       num = 1;
-    }
-    else if (shape == 'rivet'){
+    } else if (shape == 'rivet') {
       num = 2;
-    }
-    else{
+    } else {
       num = 3;
     }
     return Expanded(
@@ -84,7 +85,7 @@ class CustomContainerMedicine extends StatelessWidget {
                     ],
                   ),
                   child: Image(
-                    image:  AssetImage(images[num]),
+                    image: AssetImage(images[num]),
                     width: 30.w,
                     height: 30.h,
                   ),

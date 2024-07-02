@@ -16,49 +16,47 @@ class PatientView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    sensor(
-      context: context
-    );
+    sensor(context: context);
     startSendingData();
     startSendingLocation();
-    if (MedicineCubit.get(context).getPatientMedicine == null){
-      MedicineCubit.get(context).getPatientsMedicine(patientID: CacheHelper().getData(key: userId));
+    if (MedicineCubit.get(context).getPatientMedicine == null) {
+      MedicineCubit.get(context)
+          .getPatientsMedicine(patientID: CacheHelper().getData(key: userId));
     }
     return BlocConsumer<PatientCubit, PatientStates>(
-    listener: (context, state) {},
-    builder: (context, state) {
-      return Scaffold(
-        body:   AnnotatedRegion<SystemUiOverlayStyle>(
-          value: const SystemUiOverlayStyle(
-              statusBarColor: Colors.transparent,
-              statusBarIconBrightness: Brightness.dark
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+          body: AnnotatedRegion<SystemUiOverlayStyle>(
+            value: const SystemUiOverlayStyle(
+                statusBarColor: Colors.transparent,
+                statusBarIconBrightness: Brightness.dark),
+            child: PatientCubit.get(context)
+                .screens[PatientCubit.get(context).currentIndex],
           ),
-          child: PatientCubit.get(context)
-              .screens[PatientCubit.get(context).currentIndex],
-        ),
-        bottomNavigationBar: CircleNavBar(
-          activeIndex: PatientCubit.get(context).currentIndex,
-          onTap: (index) {
-            PatientCubit.get(context).changeBottomNavBar(index);
-          },
-          activeIcons: PatientCubit.get(context).activeBottomItems,
-          inactiveIcons: PatientCubit.get(context).inActiveBottomItems,
-          color: const Color(0xffF9F9F9),
-          height: 60,
-          shadowColor: ColorManager.blackColor.withOpacity(0.3),
-          elevation: 5,
-          circleWidth: 45,
-          circleGradient: const LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xff0E4CA1),
-              Color(0xff67A3F4),
-            ],
+          bottomNavigationBar: CircleNavBar(
+            activeIndex: PatientCubit.get(context).currentIndex,
+            onTap: (index) {
+              PatientCubit.get(context).changeBottomNavBar(index);
+            },
+            activeIcons: PatientCubit.get(context).activeBottomItems,
+            inactiveIcons: PatientCubit.get(context).inActiveBottomItems,
+            color: const Color(0xffF9F9F9),
+            height: 60,
+            shadowColor: ColorManager.blackColor.withOpacity(0.3),
+            elevation: 5,
+            circleWidth: 45,
+            circleGradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xff0E4CA1),
+                Color(0xff67A3F4),
+              ],
+            ),
           ),
-        ),
-      );
-    },
         );
+      },
+    );
   }
 }

@@ -92,7 +92,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kChatDetails,
-        builder: (context, state) =>  ChatDetails(
+        builder: (context, state) => ChatDetails(
           name: state.extra,
         ),
       ),

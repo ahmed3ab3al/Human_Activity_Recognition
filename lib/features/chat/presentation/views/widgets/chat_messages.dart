@@ -13,59 +13,82 @@ class ChatMessages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<int> loading = [
-      1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2
+      1,
+      2,
+      1,
+      2,
+      1,
+      2,
+      1,
+      2,
+      1,
+      2,
+      1,
+      2,
+      1,
+      2,
+      1,
+      2,
+      1,
+      2,
+      1,
+      2,
+      1,
+      2,
+      1,
+      2
     ];
     return BlocBuilder<ChatCubit, ChatState>(
       builder: (context, state) {
-        return
-          state is GetMessageLoading?
-          Expanded(
-            child: ListView.separated(
-              physics: const ScrollPhysics(),
-              reverse: true,
-              itemBuilder: (context, index) {
-                if (loading[index] == 1) {
-                  return const MyChatDetailsLoading();
-                }
-                return AnotherChatDetailsLoading();
-              },
-              shrinkWrap: true,
-              padding: const EdgeInsets.all(10),
-              addAutomaticKeepAlives: true,
-              cacheExtent: 100,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              separatorBuilder: (context, index) =>
-              const SizedBox(
-                height: 10,
-              ),
-              itemCount: loading.length,
-            ),
-          ) :
-          Expanded(
-          child: ListView.separated(
-            physics: const ScrollPhysics(),
-            reverse: true,
-            itemBuilder: (context, index) {
-              var message =
-              ChatCubit.get(context).messagesModel!.results!.reversed.toList()[index];
-              if (CacheHelper().getData(key: userId) ==
-                  message.sender) {
-                return BuildMyMessage(message: message.content!);
-              }
-              return BuildAnotherMessage(message: message.content!);
-            },
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(10),
-            addAutomaticKeepAlives: true,
-            cacheExtent: 100,
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            separatorBuilder: (context, index) =>
-            const SizedBox(
-              height: 10,
-            ),
-            itemCount: ChatCubit.get(context).messagesModel!.results!.length,
-          ),
-        );
+        return state is GetMessageLoading
+            ? Expanded(
+                child: ListView.separated(
+                  physics: const ScrollPhysics(),
+                  reverse: true,
+                  itemBuilder: (context, index) {
+                    if (loading[index] == 1) {
+                      return const MyChatDetailsLoading();
+                    }
+                    return AnotherChatDetailsLoading();
+                  },
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.all(10),
+                  addAutomaticKeepAlives: true,
+                  cacheExtent: 100,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  separatorBuilder: (context, index) => const SizedBox(
+                    height: 10,
+                  ),
+                  itemCount: loading.length,
+                ),
+              )
+            : Expanded(
+                child: ListView.separated(
+                  physics: const ScrollPhysics(),
+                  reverse: true,
+                  itemBuilder: (context, index) {
+                    var message = ChatCubit.get(context)
+                        .messagesModel!
+                        .results!
+                        .reversed
+                        .toList()[index];
+                    if (CacheHelper().getData(key: userId) == message.sender) {
+                      return BuildMyMessage(message: message.content!);
+                    }
+                    return BuildAnotherMessage(message: message.content!);
+                  },
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.all(10),
+                  addAutomaticKeepAlives: true,
+                  cacheExtent: 100,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  separatorBuilder: (context, index) => const SizedBox(
+                    height: 10,
+                  ),
+                  itemCount:
+                      ChatCubit.get(context).messagesModel!.results!.length,
+                ),
+              );
       },
     );
   }

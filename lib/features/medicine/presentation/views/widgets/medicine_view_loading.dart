@@ -13,13 +13,10 @@ class MedicineViewLoading extends StatelessWidget {
           height: 100,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index){
-              return CustomLoadingItem(
-                  width: 60,
-                  height: 100
-              );
+            itemBuilder: (context, index) {
+              return CustomLoadingItem(width: 60, height: 100);
             },
-            separatorBuilder: (context,index){
+            separatorBuilder: (context, index) {
               return SizedBox(
                 width: 10,
               );
@@ -33,7 +30,7 @@ class MedicineViewLoading extends StatelessWidget {
         SizedBox(
           height: MediaQuery.sizeOf(context).height,
           child: ListView.separated(
-            itemBuilder: (context, index){
+            itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Row(
@@ -53,7 +50,7 @@ class MedicineViewLoading extends StatelessWidget {
                 ),
               );
             },
-            separatorBuilder: (context,index){
+            separatorBuilder: (context, index) {
               return SizedBox(
                 width: 10,
               );

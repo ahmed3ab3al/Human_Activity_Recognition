@@ -7,8 +7,8 @@ class MentorRequestLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  ListView.separated(
-      itemBuilder: (context,index)=> Row(
+    return ListView.separated(
+      itemBuilder: (context, index) => Row(
         children: [
           SizedBox(
             width: MediaQuery.sizeOf(context).width / 25,
@@ -44,8 +44,7 @@ class MentorRequestLoading extends StatelessWidget {
           ),
         ],
       ),
-      separatorBuilder: (context, index) =>
-      10.verticalSpace,
+      separatorBuilder: (context, index) => 10.verticalSpace,
       itemCount: 10,
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,

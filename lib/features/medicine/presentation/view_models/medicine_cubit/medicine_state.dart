@@ -19,17 +19,21 @@ class CounterChangeTimeState extends MedicineStates {}
 class ChangeDragItem extends MedicineStates {}
 
 class AddMedicineLoading extends MedicineStates {}
+
 class AddMedicineSuccess extends MedicineStates {
   final message;
   AddMedicineSuccess({this.message});
 }
+
 class AddMedicineError extends MedicineStates {
   final error;
   AddMedicineError({this.error});
 }
 
 class GetPatientMedicineLoading extends MedicineStates {}
+
 class GetPatientMedicineSuccess extends MedicineStates {}
+
 class GetPatientMedicineError extends MedicineStates {
   final error;
   GetPatientMedicineError({this.error});

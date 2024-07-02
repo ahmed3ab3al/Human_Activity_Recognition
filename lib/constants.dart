@@ -10,8 +10,8 @@ String userEmail = 'email';
 String userRole = 'role';
 String userVerified = 'verified';
 
-String patientID= "";
-String mentorID= "";
+String patientID = "";
+String mentorID = "";
 
 Map<String, String> activityPhoto = {
   'Fall': AppAssets.fall,
@@ -22,5 +22,5 @@ Map<String, String> activityPhoto = {
   'Down Stairs': AppAssets.down,
   'Joging': AppAssets.jogging,
   'Sitting': AppAssets.sit,
-  'null' : AppAssets.sit,
+  'null': AppAssets.sit,
 };

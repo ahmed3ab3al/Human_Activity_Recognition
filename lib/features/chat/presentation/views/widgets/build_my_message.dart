@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/core/utils/colors.dart';
 
 class BuildMyMessage extends StatelessWidget {
   const BuildMyMessage({super.key, required this.message});
@@ -28,11 +27,9 @@ class BuildMyMessage extends StatelessWidget {
             topStart: Radius.circular(10),
           ),
         ),
-        child:  Text(
+        child: Text(
           message,
-          style: const TextStyle(
-              color: Colors.white
-          ),
+          style: const TextStyle(color: Colors.white),
         ),
       ),
     );

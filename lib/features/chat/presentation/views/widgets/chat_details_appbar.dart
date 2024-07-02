@@ -11,7 +11,7 @@ class ChatDetailsAppBar extends StatelessWidget {
   final name;
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       children: [
         IconButton(
           onPressed: () {

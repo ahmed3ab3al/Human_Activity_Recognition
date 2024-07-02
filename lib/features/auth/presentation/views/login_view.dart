@@ -7,14 +7,12 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const Scaffold(
+    return const Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
-          value:  SystemUiOverlayStyle(
+          value: SystemUiOverlayStyle(
               statusBarColor: Colors.transparent,
-              statusBarIconBrightness: Brightness.dark
-          ),
-          child: LoginViewBody()
-      ),
+              statusBarIconBrightness: Brightness.dark),
+          child: LoginViewBody()),
     );
   }
 }

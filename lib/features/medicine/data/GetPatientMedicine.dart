@@ -1,7 +1,8 @@
 class GetPatientMedicine {
   GetPatientMedicine({
-      this.message, 
-      this.result,});
+    this.message,
+    this.result,
+  });
 
   GetPatientMedicine.fromJson(dynamic json) {
     message = json['message'];
@@ -24,10 +25,12 @@ class GetPatientMedicine {
     return map;
   }
 }
+
 class Patient {
   Patient({
     this.id,
-    this.name,});
+    this.name,
+  });
 
   Patient.fromJson(dynamic json) {
     id = json['_id'];
@@ -42,9 +45,7 @@ class Patient {
     map['name'] = name;
     return map;
   }
-
 }
-
 
 class Result {
   Result({
@@ -58,11 +59,13 @@ class Result {
     this.beforeMeal,
     this.createdAt,
     this.updatedAt,
-    this.v,});
+    this.v,
+  });
 
   Result.fromJson(dynamic json) {
     id = json['_id'];
-    patient = json['patient'] != null ? Patient.fromJson(json['patient']) : null;
+    patient =
+        json['patient'] != null ? Patient.fromJson(json['patient']) : null;
     name = json['name'];
     shape = json['shape'];
     dosage = json['dosage'];
@@ -102,5 +105,4 @@ class Result {
     map['__v'] = v;
     return map;
   }
-
 }

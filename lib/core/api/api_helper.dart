@@ -9,8 +9,8 @@ abstract class ApiHelper {
 
   Future<dynamic> put(String url,
       {Object? data,
-        Map<String, dynamic>? queryParameters,
-        bool isFormData = false});
+      Map<String, dynamic>? queryParameters,
+      bool isFormData = false});
 
   Future<dynamic> delete(String url,
       {Object? data,

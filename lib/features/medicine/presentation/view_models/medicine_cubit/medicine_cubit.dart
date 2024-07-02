@@ -28,7 +28,7 @@ class MedicineCubit extends Cubit<MedicineStates> {
   }
 
   void plus() {
-    if(dosage < 3 ) {
+    if (dosage < 3) {
       dosage++;
     }
     emit(CounterPlusState(dosage));
@@ -38,67 +38,63 @@ class MedicineCubit extends Cubit<MedicineStates> {
     isAfterMeal = value;
     emit(ToggleIsAfterMeal());
   }
-  var  selectedItem = 0;
-  var  shapeOfMedicine = 'drink';
-  void changeDragItem(int index){
+
+  var selectedItem = 0;
+  var shapeOfMedicine = 'drink';
+  void changeDragItem(int index) {
     selectedItem = index;
     if (index == 0) {
       shapeOfMedicine = 'drink';
-    } else if (index == 1)
-      {
-        shapeOfMedicine = 'pill';
-      }
-    else if (index == 2)
-      {
-        shapeOfMedicine = 'rivet';
-      }
-    else
-      {
-        shapeOfMedicine = 'Injection';
-      }
+    } else if (index == 1) {
+      shapeOfMedicine = 'pill';
+    } else if (index == 2) {
+      shapeOfMedicine = 'rivet';
+    } else {
+      shapeOfMedicine = 'Injection';
+    }
     emit(ChangeDragItem());
   }
 
   void addMedicine({
     required String patientID,
     required String nameOfMedicine,
-})async{
+  }) async {
     emit(AddMedicineLoading());
-    try{
+    try {
       await apiHelper.post(
         EndPoints.addMedicine,
         data: {
-          "patient" : patientID,
-          "name" : nameOfMedicine,
-          "afterMeal":isAfterMeal,
-          "beforeMeal":!isAfterMeal,
-          "shape" : shapeOfMedicine,
-          "dosage" : dosage,
-          "repeatFor" : 24 ~/ dosage,
-          "time" : {
-            "hour" : hours,
-            "minutes" : minute,
+          "patient": patientID,
+          "name": nameOfMedicine,
+          "afterMeal": isAfterMeal,
+          "beforeMeal": !isAfterMeal,
+          "shape": shapeOfMedicine,
+          "dosage": dosage,
+          "repeatFor": 24 ~/ dosage,
+          "time": {
+            "hour": hours,
+            "minutes": minute,
           }
         },
       );
       timeController.clear();
-      dosage = 1; hours = 0;
-      minute = 0; isAfterMeal = false;
+      dosage = 1;
+      hours = 0;
+      minute = 0;
+      isAfterMeal = false;
       emit(AddMedicineSuccess(message: "Add Medicine Success"));
     } on ServerException catch (e) {
       emit(AddMedicineError(error: e.errorModel.message));
     }
   }
 
-
-
   bool getPatientMedicineTrue = false;
   GetPatientMedicine? getPatientMedicine;
   void getPatientsMedicine({
     required String patientID,
-})async{
+  }) async {
     emit(GetPatientMedicineLoading());
-    try{
+    try {
       final response = await apiHelper.get(
         '${EndPoints.getPatientMedicine}$patientID',
       );
@@ -110,7 +106,7 @@ class MedicineCubit extends Cubit<MedicineStates> {
     }
   }
 
-  void refreshPatientsMedicine(RefreshController refreshController) async{
+  void refreshPatientsMedicine(RefreshController refreshController) async {
     getPatientsMedicine(patientID: CacheHelper().getData(key: userId));
     await Future.delayed(const Duration(milliseconds: 1000));
     refreshController.refreshCompleted();

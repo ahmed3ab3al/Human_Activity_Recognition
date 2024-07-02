@@ -83,20 +83,16 @@ class PatientCubit extends Cubit<PatientStates> {
     }
   }
 
-  void createChat({
-    required String id
-}) async{
+  void createChat({required String id}) async {
     try {
-      await apiHelper.post(
-          EndPoints.createChat,
-          data: {
-            'id':id,
-          }
-      );
+      await apiHelper.post(EndPoints.createChat, data: {
+        'id': id,
+      });
     } on ServerException catch (e) {
       emit(ConfirmRequestError(error: e.errorModel.message));
     }
   }
+
   void confirmRequest(String id) async {
     emit(ConfirmRequestLoading());
     try {
@@ -120,7 +116,7 @@ class PatientCubit extends Cubit<PatientStates> {
     }
   }
 
-  void refreshPatientsMedicine(RefreshController refreshController) async{
+  void refreshPatientsMedicine(RefreshController refreshController) async {
     getMentorRequests();
     await Future.delayed(const Duration(milliseconds: 1000));
     refreshController.refreshCompleted();

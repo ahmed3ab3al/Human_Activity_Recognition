@@ -15,20 +15,15 @@ class LocationPage extends StatelessWidget {
       create: (context) => MapCubit(getIt.get<DioHelper>())..updateMyLocation(),
       child: BlocBuilder<MapCubit, MapState>(
         builder: (context, state) {
-
           return GoogleMap(
             polygons: MapCubit.get(context).myPolygons,
             initialCameraPosition: const CameraPosition(
-                target: LatLng(
-                    37.43296265331129,
-                    -122.08832357078792
-                ),
+                target: LatLng(37.43296265331129, -122.08832357078792),
                 zoom: 11.0),
             onMapCreated: (GoogleMapController controller) {
               MapCubit.get(context).mapController = controller;
             },
             markers: MapCubit.get(context).markers,
-
           );
         },
       ),

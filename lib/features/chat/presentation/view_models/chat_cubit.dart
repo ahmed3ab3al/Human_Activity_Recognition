@@ -19,67 +19,57 @@ class ChatCubit extends Cubit<ChatState> {
 
   var message = TextEditingController();
   ChatModel? chatModel;
-  void getChat({
-    required bool back
-})async{
-    if(!back) {
+  void getChat({required bool back}) async {
+    if (!back) {
       emit(GetChatLoading());
     }
-      try{
-        var response = await apiHelper.get(
-            EndPoints.chat
-        );
-        chatModel = ChatModel.fromJson(response);
-        emit(GetChatSuccess());
-      } on ServerException catch (e) {
-        emit(GetChatError(error: e.errorModel.message));
-      }
+    try {
+      var response = await apiHelper.get(EndPoints.chat);
+      chatModel = ChatModel.fromJson(response);
+      emit(GetChatSuccess());
+    } on ServerException catch (e) {
+      emit(GetChatError(error: e.errorModel.message));
+    }
   }
 
-  void refreshPatientsChat(RefreshController refreshController) async{
+  void refreshPatientsChat(RefreshController refreshController) async {
     getChat(back: false);
     await Future.delayed(const Duration(milliseconds: 1000));
     refreshController.refreshCompleted();
   }
 
   MessagesModel? messagesModel;
-  void getMessages()async{
+  void getMessages() async {
     emit(GetMessageLoading());
-    try{
-      final response = await apiHelper.get(
-          EndPoints.messages,
-        data: {
-            'id':chatModel!.results![0].id
-        }
-      );
+    try {
+      final response = await apiHelper
+          .get(EndPoints.messages, data: {'id': chatModel!.results![0].id});
       messagesModel = MessagesModel.fromJson(response);
       emit(GetMessageSuccess());
-    }on ServerException catch (e) {
+    } on ServerException catch (e) {
       emit(GetMessageError(error: e.errorModel.message));
     }
   }
-  void sendMessage() async{
+
+  void sendMessage() async {
     emit(SendMessageLoading());
-    try{
-      await apiHelper.post(
-        EndPoints.sendMessage,
-        data: {
-          'content' : message.text,
-          'id' : '668237845a5656aa48ce4331'
-        }
-      );
-      MessageDetails newMessage = MessageDetails(content: message.text, sender: CacheHelper().getData(key: userId));
+    try {
+      await apiHelper.post(EndPoints.sendMessage,
+          data: {'content': message.text, 'id': '668237845a5656aa48ce4331'});
+      MessageDetails newMessage = MessageDetails(
+          content: message.text, sender: CacheHelper().getData(key: userId));
       messagesModel!.results?.add(newMessage);
       message.text = '';
       emit(SendMessageSuccess());
-    }on ServerException catch (e) {
+    } on ServerException catch (e) {
       emit(SendMessageError(error: e.errorModel.message));
     }
   }
 
-  void getMessageSocket(){
-    AppSocket.socket.on('getMessage', (data){
-      MessageDetails newMessage = MessageDetails(content: data['message'], sender: data['from']);
+  void getMessageSocket() {
+    AppSocket.socket.on('getMessage', (data) {
+      MessageDetails newMessage =
+          MessageDetails(content: data['message'], sender: data['from']);
       messagesModel!.results?.add(newMessage);
       emit(GetMessageSocketSuccess());
     });

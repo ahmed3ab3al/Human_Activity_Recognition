@@ -19,9 +19,7 @@ class NameProfileRow extends StatelessWidget {
         12.horizontalSpace,
         Text(
           CacheHelper().getData(key: userName),
-          style: Styles.testStyle20.copyWith(
-            color: ColorManager.blackColor
-          ),
+          style: Styles.testStyle20.copyWith(color: ColorManager.blackColor),
         ),
         const Spacer(),
         GestureDetector(
@@ -30,11 +28,8 @@ class NameProfileRow extends StatelessWidget {
           },
           child: const CircleAvatar(
             radius: 15.0,
-            backgroundImage:
-             NetworkImage('https://i.pravatar.cc/300'),
-
+            backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
           ),
-
         ),
         5.horizontalSpace,
       ],

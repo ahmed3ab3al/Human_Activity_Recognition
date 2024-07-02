@@ -22,8 +22,10 @@ class PatientListView extends StatelessWidget {
           return ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            separatorBuilder: (context,
-                index,) {
+            separatorBuilder: (
+              context,
+              index,
+            ) {
               return SizedBox(
                 height: 20.h,
               );
@@ -42,14 +44,14 @@ class PatientListView extends StatelessWidget {
                   Column(
                     children: [
                       CustomLoadingItem(
-                        width: MediaQuery.sizeOf(context).width/2.5,
+                        width: MediaQuery.sizeOf(context).width / 2.5,
                         height: 20,
                       ),
                       const SizedBox(
                         height: 15,
                       ),
                       CustomLoadingItem(
-                        width: MediaQuery.sizeOf(context).width/2.5,
+                        width: MediaQuery.sizeOf(context).width / 2.5,
                         height: 20,
                       )
                     ],
@@ -58,23 +60,22 @@ class PatientListView extends StatelessWidget {
               );
             },
           );
-        } else if (state is GetPatientsError)
-          {
-            return Center(
-              child: Text(
-                state.error,
-                style: Styles.size24_700Black,
-              ),
-            );
-          }
-        else
-          {
-            if (MentorCubit.get(context).getAllPatients!.result!.isNotEmpty) {
-              return ListView.separated(
+        } else if (state is GetPatientsError) {
+          return Center(
+            child: Text(
+              state.error,
+              style: Styles.size24_700Black,
+            ),
+          );
+        } else {
+          if (MentorCubit.get(context).getAllPatients!.result!.isNotEmpty) {
+            return ListView.separated(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              separatorBuilder: (context,
-                  index,) {
+              separatorBuilder: (
+                context,
+                index,
+              ) {
                 return SizedBox(
                   height: 20.h,
                 );
@@ -85,29 +86,28 @@ class PatientListView extends StatelessWidget {
                     onTap: () {
                       GoRouter.of(context).push(AppRouter.kPatientDetails);
                     },
-                    child:  PatientListItem(
+                    child: PatientListItem(
                       name: cubit.getAllPatients!.result![index].patient!.name!,
                       id: cubit.getAllPatients!.result![index].patient!.id,
                       activitiy: cubit.getAllPatients!.result![index].type,
-                    )
-                );
+                    ));
               },
             );
-            } else {
-              return  Column(
-                children: [
-                  SizedBox(
-                    height: MediaQuery.sizeOf(context).height / 2.9,
-                  ),
-                  Text(
-                    'PLease Add Patient',
-                    textAlign: TextAlign.center,
-                    style: Styles.size24_700Black.copyWith(fontSize: 15),
-                  ),
-                ],
-              );
-            }
+          } else {
+            return Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.sizeOf(context).height / 2.9,
+                ),
+                Text(
+                  'PLease Add Patient',
+                  textAlign: TextAlign.center,
+                  style: Styles.size24_700Black.copyWith(fontSize: 15),
+                ),
+              ],
+            );
           }
+        }
       },
     );
   }

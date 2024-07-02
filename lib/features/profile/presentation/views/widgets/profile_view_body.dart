@@ -38,9 +38,7 @@ class EditProfileBody extends StatelessWidget {
           if (state is EditProfileSuccessState) {
             GoRouter.of(context).pop();
             const SnackBar(
-              content: Center(child: Text(
-                  'Edit Success'
-              )),
+              content: Center(child: Text('Edit Success')),
             );
           }
         },
@@ -48,8 +46,7 @@ class EditProfileBody extends StatelessWidget {
           return SingleChildScrollView(
             child: SafeArea(
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: 18.w, vertical: 35.h),
+                padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 35.h),
                 child: Form(
                   key: formKey,
                   child: Column(
@@ -61,9 +58,9 @@ class EditProfileBody extends StatelessWidget {
                           GoRouter.of(context).pop();
                         },
                       ),
-                     SizedBox(
-                       height: MediaQuery.of(context).size.height /6,
-                     ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 6,
+                      ),
                       EditTextFormFiled(
                         hint: 'Name',
                         customController: nameController,
@@ -85,25 +82,25 @@ class EditProfileBody extends StatelessWidget {
                         prefix: Icons.email_outlined,
                       ),
                       50.verticalSpace,
-                      state is EditProfileLoadingState ?
-                      CustomLoadingItem(
-                        width: MediaQuery.sizeOf(context).width / 1.1,
-                        height: MediaQuery.sizeOf(context).height/ 15,
-                      ) :
-                      CustomBlueButton(
-                          text: 'Update',
-                          ontap: () {
-                            if (formKey.currentState!.validate()) {
-                              ProfileCubit.get(context).editProfile(
-                                name: nameController.text,
-                                phone: phoneController.text,
-                                gender: 'male',
-                              );
-                            } else {
-                              return;
-                            }
-                          },
-                          containerHeight: 60)
+                      state is EditProfileLoadingState
+                          ? CustomLoadingItem(
+                              width: MediaQuery.sizeOf(context).width / 1.1,
+                              height: MediaQuery.sizeOf(context).height / 15,
+                            )
+                          : CustomBlueButton(
+                              text: 'Update',
+                              ontap: () {
+                                if (formKey.currentState!.validate()) {
+                                  ProfileCubit.get(context).editProfile(
+                                    name: nameController.text,
+                                    phone: phoneController.text,
+                                    gender: 'male',
+                                  );
+                                } else {
+                                  return;
+                                }
+                              },
+                              containerHeight: 60)
                     ],
                   ),
                 ),
