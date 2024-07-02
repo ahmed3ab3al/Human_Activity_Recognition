@@ -78,7 +78,7 @@ class AppNotification {
     _noResponseTimer = Timer(const Duration(seconds: 5), () {
       AppSocket.socket.emit('fallTimeout', {
         'patientName': CacheHelper().getData(key: userName),
-        'mentor': '667850ecfa9b107c1f7bf9f1'
+        'mentor': AppSocket.mentor,
       });
     });
   }
@@ -89,7 +89,7 @@ class AppNotification {
         if (receivedAction.buttonKeyPressed == 'NO') {
           AppSocket.socket.emit('fallTimeout', {
             'patientName': CacheHelper().getData(key: userName),
-            'mentor': '667850ecfa9b107c1f7bf9f1'
+            'mentor': AppSocket.mentor,
           });
         }
         // Cancel the "No Response" message

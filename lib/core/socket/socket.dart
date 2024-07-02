@@ -11,7 +11,7 @@ class AppSocket {
       'userId': CacheHelper().getData(key: userId),
     },
   };
-  String mentor = '';
+  static String mentor = '';
   static late IO.Socket socket;
   static void appSocket() {
     socket = IO.io('http://192.168.1.14:3000', options);
@@ -24,6 +24,7 @@ class AppSocket {
     });
     if (CacheHelper().getData(key: userRole) == 'patient') {
       socket.on('fallingNotification', (data) {
+        mentor = data['mentor'];
         AppNotification alarmNotification = AppNotification();
         alarmNotification.requestNotificationPermissions();
         alarmNotification.init();
@@ -31,7 +32,9 @@ class AppSocket {
             title: 'Hallo ${CacheHelper().getData(key: userName)}',
             body: 'Are you Ok ?',
             patient: true,
-            isFall: true);
+            isFall: true
+        );
+
       });
       socket.on('reminder', (data) {
         AppNotification alarmNotification = AppNotification();
@@ -52,9 +55,10 @@ class AppSocket {
         alarmNotification.init();
         alarmNotification.showNotification(
             title: 'Warning ${CacheHelper().getData(key: userName)}',
-            body: 'Your Patient is Fall',
+            body: data['message'],
             patient: false,
-            isFall: true);
+            isFall: true
+        );
         print(data);
       });
     }
