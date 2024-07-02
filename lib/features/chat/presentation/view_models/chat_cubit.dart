@@ -1,9 +1,11 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/api/api_helper.dart';
 import 'package:graduation_project/core/api/end_points.dart';
+import 'package:graduation_project/core/cache/cache_helper.dart';
+import 'package:graduation_project/core/socket/socket.dart';
 import 'package:graduation_project/features/chat/data/models/chat_model.dart';
 import 'package:graduation_project/features/chat/data/models/messages_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -28,13 +30,13 @@ class ChatCubit extends Cubit<ChatState> {
             EndPoints.chat
         );
         chatModel = ChatModel.fromJson(response);
-        getMessages();
+        emit(GetChatSuccess());
       } on ServerException catch (e) {
         emit(GetChatError(error: e.errorModel.message));
       }
   }
 
-  void refreshPatientsMedicine(RefreshController refreshController) async{
+  void refreshPatientsChat(RefreshController refreshController) async{
     getChat(back: false);
     await Future.delayed(const Duration(milliseconds: 1000));
     refreshController.refreshCompleted();
@@ -42,6 +44,7 @@ class ChatCubit extends Cubit<ChatState> {
 
   MessagesModel? messagesModel;
   void getMessages()async{
+    emit(GetMessageLoading());
     try{
       final response = await apiHelper.get(
           EndPoints.messages,
@@ -50,12 +53,11 @@ class ChatCubit extends Cubit<ChatState> {
         }
       );
       messagesModel = MessagesModel.fromJson(response);
-      emit(GetChatSuccess());
+      emit(GetMessageSuccess());
     }on ServerException catch (e) {
-      emit(GetChatError(error: e.errorModel.message));
+      emit(GetMessageError(error: e.errorModel.message));
     }
   }
-
   void sendMessage() async{
     emit(SendMessageLoading());
     try{
@@ -66,26 +68,20 @@ class ChatCubit extends Cubit<ChatState> {
           'id' : '668237845a5656aa48ce4331'
         }
       );
+      MessageDetails newMessage = MessageDetails(content: message.text, sender: CacheHelper().getData(key: userId));
+      messagesModel!.results?.add(newMessage);
       message.text = '';
-      getMessages();
       emit(SendMessageSuccess());
     }on ServerException catch (e) {
       emit(SendMessageError(error: e.errorModel.message));
     }
   }
 
-  Timer? _timer;
-  void getMessageInChat(){
-    _timer?.cancel();
-    _timer = Timer.periodic(const Duration(seconds: 3), (Timer t) {
-      getMessages();
+  void getMessageSocket(){
+    AppSocket.socket.on('getMessage', (data){
+      MessageDetails newMessage = MessageDetails(content: data['message'], sender: data['from']);
+      messagesModel!.results?.add(newMessage);
+      emit(GetMessageSocketSuccess());
     });
-  }
-  void stopGetMessageInChat(){
-    if (_timer != null) {
-      _timer!.cancel();
-      _timer = null;
-    }
-    emit(StopGetMessage());
   }
 }

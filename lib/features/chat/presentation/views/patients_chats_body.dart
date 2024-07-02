@@ -25,7 +25,7 @@ class ChatsScreen extends StatelessWidget {
         controller: refreshController,
         enablePullDown: true,
         onRefresh: () {
-          ChatCubit.get(context).refreshPatientsMedicine(refreshController);
+          ChatCubit.get(context).refreshPatientsChat(refreshController);
         },
         child: SingleChildScrollView(
           child: SafeArea(
@@ -78,9 +78,10 @@ class ChatsScreen extends StatelessWidget {
                       shrinkWrap: true,
                       itemBuilder: (context, index) => InkWell(
                         onTap: (){
+                          mentorID = ChatCubit.get(context).chatModel!.results![0].members![index].id!;
                           GoRouter.of(context).push(
                               AppRouter.kChatDetails,
-                            extra: ChatCubit.get(context).chatModel!.results![0].members![index].name!
+                            extra:ChatCubit.get(context).chatModel!.results![0].members![index].name!,
                           );
                         },
                           child:  state is GetChatLoading ? const ChatLoading():

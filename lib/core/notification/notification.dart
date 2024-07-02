@@ -80,7 +80,7 @@ class AppNotification {
 
     // Schedule a "No Response" message after a delay
     _noResponseTimer = Timer(const Duration(seconds: 5), () {
-      NotificationSocket.socket.emit(
+      AppSocket.socket.emit(
           'fallTimeout',{
         'patientName': CacheHelper().getData(key: userName),
         'mentor':'667850ecfa9b107c1f7bf9f1'
@@ -93,7 +93,7 @@ class AppNotification {
     awesomeNotifications.setListeners(
       onActionReceivedMethod: (ReceivedAction receivedAction) async {
         if (receivedAction.buttonKeyPressed == 'NO') {
-          NotificationSocket.socket.emit(
+          AppSocket.socket.emit(
               'fallTimeout',{
             'patientName': CacheHelper().getData(key: userName),
             'mentor':'667850ecfa9b107c1f7bf9f1'

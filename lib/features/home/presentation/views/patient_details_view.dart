@@ -2,6 +2,7 @@ import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:graduation_project/core/cache/cache_helper.dart';
 import '../../../../constants.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../../core/utils/colors.dart';
@@ -26,7 +27,10 @@ class PatientDetailsView extends StatelessWidget {
               activeIndex: MentorCubit.get(context).currentIndex,
               onTap: (index) {
                 if (index == 2){
-                  GoRouter.of(context).push(AppRouter.kChatDetails);
+                  GoRouter.of(context).push(
+                      AppRouter.kChatDetails,
+                    extra: CacheHelper().getData(key: userName),
+                  );
                 }
                 MentorCubit.get(context).changeBottomNavBar(index);
               },

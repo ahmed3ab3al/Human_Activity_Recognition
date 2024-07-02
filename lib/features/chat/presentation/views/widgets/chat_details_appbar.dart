@@ -17,7 +17,6 @@ class ChatDetailsAppBar extends StatelessWidget {
           onPressed: () {
             GoRouter.of(context).pop();
             ChatCubit.get(context).getChat(back: true);
-            ChatCubit.get(context).stopGetMessageInChat();
           },
           icon: const Icon(
             Icons.arrow_back_ios,

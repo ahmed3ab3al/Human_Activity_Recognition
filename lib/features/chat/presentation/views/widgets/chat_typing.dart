@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/socket/socket.dart';
 import 'package:graduation_project/features/chat/presentation/view_models/chat_cubit.dart';
-
 import '../../../../../core/utils/colors.dart';
 
 class ChatTyping extends StatelessWidget {
-  const ChatTyping({super.key,});
+  const ChatTyping({super.key, required this.id,});
 
+  final id;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ChatCubit, ChatState>(
@@ -43,7 +44,11 @@ class ChatTyping extends StatelessWidget {
                 ),
               ),
               InkWell(
+                radius: 25,
                 onTap: (){
+                  AppSocket.sendMessageSocket(
+                    id: id,
+                      message: ChatCubit.get(context).message.text);
                   ChatCubit.get(context).sendMessage();
                 },
                 child: const CircleAvatar(

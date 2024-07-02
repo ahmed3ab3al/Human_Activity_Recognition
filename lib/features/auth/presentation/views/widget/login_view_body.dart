@@ -47,7 +47,7 @@ class LoginViewBody extends StatelessWidget {
                     GoRouter.of(context)
                         .pushReplacement(AppRouter.kPatientHome);
                   }
-                  NotificationSocket.fallSocket();
+                  AppSocket.appSocket();
                 }
               } else if (state is LoginErrorState) {
                 ScaffoldMessenger.of(context).showSnackBar(

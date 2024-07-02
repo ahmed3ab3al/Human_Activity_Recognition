@@ -18,7 +18,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper().init();
   if (CacheHelper().getData(key: userId) != null && CacheHelper().getData(key: userId).isNotEmpty) {
-    NotificationSocket.fallSocket();
+    AppSocket.appSocket();
   }
   print(CacheHelper().getData(key: token));
   setupServiceLocator();

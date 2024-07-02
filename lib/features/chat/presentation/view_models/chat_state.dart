@@ -23,5 +23,8 @@ class SendMessageError extends ChatState {
   final error;
   SendMessageError({required this.error});
 }
-class StopGetMessage extends ChatState {}
+
+class GetMessageSocketSuccess extends ChatState {}
+
+
 

@@ -2,7 +2,7 @@ import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/notification/notification.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
-class NotificationSocket{
+class AppSocket{
   static Map<String,dynamic> options ={
     'transports':['websocket'],
     'autoConnect':false,
@@ -12,7 +12,7 @@ class NotificationSocket{
   };
   String mentor = '';
   static late IO.Socket socket;
-  static void fallSocket(){
+  static void appSocket(){
     socket = IO.io(
       'http://192.168.1.14:3000',
       options
@@ -63,5 +63,17 @@ class NotificationSocket{
         print(data);
     });
     }
+  }
+
+  static void sendMessageSocket({
+    required String id,
+    required String message,
+}){
+    socket.emit(
+        'sendMessage',{
+      'to': id,
+      'message': message
+    }
+    );
   }
 }

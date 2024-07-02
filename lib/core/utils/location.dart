@@ -11,7 +11,7 @@ Location location = Location();
 void startSendingLocation() {
   // Cancel any existing timer before starting a new one
   _timer?.cancel();
-  _timer = Timer.periodic(const Duration(seconds: 6), (Timer t) {
+  _timer = Timer.periodic(const Duration(seconds: 10), (Timer t) {
     updateMyLocation();
   });
 }

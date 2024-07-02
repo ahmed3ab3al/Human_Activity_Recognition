@@ -8,23 +8,23 @@ class MessagesModel {
     if (json['results'] != null) {
       results = [];
       json['results'].forEach((v) {
-        results?.add(Results.fromJson(v));
+        results?.add(MessageDetails.fromJson(v));
       });
     }
   }
   String? message;
-  List<Results>? results;
+  List<MessageDetails>? results;
 
 }
 
-class Results {
-  Results({
+class MessageDetails {
+  MessageDetails({
       this.content, 
       this.sender, 
       this.createdAt, 
       this.updatedAt,});
 
-  Results.fromJson(dynamic json) {
+  MessageDetails.fromJson(dynamic json) {
     content = json['content'];
     sender = json['sender'];
     createdAt = json['createdAt'];

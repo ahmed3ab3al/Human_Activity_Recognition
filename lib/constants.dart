@@ -11,6 +11,7 @@ String userRole = 'role';
 String userVerified = 'verified';
 
 String patientID= "";
+String mentorID= "";
 
 Map<String, String> activityPhoto = {
   'Fall': AppAssets.fall,

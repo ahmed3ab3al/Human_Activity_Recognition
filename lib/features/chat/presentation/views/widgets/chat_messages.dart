@@ -6,15 +6,41 @@ import 'package:graduation_project/features/chat/presentation/view_models/chat_c
 import 'package:graduation_project/features/chat/presentation/views/widgets/build_another_message.dart';
 import 'package:graduation_project/features/chat/presentation/views/widgets/build_my_message.dart';
 
+import 'chat_details_loading.dart';
+
 class ChatMessages extends StatelessWidget {
   const ChatMessages({super.key});
-
   @override
   Widget build(BuildContext context) {
+    final List<int> loading = [
+      1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2
+    ];
     return BlocBuilder<ChatCubit, ChatState>(
       builder: (context, state) {
         return
-          ChatCubit.get(context).messagesModel != null ?
+          state is GetMessageLoading?
+          Expanded(
+            child: ListView.separated(
+              physics: const ScrollPhysics(),
+              reverse: true,
+              itemBuilder: (context, index) {
+                if (loading[index] == 1) {
+                  return const MyChatDetailsLoading();
+                }
+                return AnotherChatDetailsLoading();
+              },
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(10),
+              addAutomaticKeepAlives: true,
+              cacheExtent: 100,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              separatorBuilder: (context, index) =>
+              const SizedBox(
+                height: 10,
+              ),
+              itemCount: loading.length,
+            ),
+          ) :
           Expanded(
           child: ListView.separated(
             physics: const ScrollPhysics(),
@@ -30,7 +56,7 @@ class ChatMessages extends StatelessWidget {
             },
             shrinkWrap: true,
             padding: const EdgeInsets.all(10),
-            addAutomaticKeepAlives: false,
+            addAutomaticKeepAlives: true,
             cacheExtent: 100,
             clipBehavior: Clip.antiAliasWithSaveLayer,
             separatorBuilder: (context, index) =>
@@ -39,8 +65,7 @@ class ChatMessages extends StatelessWidget {
             ),
             itemCount: ChatCubit.get(context).messagesModel!.results!.length,
           ),
-        ):
-          Expanded(child: Container());
+        );
       },
     );
   }
