@@ -60,7 +60,9 @@ class ProfileDataViewBody extends StatelessWidget {
               child: CircleAvatar(
                 backgroundColor: Colors.grey.shade200,
                 backgroundImage:
-                    const NetworkImage('https://i.pravatar.cc/300'),
+                     AssetImage(
+                         personImage,
+                     ),
                 child: Stack(
                   children: [
                     Positioned(
@@ -109,7 +111,7 @@ class ProfileDataViewBody extends StatelessWidget {
                       style: Styles.size16_700Black,
                     ),
                     const Spacer(),
-                    Text(
+                    SelectableText(
                       CacheHelper().getData(key: userId),
                       style: Styles.size16_700Black,
                     ),

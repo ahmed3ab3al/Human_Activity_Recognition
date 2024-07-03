@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import '../../../../../constants.dart';
 import '../../../../medicine/presentation/views/widgets/line_container.dart';
 
 class BuildChatsItem extends StatelessWidget {
@@ -24,15 +25,15 @@ class BuildChatsItem extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Stack(
+             Stack(
               alignment: AlignmentDirectional.bottomEnd,
               children: [
                 CircleAvatar(
                   radius: 30.0,
-                  backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
-                  backgroundColor: Colors.black,
+                  backgroundImage: AssetImage(anotherImage),
+                  backgroundColor: Colors.blue,
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsetsDirectional.only(
                     bottom: 3.0,
                     end: 3.0,

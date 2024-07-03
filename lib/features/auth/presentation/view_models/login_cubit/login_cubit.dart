@@ -6,6 +6,7 @@ import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/errors/exception.dart';
 import 'package:graduation_project/features/auth/data/model/login_model.dart';
 import '../../../../../core/api/api_helper.dart';
+import '../../../../../core/utils/assets.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
@@ -52,6 +53,9 @@ class LoginCubit extends Cubit<LoginState> {
       CacheHelper().saveData(
           key: userPhone,
           value: LoginModel.fromJson(response.data).user!.phone);
+
+      personImage = CacheHelper().getData(key: userRole) == 'mentor' ? AppAssets.person : AppAssets.oldPerson;
+      anotherImage = CacheHelper().getData(key: userRole) == 'mentor' ? AppAssets.oldPerson : AppAssets.person;
       emit(LoginSuccessState(
           message: LoginModel.fromJson(response.data).message!));
     } on ServerException catch (e) {

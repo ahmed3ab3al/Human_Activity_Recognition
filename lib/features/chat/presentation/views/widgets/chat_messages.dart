@@ -40,7 +40,7 @@ class ChatMessages extends StatelessWidget {
     ];
     return BlocBuilder<ChatCubit, ChatState>(
       builder: (context, state) {
-        return state is GetMessageLoading
+        return state is GetMessageLoading || ChatCubit.get(context).messagesModel == null
             ? Expanded(
                 child: ListView.separated(
                   physics: const ScrollPhysics(),
@@ -62,7 +62,7 @@ class ChatMessages extends StatelessWidget {
                   itemCount: loading.length,
                 ),
               )
-            : Expanded(
+            :ChatCubit.get(context).messagesModel!.results!.isEmpty ? Container(): Expanded(
                 child: ListView.separated(
                   physics: const ScrollPhysics(),
                   reverse: true,
@@ -88,7 +88,7 @@ class ChatMessages extends StatelessWidget {
                   itemCount:
                       ChatCubit.get(context).messagesModel!.results!.length,
                 ),
-              );
+              ) ;
       },
     );
   }

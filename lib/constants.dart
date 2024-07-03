@@ -1,3 +1,4 @@
+import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/utils/assets.dart';
 
 String role = 'rolename';
@@ -24,3 +25,6 @@ Map<String, String> activityPhoto = {
   'Sitting': AppAssets.sit,
   'null': AppAssets.sit,
 };
+
+String personImage = CacheHelper().getData(key: userRole) == 'mentor' ? AppAssets.person : AppAssets.oldPerson;
+String anotherImage = CacheHelper().getData(key: userRole) == 'mentor' ? AppAssets.oldPerson : AppAssets.person;

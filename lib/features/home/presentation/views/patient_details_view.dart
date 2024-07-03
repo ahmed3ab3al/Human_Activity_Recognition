@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
+import 'package:graduation_project/features/chat/presentation/view_models/chat_cubit.dart';
 import '../../../../constants.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../../core/utils/colors.dart';
@@ -17,6 +18,7 @@ class PatientDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MedicineCubit.get(context).getPatientsMedicine(patientID: patientID);
+    ChatCubit.get(context).getChat(back: true);
     return BlocConsumer<MentorCubit, MentorStates>(
       listener: (context, state) {},
       builder: (context, state) {

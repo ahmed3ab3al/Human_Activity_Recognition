@@ -20,17 +20,14 @@ class EditProfileBody extends StatelessWidget {
 
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
 
-  // final GlobalKey<FormState> loginFormKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     nameController.text = CacheHelper().getData(key: userName);
     phoneController.text = CacheHelper().getData(key: userPhone);
-    emailController.text = CacheHelper().getData(key: userEmail);
+
     return BlocProvider(
       create: (context) => ProfileCubit(getIt.get<DioHelper>()),
       child: BlocConsumer<ProfileCubit, ProfileStates>(
@@ -73,13 +70,6 @@ class EditProfileBody extends StatelessWidget {
                         customController: phoneController,
                         type: TextInputType.number,
                         prefix: Icons.phone,
-                      ),
-                      20.verticalSpace,
-                      EditTextFormFiled(
-                        hint: 'Email',
-                        customController: emailController,
-                        type: TextInputType.emailAddress,
-                        prefix: Icons.email_outlined,
                       ),
                       50.verticalSpace,
                       state is EditProfileLoadingState

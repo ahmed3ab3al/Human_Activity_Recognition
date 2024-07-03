@@ -8,6 +8,7 @@ import 'package:graduation_project/features/home/presentation/view_models/patien
 import 'package:graduation_project/features/home/presentation/views/widgets/mentor_requesr_loading.dart';
 import 'package:graduation_project/features/medicine/presentation/views/widgets/line_container.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import '../../../../constants.dart';
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/styles.dart';
 
@@ -134,8 +135,8 @@ Widget buildMentorItem({
             ),
             CircleAvatar(
               radius: 30.r,
-              backgroundImage: const NetworkImage('https://i.pravatar.cc/300'),
-              backgroundColor: Colors.black,
+              backgroundImage:  AssetImage(anotherImage),
+              backgroundColor: Colors.blue,
             ),
             SizedBox(
               width: MediaQuery.sizeOf(context).width / 15,

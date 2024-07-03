@@ -28,6 +28,8 @@ class AppAssets {
   static const upStair = '$path/up_stair.png';
   static const vitamin = '$path/vitamin_a.png';
   static const waveHand = '$path/wave_hand.png';
+  static const person = '$path/person.png';
+  static const oldPerson = '$path/old_person.jpg';
 
   static const animation = '$lottie/Animation - 1715290891194.json';
 }
