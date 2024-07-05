@@ -5,6 +5,8 @@ import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
 
+import '../api/end_points.dart';
+
 Timer? _timer;
 Location location = Location();
 
@@ -72,7 +74,7 @@ Future<void> sendLocationToAPI({
   required double longitude,
 }) async {
   const url =
-      'http://192.168.1.14:3000/api/v1/location/update-location'; // Replace with your API endpoint
+      'http://${EndPoints.IP}:3000/api/v1/location/update-location'; // Replace with your API endpoint
   final Uri uri = Uri.parse(url);
   final headers = {
     'Content-Type': 'application/json',

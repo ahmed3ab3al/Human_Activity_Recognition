@@ -63,6 +63,18 @@ class MapCubit extends Cubit<MapState> {
     }
   }
 
+  double? convertValue(value) {
+    if (value is int) {
+      // If the value is an int, convert it directly to double
+      return value.toDouble();
+    } else if (value is String) {
+      // If the value is a string, try to parse it to a double
+      return double.tryParse(value);
+    } else {
+      return value;
+    }
+  }
+
   void getPatientLocation() async {
     emit(GetLocationLoading());
     try {
@@ -70,8 +82,8 @@ class MapCubit extends Cubit<MapState> {
           await dioHelper.get('${EndPoints.getLocation}$patientID');
       // Parse the response to extract longitude and latitude
       var data = response['location'];
-      double longitude = data['longitude'];
-      double latitude = data['latitude'];
+      dynamic longitude = convertValue(data['longitude']);
+      dynamic latitude = convertValue(data['latitude']);
       var cameraPosition = CameraPosition(
         target: LatLng(
           latitude,

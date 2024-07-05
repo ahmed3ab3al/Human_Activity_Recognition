@@ -72,6 +72,15 @@ class MedicineInformation extends StatelessWidget {
                           .then((value) {
                         MedicineCubit.get(context).hours = value!.hour;
                         MedicineCubit.get(context).minute = value.minute;
+                        MedicineCubit.get(context).system = value.period
+                                    .toString()
+                                    .substring(
+                                        value.period.toString().length - 2,
+                                        value.period.toString().length) ==
+                                'am'
+                            ? 'AM'
+                            : 'PM';
+                        print(MedicineCubit.get(context).system);
                         MedicineCubit.get(context).timeController.text =
                             value.format(context);
                       });

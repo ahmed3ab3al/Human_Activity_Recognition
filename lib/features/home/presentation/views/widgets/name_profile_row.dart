@@ -26,7 +26,7 @@ class NameProfileRow extends StatelessWidget {
           onTap: () {
             GoRouter.of(context).push(AppRouter.kShowProfile);
           },
-          child:  CircleAvatar(
+          child: CircleAvatar(
             radius: 15.0,
             backgroundImage: AssetImage(personImage),
             backgroundColor: Colors.blue,

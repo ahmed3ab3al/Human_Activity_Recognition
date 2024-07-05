@@ -2,7 +2,6 @@ import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/features/chat/presentation/view_models/chat_cubit.dart';
 import '../../../../constants.dart';
 import '../../../../core/utils/app_router.dart';
@@ -13,10 +12,11 @@ import '../view_models/mentor_cubit/mentor_cubit.dart';
 import '../view_models/mentor_cubit/mentor_states.dart';
 
 class PatientDetailsView extends StatelessWidget {
-  const PatientDetailsView({super.key});
-
+  const PatientDetailsView({super.key, required this.name});
+  final name;
   @override
   Widget build(BuildContext context) {
+    print(name);
     MedicineCubit.get(context).getPatientsMedicine(patientID: patientID);
     ChatCubit.get(context).getChat(back: true);
     return BlocConsumer<MentorCubit, MentorStates>(
@@ -31,7 +31,7 @@ class PatientDetailsView extends StatelessWidget {
               if (index == 2) {
                 GoRouter.of(context).push(
                   AppRouter.kChatDetails,
-                  extra: CacheHelper().getData(key: userName),
+                  extra: name,
                 );
               }
               MentorCubit.get(context).changeBottomNavBar(index);

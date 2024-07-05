@@ -76,7 +76,9 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kPatientDetails,
-        builder: (context, state) => const PatientDetailsView(),
+        builder: (context, state) => PatientDetailsView(
+          name: state.extra,
+        ),
       ),
       GoRoute(
         path: kPatientHome,

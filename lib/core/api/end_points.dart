@@ -1,12 +1,13 @@
 // https://icareu.onrender.com/api/v1
 // http://192.168.1.14:3000/api/v1
 class EndPoints {
-  static const String baseUrl = 'http://192.168.1.14:3000/api/v1';
+  static const IP = '192.168.1.14';
+  static const String baseUrl = 'http://$IP:3000/api/v1';
   static const String signUp = '/users/signup';
   static const String login = '/users/signin';
   static const String forgetPassword = '/users/forgotpassword';
   static const String otp = '/users/verify-reset-password-code';
-  static const String confirm_reset_password = '/users/confirm-reset-password';
+  static const String confirmResetPassword = '/users/confirm-reset-password';
   static const String editProfile = '/users/update-user';
   static const String sendRequest = '/mentors';
   static const String getMentorRequest = '/patients/all-requests';

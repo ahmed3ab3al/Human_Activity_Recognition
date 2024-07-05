@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/api/api_helper.dart';
 import 'package:graduation_project/core/api/end_points.dart';
-import 'package:graduation_project/features/medicine/data/GetPatientMedicine.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/cache/cache_helper.dart';
 import '../../../../../core/errors/exception.dart';
+import '../../../data/get_patient_medicine.dart';
 import 'medicine_state.dart';
 
 class MedicineCubit extends Cubit<MedicineStates> {
@@ -17,6 +17,7 @@ class MedicineCubit extends Cubit<MedicineStates> {
   int dosage = 1;
   int hours = 0;
   int minute = 0;
+  String system = '';
   bool isAfterMeal = false;
   final TextEditingController timeController = TextEditingController();
 
@@ -74,6 +75,7 @@ class MedicineCubit extends Cubit<MedicineStates> {
           "time": {
             "hour": hours,
             "minutes": minute,
+            'system': system,
           }
         },
       );
@@ -81,6 +83,7 @@ class MedicineCubit extends Cubit<MedicineStates> {
       dosage = 1;
       hours = 0;
       minute = 0;
+      system = '';
       isAfterMeal = false;
       emit(AddMedicineSuccess(message: "Add Medicine Success"));
     } on ServerException catch (e) {

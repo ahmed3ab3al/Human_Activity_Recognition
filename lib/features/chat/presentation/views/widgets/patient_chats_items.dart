@@ -25,7 +25,7 @@ class BuildChatsItem extends StatelessWidget {
       children: [
         Row(
           children: [
-             Stack(
+            Stack(
               alignment: AlignmentDirectional.bottomEnd,
               children: [
                 CircleAvatar(

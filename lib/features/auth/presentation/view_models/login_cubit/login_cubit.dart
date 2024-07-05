@@ -54,8 +54,12 @@ class LoginCubit extends Cubit<LoginState> {
           key: userPhone,
           value: LoginModel.fromJson(response.data).user!.phone);
 
-      personImage = CacheHelper().getData(key: userRole) == 'mentor' ? AppAssets.person : AppAssets.oldPerson;
-      anotherImage = CacheHelper().getData(key: userRole) == 'mentor' ? AppAssets.oldPerson : AppAssets.person;
+      personImage = CacheHelper().getData(key: userRole) == 'mentor'
+          ? AppAssets.person
+          : AppAssets.oldPerson;
+      anotherImage = CacheHelper().getData(key: userRole) == 'mentor'
+          ? AppAssets.oldPerson
+          : AppAssets.person;
       emit(LoginSuccessState(
           message: LoginModel.fromJson(response.data).message!));
     } on ServerException catch (e) {

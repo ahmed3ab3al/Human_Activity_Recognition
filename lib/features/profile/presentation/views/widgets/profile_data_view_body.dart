@@ -5,6 +5,7 @@ import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/utils/location.dart';
 import 'package:graduation_project/core/utils/sensors.dart';
 import 'package:graduation_project/core/utils/styles.dart';
+import 'package:graduation_project/features/home/presentation/view_models/mentor_cubit/mentor_cubit.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/widgets/custom_blue_button.dart';
@@ -59,10 +60,9 @@ class ProfileDataViewBody extends StatelessWidget {
               height: 130,
               child: CircleAvatar(
                 backgroundColor: Colors.grey.shade200,
-                backgroundImage:
-                     AssetImage(
-                         personImage,
-                     ),
+                backgroundImage: AssetImage(
+                  personImage,
+                ),
                 child: Stack(
                   children: [
                     Positioned(
@@ -152,6 +152,10 @@ class ProfileDataViewBody extends StatelessWidget {
                     CacheHelper().saveData(key: userPhone, value: '');
                     CacheHelper().saveData(key: userEmail, value: '');
                     GoRouter.of(context).pushReplacement(AppRouter.kLogin);
+                    if (MentorCubit.get(context).timer != null) {
+                      MentorCubit.get(context).timer!.cancel();
+                      MentorCubit.get(context).timer = null;
+                    }
                     stopSendingData();
                     stopSendingLocation();
                   },

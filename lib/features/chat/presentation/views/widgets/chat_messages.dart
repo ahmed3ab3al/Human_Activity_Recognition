@@ -40,7 +40,8 @@ class ChatMessages extends StatelessWidget {
     ];
     return BlocBuilder<ChatCubit, ChatState>(
       builder: (context, state) {
-        return state is GetMessageLoading || ChatCubit.get(context).messagesModel == null
+        return state is GetMessageLoading ||
+                ChatCubit.get(context).messagesModel == null
             ? Expanded(
                 child: ListView.separated(
                   physics: const ScrollPhysics(),
@@ -62,33 +63,36 @@ class ChatMessages extends StatelessWidget {
                   itemCount: loading.length,
                 ),
               )
-            :ChatCubit.get(context).messagesModel!.results!.isEmpty ? Container(): Expanded(
-                child: ListView.separated(
-                  physics: const ScrollPhysics(),
-                  reverse: true,
-                  itemBuilder: (context, index) {
-                    var message = ChatCubit.get(context)
-                        .messagesModel!
-                        .results!
-                        .reversed
-                        .toList()[index];
-                    if (CacheHelper().getData(key: userId) == message.sender) {
-                      return BuildMyMessage(message: message.content!);
-                    }
-                    return BuildAnotherMessage(message: message.content!);
-                  },
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.all(10),
-                  addAutomaticKeepAlives: true,
-                  cacheExtent: 100,
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  separatorBuilder: (context, index) => const SizedBox(
-                    height: 10,
-                  ),
-                  itemCount:
-                      ChatCubit.get(context).messagesModel!.results!.length,
-                ),
-              ) ;
+            : ChatCubit.get(context).messagesModel!.results!.isEmpty
+                ? Container()
+                : Expanded(
+                    child: ListView.separated(
+                      physics: const ScrollPhysics(),
+                      reverse: true,
+                      itemBuilder: (context, index) {
+                        var message = ChatCubit.get(context)
+                            .messagesModel!
+                            .results!
+                            .reversed
+                            .toList()[index];
+                        if (CacheHelper().getData(key: userId) ==
+                            message.sender) {
+                          return BuildMyMessage(message: message.content!);
+                        }
+                        return BuildAnotherMessage(message: message.content!);
+                      },
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.all(10),
+                      addAutomaticKeepAlives: true,
+                      cacheExtent: 100,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 10,
+                      ),
+                      itemCount:
+                          ChatCubit.get(context).messagesModel!.results!.length,
+                    ),
+                  );
       },
     );
   }

@@ -59,7 +59,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     try {
       emit(ResetPasswordLoadingState());
       await apiHelper.patch(
-        EndPoints.confirm_reset_password,
+        EndPoints.confirmResetPassword,
         data: {
           'password': password,
           'repassword': repassword,

@@ -22,7 +22,6 @@ class EditProfileBody extends StatelessWidget {
   final phoneController = TextEditingController();
   var formKey = GlobalKey<FormState>();
 
-
   @override
   Widget build(BuildContext context) {
     nameController.text = CacheHelper().getData(key: userName);

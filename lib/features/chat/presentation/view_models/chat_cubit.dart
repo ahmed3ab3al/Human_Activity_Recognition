@@ -54,8 +54,10 @@ class ChatCubit extends Cubit<ChatState> {
   void sendMessage() async {
     emit(SendMessageLoading());
     try {
-      await apiHelper.post(EndPoints.sendMessage,
-          data: {'content': message.text, 'id': '668237845a5656aa48ce4331'});
+      await apiHelper.post(EndPoints.sendMessage, data: {
+        'content': message.text,
+        'id': '${chatModel!.results![0].id}'
+      });
       MessageDetails newMessage = MessageDetails(
           content: message.text, sender: CacheHelper().getData(key: userId));
       messagesModel!.results?.add(newMessage);

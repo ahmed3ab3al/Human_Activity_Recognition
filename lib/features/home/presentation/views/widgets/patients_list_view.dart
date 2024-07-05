@@ -61,9 +61,12 @@ class PatientListView extends StatelessWidget {
             },
           );
         } else if (state is GetPatientsError) {
-          return Center(
+          return Padding(
+            padding: EdgeInsetsDirectional.symmetric(
+                vertical: MediaQuery.of(context).size.height / 3),
             child: Text(
               state.error,
+              textAlign: TextAlign.center,
               style: Styles.size24_700Black,
             ),
           );
@@ -84,7 +87,11 @@ class PatientListView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                     onTap: () {
-                      GoRouter.of(context).push(AppRouter.kPatientDetails);
+                      GoRouter.of(context).push(
+                        AppRouter.kPatientDetails,
+                        extra:
+                            cubit.getAllPatients!.result![index].patient!.name,
+                      );
                     },
                     child: PatientListItem(
                       name: cubit.getAllPatients!.result![index].patient!.name!,

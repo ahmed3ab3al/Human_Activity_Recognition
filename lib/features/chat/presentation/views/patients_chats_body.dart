@@ -106,9 +106,10 @@ class ChatsScreen extends StatelessWidget {
                                                 .members![index]
                                                 .name!,
                                             message: ChatCubit.get(context)
-                                                .chatModel!
-                                                .results![0]
-                                                .lastMesssage!,
+                                                    .chatModel!
+                                                    .results![0]
+                                                    .lastMesssage ??
+                                                '',
                                             time: ChatCubit.get(context)
                                                 .chatModel!
                                                 .results![0]

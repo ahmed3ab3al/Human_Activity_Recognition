@@ -135,7 +135,7 @@ Widget buildMentorItem({
             ),
             CircleAvatar(
               radius: 30.r,
-              backgroundImage:  AssetImage(anotherImage),
+              backgroundImage: AssetImage(anotherImage),
               backgroundColor: Colors.blue,
             ),
             SizedBox(

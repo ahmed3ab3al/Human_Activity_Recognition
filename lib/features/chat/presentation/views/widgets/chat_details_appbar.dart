@@ -25,7 +25,7 @@ class ChatDetailsAppBar extends StatelessWidget {
             size: 20,
           ),
         ),
-         Stack(
+        Stack(
           children: [
             CircleAvatar(
               radius: 25,

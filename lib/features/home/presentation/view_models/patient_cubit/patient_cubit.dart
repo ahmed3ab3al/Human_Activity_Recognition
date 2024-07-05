@@ -97,7 +97,7 @@ class PatientCubit extends Cubit<PatientStates> {
     emit(ConfirmRequestLoading());
     try {
       final response = await apiHelper.post('${EndPoints.confirmRequest}$id');
-      createChat(id: response['mentor']);
+      createChat(id: response.data['result']['mentor']);
       emit(ConfirmRequestSuccess());
       getMentorRequests();
     } on ServerException catch (e) {

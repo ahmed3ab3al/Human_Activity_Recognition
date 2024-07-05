@@ -1,4 +1,5 @@
 import 'package:graduation_project/constants.dart';
+import 'package:graduation_project/core/api/end_points.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/notification/notification.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
@@ -14,7 +15,7 @@ class AppSocket {
   static String mentor = '';
   static late IO.Socket socket;
   static void appSocket() {
-    socket = IO.io('http://192.168.1.14:3000', options);
+    socket = IO.io('http://${EndPoints.IP}:3000', options);
     socket.connect();
     socket.onConnect((data) {
       print('Connect To Server');
@@ -32,9 +33,7 @@ class AppSocket {
             title: 'Hallo ${CacheHelper().getData(key: userName)}',
             body: 'Are you Ok ?',
             patient: true,
-            isFall: true
-        );
-
+            isFall: true);
       });
       socket.on('reminder', (data) {
         AppNotification alarmNotification = AppNotification();
@@ -45,7 +44,6 @@ class AppSocket {
             body: 'Take your ${data['name']} Medicine',
             patient: false,
             isFall: false);
-        print(data);
       });
     }
     if (CacheHelper().getData(key: userRole) == 'mentor') {
@@ -57,9 +55,7 @@ class AppSocket {
             title: 'Warning ${CacheHelper().getData(key: userName)}',
             body: data['message'],
             patient: false,
-            isFall: true
-        );
-        print(data);
+            isFall: true);
       });
     }
   }

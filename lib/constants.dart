@@ -26,5 +26,9 @@ Map<String, String> activityPhoto = {
   'null': AppAssets.sit,
 };
 
-String personImage = CacheHelper().getData(key: userRole) == 'mentor' ? AppAssets.person : AppAssets.oldPerson;
-String anotherImage = CacheHelper().getData(key: userRole) == 'mentor' ? AppAssets.oldPerson : AppAssets.person;
+String personImage = CacheHelper().getData(key: userRole) == 'mentor'
+    ? AppAssets.person
+    : AppAssets.oldPerson;
+String anotherImage = CacheHelper().getData(key: userRole) == 'mentor'
+    ? AppAssets.oldPerson
+    : AppAssets.person;

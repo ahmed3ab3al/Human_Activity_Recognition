@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_icon.dart';
-import '../../../data/GetPatientMedicine.dart';
+import '../../../data/get_patient_medicine.dart';
 import '../../view_models/medicine_cubit/medicine_cubit.dart';
 import 'custom_container_medicine.dart';
 
@@ -39,11 +39,13 @@ class MedicineViewBody extends StatelessWidget {
               return Row(
                 children: [
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Row(
+                      Row(
                         children: [
-                          CustomIcon(icon: Icons.alarm),
-                          Text('11:00 AM'),
+                          const CustomIcon(icon: Icons.alarm),
+                          Text(
+                              '${getPatientMedicine!.result![index].time!.hour}:${getPatientMedicine!.result![index].time!.minute} ${getPatientMedicine!.result![index].time!.system}'),
                         ],
                       ),
                       getPatientMedicine!.result![index].afterMeal!

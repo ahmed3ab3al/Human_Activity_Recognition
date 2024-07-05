@@ -6,6 +6,8 @@ import 'package:sensors_plus/sensors_plus.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 
+import '../api/end_points.dart';
+
 List<double> acc_x = [];
 List<double> acc_y = [];
 List<double> acc_z = [];
@@ -75,7 +77,7 @@ void stopSendingData() {
 
 Future<void> sendDataToAPI() async {
   const url =
-      'http://192.168.1.14:3000/api/v1/activity'; // Replace with your API endpoint
+      'http://${EndPoints.IP}:3000/api/v1/activity'; // Replace with your API endpoint
   final Uri uri = Uri.parse(url);
   final headers = {
     'Content-Type': 'application/json',
@@ -106,7 +108,7 @@ Future<void> sendDataToAPI() async {
     // gyro_z.removeRange(0, (gyro_z.length / 2).ceil());
 
     if (response.statusCode == 200) {
-      // print('Data sent successfully');
+      print('Data sent successfully');
     }
   } catch (e) {
     print('Error sending data: $e');
