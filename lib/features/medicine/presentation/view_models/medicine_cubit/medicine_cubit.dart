@@ -163,4 +163,27 @@ class MedicineCubit extends Cubit<MedicineStates> {
       emit(UpdateMedicineError(error: e.errorModel.message));
     }
   }
+
+
+  void deleteMedicine({
+    required medicineId,
+    required index
+})async{
+    emit(DeleteMedicineLoading());
+    try {
+      await apiHelper.delete(
+        '${EndPoints.updateMedicine}$medicineId',
+        data: {
+          "patient": patientID,
+        },
+      );
+      getPatientMedicine!.result!.removeAt(index);
+
+      emit(DeleteMedicineSuccess(
+          message: 'Success Update'
+      ));
+    } on ServerException catch (e) {
+      emit(DeleteMedicineError(error: e.errorModel.message));
+    }
+  }
 }

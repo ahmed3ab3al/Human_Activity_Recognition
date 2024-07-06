@@ -50,3 +50,15 @@ class UpdateMedicineError extends MedicineStates {
   final error;
   UpdateMedicineError({this.error});
 }
+
+class DeleteMedicineLoading extends MedicineStates {}
+
+class DeleteMedicineSuccess extends MedicineStates {
+  final message;
+  DeleteMedicineSuccess({this.message});
+}
+
+class DeleteMedicineError extends MedicineStates {
+  final error;
+  DeleteMedicineError({this.error});
+}

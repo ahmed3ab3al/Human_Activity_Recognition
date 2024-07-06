@@ -40,57 +40,68 @@ class MedicineViewBody extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return InkWell(
-                onTap: (){
+              return Dismissible(
+                key: Key(MedicineCubit.get(context).getPatientMedicine!.result![index].id!),
+                onDismissed: (direction) {
                   if(CacheHelper().getData(key: userRole) == 'mentor'){
-                    UpdateMedicine update = UpdateMedicine(
-                        name: MedicineCubit.get(context).getPatientMedicine!.result![index].name!,
-                        shape: MedicineCubit.get(context).getPatientMedicine!.result![index].shape!,
-                        aftearMeal: MedicineCubit.get(context).getPatientMedicine!.result![index].afterMeal!,
-                        dosage: MedicineCubit.get(context).getPatientMedicine!.result![index].dosage!,
-                        hour: MedicineCubit.get(context).getPatientMedicine!.result![index].time!.hour,
-                        minute: MedicineCubit.get(context).getPatientMedicine!.result![index].time!.minute,
-                        system: MedicineCubit.get(context).getPatientMedicine!.result![index].time!.system,
-                        id: MedicineCubit.get(context).getPatientMedicine!.result![index].id!,
-                    );
-                    Navigator.push(
-                        context,
-                      MaterialPageRoute(builder: (context) => UpdateMedicineView(
-                          updateMedicine: update
-                      )
-                      )
+                    MedicineCubit.get(context).deleteMedicine(
+                      medicineId: MedicineCubit.get(context).getPatientMedicine!.result![index].id!,
+                      index: index
                     );
                   }
                 },
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          children: [
-                            const CustomIcon(icon: Icons.alarm),
-                            Text(
-                                '${getPatientMedicine!.result![index].time!.hour}:${getPatientMedicine!.result![index].time!.minute} ${getPatientMedicine!.result![index].time!.system}'),
-                          ],
-                        ),
-                        getPatientMedicine!.result![index].afterMeal!
-                            ? Text(
-                                'After Meal',
-                                style: Styles.testStyle14Bold,
-                              )
-                            : Text(
-                                'Before Meal',
-                                style: Styles.testStyle14Bold,
-                              ),
-                      ],
-                    ),
-                    CustomContainerMedicine(
-                      name: getPatientMedicine!.result![index].name,
-                      dosage: getPatientMedicine!.result![index].dosage,
-                      shape: getPatientMedicine!.result![index].shape,
-                    ),
-                  ],
+                child: InkWell(
+                  onTap: (){
+                    if(CacheHelper().getData(key: userRole) == 'mentor'){
+                      UpdateMedicine update = UpdateMedicine(
+                          name: MedicineCubit.get(context).getPatientMedicine!.result![index].name!,
+                          shape: MedicineCubit.get(context).getPatientMedicine!.result![index].shape!,
+                          aftearMeal: MedicineCubit.get(context).getPatientMedicine!.result![index].afterMeal!,
+                          dosage: MedicineCubit.get(context).getPatientMedicine!.result![index].dosage!,
+                          hour: MedicineCubit.get(context).getPatientMedicine!.result![index].time!.hour,
+                          minute: MedicineCubit.get(context).getPatientMedicine!.result![index].time!.minute,
+                          system: MedicineCubit.get(context).getPatientMedicine!.result![index].time!.system,
+                          id: MedicineCubit.get(context).getPatientMedicine!.result![index].id!,
+                      );
+                      Navigator.push(
+                          context,
+                        MaterialPageRoute(builder: (context) => UpdateMedicineView(
+                            updateMedicine: update
+                        )
+                        )
+                      );
+                    }
+                  },
+                  child: Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Row(
+                            children: [
+                              const CustomIcon(icon: Icons.alarm),
+                              Text(
+                                  '${getPatientMedicine!.result![index].time!.hour}:${getPatientMedicine!.result![index].time!.minute} ${getPatientMedicine!.result![index].time!.system}'),
+                            ],
+                          ),
+                          getPatientMedicine!.result![index].afterMeal!
+                              ? Text(
+                                  'After Meal',
+                                  style: Styles.testStyle14Bold,
+                                )
+                              : Text(
+                                  'Before Meal',
+                                  style: Styles.testStyle14Bold,
+                                ),
+                        ],
+                      ),
+                      CustomContainerMedicine(
+                        name: getPatientMedicine!.result![index].name,
+                        dosage: getPatientMedicine!.result![index].dosage,
+                        shape: getPatientMedicine!.result![index].shape,
+                      ),
+                    ],
+                  ),
                 ),
               );
             },

@@ -30,7 +30,7 @@ class MentorMedicineViewBody extends StatelessWidget {
                     text: 'Treatment registration',
                     space: 20,
                   ),
-                  if (state is GetPatientMedicineLoading)
+                  if (state is GetPatientMedicineLoading || state is DeleteMedicineLoading)
                     const MedicineViewLoading(),
                   if (state is GetPatientMedicineError)
                     Center(
