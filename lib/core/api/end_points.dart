@@ -23,6 +23,7 @@ class EndPoints {
   static const String chat = '/chats/user-chats';
   static const String messages = '/messages/all-chat-messages';
   static const String sendMessage = '/messages/send-message';
+  static const String updateMedicine = '/medication/';
 }
 
 class ApiKeys {

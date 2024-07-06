@@ -38,3 +38,15 @@ class GetPatientMedicineError extends MedicineStates {
   final error;
   GetPatientMedicineError({this.error});
 }
+
+class UpdateMedicineLoading extends MedicineStates {}
+
+class UpdateMedicineSuccess extends MedicineStates {
+  final message;
+  UpdateMedicineSuccess({this.message});
+}
+
+class UpdateMedicineError extends MedicineStates {
+  final error;
+  UpdateMedicineError({this.error});
+}

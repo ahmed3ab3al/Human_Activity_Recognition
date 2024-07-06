@@ -56,6 +56,24 @@ class MedicineCubit extends Cubit<MedicineStates> {
     emit(ChangeDragItem());
   }
 
+  void selectDragItem(String shape){
+    if(shape == 'drink'){
+      selectedItem = 0;
+    }
+    else  if(shape == 'drink'){
+      selectedItem = 0;
+    }
+    else  if(shape == 'pill'){
+      selectedItem = 1;
+    }
+    else  if(shape == 'rivet'){
+      selectedItem = 2;
+    }
+    else{
+      selectedItem = 3;
+    }
+  }
+
   void addMedicine({
     required String patientID,
     required String nameOfMedicine,
@@ -113,5 +131,36 @@ class MedicineCubit extends Cubit<MedicineStates> {
     getPatientsMedicine(patientID: CacheHelper().getData(key: userId));
     await Future.delayed(const Duration(milliseconds: 1000));
     refreshController.refreshCompleted();
+  }
+
+  void updateMedicine({
+    required medicineId,
+    required String nameOfMedicine,
+}) async{
+    emit(UpdateMedicineLoading());
+    try {
+      await apiHelper.put(
+        '${EndPoints.updateMedicine}$medicineId',
+        data: {
+          "patient": patientID,
+          "name": nameOfMedicine,
+          "afterMeal": isAfterMeal,
+          "beforeMeal": !isAfterMeal,
+          "shape": shapeOfMedicine,
+          "dosage": dosage,
+          "repeatFor": 24 ~/ dosage,
+          "time": {
+            "hour": hours,
+            "minutes": minute,
+            'system': system,
+          }
+        },
+      );
+      emit(UpdateMedicineSuccess(
+        message: 'Success Update'
+      ));
+    } on ServerException catch (e) {
+      emit(UpdateMedicineError(error: e.errorModel.message));
+    }
   }
 }

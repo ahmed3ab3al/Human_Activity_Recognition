@@ -2,34 +2,51 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:graduation_project/core/widgets/custom_loading_item.dart';
+import 'package:graduation_project/core/widgets/custom_text_form_field.dart';
+import 'package:graduation_project/features/auth/data/model/update_medicine.dart';
+import 'package:graduation_project/features/medicine/presentation/view_models/medicine_cubit/medicine_cubit.dart';
+import 'package:graduation_project/features/medicine/presentation/view_models/medicine_cubit/medicine_state.dart';
+import 'package:graduation_project/features/medicine/presentation/views/widgets/line_container.dart';
 import 'package:graduation_project/features/medicine/presentation/views/widgets/medicine_information.dart';
+import 'package:graduation_project/features/medicine/presentation/views/widgets/medicine_list.dart';
 import 'package:graduation_project/features/medicine/presentation/views/widgets/toggle_button.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_appBar.dart';
 import '../../../../../core/widgets/custom_blue_button.dart';
-import '../../../../../core/widgets/custom_loading_item.dart';
-import '../../../../../core/widgets/custom_text_form_field.dart';
-import '../../view_models/medicine_cubit/medicine_cubit.dart';
-import '../../view_models/medicine_cubit/medicine_state.dart';
-import 'line_container.dart';
-import 'medicine_list.dart';
 
-class AddMedicineViewBody extends StatefulWidget {
-  const AddMedicineViewBody({super.key});
+class UpdateMedicineViewBody extends StatefulWidget {
+  const UpdateMedicineViewBody({super.key, required this.updateMedicine});
+
+  final UpdateMedicine updateMedicine;
 
   @override
-  State<AddMedicineViewBody> createState() => _AddMedicineViewBodyState();
+  State<UpdateMedicineViewBody> createState() => _UpdateMedicineViewBodyState();
 }
 
-class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
+class _UpdateMedicineViewBodyState extends State<UpdateMedicineViewBody> {
   var medicineController = TextEditingController();
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    MedicineCubit.get(context).hours = widget.updateMedicine.hour;
+    MedicineCubit.get(context).minute = widget.updateMedicine.minute;
+    MedicineCubit.get(context).system = widget.updateMedicine.system;
+    MedicineCubit.get(context).isAfterMeal = widget.updateMedicine.aftearMeal;
+    MedicineCubit.get(context).dosage = widget.updateMedicine.dosage;
+    MedicineCubit.get(context).selectDragItem(widget.updateMedicine.shape);
+    medicineController.text = widget.updateMedicine.name;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
+
+
+
     return BlocConsumer<MedicineCubit, MedicineStates>(
       listener: (context, state) {
-        if (state is AddMedicineSuccess) {
+        if (state is UpdateMedicineSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Center(child: Text(state.message)),
@@ -37,7 +54,7 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
           );
           MedicineCubit.get(context).getPatientsMedicine(patientID: patientID);
           GoRouter.of(context).pop();
-        } else if (state is AddMedicineError) {
+        } else if (state is UpdateMedicineError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Center(child: Text(state.error)),
@@ -57,7 +74,7 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                     tab: () {
                       GoRouter.of(context).pop();
                     },
-                    text: 'Add Medication',
+                    text: 'Update Medication',
                     space: 50,
                   ),
                   15.verticalSpace,
@@ -75,7 +92,9 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                     style: Styles.size16_700Black,
                   ),
                   15.verticalSpace,
-                  const Center(child: MedicineList()),
+                  const Center(
+                      child: MedicineList()
+                  ),
                   20.verticalSpace,
                   const LineContainer(),
                   30.verticalSpace,
@@ -84,23 +103,23 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                   const LineContainer(),
                   40.verticalSpace,
                   const MedicineInformation(
-                    update: false,
+                    update: true,
                   ),
                   60.verticalSpace,
-                  state is AddMedicineLoading
+                  state is UpdateMedicineLoading
                       ? CustomLoadingItem(
-                          width: MediaQuery.sizeOf(context).width / 1.1,
-                          height: MediaQuery.sizeOf(context).height / 15,
-                        )
+                    width: MediaQuery.sizeOf(context).width / 1.1,
+                    height: MediaQuery.sizeOf(context).height / 15,
+                  )
                       : CustomBlueButton(
-                          text: 'Reminder',
-                          ontap: () {
-                            MedicineCubit.get(context).addMedicine(
-                              patientID: patientID,
-                              nameOfMedicine: medicineController.text,
-                            );
-                          },
-                          containerHeight: 56)
+                      text: 'Update',
+                      ontap: () {
+                        MedicineCubit.get(context).updateMedicine(
+                          medicineId: widget.updateMedicine.id,
+                          nameOfMedicine: medicineController.text,
+                        );
+                      },
+                      containerHeight: 56)
                 ],
               ),
             ),
