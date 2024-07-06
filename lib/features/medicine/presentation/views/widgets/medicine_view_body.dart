@@ -40,20 +40,21 @@ class MedicineViewBody extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return Dismissible(
-                key: Key(MedicineCubit.get(context).getPatientMedicine!.result![index].id!),
-                onDismissed: (direction) {
-                  if(CacheHelper().getData(key: userRole) == 'mentor'){
-                    MedicineCubit.get(context).deleteMedicine(
-                      medicineId: MedicineCubit.get(context).getPatientMedicine!.result![index].id!,
-                      index: index
-                    );
-                  }
-                },
-                child: InkWell(
-                  onTap: (){
+              if(CacheHelper().getData(key: userRole) == 'mentor') {
+                return Dismissible(
+                  key: Key(MedicineCubit.get(context).getPatientMedicine!.result![index].id!),
+                  onDismissed: (direction) {
                     if(CacheHelper().getData(key: userRole) == 'mentor'){
-                      UpdateMedicine update = UpdateMedicine(
+                      MedicineCubit.get(context).deleteMedicine(
+                          medicineId: MedicineCubit.get(context).getPatientMedicine!.result![index].id!,
+                          index: index
+                      );
+                    }
+                  },
+                  child: InkWell(
+                    onTap: (){
+                      if(CacheHelper().getData(key: userRole) == 'mentor'){
+                        UpdateMedicine update = UpdateMedicine(
                           name: MedicineCubit.get(context).getPatientMedicine!.result![index].name!,
                           shape: MedicineCubit.get(context).getPatientMedicine!.result![index].shape!,
                           aftearMeal: MedicineCubit.get(context).getPatientMedicine!.result![index].afterMeal!,
@@ -62,48 +63,81 @@ class MedicineViewBody extends StatelessWidget {
                           minute: MedicineCubit.get(context).getPatientMedicine!.result![index].time!.minute,
                           system: MedicineCubit.get(context).getPatientMedicine!.result![index].time!.system,
                           id: MedicineCubit.get(context).getPatientMedicine!.result![index].id!,
-                      );
-                      Navigator.push(
-                          context,
-                        MaterialPageRoute(builder: (context) => UpdateMedicineView(
-                            updateMedicine: update
-                        )
-                        )
-                      );
-                    }
-                  },
-                  child: Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            children: [
-                              const CustomIcon(icon: Icons.alarm),
-                              Text(
-                                  '${getPatientMedicine!.result![index].time!.hour}:${getPatientMedicine!.result![index].time!.minute} ${getPatientMedicine!.result![index].time!.system}'),
-                            ],
-                          ),
-                          getPatientMedicine!.result![index].afterMeal!
-                              ? Text(
-                                  'After Meal',
-                                  style: Styles.testStyle14Bold,
-                                )
-                              : Text(
-                                  'Before Meal',
-                                  style: Styles.testStyle14Bold,
-                                ),
-                        ],
-                      ),
-                      CustomContainerMedicine(
-                        name: getPatientMedicine!.result![index].name,
-                        dosage: getPatientMedicine!.result![index].dosage,
-                        shape: getPatientMedicine!.result![index].shape,
-                      ),
-                    ],
+                        );
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => UpdateMedicineView(
+                                updateMedicine: update
+                            )
+                            )
+                        );
+                      }
+                    },
+                    child: Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                const CustomIcon(icon: Icons.alarm),
+                                Text(
+                                    '${getPatientMedicine!.result![index].time!.hour}:${getPatientMedicine!.result![index].time!.minute} ${getPatientMedicine!.result![index].time!.system}'),
+                              ],
+                            ),
+                            getPatientMedicine!.result![index].afterMeal!
+                                ? Text(
+                              'After Meal',
+                              style: Styles.testStyle14Bold,
+                            )
+                                : Text(
+                              'Before Meal',
+                              style: Styles.testStyle14Bold,
+                            ),
+                          ],
+                        ),
+                        CustomContainerMedicine(
+                          name: getPatientMedicine!.result![index].name,
+                          dosage: getPatientMedicine!.result![index].dosage,
+                          shape: getPatientMedicine!.result![index].shape,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              );
+                );
+              }
+              else{
+                return Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          children: [
+                            const CustomIcon(icon: Icons.alarm),
+                            Text(
+                                '${getPatientMedicine!.result![index].time!.hour}:${getPatientMedicine!.result![index].time!.minute} ${getPatientMedicine!.result![index].time!.system}'),
+                          ],
+                        ),
+                        getPatientMedicine!.result![index].afterMeal!
+                            ? Text(
+                          'After Meal',
+                          style: Styles.testStyle14Bold,
+                        )
+                            : Text(
+                          'Before Meal',
+                          style: Styles.testStyle14Bold,
+                        ),
+                      ],
+                    ),
+                    CustomContainerMedicine(
+                      name: getPatientMedicine!.result![index].name,
+                      dosage: getPatientMedicine!.result![index].dosage,
+                      shape: getPatientMedicine!.result![index].shape,
+                    ),
+                  ],
+                );
+              }
             },
             separatorBuilder: (context, index) {
               return 30.verticalSpace;
