@@ -93,7 +93,10 @@ class HomeView extends StatelessWidget {
                             ],
                           ),
                         )),
-                    elevation: 20);
+                    elevation: 20
+                ).closed.then((value){
+                  MentorCubit.get(context).changeSendIcon(add: true);
+                });
                 MentorCubit.get(context).changeSendIcon(add: false);
               }
             },
