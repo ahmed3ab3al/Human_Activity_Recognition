@@ -7,9 +7,9 @@ import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/socket/socket.dart';
 
 class AppNotification {
-  // AppNotification._();
-  // static final AppNotification _instance = AppNotification._();
-  // factory AppNotification() => _instance;
+  AppNotification._();
+  static final AppNotification _instance = AppNotification._();
+  factory AppNotification() => _instance;
 
   static final AwesomeNotifications awesomeNotifications =
       AwesomeNotifications();
