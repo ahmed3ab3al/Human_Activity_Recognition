@@ -7,9 +7,9 @@ import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:graduation_project/core/socket/socket.dart';
 
 class AppNotification {
-  AppNotification._();
-  static final AppNotification _instance = AppNotification._();
-  factory AppNotification() => _instance;
+  // AppNotification._();
+  // static final AppNotification _instance = AppNotification._();
+  // factory AppNotification() => _instance;
 
   static final AwesomeNotifications awesomeNotifications =
       AwesomeNotifications();
@@ -27,6 +27,17 @@ class AppNotification {
           ledColor: Colors.white,
           importance: NotificationImportance.High,
           channelShowBadge: true,
+        ),
+        NotificationChannel(
+          channelKey: 'alarm_channel',
+          channelName: 'Alarm Notifications',
+          channelDescription: 'Channel for alarm notifications',
+          defaultColor: Color(0xFF9D50DD),
+          ledColor: Colors.white,
+          importance: NotificationImportance.High,
+          soundSource: 'resource://raw/res_custom_alarm_sound', // Custom sound resource name
+          enableVibration: true,
+          playSound: true,
         )
       ],
       debug: true,
@@ -40,6 +51,19 @@ class AppNotification {
         awesomeNotifications.requestPermissionToSendNotifications();
       }
     });
+  }
+
+  Future<void> displayAlarm()async {
+    await awesomeNotifications.createNotification(
+      content: NotificationContent(
+        id: 10,
+        channelKey: 'alarm_channel',
+        title: 'Alarm',
+        body: 'Please Help ${CacheHelper().getData(key: userName)}',
+        displayOnForeground: true,
+        displayOnBackground: true,
+      ),
+    );
   }
 
   Future<void> showNotification({
@@ -76,6 +100,7 @@ class AppNotification {
 
     // Schedule a "No Response" message after a delay
     _noResponseTimer = Timer(const Duration(seconds: 5), () {
+      displayAlarm();
       AppSocket.socket.emit('fallTimeout', {
         'patientName': CacheHelper().getData(key: userName),
         'mentor': AppSocket.mentor,
@@ -87,6 +112,7 @@ class AppNotification {
     awesomeNotifications.setListeners(
       onActionReceivedMethod: (ReceivedAction receivedAction) async {
         if (receivedAction.buttonKeyPressed == 'NO') {
+          displayAlarm();
           AppSocket.socket.emit('fallTimeout', {
             'patientName': CacheHelper().getData(key: userName),
             'mentor': AppSocket.mentor,
