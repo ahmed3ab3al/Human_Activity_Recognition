@@ -1,10 +1,9 @@
 import 'dart:async';
-
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
-import 'package:graduation_project/core/socket/socket.dart';
+import 'package:graduation_project/core/api/socket.dart';
 
 class AppNotification {
   AppNotification._();
@@ -32,10 +31,11 @@ class AppNotification {
           channelKey: 'alarm_channel',
           channelName: 'Alarm Notifications',
           channelDescription: 'Channel for alarm notifications',
-          defaultColor: Color(0xFF9D50DD),
+          defaultColor: const Color(0xFF9D50DD),
           ledColor: Colors.white,
           importance: NotificationImportance.High,
-          soundSource: 'resource://raw/res_custom_alarm_sound', // Custom sound resource name
+          soundSource:
+              'resource://raw/res_custom_alarm_sound', // Custom sound resource name
           enableVibration: true,
           playSound: true,
         )
@@ -53,7 +53,7 @@ class AppNotification {
     });
   }
 
-  Future<void> displayAlarm()async {
+  Future<void> displayAlarm() async {
     await awesomeNotifications.createNotification(
       content: NotificationContent(
         id: 10,

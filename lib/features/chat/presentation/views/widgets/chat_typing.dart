@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project/core/socket/socket.dart';
+import 'package:graduation_project/core/api/socket.dart';
 import 'package:graduation_project/features/chat/presentation/view_models/chat_cubit.dart';
 import '../../../../../core/utils/colors.dart';
 

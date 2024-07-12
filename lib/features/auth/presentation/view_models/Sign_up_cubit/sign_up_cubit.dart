@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/api/api_helper.dart';
 import 'package:graduation_project/core/errors/exception.dart';
@@ -10,6 +11,15 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   final ApiHelper apiHelper;
   static SignUpCubit get(context) => BlocProvider.of(context);
+
+  final GlobalKey<FormState> signUpFormKey = GlobalKey();
+  final TextEditingController signUpPasswordController =
+      TextEditingController();
+  final TextEditingController signUpConfirmPasswordController =
+      TextEditingController();
+  final TextEditingController signUpNameController = TextEditingController();
+  final TextEditingController signUpPhoneController = TextEditingController();
+  final TextEditingController signUpEmailController = TextEditingController();
 
   bool secure = true;
   List roleItems = ['patient', 'mentor'];
@@ -25,23 +35,17 @@ class SignUpCubit extends Cubit<SignUpState> {
     emit(ChangeGenderState());
   }
 
-  signUpUser(
-      {required String email,
-      required String password,
-      required String confirmPassword,
-      required String phone,
-      required String name,
-      required String role}) async {
+  signUpUser() async {
     try {
       emit(AuthSignUpLoadingState());
       final response = await apiHelper.post(
         EndPoints.signUp,
         data: {
-          ApiKeys.name: name,
-          ApiKeys.email: email,
-          'phone': phone,
-          ApiKeys.password: password,
-          ApiKeys.confirmPassword: confirmPassword,
+          ApiKeys.name: signUpNameController.text,
+          ApiKeys.email: signUpEmailController.text,
+          'phone': signUpPhoneController.text,
+          ApiKeys.password: signUpPasswordController.text,
+          ApiKeys.confirmPassword: signUpConfirmPasswordController.text,
           ApiKeys.role: selectedValue,
         },
       );

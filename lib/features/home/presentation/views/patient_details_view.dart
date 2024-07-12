@@ -16,7 +16,6 @@ class PatientDetailsView extends StatelessWidget {
   final name;
   @override
   Widget build(BuildContext context) {
-    print(name);
     MedicineCubit.get(context).getPatientsMedicine(patientID: patientID);
     ChatCubit.get(context).getChat(back: true);
     return BlocConsumer<MentorCubit, MentorStates>(

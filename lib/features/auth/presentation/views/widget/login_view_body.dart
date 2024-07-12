@@ -13,7 +13,7 @@ import 'package:graduation_project/features/chat/presentation/view_models/chat_c
 import 'package:lottie/lottie.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/api/dio_helper.dart';
-import '../../../../../core/socket/socket.dart';
+import '../../../../../core/api/socket.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/service_locator.dart';
 import '../../../../../core/utils/styles.dart';
@@ -96,16 +96,6 @@ class LoginViewBody extends StatelessWidget {
                       25.verticalSpace,
                       const SignUpButtonView(),
                       20.verticalSpace,
-                      // const Center(
-                      //   child: Text(
-                      //     '-OR-',
-                      //     style: TextStyle(
-                      //         color: ColorManager.greyColor757474,
-                      //         fontSize: 18,
-                      //         fontWeight: FontWeight.w700),
-                      //   ),
-                      // ),
-                      // const LoginAnotherWay(),
                     ],
                   ),
                 ),

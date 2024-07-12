@@ -12,15 +12,6 @@ class BuildMyMessage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
         decoration: const BoxDecoration(
           color: Color(0xff468CF7),
-          // gradient: const LinearGradient(
-          //   colors: [
-          //     // 0xff0E4CA1
-          //     Color(0xff468CF7),
-          //     Color(0xff67A3F4),
-          //   ],
-          //   begin: Alignment.topCenter,
-          //   end: Alignment.bottomCenter,
-          // ),
           borderRadius: BorderRadiusDirectional.only(
             bottomStart: Radius.circular(10),
             topEnd: Radius.circular(10),

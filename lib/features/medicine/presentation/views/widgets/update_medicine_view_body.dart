@@ -39,11 +39,9 @@ class _UpdateMedicineViewBodyState extends State<UpdateMedicineViewBody> {
     medicineController.text = widget.updateMedicine.name;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-
-
-
     return BlocConsumer<MedicineCubit, MedicineStates>(
       listener: (context, state) {
         if (state is UpdateMedicineSuccess) {
@@ -92,9 +90,7 @@ class _UpdateMedicineViewBodyState extends State<UpdateMedicineViewBody> {
                     style: Styles.size16_700Black,
                   ),
                   15.verticalSpace,
-                  const Center(
-                      child: MedicineList()
-                  ),
+                  const Center(child: MedicineList()),
                   20.verticalSpace,
                   const LineContainer(),
                   30.verticalSpace,
@@ -108,18 +104,18 @@ class _UpdateMedicineViewBodyState extends State<UpdateMedicineViewBody> {
                   60.verticalSpace,
                   state is UpdateMedicineLoading
                       ? CustomLoadingItem(
-                    width: MediaQuery.sizeOf(context).width / 1.1,
-                    height: MediaQuery.sizeOf(context).height / 15,
-                  )
+                          width: MediaQuery.sizeOf(context).width / 1.1,
+                          height: MediaQuery.sizeOf(context).height / 15,
+                        )
                       : CustomBlueButton(
-                      text: 'Update',
-                      ontap: () {
-                        MedicineCubit.get(context).updateMedicine(
-                          medicineId: widget.updateMedicine.id,
-                          nameOfMedicine: medicineController.text,
-                        );
-                      },
-                      containerHeight: 56)
+                          text: 'Update',
+                          ontap: () {
+                            MedicineCubit.get(context).updateMedicine(
+                              medicineId: widget.updateMedicine.id,
+                              nameOfMedicine: medicineController.text,
+                            );
+                          },
+                          containerHeight: 56)
                 ],
               ),
             ),

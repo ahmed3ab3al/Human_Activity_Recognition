@@ -1,4 +1,4 @@
-class UpdateMedicine{
+class UpdateMedicine {
   UpdateMedicine({
     required this.name,
     required this.shape,
@@ -8,7 +8,7 @@ class UpdateMedicine{
     required this.minute,
     required this.system,
     required this.id,
-});
+  });
   String name;
   String shape;
   bool aftearMeal;

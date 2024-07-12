@@ -6,41 +6,31 @@ import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../view_models/Sign_up_cubit/sign_up_cubit.dart';
 
 class SignUpInputSection extends StatelessWidget {
-  const SignUpInputSection(
-      {super.key,
-      required this.signUpPasswordController,
-      required this.signUpConfirmPasswordController,
-      required this.signUpNameController,
-      required this.signUpPhoneController,
-      required this.signUpEmailController});
+  const SignUpInputSection({super.key});
 
-  final TextEditingController signUpPasswordController;
-  final TextEditingController signUpConfirmPasswordController;
-  final TextEditingController signUpNameController;
-  final TextEditingController signUpPhoneController;
-  final TextEditingController signUpEmailController;
   @override
   Widget build(BuildContext context) {
+    var cubit = SignUpCubit.get(context);
     return BlocBuilder<SignUpCubit, SignUpState>(
       builder: (context, state) {
         return Column(
           children: [
             CustomTextFormFiled(
               hint: 'Name ',
-              customController: signUpNameController,
+              customController: cubit.signUpNameController,
               type: TextInputType.name,
               prefix: Icons.person_outline_rounded,
             ),
             25.verticalSpace,
             CustomTextFormFiled(
                 hint: 'Number',
-                customController: signUpPhoneController,
+                customController: cubit.signUpPhoneController,
                 type: TextInputType.phone,
                 prefix: Icons.phone),
             25.verticalSpace,
             CustomTextFormFiled(
               hint: 'Email ',
-              customController: signUpEmailController,
+              customController: cubit.signUpEmailController,
               type: TextInputType.emailAddress,
               prefix: Icons.email_outlined,
             ),
@@ -48,7 +38,7 @@ class SignUpInputSection extends StatelessWidget {
             CustomTextFormFiled(
               hint: 'Password',
               secure: SignUpCubit.get(context).secure,
-              customController: signUpPasswordController,
+              customController: cubit.signUpPasswordController,
               type: TextInputType.visiblePassword,
               prefix: Icons.lock_outline_rounded,
               suffixIcon: IconButton(
@@ -68,7 +58,7 @@ class SignUpInputSection extends StatelessWidget {
             CustomTextFormFiled(
               hint: 'Confirmation Password',
               secure: SignUpCubit.get(context).secure,
-              customController: signUpConfirmPasswordController,
+              customController: cubit.signUpConfirmPasswordController,
               type: TextInputType.visiblePassword,
               prefix: Icons.lock_outline_rounded,
               suffixIcon: IconButton(

@@ -5,7 +5,6 @@ import 'package:graduation_project/core/cache/cache_helper.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
-
 import '../api/end_points.dart';
 
 List<double> acc_x = [];
@@ -100,12 +99,6 @@ Future<void> sendDataToAPI() async {
     gyro_x.clear();
     gyro_y.clear();
     gyro_z.clear();
-    // acc_x.removeRange(0, (acc_x.length / 2).ceil());
-    // acc_y.removeRange(0,(acc_y.length / 2).ceil());
-    // acc_z.removeRange(0, (acc_z.length / 2).ceil());
-    // gyro_x.removeRange(0, (gyro_x.length / 2).ceil());
-    // gyro_y.removeRange(0, (gyro_y.length / 2).ceil());
-    // gyro_z.removeRange(0, (gyro_z.length / 2).ceil());
 
     if (response.statusCode == 200) {
       print('Data sent successfully');

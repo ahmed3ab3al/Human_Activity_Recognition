@@ -75,26 +75,28 @@ class HomeView extends StatelessWidget {
                   MentorCubit.get(context).sendRequest(idController.text);
                 }
               } else {
-                scaffoldKey.currentState?.showBottomSheet(
-                    (context) => Form(
-                        key: formKey,
-                        child: Container(
-                          color: const Color(0xffDEDEDE),
-                          padding: const EdgeInsets.all(20),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              CustomTextFormFiled(
-                                hint: 'ID Number',
-                                customController: idController,
-                                type: TextInputType.text,
-                                prefix: Icons.perm_identity_rounded,
-                              )
-                            ],
-                          ),
-                        )),
-                    elevation: 20
-                ).closed.then((value){
+                scaffoldKey.currentState
+                    ?.showBottomSheet(
+                        (context) => Form(
+                            key: formKey,
+                            child: Container(
+                              color: const Color(0xffDEDEDE),
+                              padding: const EdgeInsets.all(20),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  CustomTextFormFiled(
+                                    hint: 'ID Number',
+                                    customController: idController,
+                                    type: TextInputType.text,
+                                    prefix: Icons.perm_identity_rounded,
+                                  )
+                                ],
+                              ),
+                            )),
+                        elevation: 20)
+                    .closed
+                    .then((value) {
                   MentorCubit.get(context).changeSendIcon(add: true);
                 });
                 MentorCubit.get(context).changeSendIcon(add: false);

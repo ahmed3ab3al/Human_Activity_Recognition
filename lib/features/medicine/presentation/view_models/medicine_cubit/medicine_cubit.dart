@@ -14,6 +14,7 @@ class MedicineCubit extends Cubit<MedicineStates> {
 
   final ApiHelper apiHelper;
   static MedicineCubit get(context) => BlocProvider.of(context);
+  var medicineController = TextEditingController();
   int dosage = 1;
   int hours = 0;
   int minute = 0;
@@ -56,20 +57,16 @@ class MedicineCubit extends Cubit<MedicineStates> {
     emit(ChangeDragItem());
   }
 
-  void selectDragItem(String shape){
-    if(shape == 'drink'){
+  void selectDragItem(String shape) {
+    if (shape == 'drink') {
       selectedItem = 0;
-    }
-    else  if(shape == 'drink'){
+    } else if (shape == 'drink') {
       selectedItem = 0;
-    }
-    else  if(shape == 'pill'){
+    } else if (shape == 'pill') {
       selectedItem = 1;
-    }
-    else  if(shape == 'rivet'){
+    } else if (shape == 'rivet') {
       selectedItem = 2;
-    }
-    else{
+    } else {
       selectedItem = 3;
     }
   }
@@ -136,7 +133,7 @@ class MedicineCubit extends Cubit<MedicineStates> {
   void updateMedicine({
     required medicineId,
     required String nameOfMedicine,
-}) async{
+  }) async {
     emit(UpdateMedicineLoading());
     try {
       await apiHelper.put(
@@ -156,19 +153,13 @@ class MedicineCubit extends Cubit<MedicineStates> {
           }
         },
       );
-      emit(UpdateMedicineSuccess(
-        message: 'Success Update'
-      ));
+      emit(UpdateMedicineSuccess(message: 'Success Update'));
     } on ServerException catch (e) {
       emit(UpdateMedicineError(error: e.errorModel.message));
     }
   }
 
-
-  void deleteMedicine({
-    required medicineId,
-    required index
-})async{
+  void deleteMedicine({required medicineId, required index}) async {
     emit(DeleteMedicineLoading());
     try {
       await apiHelper.delete(
@@ -179,9 +170,7 @@ class MedicineCubit extends Cubit<MedicineStates> {
       );
       getPatientMedicine!.result!.removeAt(index);
 
-      emit(DeleteMedicineSuccess(
-          message: 'Success Update'
-      ));
+      emit(DeleteMedicineSuccess(message: 'Success Update'));
     } on ServerException catch (e) {
       emit(DeleteMedicineError(error: e.errorModel.message));
     }

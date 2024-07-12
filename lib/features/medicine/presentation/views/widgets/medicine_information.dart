@@ -58,27 +58,27 @@ class MedicineInformation extends StatelessWidget {
                     controller:
                         BlocProvider.of<MedicineCubit>(context).timeController,
                     keyboardType: TextInputType.datetime,
-                    decoration:  InputDecoration(
+                    decoration: InputDecoration(
                       border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15)),
                         borderSide:
                             BorderSide(color: ColorManager.greyColorD9D9D9),
                       ),
-                      hintText: update ? '${MedicineCubit.get(context).hours}:${MedicineCubit.get(context).minute} ${MedicineCubit.get(context).system}' :'New Time',
+                      hintText: update
+                          ? '${MedicineCubit.get(context).hours}:${MedicineCubit.get(context).minute} ${MedicineCubit.get(context).system}'
+                          : 'New Time',
                     ),
                     onTap: () {
                       showTimePicker(
                               context: context, initialTime: TimeOfDay.now())
                           .then((value) {
-                            if(value!.hour == 24){
-                              MedicineCubit.get(context).hours = 12;
-                            }
-                            else if (value.hour > 12){
-                              MedicineCubit.get(context).hours = value.hour % 12;
-                            }
-                            else{
-                              MedicineCubit.get(context).hours = value.hour;
-                            }
+                        if (value!.hour == 24) {
+                          MedicineCubit.get(context).hours = 12;
+                        } else if (value.hour > 12) {
+                          MedicineCubit.get(context).hours = value.hour % 12;
+                        } else {
+                          MedicineCubit.get(context).hours = value.hour;
+                        }
                         MedicineCubit.get(context).minute = value.minute;
                         MedicineCubit.get(context).system = value.period
                                     .toString()

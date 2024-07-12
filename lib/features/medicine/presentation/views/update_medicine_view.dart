@@ -7,9 +7,9 @@ class UpdateMedicineView extends StatelessWidget {
   final UpdateMedicine updateMedicine;
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: UpdateMedicineViewBody(updateMedicine: updateMedicine,
-
+    return Scaffold(
+      body: UpdateMedicineViewBody(
+        updateMedicine: updateMedicine,
       ),
     );
   }

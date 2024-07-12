@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
-import 'package:graduation_project/core/socket/socket.dart';
+import 'package:graduation_project/core/api/socket.dart';
 import 'package:graduation_project/core/utils/app_router.dart';
 import 'package:graduation_project/features/chat/presentation/view_models/chat_cubit.dart';
 import 'constants.dart';

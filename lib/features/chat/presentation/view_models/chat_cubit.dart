@@ -5,7 +5,7 @@ import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/api/api_helper.dart';
 import 'package:graduation_project/core/api/end_points.dart';
 import 'package:graduation_project/core/cache/cache_helper.dart';
-import 'package:graduation_project/core/socket/socket.dart';
+import 'package:graduation_project/core/api/socket.dart';
 import 'package:graduation_project/features/chat/data/models/chat_model.dart';
 import 'package:graduation_project/features/chat/data/models/messages_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -17,6 +17,7 @@ class ChatCubit extends Cubit<ChatState> {
   static ChatCubit get(context) => BlocProvider.of(context);
   final ApiHelper apiHelper;
 
+  final searchController = TextEditingController();
   var message = TextEditingController();
   ChatModel? chatModel;
   void getChat({required bool back}) async {

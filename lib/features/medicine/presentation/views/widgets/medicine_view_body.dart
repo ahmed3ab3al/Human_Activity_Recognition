@@ -40,37 +40,67 @@ class MedicineViewBody extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              if(CacheHelper().getData(key: userRole) == 'mentor') {
+              if (CacheHelper().getData(key: userRole) == 'mentor') {
                 return Dismissible(
-                  key: Key(MedicineCubit.get(context).getPatientMedicine!.result![index].id!),
+                  key: Key(MedicineCubit.get(context)
+                      .getPatientMedicine!
+                      .result![index]
+                      .id!),
                   onDismissed: (direction) {
-                    if(CacheHelper().getData(key: userRole) == 'mentor'){
+                    if (CacheHelper().getData(key: userRole) == 'mentor') {
                       MedicineCubit.get(context).deleteMedicine(
-                          medicineId: MedicineCubit.get(context).getPatientMedicine!.result![index].id!,
-                          index: index
-                      );
+                          medicineId: MedicineCubit.get(context)
+                              .getPatientMedicine!
+                              .result![index]
+                              .id!,
+                          index: index);
                     }
                   },
                   child: InkWell(
-                    onTap: (){
-                      if(CacheHelper().getData(key: userRole) == 'mentor'){
+                    onTap: () {
+                      if (CacheHelper().getData(key: userRole) == 'mentor') {
                         UpdateMedicine update = UpdateMedicine(
-                          name: MedicineCubit.get(context).getPatientMedicine!.result![index].name!,
-                          shape: MedicineCubit.get(context).getPatientMedicine!.result![index].shape!,
-                          aftearMeal: MedicineCubit.get(context).getPatientMedicine!.result![index].afterMeal!,
-                          dosage: MedicineCubit.get(context).getPatientMedicine!.result![index].dosage!,
-                          hour: MedicineCubit.get(context).getPatientMedicine!.result![index].time!.hour,
-                          minute: MedicineCubit.get(context).getPatientMedicine!.result![index].time!.minute,
-                          system: MedicineCubit.get(context).getPatientMedicine!.result![index].time!.system,
-                          id: MedicineCubit.get(context).getPatientMedicine!.result![index].id!,
+                          name: MedicineCubit.get(context)
+                              .getPatientMedicine!
+                              .result![index]
+                              .name!,
+                          shape: MedicineCubit.get(context)
+                              .getPatientMedicine!
+                              .result![index]
+                              .shape!,
+                          aftearMeal: MedicineCubit.get(context)
+                              .getPatientMedicine!
+                              .result![index]
+                              .afterMeal!,
+                          dosage: MedicineCubit.get(context)
+                              .getPatientMedicine!
+                              .result![index]
+                              .dosage!,
+                          hour: MedicineCubit.get(context)
+                              .getPatientMedicine!
+                              .result![index]
+                              .time!
+                              .hour,
+                          minute: MedicineCubit.get(context)
+                              .getPatientMedicine!
+                              .result![index]
+                              .time!
+                              .minute,
+                          system: MedicineCubit.get(context)
+                              .getPatientMedicine!
+                              .result![index]
+                              .time!
+                              .system,
+                          id: MedicineCubit.get(context)
+                              .getPatientMedicine!
+                              .result![index]
+                              .id!,
                         );
                         Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => UpdateMedicineView(
-                                updateMedicine: update
-                            )
-                            )
-                        );
+                            MaterialPageRoute(
+                                builder: (context) => UpdateMedicineView(
+                                    updateMedicine: update)));
                       }
                     },
                     child: Row(
@@ -87,13 +117,13 @@ class MedicineViewBody extends StatelessWidget {
                             ),
                             getPatientMedicine!.result![index].afterMeal!
                                 ? Text(
-                              'After Meal',
-                              style: Styles.testStyle14Bold,
-                            )
+                                    'After Meal',
+                                    style: Styles.testStyle14Bold,
+                                  )
                                 : Text(
-                              'Before Meal',
-                              style: Styles.testStyle14Bold,
-                            ),
+                                    'Before Meal',
+                                    style: Styles.testStyle14Bold,
+                                  ),
                           ],
                         ),
                         CustomContainerMedicine(
@@ -105,8 +135,7 @@ class MedicineViewBody extends StatelessWidget {
                     ),
                   ),
                 );
-              }
-              else{
+              } else {
                 return Row(
                   children: [
                     Column(
@@ -121,13 +150,13 @@ class MedicineViewBody extends StatelessWidget {
                         ),
                         getPatientMedicine!.result![index].afterMeal!
                             ? Text(
-                          'After Meal',
-                          style: Styles.testStyle14Bold,
-                        )
+                                'After Meal',
+                                style: Styles.testStyle14Bold,
+                              )
                             : Text(
-                          'Before Meal',
-                          style: Styles.testStyle14Bold,
-                        ),
+                                'Before Meal',
+                                style: Styles.testStyle14Bold,
+                              ),
                       ],
                     ),
                     CustomContainerMedicine(

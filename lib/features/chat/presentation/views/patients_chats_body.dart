@@ -13,8 +13,8 @@ import '../../../../core/utils/app_router.dart';
 import '../../../../core/utils/styles.dart';
 
 class ChatsScreen extends StatelessWidget {
-  ChatsScreen({super.key});
-  final searchController = TextEditingController();
+  const ChatsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     RefreshController refreshController =
@@ -48,7 +48,8 @@ class ChatsScreen extends StatelessWidget {
                       20.verticalSpace,
                       SearchTextFormFiled(
                         hint: 'Search Chat',
-                        customController: searchController,
+                        customController:
+                            ChatCubit.get(context).searchController,
                         type: TextInputType.text,
                       ),
                       const SizedBox(

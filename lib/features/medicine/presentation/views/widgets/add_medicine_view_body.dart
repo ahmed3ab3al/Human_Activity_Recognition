@@ -15,15 +15,8 @@ import '../../view_models/medicine_cubit/medicine_state.dart';
 import 'line_container.dart';
 import 'medicine_list.dart';
 
-class AddMedicineViewBody extends StatefulWidget {
+class AddMedicineViewBody extends StatelessWidget {
   const AddMedicineViewBody({super.key});
-
-  @override
-  State<AddMedicineViewBody> createState() => _AddMedicineViewBodyState();
-}
-
-class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
-  var medicineController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +56,8 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                   15.verticalSpace,
                   CustomTextFormFiled(
                     hint: 'Medicine',
-                    customController: medicineController,
+                    customController:
+                        MedicineCubit.get(context).medicineController,
                     type: TextInputType.text,
                     prefix: Icons.medication_rounded,
                   ),
@@ -97,7 +91,9 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                           ontap: () {
                             MedicineCubit.get(context).addMedicine(
                               patientID: patientID,
-                              nameOfMedicine: medicineController.text,
+                              nameOfMedicine: MedicineCubit.get(context)
+                                  .medicineController
+                                  .text,
                             );
                           },
                           containerHeight: 56)

@@ -12,16 +12,7 @@ import '../../../../../core/widgets/custom_appBar.dart';
 import '../../../../../core/widgets/custom_blue_button.dart';
 
 class SignUpViewBody extends StatelessWidget {
-  SignUpViewBody({super.key});
-
-  final GlobalKey<FormState> signUpFormKey = GlobalKey();
-  final TextEditingController signUpPasswordController =
-      TextEditingController();
-  final TextEditingController signUpConfirmPasswordController =
-      TextEditingController();
-  final TextEditingController signUpNameController = TextEditingController();
-  final TextEditingController signUpPhoneController = TextEditingController();
-  final TextEditingController signUpEmailController = TextEditingController();
+  const SignUpViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +41,10 @@ class SignUpViewBody extends StatelessWidget {
               }
             },
             builder: (context, state) {
+              var cubit = SignUpCubit.get(context);
               return SingleChildScrollView(
                 child: Form(
-                  key: signUpFormKey,
+                  key: cubit.signUpFormKey,
                   child: Column(
                     children: [
                       CustomAppBar(
@@ -62,14 +54,7 @@ class SignUpViewBody extends StatelessWidget {
                             GoRouter.of(context).push(AppRouter.kLogin);
                           }),
                       25.verticalSpace,
-                      SignUpInputSection(
-                        signUpConfirmPasswordController:
-                            signUpConfirmPasswordController,
-                        signUpEmailController: signUpEmailController,
-                        signUpNameController: signUpNameController,
-                        signUpPasswordController: signUpPasswordController,
-                        signUpPhoneController: signUpPhoneController,
-                      ),
+                      const SignUpInputSection(),
                       25.verticalSpace,
                       const CheckPrivacy(),
                       35.verticalSpace,
@@ -78,17 +63,9 @@ class SignUpViewBody extends StatelessWidget {
                           : CustomBlueButton(
                               text: 'Sign UP',
                               ontap: () {
-                                if (signUpFormKey.currentState!.validate()) {
-                                  SignUpCubit.get(context).signUpUser(
-                                    email: signUpEmailController.text,
-                                    password: signUpPasswordController.text,
-                                    name: signUpNameController.text,
-                                    confirmPassword:
-                                        signUpConfirmPasswordController.text,
-                                    phone: signUpPhoneController.text,
-                                    role:
-                                        SignUpCubit.get(context).selectedValue,
-                                  );
+                                if (cubit.signUpFormKey.currentState!
+                                    .validate()) {
+                                  SignUpCubit.get(context).signUpUser();
                                 }
                               },
                               containerHeight: 60,

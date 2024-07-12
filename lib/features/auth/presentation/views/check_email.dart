@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +6,7 @@ import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/api/dio_helper.dart';
 import 'package:graduation_project/features/auth/presentation/view_models/forget_password_cubit/forget_password_cubit.dart';
 import '../../../../core/utils/app_router.dart';
+import '../../../../core/utils/service_locator.dart';
 import '../../../../core/widgets/custom_blue_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 
@@ -19,7 +19,7 @@ class CheckEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ForgetPasswordCubit(DioHelper(dio: Dio())),
+      create: (context) => ForgetPasswordCubit(getIt.get<DioHelper>()),
       child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
         listener: (context, state) {
           if (state is CheckEmailSuccessState) {
