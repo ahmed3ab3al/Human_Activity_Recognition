@@ -9,6 +9,7 @@ IcareU is a comprehensive mobile application designed for detecting activities a
 - [Technology_Stack](#Technology_Stack)
 - [Usage](#usage)
 - [Demo](#Demo)
+- [UI/UX](#UI/UX)
 
 ## What_is_HAR_SYSTEM
 The Human Activity Recognition System is an advanced solution designed to monitor and classify human activities using data from accelerometer and gyroscope sensors. This system is particularly useful for elderly care, providing real-time activity recognition and fall detection to ensure the safety and well-being of individuals. The system includes a mobile application developed with Flutter, a machine learning model using XGBoost, and a backend built with Node.js.
@@ -41,3 +42,6 @@ The IcareU HAR System employs Gyroscope and Accelerometer sensors to gather data
 3. **Download [Back-end](https://github.com/MuhammedSayeed/iCareU) and Run**
 
 ## [Demo](https://drive.google.com/file/d/1Nujfsnhs5yQp0UrZXgB_iE_xf9J4O8YH/view?usp=sharing)
+Show Our [Demo](https://drive.google.com/file/d/1Nujfsnhs5yQp0UrZXgB_iE_xf9J4O8YH/view?usp=sharing) to know how app work.
+## [UI/UX](https://www.figma.com/design/2lY1JmW2EEkHYntk7kcVYA/Graduation-Project?node-id=88-943&t=2RF0iDahrr488Jet-1)
+App [Design](https://www.figma.com/design/2lY1JmW2EEkHYntk7kcVYA/Graduation-Project?node-id=88-943&t=2RF0iDahrr488Jet-1) in figma.
